@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Grenze+Gotisch:wght@700;800;900&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=Pirata+One&family=UnifrakturCook:wght@700&display=swap');
+
+:root {
+  --bg-primary: #000000;
+  --bg-secondary: #050505;
+  --bg-card: #0a0a0a;
+  --color-crimson: #c52222;
+  --color-crimson-dark: #9e1b1b;
+  --color-sand: #c2b280;
+  --color-sand-light: #d2c29d;
+  --border-dark: #181818;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #000000 !important;
+  color: #e5e5e5;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Typography Classes */
+.font-gothic {
+  font-family: 'UnifrakturCook', 'Pirata One', 'Grenze Gotisch', cursive, serif;
+}
+
+.font-pirata {
+  font-family: 'Pirata One', cursive, serif;
+}
+
+.font-condensed {
+  font-family: 'Oswald', sans-serif;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+/* Concrete Grunge Noise Texture Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.025;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #202020;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c52222;
+}
+
+/* Hard edges */
+.hard-box {
+  border-radius: 0 !important;
+}
+
+/* Red Glow Effect */
+.glow-red {
+  box-shadow: 0 0 25px rgba(197, 34, 34, 0.25);
+}
+
+.glow-red-sm {
+  box-shadow: 0 0 10px rgba(197, 34, 34, 0.35);
+}
+
+/* Vignette Gradients for Pure Black background */
+.vignette-hero-left {
+  background: linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.2) 80%, transparent 100%);
+}
+
+.vignette-hero-bottom {
+  background: linear-gradient(0deg, #000000 0%, rgba(0,0,0,0.85) 30%, transparent 100%);
+}
+
+.vignette-hero-top {
+  background: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+}
+
+/* Button effects */
+.btn-crimson {
+  background-color: #9e1b1b;
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-crimson:hover {
+  background-color: #c52222;
+  box-shadow: 0 0 15px rgba(197, 34, 34, 0.4);
+}
+.btn-crimson:active {
+  transform: scale(0.98);
+}
+
+.btn-outline-dark {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #282828;
+  color: #e5e5e5;
+  transition: all 0.2s ease;
+  border-radius: 0;
+}
+.btn-outline-dark:hover {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Product Card Styling */
+.product-card {
+  background-color: #080808;
+  border: 1px solid #181818;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.product-card:hover {
+  border-color: #303030;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+.product-img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Collab Cards */
+.collab-card {
+  border: 1px solid #1a1a1a;
+  transition: all 0.3s ease;
+  background-color: #080808;
+  position: relative;
+  overflow: hidden;
+}
+.collab-card:hover {
+  border-color: #c52222;
+  box-shadow: 0 0 20px rgba(197, 34, 34, 0.25);
+}
+.collab-card:hover .collab-bg {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+.collab-bg {
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Badges */
+.badge-limited {
+  background-color: #c52222;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+.badge-upcoming {
+  border: 1px solid #c52222;
+  color: #c52222;
+  background: rgba(197, 34, 34, 0.1);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+/* Drawer and Modal transitions */
+.drawer-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-panel.active {
+  transform: translateX(0);
+}
+
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content-box {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-backdrop.active .modal-content-box {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Lookbook image zoom */
+.lookbook-item {
+  overflow: hidden;
+  border: 1px solid #181818;
+  transition: all 0.3s ease;
+}
+.lookbook-item:hover {
+  border-color: #383838;
+}
+.lookbook-item img {
+  transition: transform 0.5s ease;
+}
+.lookbook-item:hover img {
+  transform: scale(1.06);
+}
