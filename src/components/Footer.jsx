@@ -50,6 +50,7 @@ export const Footer = () => {
               <li><a href="#" className="hover:text-white transition-colors">Cambios y Devoluciones</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Preguntas Frecuentes</a></li>
+              <li><Link to="/admin" className="text-neutral-500 hover:text-[#C52222] transition-colors flex items-center gap-1 font-condensed tracking-wider uppercase pt-1">🔒 Panel Admin</Link></li>
             </ul>
           </div>
 

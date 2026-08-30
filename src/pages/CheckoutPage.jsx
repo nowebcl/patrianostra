@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Lock, CheckCircle2, Truck, CreditCard, Building, ArrowLeft, Download, ShoppingBag, Sparkles, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useStore } from '../context/StoreContext';
+import { formatCLP } from '../utils/currency';
 
 const CHILE_REGIONS = [
   'Región Metropolitana de Santiago',
@@ -22,6 +24,7 @@ const CHILE_REGIONS = [
 
 export const CheckoutPage = () => {
   const navigate = useNavigate();
+  const { createOrder } = useStore();
   const { 
     cart, 
     subtotal, 
@@ -77,6 +80,7 @@ export const CheckoutPage = () => {
       const orderNumber = `PN-CL-${Math.floor(100000 + Math.random() * 900000)}`;
       const orderDetails = {
         orderNumber,
+        status: 'Pendiente',
         items: [...cart],
         subtotal,
         discountAmount,
@@ -85,6 +89,9 @@ export const CheckoutPage = () => {
         customer: { ...formData },
         date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
       };
+
+      // Register in global persistent store & deduct stock
+      createOrder(orderDetails);
 
       setLastOrder(orderDetails);
       clearCart();
@@ -204,13 +211,13 @@ export const CheckoutPage = () => {
                 </h4>
                 <p className="text-neutral-400">Método: <strong className="text-white uppercase">{currentOrder.customer.paymentMethod}</strong></p>
                 <p className="text-neutral-400">Fecha: <span className="text-neutral-300">{currentOrder.date}</span></p>
-                <p className="text-neutral-400">Subtotal: <span className="text-neutral-300">€{currentOrder.subtotal.toFixed(2)}</span></p>
+                <p className="text-neutral-400">Subtotal: <span className="text-neutral-300">{formatCLP(currentOrder.subtotal)}</span></p>
                 {currentOrder.discountAmount > 0 && (
-                  <p className="text-[#C52222]">Descuento: -€{currentOrder.discountAmount.toFixed(2)}</p>
+                  <p className="text-[#C52222]">Descuento: -{formatCLP(currentOrder.discountAmount)}</p>
                 )}
-                <p className="text-neutral-400">Envío: <span className="text-emerald-400">{currentOrder.shippingCost === 0 ? 'GRATIS' : `€${currentOrder.shippingCost.toFixed(2)}`}</span></p>
+                <p className="text-neutral-400">Envío: <span className="text-emerald-400">{currentOrder.shippingCost === 0 ? 'GRATIS' : formatCLP(currentOrder.shippingCost)}</span></p>
                 <p className="text-white text-sm font-bold pt-2 border-t border-neutral-800">
-                  Total Pagado: <span className="text-[#C52222]">€{currentOrder.finalTotal.toFixed(2)}</span>
+                  Total Pagado: <span className="text-[#C52222] text-base">{formatCLP(currentOrder.finalTotal)}</span>
                 </p>
               </div>
 
@@ -552,7 +559,7 @@ export const CheckoutPage = () => {
                       {isProcessing ? (
                         <span>PROCESANDO PAGO SEGURO...</span>
                       ) : (
-                        <span>PAGAR €{finalTotal.toFixed(2)} (CLP ${(finalTotal * 1050).toLocaleString('es-CL')}) →</span>
+                        <span>PAGAR {formatCLP(finalTotal)} →</span>
                       )}
                     </button>
                   </div>
@@ -582,7 +589,7 @@ export const CheckoutPage = () => {
                         Talla: <span className="text-white font-semibold">{item.size}</span> • Cant: <span className="text-white font-semibold">{item.quantity}</span>
                       </p>
                     </div>
-                    <span className="font-condensed font-bold text-white">€{(item.product.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-condensed font-bold text-white">{formatCLP(item.product.price * item.quantity)}</span>
                   </div>
                 ))}
               </div>
@@ -591,25 +598,22 @@ export const CheckoutPage = () => {
               <div className="border-t border-neutral-900 pt-4 space-y-2 text-xs font-condensed tracking-wider uppercase">
                 <div className="flex justify-between text-neutral-400">
                   <span>SUBTOTAL</span>
-                  <span>€{subtotal.toFixed(2)}</span>
+                  <span>{formatCLP(subtotal)}</span>
                 </div>
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-[#C52222]">
                     <span>DESCUENTO ({couponDiscountPercent}%)</span>
-                    <span>-€{discountAmount.toFixed(2)}</span>
+                    <span>-{formatCLP(discountAmount)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-neutral-400">
                   <span>ENVÍO CHILE</span>
-                  <span>{shippingCost === 0 ? <strong className="text-emerald-400">GRATIS</strong> : `€${shippingCost.toFixed(2)}`}</span>
+                  <span>{shippingCost === 0 ? <strong className="text-emerald-400">GRATIS</strong> : formatCLP(shippingCost)}</span>
                 </div>
                 <div className="flex justify-between text-base font-bold text-white pt-3 border-t border-neutral-800">
                   <span>TOTAL FINAL</span>
-                  <span className="text-[#C52222]">€{finalTotal.toFixed(2)}</span>
+                  <span className="text-[#C52222] text-lg font-bold">{formatCLP(finalTotal)}</span>
                 </div>
-                <p className="text-[10px] text-neutral-500 font-mono text-right">
-                  Aprox: ${(finalTotal * 1050).toLocaleString('es-CL')} CLP
-                </p>
               </div>
 
               {/* Security guarantees */}

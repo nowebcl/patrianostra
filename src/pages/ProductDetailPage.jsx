@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, RotateCcw, ChevronRight, Check, Sparkles } from 'lucide-react';
-import { products } from '../data/products';
+import { useStore } from '../context/StoreContext';
 import { useCart } from '../context/CartContext';
 import { ProductCard } from '../components/ProductCard';
+import { formatCLP } from '../utils/currency';
 
 export const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { products } = useStore();
   const { addToCart, setIsCartOpen } = useCart();
 
-  const product = products.find(p => p.id === id) || products[0];
+  const product = products.find(p => p.id === id) || products[0] || {};
 
-  const [activeImage, setActiveImage] = useState(product.gallery?.[0] || product.image);
+  const [activeImage, setActiveImage] = useState(product.gallery?.[0] || product.image || '/producto.png');
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || 'L');
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState('specs');
+
+  useEffect(() => {
+    if (product) {
+      setActiveImage(product.gallery?.[0] || product.image || '/producto.png');
+      setSelectedSize(product.sizes?.[0] || 'L');
+    }
+  }, [product.id]);
 
   // Related products
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4);
@@ -102,16 +111,16 @@ export const ProductDetailPage = () => {
 
             {/* Price & Installments */}
             <div className="flex items-baseline gap-3 mb-4 pb-4 border-b border-neutral-900">
-              <span className="font-condensed text-2xl sm:text-3xl font-bold text-white">
-                €{product.price.toFixed(2)}
+              <span className="font-condensed text-2xl sm:text-3xl font-extrabold text-white">
+                {formatCLP(product.price)}
               </span>
               {product.originalPrice && (
                 <span className="font-condensed text-base text-neutral-600 line-through">
-                  €{product.originalPrice.toFixed(2)}
+                  {formatCLP(product.originalPrice)}
                 </span>
               )}
               <span className="text-xs text-neutral-400 font-sans ml-auto">
-                3 cuotas de <strong className="text-white">€{(product.price / 3).toFixed(2)}</strong> sin interés
+                3 cuotas de <strong className="text-white">{formatCLP(product.price / 3)}</strong> sin interés
               </span>
             </div>
 
@@ -120,7 +129,7 @@ export const ProductDetailPage = () => {
               <div className="bg-[#110A0A] border border-[#C52222]/30 p-2.5 mb-6 flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5 text-[#C52222] shrink-0" />
                 <span className="text-[11px] font-condensed font-bold tracking-wider text-neutral-300 uppercase">
-                  DROP EXCLUSIVO: QUEDAN SOLO <span className="text-[#C52222]">{product.stock} UNIDADES</span> EN STOCK
+                  LANZAMIENTO EXCLUSIVO: QUEDAN SOLO <span className="text-[#C52222]">{product.stock} UNIDADES</span> EN STOCK
                 </span>
               </div>
             )}

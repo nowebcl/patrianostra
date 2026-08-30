@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { formatCLP } from '../utils/currency';
 
 export const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -43,12 +44,12 @@ export const ProductCard = ({ product }) => {
           {product.name}
         </Link>
         <div className="flex items-center gap-2 mt-1">
-          <span className="font-condensed text-xs sm:text-sm font-semibold text-neutral-300">
-            €{product.price.toFixed(2)}
+          <span className="font-condensed text-xs sm:text-sm font-bold text-white">
+            {formatCLP(product.price)}
           </span>
           {product.originalPrice && (
             <span className="font-condensed text-xs text-neutral-600 line-through">
-              €{product.originalPrice.toFixed(2)}
+              {formatCLP(product.originalPrice)}
             </span>
           )}
         </div>

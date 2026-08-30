@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { useStore } from '../context/StoreContext';
 import { ProductCard } from './ProductCard';
 
 export const ProductGrid = () => {
+  const { products } = useStore();
   const featuredProducts = products.filter(p => p.isFeatured).slice(0, 4);
 
   return (

@@ -1,22 +1,24 @@
 import React, { useState, useMemo } from 'react';
 import { Search, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
-import { products } from '../data/products';
+import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/ProductCard';
 
 export const CatalogPage = () => {
+  const { products } = useStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
   const [sortBy, setSortBy] = useState('featured');
 
-  const categories = ['TODOS', 'HOODIES', 'CAMISETAS', 'LIMITED DROPS', 'PANTALONES', 'ACCESORIOS'];
+  const categories = ['TODOS', 'POLERONES', 'CAMISETAS', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
 
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
       // Category filter
-      if (selectedCategory === 'LIMITED DROPS') {
+      if (selectedCategory === 'EDICIÓN LIMITADA') {
         if (!product.badge) return false;
       } else if (selectedCategory !== 'TODOS') {
-        if (product.category.toUpperCase() !== selectedCategory) return false;
+        if (product.category.toUpperCase() !== selectedCategory && 
+            !(selectedCategory === 'POLERONES' && product.category?.toUpperCase() === 'HOODIES')) return false;
       }
 
       // Search filter

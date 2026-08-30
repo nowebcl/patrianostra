@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { formatCLP } from '../utils/currency';
 
 export const QuickViewModal = () => {
   const { quickViewProduct, setQuickViewProduct, addToCart } = useCart();
@@ -47,8 +48,8 @@ export const QuickViewModal = () => {
             <h3 className="font-condensed text-xl font-bold tracking-wider text-neutral-100 uppercase">
               {quickViewProduct.name}
             </h3>
-            <span className="font-condensed text-lg font-bold text-neutral-300 mt-1 mb-4">
-              €{quickViewProduct.price.toFixed(2)}
+            <span className="font-condensed text-lg font-bold text-neutral-200 mt-1 mb-4">
+              {formatCLP(quickViewProduct.price)}
             </span>
             
             <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-6">

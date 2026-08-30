@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Trash2, ShoppingBag, Tag, ArrowRight, Truck } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { formatCLP } from '../utils/currency';
 
 export const CartDrawer = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export const CartDrawer = () => {
 
   if (!isCartOpen) return null;
 
-  const freeShippingThreshold = 80;
+  const freeShippingThreshold = 60000;
   const progressToFreeShipping = Math.min(100, (subtotal / freeShippingThreshold) * 100);
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
@@ -76,7 +77,7 @@ export const CartDrawer = () => {
                 {remainingForFreeShipping === 0 ? (
                   <strong className="text-emerald-400">¡ENVÍO GRATIS DESBLOQUEADO! 🇨🇱</strong>
                 ) : (
-                  <span>AÑADE <strong>€{remainingForFreeShipping.toFixed(2)}</strong> PARA ENVÍO GRATIS</span>
+                  <span>AÑADE <strong>{formatCLP(remainingForFreeShipping)}</strong> PARA ENVÍO GRATIS</span>
                 )}
               </span>
               <span className="text-neutral-500 font-mono">{Math.round(progressToFreeShipping)}%</span>
@@ -137,8 +138,8 @@ export const CartDrawer = () => {
                           +
                         </button>
                       </div>
-                      <span className="text-sm font-semibold text-neutral-200">
-                        €{(item.product.price * item.quantity).toFixed(2)}
+                      <span className="text-sm font-bold text-white">
+                        {formatCLP(item.product.price * item.quantity)}
                       </span>
                     </div>
                   </div>
@@ -207,21 +208,21 @@ export const CartDrawer = () => {
             <div className="space-y-1.5 text-xs font-condensed tracking-wider uppercase">
               <div className="flex justify-between text-neutral-400">
                 <span>SUBTOTAL</span>
-                <span>€{subtotal.toFixed(2)}</span>
+                <span>{formatCLP(subtotal)}</span>
               </div>
               {discountAmount > 0 && (
                 <div className="flex justify-between text-[#C52222]">
                   <span>DESCUENTO ({couponDiscountPercent}%)</span>
-                  <span>-€{discountAmount.toFixed(2)}</span>
+                  <span>-{formatCLP(discountAmount)}</span>
                 </div>
               )}
               <div className="flex justify-between text-neutral-400">
                 <span>ENVÍO</span>
-                <span>{shippingCost === 0 ? <strong className="text-emerald-400">GRATIS</strong> : `€${shippingCost.toFixed(2)}`}</span>
+                <span>{shippingCost === 0 ? <strong className="text-emerald-400">GRATIS</strong> : formatCLP(shippingCost)}</span>
               </div>
               <div className="flex items-center justify-between pt-2 border-t border-neutral-900 text-sm font-bold text-neutral-100">
                 <span>TOTAL</span>
-                <span className="text-[#C52222] text-base">€{finalTotal.toFixed(2)}</span>
+                <span className="text-[#C52222] text-lg font-bold">{formatCLP(finalTotal)}</span>
               </div>
             </div>
 

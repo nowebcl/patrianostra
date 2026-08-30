@@ -1,17 +1,17 @@
 import React, { createContext, useContext, useState } from 'react';
-import { products } from '../data/products';
+import { useStore } from './StoreContext';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  // Cart state initialized with 1 item
-  const [cart, setCart] = useState([
-    {
-      product: products[0],
-      size: 'L',
-      quantity: 1
-    }
-  ]);
+  const { products } = useStore();
+
+  // Cart state initialized with 1 item if available
+  const [cart, setCart] = useState(() => {
+    return products && products.length > 0
+      ? [{ product: products[0], size: 'L', quantity: 1 }]
+      : [];
+  });
 
   // Drawer and Modals states
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -111,8 +111,8 @@ export const CartProvider = ({ children }) => {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-  const discountAmount = (subtotal * couponDiscountPercent) / 100;
-  const shippingCost = subtotal > 80 || subtotal === 0 ? 0 : 4.90;
+  const discountAmount = Math.round((subtotal * couponDiscountPercent) / 100);
+  const shippingCost = subtotal >= 60000 || subtotal === 0 ? 0 : 4990;
   const finalTotal = Math.max(0, subtotal - discountAmount + (subtotal > 0 ? shippingCost : 0));
 
   return (
