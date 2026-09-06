@@ -8,7 +8,8 @@ import {
   LogOut, 
   Menu, 
   X,
-  ChevronRight
+  ChevronRight,
+  Boxes
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 
@@ -33,9 +34,15 @@ export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, childre
     },
     {
       id: 'products',
-      label: 'Productos & Stock',
+      label: 'Productos',
       icon: Package,
       badge: products.length
+    },
+    {
+      id: 'inventory',
+      label: 'Bodega & Tallas',
+      icon: Boxes,
+      badge: null
     },
     {
       id: 'overview',

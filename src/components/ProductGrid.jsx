@@ -5,7 +5,8 @@ import { ProductCard } from './ProductCard';
 
 export const ProductGrid = () => {
   const { products } = useStore();
-  const featuredProducts = products.filter(p => p.isFeatured).slice(0, 4);
+  const featured = products.filter(p => p.isFeatured);
+  const featuredProducts = (featured.length > 0 ? featured : products).slice(0, 8);
 
   return (
     <section id="catalogo" className="bg-black py-12 sm:py-16 border-b border-neutral-900">
@@ -26,11 +27,17 @@ export const ProductGrid = () => {
         </div>
 
         {/* 4-Column Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {featuredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {featuredProducts.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-neutral-500 font-condensed uppercase tracking-wider text-sm border border-neutral-900 bg-[#080808] p-8">
+            No hay prendas disponibles en este momento.
+          </div>
+        )}
 
       </div>
     </section>

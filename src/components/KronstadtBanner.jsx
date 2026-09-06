@@ -7,8 +7,10 @@ export const KronstadtBanner = () => {
       {/* Full-bleed edge-to-edge immersive banner */}
       <div className="relative w-full overflow-hidden bg-black group">
         <img 
-          src="/banner1.png" 
+          src="/banner1.webp" 
           alt="Kronstadt No Compromise x Patria Nostra Colaboración" 
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto min-h-[160px] sm:min-h-[220px] md:min-h-[280px] lg:min-h-[320px] object-cover object-center select-none filter contrast-105"
         />
 

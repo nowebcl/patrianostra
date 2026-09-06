@@ -4,6 +4,7 @@ import { AdminLoginPage } from './AdminLoginPage';
 import { AdminLayout } from '../../components/admin/AdminLayout';
 import { AdminOrdersTab } from '../../components/admin/AdminOrdersTab';
 import { AdminProductsTab } from '../../components/admin/AdminProductsTab';
+import { AdminInventoryTab } from '../../components/admin/AdminInventoryTab';
 import { AdminOverviewTab } from '../../components/admin/AdminOverviewTab';
 
 export const AdminDashboardPage = () => {
@@ -40,6 +41,10 @@ export const AdminDashboardPage = () => {
           productToEdit={productToEdit}
           setProductToEdit={setProductToEdit}
         />
+      )}
+
+      {activeTab === 'inventory' && (
+        <AdminInventoryTab />
       )}
 
       {activeTab === 'overview' && (

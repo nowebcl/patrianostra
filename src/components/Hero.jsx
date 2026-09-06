@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const heroSlides = [
   {
-    image: '/hero2.png',
+    image: '/hero2.webp',
     alt: 'Patria Nostra Tactical Model - Back Shield',
     imgClass: 'w-full h-full object-cover object-[60%_top] sm:object-[55%_top] lg:object-[50%_top]'
   },
   {
-    image: '/hero3.png',
+    image: '/hero3.webp',
     alt: 'Patria Nostra Lookbook - Flag and Hoodies',
     imgClass: 'w-full h-full object-cover sm:object-cover object-[center_15%] sm:object-[center_25%] lg:object-[center_32%]'
   }

@@ -11,9 +11,10 @@ import {
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { formatCLP } from '../../utils/currency';
+import { sortSizes } from '../../utils/sizes';
 import { ProductEditorView } from './ProductEditorView';
 
-const CATEGORIES = ['TODOS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS'];
+const CATEGORIES = ['TODOS', 'POLERAS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS'];
 
 export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setProductToEdit }) => {
   const { products, addProduct, updateProduct, deleteProduct, adjustStock } = useStore();
@@ -31,7 +32,12 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
     return products.filter(p => {
       if (selectedCategory !== 'TODOS') {
         const cat = p.category?.toUpperCase();
-        if (cat !== selectedCategory && !(selectedCategory === 'POLERONES' && cat === 'HOODIES')) {
+        const sel = selectedCategory.toUpperCase();
+        if (sel === 'POLERAS' || sel === 'CAMISETAS') {
+          if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
+        } else if (sel === 'POLERONES') {
+          if (cat !== 'POLERONES' && cat !== 'HOODIES') return false;
+        } else if (cat !== sel) {
           return false;
         }
       }
@@ -235,6 +241,31 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                       </button>
                     </div>
                   </div>
+
+                  {/* Size Stock Badges Preview */}
+                  {product.sizes && product.sizes.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1">
+                      {sortSizes(product.sizes).map(sz => {
+                        const szStock = product.sizeStock?.[sz] !== undefined ? Number(product.sizeStock[sz]) : 0;
+                        const isSzOut = szStock <= 0;
+                        return (
+                          <span 
+                            key={sz}
+                            className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
+                              isSzOut 
+                                ? 'bg-red-950/30 text-red-400 border-red-900/50 line-through' 
+                                : szStock <= 2 
+                                  ? 'bg-amber-950/30 text-amber-300 border-amber-900/50' 
+                                  : 'bg-black text-neutral-300 border-neutral-800'
+                            }`}
+                            title={`Talla ${sz}: ${szStock} unidades disponibles`}
+                          >
+                            <span className="font-condensed font-bold uppercase">{sz}:</span> {szStock}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  )}
 
                   {/* Actions */}
                   <div className="flex items-center gap-2">

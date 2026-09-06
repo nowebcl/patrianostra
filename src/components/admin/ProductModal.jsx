@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Image, Check, Plus, Minus, Sparkles } from 'lucide-react';
 
-const PRESET_IMAGES = [
-  { label: 'Hoodie / Polerón Negro', url: '/producto.png' },
-  { label: 'Modelo Táctico 1', url: '/hero2.png' },
-  { label: 'Modelo Táctico 2', url: '/hero3.png' },
-  { label: 'Banner Kronstadt', url: '/banner1.png' },
-  { label: 'Colaboración Bastión', url: '/assets/images/collab_bastion_img.png' },
-  { label: 'Colaboración Disidencia', url: '/assets/images/collab_disidencia_img.png' }
-];
-
-const CATEGORIES = ['Hoodies', 'Camisetas', 'Pantalones', 'Accesorios'];
+const CATEGORIES = ['Poleras', 'Hoodies', 'Camisetas', 'Pantalones', 'Accesorios'];
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL', 'Única'];
 
 export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
@@ -260,37 +251,16 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
             </div>
           </div>
 
-          {/* 5. Image Selector with 1-click presets */}
+          {/* 5. Image Selector */}
           <div>
             <label className="font-condensed font-bold text-neutral-300 uppercase tracking-wider block mb-1.5 text-sm">
-              6. Foto de la Prenda
+              6. Link de Foto de la Prenda
             </label>
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-2">
-              {PRESET_IMAGES.map((preset, idx) => (
-                <button
-                  type="button"
-                  key={idx}
-                  onClick={() => setFormData({ ...formData, image: preset.url })}
-                  className={`aspect-square p-1 rounded-xl border bg-black flex flex-col items-center justify-center relative overflow-hidden cursor-pointer transition-all ${
-                    formData.image === preset.url ? 'border-[#C52222] ring-2 ring-[#C52222]/50' : 'border-neutral-800 hover:border-neutral-700'
-                  }`}
-                >
-                  <img src={preset.url} alt="" className="w-full h-full object-contain" />
-                  {formData.image === preset.url && (
-                    <div className="absolute inset-0 bg-[#C52222]/20 flex items-center justify-center">
-                      <span className="bg-[#C52222] text-white rounded-full p-0.5">
-                        <Check className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                  )}
-                </button>
-              ))}
-            </div>
             <input
               type="text"
               value={formData.image}
               onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-              placeholder="O pega el link de una imagen externa (https://...)"
+              placeholder="https://pn.noweb.tech/api/files/... o /1x/polera.webp"
               className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl p-2.5 text-neutral-300 text-xs font-mono focus:outline-none focus:border-[#C52222]"
             />
           </div>

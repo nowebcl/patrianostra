@@ -5,6 +5,7 @@ import { useStore } from '../context/StoreContext';
 import { useCart } from '../context/CartContext';
 import { ProductCard } from '../components/ProductCard';
 import { formatCLP } from '../utils/currency';
+import { sortSizes } from '../utils/sizes';
 
 export const ProductDetailPage = () => {
   const { id } = useParams();
@@ -13,18 +14,33 @@ export const ProductDetailPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
   const product = products.find(p => p.id === id) || products[0] || {};
+  const sizeStock = product.sizeStock || {};
+  const rawSizes = Array.isArray(product.sizes) && product.sizes.length > 0 
+    ? product.sizes 
+    : (Object.keys(sizeStock).length > 0 ? Object.keys(sizeStock) : ['S', 'M', 'L', 'XL', 'XXL']);
+  const sizes = sortSizes(rawSizes);
 
-  const [activeImage, setActiveImage] = useState(product.gallery?.[0] || product.image || '/producto.png');
-  const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || 'L');
+  const firstInStockSize = sizes.find(s => (sizeStock[s] ?? 1) > 0) || sizes[0] || 'L';
+
+  const [activeImage, setActiveImage] = useState(product.gallery?.[0] || product.image || '/producto.webp');
+  const [selectedSize, setSelectedSize] = useState(firstInStockSize);
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState('specs');
 
   useEffect(() => {
     if (product) {
-      setActiveImage(product.gallery?.[0] || product.image || '/producto.png');
-      setSelectedSize(product.sizes?.[0] || 'L');
+      setActiveImage(product.gallery?.[0] || product.image || '/producto.webp');
+      const inStock = sizes.find(s => (product.sizeStock?.[s] ?? 1) > 0) || sizes[0] || 'L';
+      setSelectedSize(inStock);
+      setQuantity(1);
     }
   }, [product.id]);
+
+  const currentSizeStock = sizeStock[selectedSize] !== undefined 
+    ? Number(sizeStock[selectedSize]) 
+    : (product.stock !== undefined ? Number(product.stock) : 10);
+
+  const isCurrentSizeOutOfStock = currentSizeStock <= 0;
 
   // Related products
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4);
@@ -67,6 +83,10 @@ export const ProductDetailPage = () => {
               <img 
                 src={activeImage} 
                 alt={product.name} 
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/producto.webp';
+                }}
                 className="w-full h-full object-contain filter contrast-105 transition-all duration-300"
               />
             </div>
@@ -125,11 +145,23 @@ export const ProductDetailPage = () => {
             </div>
 
             {/* Stock Alert */}
-            {product.stock && (
-              <div className="bg-[#110A0A] border border-[#C52222]/30 p-2.5 mb-6 flex items-center gap-2">
+            {product.stock !== undefined && (
+              <div className={`border p-2.5 mb-6 flex items-center gap-2 ${
+                isCurrentSizeOutOfStock 
+                  ? 'bg-[#180808] border-red-900/60 text-red-400' 
+                  : currentSizeStock <= 3 
+                    ? 'bg-[#161005] border-amber-800/60 text-amber-300'
+                    : 'bg-[#110A0A] border-[#C52222]/30 text-neutral-300'
+              }`}>
                 <Sparkles className="w-3.5 h-3.5 text-[#C52222] shrink-0" />
-                <span className="text-[11px] font-condensed font-bold tracking-wider text-neutral-300 uppercase">
-                  LANZAMIENTO EXCLUSIVO: QUEDAN SOLO <span className="text-[#C52222]">{product.stock} UNIDADES</span> EN STOCK
+                <span className="text-[11px] font-condensed font-bold tracking-wider uppercase">
+                  {isCurrentSizeOutOfStock ? (
+                    <span className="text-red-400 font-bold">TALLA {selectedSize} AGOTADA — Elige otra talla disponible</span>
+                  ) : currentSizeStock <= 3 ? (
+                    <span>¡ÚLTIMAS UNIDADES! QUEDAN SOLO <strong className="text-amber-400">{currentSizeStock} PRENDAS</strong> EN TALLA {selectedSize}</span>
+                  ) : (
+                    <span>DISPONIBILIDAD TALLA {selectedSize}: <strong className="text-emerald-400 font-bold">{currentSizeStock} UNIDADES</strong> EN STOCK</span>
+                  )}
                 </span>
               </div>
             )}
@@ -146,23 +178,48 @@ export const ProductDetailPage = () => {
                   SELECCIONAR TALLA:
                 </span>
                 <span className="text-[10px] font-condensed tracking-wider text-neutral-500 uppercase">
-                  CORTE {product.fit.toUpperCase()}
+                  CORTE {(product.fit || 'Regular').toUpperCase()}
                 </span>
               </div>
               <div className="flex flex-wrap gap-2.5">
-                {product.sizes.map(sz => (
-                  <button
-                    key={sz}
-                    onClick={() => setSelectedSize(sz)}
-                    className={`min-w-[48px] py-2.5 px-3 text-xs font-condensed font-bold tracking-wider transition-all uppercase cursor-pointer ${
-                      selectedSize === sz
-                        ? 'bg-[#C52222] text-white border border-[#C52222] shadow-[0_0_12px_rgba(197,34,34,0.4)]'
-                        : 'bg-[#080808] border border-neutral-800 text-neutral-300 hover:border-neutral-600 hover:text-white'
-                    }`}
-                  >
-                    {sz}
-                  </button>
-                ))}
+                {sizes.map(sz => {
+                  const stockForSz = sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1;
+                  const isOutOfStock = stockForSz <= 0;
+                  const isLow = stockForSz > 0 && stockForSz <= 3;
+                  const isSelected = selectedSize === sz;
+
+                  return (
+                    <button
+                      key={sz}
+                      type="button"
+                      disabled={isOutOfStock}
+                      onClick={() => {
+                        setSelectedSize(sz);
+                        setQuantity(1);
+                      }}
+                      className={`relative min-w-[62px] py-2 px-3 text-xs font-condensed font-bold tracking-wider transition-all uppercase flex flex-col items-center justify-center ${
+                        isOutOfStock
+                          ? 'bg-[#0a0a0a] border border-neutral-900 text-neutral-600 cursor-not-allowed opacity-50 line-through'
+                          : isSelected
+                            ? 'bg-[#C52222] text-white border border-[#C52222] shadow-[0_0_12px_rgba(197,34,34,0.4)] cursor-pointer'
+                            : 'bg-[#080808] border border-neutral-800 text-neutral-300 hover:border-neutral-600 hover:text-white cursor-pointer'
+                      }`}
+                    >
+                      <span className="text-sm leading-tight">{sz}</span>
+                      <span className={`text-[9px] font-mono tracking-tighter mt-0.5 ${
+                        isOutOfStock 
+                          ? 'text-neutral-600' 
+                          : isSelected 
+                            ? 'text-white/90 font-bold'
+                            : isLow 
+                              ? 'text-amber-400' 
+                              : 'text-neutral-500'
+                      }`}>
+                        {isOutOfStock ? '0 u.' : `${stockForSz} u.`}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -172,15 +229,21 @@ export const ProductDetailPage = () => {
               {/* Quantity Box */}
               <div className="flex items-center border border-neutral-800 bg-[#080808] h-12">
                 <button 
+                  type="button"
+                  disabled={isCurrentSizeOutOfStock}
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                  className="px-3 text-neutral-400 hover:text-white text-sm font-mono cursor-pointer"
+                  className="px-3 text-neutral-400 hover:text-white text-sm font-mono cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   -
                 </button>
-                <span className="px-3 text-xs font-mono font-bold text-white">{quantity}</span>
+                <span className="px-3 text-xs font-mono font-bold text-white">
+                  {isCurrentSizeOutOfStock ? 0 : quantity}
+                </span>
                 <button 
-                  onClick={() => setQuantity(q => q + 1)}
-                  className="px-3 text-neutral-400 hover:text-white text-sm font-mono cursor-pointer"
+                  type="button"
+                  disabled={isCurrentSizeOutOfStock || quantity >= currentSizeStock}
+                  onClick={() => setQuantity(q => Math.min(currentSizeStock, q + 1))}
+                  className="px-3 text-neutral-400 hover:text-white text-sm font-mono cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   +
                 </button>
@@ -188,22 +251,34 @@ export const ProductDetailPage = () => {
 
               {/* Add to Cart Button */}
               <button 
+                type="button"
                 onClick={handleAddToCart}
-                className="flex-1 bg-[#161616] hover:bg-[#C52222] text-white font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase h-12 border border-neutral-700 hover:border-[#C52222] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                disabled={isCurrentSizeOutOfStock}
+                className={`flex-1 font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase h-12 border transition-all flex items-center justify-center gap-2 ${
+                  isCurrentSizeOutOfStock
+                    ? 'bg-neutral-900 text-neutral-600 border-neutral-800 cursor-not-allowed'
+                    : 'bg-[#161616] hover:bg-[#C52222] text-white border-neutral-700 hover:border-[#C52222] cursor-pointer active:scale-98'
+                }`}
               >
-                <span>AÑADIR AL CARRITO</span>
-                <span>+</span>
+                <span>{isCurrentSizeOutOfStock ? 'TALLA AGOTADA' : 'AÑADIR AL CARRITO'}</span>
+                {!isCurrentSizeOutOfStock && <span>+</span>}
               </button>
 
             </div>
 
             {/* Direct Buy Now Button */}
             <button 
+              type="button"
               onClick={handleBuyNow}
-              className="w-full bg-[#9E1B1B] hover:bg-[#C52222] text-white font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase h-12 transition-all flex items-center justify-center gap-2 mb-8 shadow-lg glow-red-sm cursor-pointer active:scale-98"
+              disabled={isCurrentSizeOutOfStock}
+              className={`w-full font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase h-12 transition-all flex items-center justify-center gap-2 mb-8 ${
+                isCurrentSizeOutOfStock
+                  ? 'bg-neutral-900 text-neutral-600 border border-neutral-800 cursor-not-allowed shadow-none'
+                  : 'bg-[#9E1B1B] hover:bg-[#C52222] text-white shadow-lg glow-red-sm cursor-pointer active:scale-98'
+              }`}
             >
-              <span>COMPRAR AHORA</span>
-              <span>→</span>
+              <span>{isCurrentSizeOutOfStock ? 'SELECCIONA OTRA TALLA' : 'COMPRAR AHORA'}</span>
+              {!isCurrentSizeOutOfStock && <span>→</span>}
             </button>
 
             {/* Trust Badges */}

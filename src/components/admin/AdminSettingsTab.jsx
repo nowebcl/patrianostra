@@ -25,10 +25,10 @@ export const AdminSettingsTab = () => {
   } = useStore();
 
   const [formData, setFormData] = useState({
-    name: adminCreds.name || 'Comandante Patria',
-    username: adminCreds.username || 'admin',
-    email: adminCreds.email || 'admin@patrianostra.cl',
-    password: adminCreds.password || 'admin123'
+    name: adminCreds.name || 'Administrador Patria Nostra',
+    username: adminCreds.username || 'contacto@patrianostradistro.cl',
+    email: adminCreds.email || 'contacto@patrianostradistro.cl',
+    password: ''
   });
 
   const [toastMessage, setToastMessage] = useState(null);
@@ -77,13 +77,13 @@ export const AdminSettingsTab = () => {
   const handleConfirmReset = () => {
     resetStoreData();
     setFormData({
-      name: 'Comandante Patria',
-      username: 'admin',
-      email: 'admin@patrianostra.cl',
-      password: 'admin123'
+      name: 'Administrador Patria Nostra',
+      username: 'contacto@patrianostradistro.cl',
+      email: 'contacto@patrianostradistro.cl',
+      password: ''
     });
     setIsResetConfirmOpen(false);
-    showNotification('Datos restablecidos a los valores originales de fábrica.');
+    showNotification('Datos restablecidos correctamente.');
   };
 
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 
 const collabCards = [
-  { id: 'kronstadt', image: '/col1.png', alt: 'Kronstadt No Compromise' },
-  { id: 'bastion', image: '/col2.png', alt: 'Bastión HXC Próximamente' },
-  { id: 'disidencia', image: '/col3.png', alt: 'Disidencia Punk Rock Próximamente' }
+  { id: 'kronstadt', image: '/col1.webp', alt: 'Kronstadt No Compromise' },
+  { id: 'bastion', image: '/col2.webp', alt: 'Bastión HXC Próximamente' },
+  { id: 'disidencia', image: '/col3.webp', alt: 'Disidencia Punk Rock Próximamente' }
 ];
 
 export const Collaborations = () => {
@@ -35,6 +35,8 @@ export const Collaborations = () => {
               <img 
                 src={collab.image} 
                 alt={collab.alt} 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-cover select-none filter contrast-105 transition-transform duration-500 group-hover:scale-105"
               />
             </div>

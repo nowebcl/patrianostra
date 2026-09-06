@@ -40,33 +40,70 @@ export const CartProvider = ({ children }) => {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
+    const sizeStock = product.sizeStock || {};
+    const availableStock = sizeStock[size] !== undefined ? Number(sizeStock[size]) : (product.stock || 0);
+
+    if (availableStock <= 0) {
+      showToast(`⚠️ La talla ${size} de ${product.name} está agotada.`);
+      return;
+    }
+
+    let reachedMax = false;
+
     setCart(prevCart => {
       const existingIndex = prevCart.findIndex(
         item => item.product.id === productId && item.size === size
       );
 
       if (existingIndex > -1) {
+        const currentQty = prevCart[existingIndex].quantity;
+        const newQty = Math.min(availableStock, currentQty + quantity);
+        if (newQty === currentQty) {
+          reachedMax = true;
+          return prevCart;
+        }
         const updated = [...prevCart];
-        updated[existingIndex].quantity += quantity;
+        updated[existingIndex] = { ...updated[existingIndex], quantity: newQty };
         return updated;
       } else {
-        return [...prevCart, { product, size, quantity }];
+        const initialQty = Math.min(availableStock, quantity);
+        return [...prevCart, { product, size, quantity: initialQty }];
       }
     });
 
-    setIsCartOpen(true);
-    showToast(`Añadido: ${product.name} (${size})`);
+    if (reachedMax) {
+      showToast(`Stock máximo alcanzado (${availableStock} u.) para talla ${size}`);
+    } else {
+      setIsCartOpen(true);
+      showToast(`Añadido: ${product.name} (${size})`);
+    }
   };
 
   const updateQuantity = (index, delta) => {
     setCart(prevCart => {
       const updated = [...prevCart];
-      if (updated[index]) {
-        updated[index].quantity += delta;
-        if (updated[index].quantity <= 0) {
-          updated.splice(index, 1);
-        }
+      const item = updated[index];
+      if (!item) return prevCart;
+
+      const newQty = item.quantity + delta;
+      if (newQty <= 0) {
+        updated.splice(index, 1);
+        return updated;
       }
+
+      // Validar stock disponible para la talla específica
+      const currentProduct = products.find(p => p.id === item.product?.id) || item.product;
+      const sizeStock = currentProduct?.sizeStock || {};
+      const maxAvailable = sizeStock[item.size] !== undefined 
+        ? Number(sizeStock[item.size]) 
+        : (currentProduct?.stock !== undefined ? Number(currentProduct.stock) : 99);
+
+      if (delta > 0 && newQty > maxAvailable) {
+        showToast(`⚠️ Stock máximo alcanzado (${maxAvailable} u.) para talla ${item.size}`);
+        return prevCart;
+      }
+
+      updated[index] = { ...item, quantity: newQty };
       return updated;
     });
   };

@@ -9,7 +9,7 @@ export const CatalogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
   const [sortBy, setSortBy] = useState('featured');
 
-  const categories = ['TODOS', 'POLERONES', 'CAMISETAS', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
+  const categories = ['TODOS', 'POLERAS', 'POLERONES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
 
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
@@ -17,8 +17,15 @@ export const CatalogPage = () => {
       if (selectedCategory === 'EDICIÓN LIMITADA') {
         if (!product.badge) return false;
       } else if (selectedCategory !== 'TODOS') {
-        if (product.category.toUpperCase() !== selectedCategory && 
-            !(selectedCategory === 'POLERONES' && product.category?.toUpperCase() === 'HOODIES')) return false;
+        const cat = (product.category || '').toUpperCase();
+        const sel = selectedCategory.toUpperCase();
+        if (sel === 'POLERAS' || sel === 'CAMISETAS') {
+          if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
+        } else if (sel === 'POLERONES') {
+          if (cat !== 'POLERONES' && cat !== 'HOODIES') return false;
+        } else if (cat !== sel) {
+          return false;
+        }
       }
 
       // Search filter

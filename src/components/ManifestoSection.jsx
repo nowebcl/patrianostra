@@ -49,6 +49,7 @@ export const ManifestoSection = () => {
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-2xl filter contrast-105"
               />
 

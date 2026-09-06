@@ -4,6 +4,7 @@ import { ShieldCheck, Lock, CheckCircle2, Truck, CreditCard, Building, ArrowLeft
 import { useCart } from '../context/CartContext';
 import { useStore } from '../context/StoreContext';
 import { formatCLP } from '../utils/currency';
+import { initWebpayTransaction, redirectToWebpayForm, isWebpayApiConfigured } from '../services/paymentService';
 
 const CHILE_REGIONS = [
   'Región Metropolitana de Santiago',
@@ -71,16 +72,75 @@ export const CheckoutPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleConfirmOrder = (e) => {
+  const handleConfirmOrder = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
 
-    // Simulate payment processing delay
-    setTimeout(() => {
-      const orderNumber = `PN-CL-${Math.floor(100000 + Math.random() * 900000)}`;
+    const orderNumber = `PN-CL-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    try {
+      if (formData.paymentMethod === 'webpay') {
+        // 1. Iniciar transacción en Webpay Plus
+        const tx = await initWebpayTransaction({
+          buyOrder: orderNumber,
+          sessionId: `sess_${Date.now()}`,
+          amount: finalTotal,
+          returnUrl: `${window.location.origin}/checkout?status=webpay_return`
+        });
+
+        // Si la API real de Webpay está conectada y retorna URL oficial de Transbank
+        if (tx.isLive && tx.url && tx.token) {
+          const orderDetails = {
+            orderNumber,
+            status: 'Pendiente',
+            paymentStatus: 'pending_webpay',
+            paymentMethod: 'Webpay Plus (Transbank)',
+            paymentDetails: { token: tx.token },
+            items: [...cart],
+            subtotal,
+            discountAmount,
+            shippingCost,
+            finalTotal,
+            customer: { ...formData },
+            date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+          };
+          await createOrder(orderDetails);
+          redirectToWebpayForm(tx.url, tx.token);
+          return;
+        }
+
+        // Modo Preparatorio / Simulado de Webpay (hasta conectar la API real)
+        const orderDetails = {
+          orderNumber,
+          status: 'En Preparación',
+          paymentStatus: 'authorized',
+          paymentMethod: 'Webpay Plus (Transbank)',
+          paymentDetails: tx.mockDetails || { status: 'AUTHORIZED' },
+          items: [...cart],
+          subtotal,
+          discountAmount,
+          shippingCost,
+          finalTotal,
+          customer: { ...formData },
+          date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+        };
+
+        await createOrder(orderDetails);
+        setLastOrder(orderDetails);
+        clearCart();
+        setIsProcessing(false);
+        setStep(3);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showToast('¡Pago con Webpay Plus procesado exitosamente!');
+        return;
+      }
+
+      // Otros métodos de pago (Transferencia bancaria, etc.)
       const orderDetails = {
         orderNumber,
-        status: 'Pendiente',
+        status: formData.paymentMethod === 'transfer' ? 'Pendiente' : 'En Preparación',
+        paymentStatus: formData.paymentMethod === 'transfer' ? 'pending_transfer' : 'authorized',
+        paymentMethod: formData.paymentMethod === 'transfer' ? 'Transferencia Bancaria' : (formData.paymentMethod === 'card' ? 'Tarjeta de Crédito' : 'Mercado Pago'),
         items: [...cart],
         subtotal,
         discountAmount,
@@ -90,16 +150,18 @@ export const CheckoutPage = () => {
         date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
       };
 
-      // Register in global persistent store & deduct stock
-      createOrder(orderDetails);
-
+      await createOrder(orderDetails);
       setLastOrder(orderDetails);
       clearCart();
       setIsProcessing(false);
       setStep(3);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       showToast('¡Pedido confirmado exitosamente!');
-    }, 1200);
+    } catch (err) {
+      console.error('Error procesando pago:', err);
+      setIsProcessing(false);
+      showToast('Error al conectar con la pasarela de pago. Intenta nuevamente.');
+    }
   };
 
   if (cart.length === 0 && step !== 3 && !lastOrder) {
@@ -477,18 +539,36 @@ export const CheckoutPage = () => {
                     </div>
 
                     {/* Method Details */}
-                    {formData.paymentMethod === 'transfer' ? (
-                      <div className="bg-black border border-neutral-800 p-4 text-xs font-sans space-y-1.5">
+                    {formData.paymentMethod === 'webpay' ? (
+                      <div className="bg-black border border-neutral-800 p-5 text-xs font-sans space-y-2 rounded">
+                        <div className="flex items-center justify-between">
+                          <span className="text-white font-condensed font-bold text-sm tracking-wider uppercase flex items-center gap-2">
+                            <ShieldCheck className="w-4 h-4 text-[#C52222]" />
+                            PASARELA OFICIAL TRANSBANK WEBPAY PLUS
+                          </span>
+                          <span className="text-[10px] text-emerald-400 font-mono font-bold uppercase tracking-wider bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded">
+                            Listo para conectar
+                          </span>
+                        </div>
+                        <p className="text-neutral-300 leading-relaxed">
+                          Paga en cuotas sin interés o al contado con tarjetas de débito (<strong className="text-white">Redcompra</strong>), crédito (<strong className="text-white">Visa, Mastercard, AMEX, Magna</strong>) o tarjetas de prepago chilenas.
+                        </p>
+                        <p className="text-neutral-500 text-[11px] pt-1 border-t border-neutral-900">
+                          🔒 Serás conectado directamente a los servidores seguros y encriptados de Transbank para ingresar tus datos financieros con total privacidad.
+                        </p>
+                      </div>
+                    ) : formData.paymentMethod === 'transfer' ? (
+                      <div className="bg-black border border-neutral-800 p-4 text-xs font-sans space-y-1.5 rounded">
                         <p className="text-[#C52222] font-condensed font-bold tracking-wider uppercase">DATOS BANCARIOS PARA TRANSFERENCIA:</p>
                         <p className="text-neutral-300">Banco: <strong className="text-white">Banco de Chile / BancoEstado</strong></p>
                         <p className="text-neutral-300">Tipo de Cuenta: <strong className="text-white">Cuenta Corriente</strong></p>
                         <p className="text-neutral-300">Nº Cuenta: <strong className="text-white font-mono">00-12345678-09</strong></p>
                         <p className="text-neutral-300">RUT: <strong className="text-white">76.543.210-K</strong></p>
                         <p className="text-neutral-300">Nombre: <strong className="text-white">Patria Nostra SpA</strong></p>
-                        <p className="text-neutral-500 text-[10px] pt-1">Envía tu comprobante con tu número de orden a pagos@patrianostra.cl</p>
+                        <p className="text-neutral-500 text-[10px] pt-1">Envía tu comprobante con tu número de orden a pagos@patrianostradistro.cl</p>
                       </div>
                     ) : (
-                      <div className="space-y-4 bg-black border border-neutral-800 p-4">
+                      <div className="space-y-4 bg-black border border-neutral-800 p-4 rounded">
                         <div>
                           <label className="text-[11px] font-condensed tracking-wider text-neutral-400 uppercase block mb-1.5">NÚMERO DE TARJETA</label>
                           <input 
@@ -557,9 +637,9 @@ export const CheckoutPage = () => {
                       className="btn-crimson flex-1 font-condensed font-bold text-xs tracking-[0.2em] uppercase py-4 cursor-pointer shadow-xl flex items-center justify-center gap-2 active:scale-98"
                     >
                       {isProcessing ? (
-                        <span>PROCESANDO PAGO SEGURO...</span>
+                        <span>CONECTANDO CON PASARELA DE PAGO...</span>
                       ) : (
-                        <span>PAGAR {formatCLP(finalTotal)} →</span>
+                        <span>{formData.paymentMethod === 'webpay' ? `PAGAR CON WEBPAY PLUS (${formatCLP(finalTotal)}) →` : `CONFIRMAR Y PAGAR ${formatCLP(finalTotal)} →`}</span>
                       )}
                     </button>
                   </div>

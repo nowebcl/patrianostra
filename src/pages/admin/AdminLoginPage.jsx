@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, Lock, User, ArrowLeft, Eye, EyeOff, Sparkles, Key, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Lock, User, ArrowLeft, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 
 export const AdminLoginPage = () => {
   const navigate = useNavigate();
-  const { loginAdmin, isAdminAuthenticated, adminCreds } = useStore();
+  const { loginAdmin, isAdminAuthenticated } = useStore();
 
-  const [username, setUsername] = useState('admin@patrianostra.cl');
-  const [password, setPassword] = useState('admin123');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -19,26 +19,23 @@ export const AdminLoginPage = () => {
     }
   }, [isAdminAuthenticated, navigate]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setIsLoading(true);
 
-    setTimeout(() => {
-      const res = loginAdmin(username, password);
+    try {
+      const res = await loginAdmin(username, password);
       setIsLoading(false);
-      if (res.success) {
+      if (res && res.success) {
         navigate('/admin');
       } else {
-        setErrorMessage(res.message || 'Credenciales inválidas. Verifica tu usuario y contraseña.');
+        setErrorMessage(res?.message || 'Credenciales inválidas. Acceso denegado.');
       }
-    }, 400);
-  };
-
-  const handleFillCredentials = () => {
-    setUsername(adminCreds.email || 'admin@patrianostra.cl');
-    setPassword(adminCreds.password || 'admin123');
-    setErrorMessage('');
+    } catch (err) {
+      setIsLoading(false);
+      setErrorMessage('Error al conectar con el servidor de autenticación.');
+    }
   };
 
   return (
@@ -77,13 +74,13 @@ export const AdminLoginPage = () => {
               />
             </div>
             <span className="text-[#C52222] font-condensed font-bold text-xs tracking-[0.25em] uppercase block">
-              PORTAL DE GESTIÓN
+              PORTAL DE GESTIÓN PRIVADO
             </span>
             <h1 className="font-condensed text-2xl sm:text-3xl font-extrabold uppercase text-white tracking-wider">
               PANEL ADMINISTRADOR
             </h1>
             <p className="text-xs text-neutral-500 font-sans">
-              Ingresa tus credenciales oficiales para administrar el catálogo, pedidos e inventario.
+              Ingresa tus credenciales oficiales para acceder al sistema.
             </p>
           </div>
 
@@ -107,7 +104,8 @@ export const AdminLoginPage = () => {
                 <User className="w-4 h-4 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   required
-                  type="text"
+                  type="email"
+                  autoComplete="email"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="admin@patrianostra.cl"
@@ -126,6 +124,7 @@ export const AdminLoginPage = () => {
                 <input
                   required
                   type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -134,7 +133,8 @@ export const AdminLoginPage = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white p-1"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white p-1 cursor-pointer"
+                  tabIndex={-1}
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -148,41 +148,20 @@ export const AdminLoginPage = () => {
               className="w-full py-3.5 bg-[#C52222] hover:bg-[#a81c1c] disabled:opacity-50 text-white font-condensed font-bold text-xs uppercase tracking-[0.2em] rounded shadow-xl shadow-[#C52222]/30 transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-98"
             >
               {isLoading ? (
-                <span>INICIANDO SESIÓN...</span>
+                <span>VERIFICANDO CREDENCIALES...</span>
               ) : (
-                <span>INGRESAR AL PANEL →</span>
+                <span>INGRESAR AL SISTEMA →</span>
               )}
             </button>
 
           </form>
 
-          {/* Quick Demo Helper Card */}
-          <div className="bg-[#0e0e0e] border border-neutral-800/80 p-4 rounded-lg space-y-2 text-xs">
-            <div className="flex items-center justify-between">
-              <span className="font-condensed font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5 text-[11px]">
-                <Key className="w-3.5 h-3.5 text-[#C52222]" />
-                CREDENCIALES DE ACCESO:
-              </span>
-              <button
-                type="button"
-                onClick={handleFillCredentials}
-                className="text-[#C52222] hover:underline text-[10px] font-condensed font-bold uppercase cursor-pointer"
-              >
-                AUTO-COMPLETAR
-              </button>
-            </div>
-            <div className="text-[11px] text-neutral-300 font-mono space-y-0.5 bg-black/60 p-2 rounded border border-neutral-900">
-              <p>Usuario: <strong className="text-white">{adminCreds.email}</strong> o <strong className="text-white">{adminCreds.username}</strong></p>
-              <p>Clave: <strong className="text-[#C52222]">{adminCreds.password}</strong></p>
-            </div>
-          </div>
-
         </div>
       </div>
 
-      {/* Footer copyright */}
+      {/* Footer */}
       <div className="p-4 text-center text-xs text-neutral-600 font-mono">
-        Patria Nostra Distro Chile • Panel de Control v1.0
+        Patria Nostra Distro Chile • Acceso Seguro Encriptado
       </div>
 
     </div>
