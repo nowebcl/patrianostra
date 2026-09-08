@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-export const POCKETBASE_URL = import.meta.env.VITE_POCKETBASE_URL || 'https://pn.noweb.tech';
+export const POCKETBASE_URL = import.meta.env.VITE_POCKETBASE_URL || 'https://patrianostradistropb.noweb.cl';
 
 export const pb = new PocketBase(POCKETBASE_URL);
 
@@ -17,7 +17,7 @@ export const getProductImageUrl = (record, filename, queryParams = {}) => {
   const targetFile = filename || (Array.isArray(record.images) && record.images[0]);
   if (record.id && targetFile) {
     try {
-      return pb.files.getUrl(record, targetFile, queryParams);
+      return pb.files.getURL ? pb.files.getURL(record, targetFile, queryParams) : pb.files.getUrl(record, targetFile, queryParams);
     } catch (e) {
       console.warn('Error resolviendo URL de imagen en PocketBase:', e);
     }
@@ -34,8 +34,9 @@ export const mapPbProduct = (record) => {
   const images = Array.isArray(record.images) ? record.images : [];
   
   // Construir galería con URLs de PocketBase
+  const getFileUrl = (rec, file) => (pb.files.getURL ? pb.files.getURL(rec, file) : pb.files.getUrl(rec, file));
   const gallery = images.length > 0
-    ? images.map(img => pb.files.getUrl(record, img))
+    ? images.map(img => getFileUrl(record, img))
     : (record.gallery || [record.image || '/producto.png']);
 
   const mainImage = gallery.length > 0 ? gallery[0] : (record.image || '/producto.png');

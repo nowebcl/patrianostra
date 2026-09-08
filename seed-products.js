@@ -7,9 +7,9 @@ import { products } from './src/data/products.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const POCKETBASE_URL = 'https://pn.noweb.tech';
+const POCKETBASE_URL = 'https://patrianostradistropb.noweb.cl';
 const SUPERUSER_EMAIL = 'contacto@patrianostradistro.cl';
-const SUPERUSER_PASS = 'PatriaNostra2026!';
+const SUPERUSER_PASS = 'PatriaDistro2026!';
 
 const pb = new PocketBase(POCKETBASE_URL);
 

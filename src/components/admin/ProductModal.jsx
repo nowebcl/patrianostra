@@ -260,7 +260,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
               type="text"
               value={formData.image}
               onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-              placeholder="https://pn.noweb.tech/api/files/... o /1x/polera.webp"
+              placeholder="https://patrianostradistropb.noweb.cl/api/files/... o /1x/polera.webp"
               className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-xl p-2.5 text-neutral-300 text-xs font-mono focus:outline-none focus:border-[#C52222]"
             />
           </div>
