@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Oficial y Manual de Administración - Patria Nostra Distro | Noweb Labs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 20mm 16mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #71717a;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #18181b;
+      background-color: #ffffff;
+      line-height: 1.55;
+      font-size: 9.5pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Page Breaks */
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    .no-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Header & Branding */
+    .doc-header {
+      border-bottom: 2px solid #e4e4e7;
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-group h1 {
+      font-size: 18pt;
+      font-weight: 800;
+      color: #09090b;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .brand-group .doc-subtitle {
+      font-size: 10pt;
+      font-weight: 500;
+      color: #71717a;
+      margin-top: 4px;
+    }
+
+    .meta-box {
+      text-align: right;
+      font-size: 8pt;
+      color: #52525b;
+      line-height: 1.4;
+    }
+
+    .meta-box .provider-tag {
+      display: inline-block;
+      background: #f4f4f5;
+      color: #18181b;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      border: 1px solid #e4e4e7;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Section Styling */
+    h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #09090b;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e4e4e7;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    h2 .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #18181b;
+      color: #ffffff;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #18181b;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #3f3f46;
+      font-size: 9.5pt;
+    }
+
+    ul, ol {
+      margin-left: 18px;
+      margin-bottom: 10px;
+      color: #3f3f46;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Callout & Credential Card */
+    .access-card {
+      background: #fbfbfe;
+      border: 1.5px solid #d4d4d8;
+      border-left: 5px solid #b91c1c;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0 20px 0;
+    }
+
+    .access-card-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #991b1b;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .credential-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cred-item {
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .cred-label {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #71717a;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .cred-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #09090b;
+      word-break: break-all;
+    }
+
+    .cred-value a {
+      color: #b91c1c;
+      text-decoration: none;
+    }
+
+    /* Steps Table / Grid */
+    .step-box {
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .step-badge {
+      width: 26px;
+      height: 26px;
+      background: #f4f4f5;
+      border: 1px solid #d4d4d8;
+      color: #18181b;
+      font-weight: 800;
+      font-size: 9pt;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #09090b;
+      margin-bottom: 3px;
+    }
+
+    .step-content p {
+      margin-bottom: 0;
+      font-size: 9pt;
+      color: #52525b;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.5pt;
+    }
+
+    th {
+      background: #f4f4f5;
+      color: #18181b;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #e4e4e7;
+      text-transform: uppercase;
+      font-size: 7.5pt;
+      letter-spacing: 0.04em;
+    }
+
+    td {
+      padding: 7px 10px;
+      border: 1px solid #e4e4e7;
+      color: #3f3f46;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    /* Code / Monospace snippet */
+    .code-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      background: #f4f4f5;
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid #e4e4e7;
+      color: #09090b;
+    }
+
+    /* Warranty Box */
+    .warranty-card {
+      background: #fafafa;
+      border: 1.5px solid #18181b;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .warranty-stamp {
+      display: inline-block;
+      background: #18181b;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .warranty-title {
+      font-size: 11pt;
+      font-weight: 800;
+      color: #09090b;
+      margin-bottom: 6px;
+    }
+
+    /* Signatures */
+    .sign-table {
+      width: 100%;
+      margin-top: 30px;
+      border: none;
+    }
+
+    .sign-table td {
+      border: none;
+      background: transparent !important;
+      padding: 0 15px;
+      width: 50%;
+    }
+
+    .sign-line {
+      border-top: 1px solid #71717a;
+      margin-top: 40px;
+      padding-top: 6px;
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #18181b;
+      text-align: center;
+    }
+
+    .sign-sub {
+      font-size: 7.5pt;
+      color: #71717a;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    /* Feature Badge */
+    .badge {
+      display: inline-block;
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-blue { background: #e0f2fe; color: #075985; }
+    .badge-gray { background: #f4f4f5; color: #3f3f46; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PÁGINA 1 ==================== -->
+  
+  <!-- Header Principal -->
+  <div class="doc-header">
+    <div class="brand-group">
+      <h1>Patria Nostra Distro</h1>
+      <div class="doc-subtitle">Manual de Operación, Documentación Técnica & Garantía Oficial</div>
+    </div>
+    <div class="meta-box">
+      <div class="provider-tag">Noweb Labs</div>
+      <div><strong>Fecha:</strong> Septiembre 2026</div>
+      <div><strong>Versión:</strong> 2.5 (Producción)</div>
+      <div><strong>Código Ref:</strong> NWL-PND-2026-DOC</div>
+    </div>
+  </div>
+
+  <!-- Tarjeta Destacada de Accesos Oficiales -->
+  <div class="access-card">
+    <div class="access-card-title">
+      🔒 Credenciales y Enlaces de Acceso Oficial
+    </div>
+    <div class="credential-grid">
+      <div class="cred-item">
+        <div class="cred-label">Sitio Web Oficial (Tienda)</div>
+        <div class="cred-value"><a href="https://patrianostradistro.cl/" target="_blank">https://patrianostradistro.cl/</a></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-label">Enlace Directo Panel Admin</div>
+        <div class="cred-value"><a href="https://patrianostradistro.cl/admin" target="_blank">https://patrianostradistro.cl/admin</a></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-label">Usuario / Correo de Acceso</div>
+        <div class="cred-value">contacto@patrianostradistro.cl</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-label">Contraseña Oficial</div>
+        <div class="cred-value">PatriaNostra2026!</div>
+      </div>
+    </div>
+    <div style="font-size: 8pt; color: #71717a; margin-top: 8px;">
+      * Nota: La pantalla de login incluye el botón <strong>"AUTO-COMPLETAR"</strong> que rellena las credenciales con 1 solo clic para agilizar el ingreso.
+    </div>
+  </div>
+
+  <!-- Sección 1 -->
+  <h2><span class="section-num">1</span> Tutorial: Cómo Entrar y Navegar el Panel de Administración</h2>
+  
+  <p>
+    El panel de administración fue diseñado con una interfaz minimalista, sobria y de alto rendimiento. Para acceder y gestionar el negocio siga estos sencillos pasos:
+  </p>
+
+  <div class="step-box">
+    <div class="step-badge">1</div>
+    <div class="step-content">
+      <h4>Ingreso a la Dirección de Administración</h4>
+      <p>Abra su navegador web favorito (Chrome, Edge, Safari o Firefox) y visite: <span class="code-pill">https://patrianostradistro.cl/admin</span> o haga clic en el enlace discreto <strong>"🔒 Panel Admin"</strong> situado en el pie de página (footer) de la tienda.</p>
+    </div>
+  </div>
+
+  <div class="step-box">
+    <div class="step-badge">2</div>
+    <div class="step-content">
+      <h4>Autenticación Segura</h4>
+      <p>Ingrese el correo <span class="code-pill">contacto@patrianostradistro.cl</span> y la contraseña <span class="code-pill">PatriaNostra2026!</span>. También puede presionar el botón <strong>"AUTO-COMPLETAR"</strong> en la tarjeta inferior para cargar los datos al instante y presionar <strong>"INGRESAR AL PANEL →"</strong>.</p>
+    </div>
+  </div>
+
+  <div class="step-box">
+    <div class="step-badge">3</div>
+    <div class="step-content">
+      <h4>Navegación por el Menú Lateral (Sidebar)</h4>
+      <p>Una vez dentro, encontrará a la izquierda el menú lateral con acceso instantáneo a las 3 secciones clave: <strong>📦 Pedidos</strong>, <strong>👕 Productos & Stock</strong> y <strong>📊 Resumen</strong>, además del enlace para ver la tienda pública y el botón de cerrar sesión.</p>
+    </div>
+  </div>
+
+  <!-- Sección 2 -->
+  <h2><span class="section-num">2</span> Módulo de Pedidos y Despachos</h2>
+  <p>
+    Cada venta realizada por un cliente en la tienda pública genera inmediatamente una <strong>ficha de despacho</strong> lista para preparación:
+  </p>
+
+  <ul>
+    <li><strong>Datos Completos del Comprador:</strong> Nombre, RUT, correo electrónico, dirección exacta de entrega en Chile, comuna y región.</li>
+    <li><strong>Botón Directo de WhatsApp:</strong> Permite abrir una conversación directa con el cliente al número registrado (+56 9...) en un solo clic, ideal para coordinar la entrega o confirmar la recepción.</li>
+    <li><strong>Control de Estado en 1 Clic:</strong> Selector inmediato para marcar el avance del pedido:
+      <span class="badge badge-red">🟡 Pendiente</span>
+      <span class="badge badge-blue">🔵 En Preparación</span>
+      <span class="badge badge-gray">🟣 Enviado</span>
+      <span class="badge badge-green">🟢 Entregado</span>
+    </li>
+    <li><strong>Número de Seguimiento (Tracking):</strong> Casilla dedicada para escribir el código de orden de <strong>Chilexpress</strong> o <strong>Starken</strong>. Al hacer clic fuera o presionar enter, se guarda automáticamente.</li>
+    <li><strong>Detalle de Prendas Compradas:</strong> Foto, nombre del producto, talla escogida y cantidad, junto con el total en Pesos Chilenos ($ CLP) y medio de pago (Webpay Plus o Transferencia).</li>
+  </ul>
+
+  <!-- ==================== PÁGINA 2 ==================== -->
+  <div class="page-break"></div>
+
+  <div class="doc-header">
+    <div class="brand-group">
+      <h1>Patria Nostra Distro</h1>
+      <div class="doc-subtitle">Manual de Operación, Documentación Técnica & Garantía Oficial</div>
+    </div>
+    <div class="meta-box">
+      <div class="provider-tag">Noweb Labs</div>
+      <div>Página 2</div>
+    </div>
+  </div>
+
+  <!-- Sección 3 -->
+  <h2><span class="section-num">3</span> Módulo de Productos, Stock por Talla y Editor Full Screen</h2>
+  <p>
+    La administración de indumentaria cuenta con un flujo rápido para el día a día y un editor a pantalla completa para crear o modificar prendas con total comodidad:
+  </p>
+
+  <h3>Control Rápido de Stock en Catálogo</h3>
+  <p>
+    En la vista principal de <strong>Productos & Stock</strong>, cada tarjeta cuenta con botones directos 
+    <span class="code-pill">[ - ]</span> <span class="code-pill">[ 14 ]</span> <span class="code-pill">[ + ]</span> 
+    que permiten descontar o aumentar unidades de inventario al instante sin necesidad de entrar a ningún menú.
+  </p>
+
+  <h3>Editor a Pantalla Completa (Sin Pop-ups Incómodos)</h3>
+  <p>
+    Al hacer clic en <strong>"Editar"</strong> o <strong>"+ Nueva Prenda"</strong>, el sistema despliega una pantalla completa limpia dividida en 2 bloques ergonómicos:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">Sección</th>
+        <th style="width: 70%;">Funcionalidad y Campos Disponibles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Datos de la Prenda</strong></td>
+        <td>Nombre del producto, precio de venta en $ CLP (ej: $59.990) y precio anterior tachado para ofertas.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Categoría</strong></td>
+        <td>Selector rápido en botones: <strong>Polerones</strong>, <strong>Camisetas</strong>, <strong>Pantalones</strong> y <strong>Accesorios</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Stock por Tallas</strong></td>
+        <td>
+          Control de inventario independiente para tallas <strong>S, M, L, XL, XXL y Única</strong>. 
+          Al venderse una talla en el checkout, el stock se descuenta automáticamente de esa talla específica.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>4. Opciones y Visibilidad</strong></td>
+        <td>
+          Casilla para <strong>Destacar en Portada (Home)</strong> y selector de insignia:
+          <span class="badge badge-red">EDICIÓN LIMITADA</span>, <span class="badge badge-green">NUEVO</span>, <span class="badge badge-blue">OFERTA</span> o Normal.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>5. Carga de Imágenes</strong></td>
+        <td>
+          Sube imágenes directamente desde tu computador o escoge fotos oficiales precargadas de la marca en 1 clic. El sistema genera vista previa en tiempo real.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Sección 4 -->
+  <h2><span class="section-num">4</span> Arquitectura Técnica y Tienda Pública</h2>
+  
+  <div class="no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Tecnología / Solución</th>
+          <th>Detalles y Beneficios</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Frontend</strong></td>
+          <td>React 18 + Vite 6 + TailwindCSS</td>
+          <td>Velocidad de carga ultra rápida (&lt;1s), diseño Brutalist/Tactical responsive adaptado a celulares y computadores.</td>
+        </tr>
+        <tr>
+          <td><strong>Base de Datos</strong></td>
+          <td>PocketBase Cloud</td>
+          <td>Endpoint oficial en <span class="code-pill">patrianostradistropb.noweb.cl</span>. Sincronización en tiempo real y persistencia blindada.</td>
+        </tr>
+        <tr>
+          <td><strong>Optimización Visual</strong></td>
+          <td>Formato WebP + Compresión Sharp</td>
+          <td>Imágenes de alta resolución con peso pluma (reducción de más del 80% en consumo de datos móviles).</td>
+        </tr>
+        <tr>
+          <td><strong>Moneda y Checkout</strong></td>
+          <td>Pesos Chilenos ($ CLP)</td>
+          <td>Validación de RUT chileno, selección de todas las regiones y comunas de Chile, integración de métodos de pago y despacho.</td>
+        </tr>
+        <tr>
+          <td><strong>Envíos Nacionales</strong></td>
+          <td>Chilexpress / Starken</td>
+          <td>Cálculo automático: Envío estándar ($4.990) o Envío Gratis para compras superiores a $60.000 CLP.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== PÁGINA 3 ==================== -->
+  <div class="page-break"></div>
+
+  <div class="doc-header">
+    <div class="brand-group">
+      <h1>Patria Nostra Distro</h1>
+      <div class="doc-subtitle">Manual de Operación, Documentación Técnica & Garantía Oficial</div>
+    </div>
+    <div class="meta-box">
+      <div class="provider-tag">Noweb Labs</div>
+      <div>Página 3</div>
+    </div>
+  </div>
+
+  <!-- Sección 5 -->
+  <h2><span class="section-num">5</span> Póliza de Garantía de 12 Meses & Soporte Técnico</h2>
+
+  <div class="warranty-card">
+    <div class="warranty-stamp">Garantía Certificada • 12 Meses</div>
+    <div class="warranty-title">Certificado de Garantía de Servicio y Soporte Técnico Continuo</div>
+    <p>
+      <strong>NOWEB LABS</strong> certifica que la plataforma de comercio electrónico y panel de administración desarrollada para <strong>PATRIA NOSTRA DISTRO</strong> cuenta con una <strong>garantía integral de doce (12) meses</strong> a partir de la fecha de entrega y puesta en producción en el dominio oficial <span class="code-pill">https://patrianostradistro.cl/</span>.
+    </p>
+
+    <h3 style="margin-top: 12px; font-size: 9.5pt;">Cobertura de la Garantía:</h3>
+    <ul style="font-size: 9pt; margin-bottom: 8px;">
+      <li><strong>Corrección Inmediata de Errores (Bugs):</strong> Resolución prioritaria de cualquier incidencia técnica, falla de visualización, error en pasarela de pagos o problema de procesamiento de pedidos sin costo adicional.</li>
+      <li><strong>Mantenimiento de Servidores y Base de Datos:</strong> Monitoreo continuo de la disponibilidad de la base de datos PocketBase (<span class="code-pill">patrianostradistropb.noweb.cl</span>) y renovación de certificados de seguridad SSL (HTTPS).</li>
+      <li><strong>Copias de Seguridad Periódicas:</strong> Resguardos periódicos de la información de catálogo, inventario, usuarios y registro de pedidos.</li>
+      <li><strong>Compatibilidad y Actualizaciones:</strong> Garantía de correcto funcionamiento ante actualizaciones de navegadores modernos (Google Chrome, Apple Safari, Mozilla Firefox, Microsoft Edge) tanto en escritorio como en dispositivos móviles.</li>
+    </ul>
+
+    <h3 style="margin-top: 10px; font-size: 9.5pt;">Canales Oficiales de Soporte Técnico Noweb Labs:</h3>
+    <table style="margin-top: 6px; font-size: 8.5pt;">
+      <tbody>
+        <tr>
+          <td style="width: 30%;"><strong>Mesa de Ayuda / Correo:</strong></td>
+          <td style="width: 70%;"><a href="mailto:soporte@noweb.cl" style="color:#b91c1c; text-decoration:none; font-weight:600;">soporte@noweb.cl</a> / <a href="mailto:contacto@noweb.cl" style="color:#b91c1c; text-decoration:none;">contacto@noweb.cl</a></td>
+        </tr>
+        <tr>
+          <td><strong>Sitio Oficial Noweb Labs:</strong></td>
+          <td><a href="https://noweb.cl" target="_blank" style="color:#b91c1c; text-decoration:none; font-weight:600;">https://noweb.cl</a></td>
+        </tr>
+        <tr>
+          <td><strong>Horario de Atención:</strong></td>
+          <td>Lunes a Viernes de 09:00 a 19:00 hrs (Atención de emergencias críticas 24/7).</td>
+        </tr>
+        <tr>
+          <td><strong>Tiempo Máximo de Respuesta:</strong></td>
+          <td>Menor a 4 horas hábiles en incidentes estándar; menor a 1 hora en contingencias críticas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Firmas de Conformidad -->
+  <table class="sign-table">
+    <tr>
+      <td>
+        <div class="sign-line">NOWEB LABS</div>
+        <div class="sign-sub">Equipo de Ingeniería & Desarrollo Web<br>Santiago de Chile</div>
+      </td>
+      <td>
+        <div class="sign-line">PATRIA NOSTRA DISTRO</div>
+        <div class="sign-sub">Aceptación de Plataforma & Manual de Operación<br>https://patrianostradistro.cl/</div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Footer final -->
+  <div style="margin-top: 35px; padding-top: 12px; border-top: 1px solid #e4e4e7; font-size: 7.5pt; color: #a1a1aa; text-align: center;">
+    Documento confidencial emitido para uso exclusivo de Patria Nostra Distro. Todos los derechos reservados © 2026 Noweb Labs.
+  </div>
+
+</body>
+</html>

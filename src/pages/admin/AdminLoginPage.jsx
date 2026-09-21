@@ -108,7 +108,7 @@ export const AdminLoginPage = () => {
                   autoComplete="email"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="admin@patrianostra.cl"
+                  placeholder="contacto@patrianostradistro.cl"
                   className="w-full bg-black border border-neutral-800 rounded pl-9 pr-3 py-3 text-white focus:outline-none focus:border-[#C52222]"
                 />
               </div>
@@ -155,6 +155,30 @@ export const AdminLoginPage = () => {
             </button>
 
           </form>
+
+          {/* Quick Demo Helper Card */}
+          <div className="bg-[#0e0e0e] border border-neutral-800/80 p-3.5 rounded-lg space-y-2 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-condensed font-bold uppercase tracking-wider text-neutral-400 text-[10.5px]">
+                ACCESO DIRECTO:
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setUsername('contacto@patrianostradistro.cl');
+                  setPassword('PatriaNostra2026!');
+                  setErrorMessage('');
+                }}
+                className="text-[#C52222] hover:underline text-[10px] font-condensed font-bold uppercase cursor-pointer"
+              >
+                AUTO-COMPLETAR
+              </button>
+            </div>
+            <div className="text-[10.5px] text-neutral-300 font-mono space-y-0.5 bg-black/60 p-2 rounded border border-neutral-900">
+              <p>Email: <strong className="text-white">contacto@patrianostradistro.cl</strong></p>
+              <p>Clave: <strong className="text-[#C52222]">PatriaNostra2026!</strong></p>
+            </div>
+          </div>
 
         </div>
       </div>
