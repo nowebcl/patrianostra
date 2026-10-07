@@ -149,7 +149,8 @@ export const CartProvider = ({ children }) => {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
   const discountAmount = Math.round((subtotal * couponDiscountPercent) / 100);
-  const shippingCost = subtotal >= 60000 || subtotal === 0 ? 0 : 4990;
+  const isOnlyTestProduct = cart.length === 1 && (cart[0]?.product?.isTest || cart[0]?.product?.id === 'test-pago-flow');
+  const shippingCost = (isOnlyTestProduct || subtotal >= 60000 || subtotal === 0) ? 0 : 4990;
   const finalTotal = Math.max(0, subtotal - discountAmount + (subtotal > 0 ? shippingCost : 0));
 
   return (

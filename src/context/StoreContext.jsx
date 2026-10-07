@@ -204,7 +204,10 @@ export const StoreProvider = ({ children }) => {
         if (isMounted && Array.isArray(records)) {
           records.sort((a, b) => new Date(b.created || 0) - new Date(a.created || 0));
           const mapped = records.map(mapPbProduct);
-          setProducts(mapped);
+          const testItem = initialProducts.find(p => p.id === 'test-pago-flow');
+          const hasTest = mapped.some(p => p.id === 'test-pago-flow' || p.sku === 'PN-TEST-FLOW');
+          const finalProducts = (testItem && !hasTest) ? [testItem, ...mapped] : mapped;
+          setProducts(finalProducts);
           setIsPbConnected(true);
         }
       } catch (err) {

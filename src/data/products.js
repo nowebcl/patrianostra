@@ -1,5 +1,37 @@
 export const products = [
   {
+    "id": "test-pago-flow",
+    "name": "TEST DE PAGO FLOW",
+    "price": 350,
+    "originalPrice": 1000,
+    "image": "/producto.webp",
+    "gallery": [
+      "/producto.webp"
+    ],
+    "badge": "MÍNIMO $350 CLP",
+    "category": "Accesorios",
+    "gender": "Unisex",
+    "stock": 999,
+    "sku": "PN-TEST-FLOW",
+    "gsm": "Digital / Test",
+    "fit": "Prueba Flow",
+    "description": "Producto oficial para pruebas de pasarela de pago Flow con el monto mínimo ($350 CLP). Permite verificar la conexión segura, pago en vivo con Webpay/Tarjetas, retorno automático y generación del comprobante en PDF con datos de despacho.",
+    "specs": [
+      "Monto mínimo oficial Flow: $350 CLP",
+      "Sin costo adicional de envío ($0 CLP en prueba)",
+      "Verificación de flujo de pago en vivo",
+      "Descarga automática de comprobante PDF oficial"
+    ],
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": true,
+    "isTest": true,
+    "sizeStock": {
+      "Única": 999
+    }
+  },
+  {
     "id": "cargo-tactical-pn",
     "name": "PANTALÓN TÁCTICO CARGO",
     "price": 49990,

@@ -1,134 +1,118 @@
 /**
- * Servicio de Pagos Webpay Plus (Transbank) - Patria Nostra
+ * Servicio Oficial de Pagos Flow (Webpay Plus, Tarjetas, Servipag, Mach)
+ * Patria Nostra Distro
  * 
- * Este módulo gestiona el flujo de pagos. Cuando tengas lista tu API backend 
- * (ej. Node/Express, serverless o PocketBase hook), sólo debes configurar 
- * la variable VITE_WEBPAY_API_URL en tu archivo .env
+ * Gestiona la conexión segura con Flow a través de nuestros endpoints
+ * de backend para proteger el Secret Key y firmar transacciones con HMAC-SHA256.
  */
-
-const WEBPAY_API_URL = import.meta.env.VITE_WEBPAY_API_URL || '';
 
 /**
- * Verifica si la API de Webpay ya está conectada al backend
+ * Inicia una transacción en Flow
+ * 
+ * @param {Object} params
+ * @param {string} params.commerceOrder - Número de orden único (ej. PN-CL-123456)
+ * @param {string} params.subject - Descripción de la compra
+ * @param {number} params.amount - Monto total en CLP (Mínimo $350 CLP)
+ * @param {string} params.email - Email del pagador
+ * @param {Object} params.orderDetails - Objeto con datos completos del pedido para persistencia
+ * @returns {Promise<{ redirectUrl: string, token: string, flowOrder: number, isLive: boolean }>}
  */
-export const isWebpayApiConfigured = () => {
-  return Boolean(WEBPAY_API_URL && WEBPAY_API_URL.trim().length > 0);
+export const initFlowPayment = async ({
+  commerceOrder,
+  subject,
+  amount,
+  email,
+  orderDetails = null
+}) => {
+  try {
+    const response = await fetch('/api/flow/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        commerceOrder,
+        subject: subject || `Orden Patria Nostra ${commerceOrder}`,
+        amount: Math.round(amount),
+        email,
+        orderDetails
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || 'Error al comunicar con la pasarela Flow');
+    }
+
+    return {
+      redirectUrl: data.redirectUrl,
+      token: data.token,
+      flowOrder: data.flowOrder,
+      isLive: true
+    };
+  } catch (error) {
+    console.error('Error iniciando pago con Flow:', error);
+    throw error;
+  }
 };
 
 /**
- * Inicia una transacción en Webpay Plus
+ * Consulta el estado verificado de una transacción en Flow
  * 
- * @param {Object} orderData
- * @param {string} orderData.buyOrder - Número de orden único (ej. PN-CL-123456)
- * @param {string} orderData.sessionId - ID de sesión del cliente
- * @param {number} orderData.amount - Monto total en CLP
- * @param {string} orderData.returnUrl - URL a la que Transbank retornará tras pagar
- * @returns {Promise<{ url: string, token: string, isLive: boolean }>}
+ * @param {string} token - Token de la transacción entregado por Flow
+ * @returns {Promise<{ status: number, isPaid: boolean, flowData: Object, savedOrder: Object|null }>}
  */
-export const initWebpayTransaction = async ({ buyOrder, sessionId, amount, returnUrl }) => {
-  // 1. Si tu API backend ya está configurada, enviamos la petición real
-  if (isWebpayApiConfigured()) {
-    try {
-      const response = await fetch(`${WEBPAY_API_URL}/create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          buyOrder,
-          sessionId: sessionId || `sess_${Date.now()}`,
-          amount: Math.round(amount),
-          returnUrl: returnUrl || `${window.location.origin}/checkout?status=webpay_return`
-        })
-      });
+export const checkFlowPaymentStatus = async (token) => {
+  try {
+    const response = await fetch(`/api/flow/status?token=${encodeURIComponent(token)}`);
+    const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(`Error en API Webpay (${response.status}): ${await response.text()}`);
-      }
-
-      const data = await response.json();
-      return {
-        url: data.url,
-        token: data.token,
-        isLive: true
-      };
-    } catch (error) {
-      console.error('Fallo al conectar con la API de Webpay:', error);
-      throw error;
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || 'No se pudo verificar el estado del pago');
     }
+
+    return {
+      status: data.status, // 1: pendiente, 2: pagada, 3: rechazada, 4: anulada
+      isPaid: data.isPaid || data.status === 2,
+      flowData: data.flowData,
+      savedOrder: data.savedOrder
+    };
+  } catch (error) {
+    console.error('Error consultando estado Flow:', error);
+    throw error;
   }
+};
 
-  // 2. Modo Preparatorio (hasta que proporciones tu API de Webpay)
-  console.info('ℹ️ Modo Webpay en espera de API backend. Simulando transacción exitosa para pruebas...');
-  
-  // Simulamos una demora de red realista
-  await new Promise(resolve => setTimeout(resolve, 800));
+/**
+ * Redirige al cliente a la pasarela segura de Flow
+ */
+export const redirectToFlow = (redirectUrl) => {
+  if (redirectUrl) {
+    window.location.href = redirectUrl;
+  }
+};
 
+/**
+ * Compatibilidad con llamados anteriores de Webpay
+ */
+export const initWebpayTransaction = async ({ buyOrder, amount, email, orderDetails }) => {
+  const res = await initFlowPayment({
+    commerceOrder: buyOrder,
+    subject: `Orden Patria Nostra ${buyOrder}`,
+    amount,
+    email,
+    orderDetails
+  });
   return {
-    url: null, // Sin redirección externa en modo prueba
-    token: `sim_token_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`,
-    isLive: false,
-    mockDetails: {
-      authorizationCode: '128941',
-      responseCode: 0,
-      paymentTypeCode: 'VD', // Venta Débito
-      sharesNumber: 0
-    }
+    url: res.redirectUrl,
+    token: res.token,
+    isLive: true
   };
 };
 
-/**
- * Confirma una transacción que retorna de Webpay Plus (Transbank)
- * 
- * @param {string} token - Token retornado por Transbank (token_ws)
- * @returns {Promise<Object>}
- */
-export const commitWebpayTransaction = async (token) => {
-  if (isWebpayApiConfigured()) {
-    try {
-      const response = await fetch(`${WEBPAY_API_URL}/commit`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ token_ws: token })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error al confirmar Webpay (${response.status})`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error al confirmar transacción Webpay:', error);
-      throw error;
-    }
+export const redirectToWebpayForm = (url) => {
+  if (url) {
+    window.location.href = url;
   }
-
-  return {
-    status: 'AUTHORIZED',
-    responseCode: 0,
-    authorizationCode: '128941',
-    amount: null,
-    buyOrder: null
-  };
-};
-
-/**
- * Redirige al usuario al formulario oficial de Webpay Plus de Transbank
- * mediante un formulario POST automático con token_ws
- */
-export const redirectToWebpayForm = (url, token) => {
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = url;
-
-  const tokenInput = document.createElement('input');
-  tokenInput.type = 'hidden';
-  tokenInput.name = 'token_ws';
-  tokenInput.value = token;
-
-  form.appendChild(tokenInput);
-  document.body.appendChild(form);
-  form.submit();
 };

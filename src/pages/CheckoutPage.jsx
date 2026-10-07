@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Lock, CheckCircle2, Truck, CreditCard, Building, ArrowLeft, Download, ShoppingBag, Sparkles, Check } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { ShieldCheck, Lock, CheckCircle2, Truck, CreditCard, Building, ArrowLeft, Download, ShoppingBag, Sparkles, Check, Mail, Loader2, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useStore } from '../context/StoreContext';
 import { formatCLP } from '../utils/currency';
-import { initWebpayTransaction, redirectToWebpayForm, isWebpayApiConfigured } from '../services/paymentService';
+import { initFlowPayment, checkFlowPaymentStatus, redirectToFlow } from '../services/paymentService';
+import { generateOrderPdf } from '../utils/orderReceiptPdf';
 
 const CHILE_REGIONS = [
   'Región Metropolitana de Santiago',
@@ -41,11 +42,17 @@ export const CheckoutPage = () => {
     showToast
   } = useCart();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const flowStatus = searchParams.get('status');
+  const flowToken = searchParams.get('token');
+
   const [step, setStep] = useState(1); // 1: Shipping, 2: Payment, 3: Success Confirmation
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isVerifyingFlow, setIsVerifyingFlow] = useState(Boolean(flowStatus === 'flow_return' && flowToken));
+  const [flowErrorMessage, setFlowErrorMessage] = useState(null);
 
   const [formData, setFormData] = useState({
-    email: 'contacto@ejemplo.cl',
+    email: 'cliente@patrianostradistro.cl',
     firstName: 'Matías',
     lastName: 'González',
     rut: '18.420.912-K',
@@ -55,11 +62,99 @@ export const CheckoutPage = () => {
     city: 'Santiago / Providencia',
     postalCode: '7500000',
     shippingMethod: 'express', // 'express' (Chilexpress 24h) or 'starken'
-    paymentMethod: 'webpay', // 'webpay', 'card', 'transfer', 'mercadopago'
+    paymentMethod: 'flow', // 'flow' (Webpay Plus / Tarjetas / Servipag / Mach), 'card', 'transfer'
     cardNumber: '•••• •••• •••• 4242',
     cardExpiry: '12/26',
     cardCvc: '•••'
   });
+
+  // Efecto para verificar retorno automático desde Flow
+  useEffect(() => {
+    if (flowStatus === 'flow_return' && flowToken) {
+      let isMounted = true;
+
+      const verifyPayment = async () => {
+        setIsVerifyingFlow(true);
+        setFlowErrorMessage(null);
+
+        try {
+          const result = await checkFlowPaymentStatus(flowToken);
+          if (!isMounted) return;
+
+          if (result.isPaid) {
+            // Recuperar orden guardada
+            let recoveredOrder = result.savedOrder;
+            if (!recoveredOrder) {
+              try {
+                recoveredOrder = JSON.parse(localStorage.getItem('pending_patria_order') || 'null');
+              } catch (e) {}
+            }
+
+            const confirmedOrder = recoveredOrder || {
+              orderNumber: result.flowData?.commerceOrder || `PN-CL-${Math.floor(100000 + Math.random() * 900000)}`,
+              status: 'En Preparación',
+              paymentStatus: 'authorized',
+              paymentMethod: 'Flow (Webpay Plus / Tarjetas)',
+              paymentDetails: {
+                flowOrder: result.flowData?.flowOrder,
+                token: flowToken,
+                status: 'APROBADO'
+              },
+              items: [...cart],
+              subtotal: Number(result.flowData?.amount) || finalTotal,
+              discountAmount: 0,
+              shippingCost: 0,
+              finalTotal: Number(result.flowData?.amount) || finalTotal,
+              customer: { ...formData, email: result.flowData?.payer || formData.email },
+              date: new Date().toLocaleDateString('es-CL', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })
+            };
+
+            confirmedOrder.flowOrder = result.flowData?.flowOrder;
+            confirmedOrder.paymentMethod = 'Flow (Webpay Plus / Tarjetas)';
+
+            await createOrder(confirmedOrder);
+            setLastOrder(confirmedOrder);
+            clearCart();
+            localStorage.removeItem('pending_patria_order');
+
+            // DESCARGA AUTOMÁTICA DEL PDF CON LA ORDEN DE COMPRA
+            try {
+              generateOrderPdf(confirmedOrder, { autoDownload: true });
+            } catch (pdfErr) {
+              console.error('Error generando PDF de orden:', pdfErr);
+            }
+
+            setStep(3);
+            showToast('¡Pago exitoso con Flow! Se ha descargado tu orden en PDF.');
+          } else {
+            const statusNames = { 1: 'Pendiente de pago', 3: 'Rechazado', 4: 'Anulado' };
+            const msg = `El pago en Flow quedó como: ${statusNames[result.status] || 'No completado'}. Puedes reintentar.`;
+            setFlowErrorMessage(msg);
+            showToast(msg);
+            setStep(2);
+          }
+        } catch (err) {
+          console.error('Error verificando pago en Flow:', err);
+          setFlowErrorMessage('No se pudo verificar el comprobante de Flow. Por favor contáctanos con tu comprobante.');
+          setStep(2);
+        } finally {
+          if (isMounted) setIsVerifyingFlow(false);
+        }
+      };
+
+      verifyPayment();
+
+      return () => {
+        isMounted = false;
+      };
+    }
+  }, [flowStatus, flowToken]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -75,92 +170,91 @@ export const CheckoutPage = () => {
   const handleConfirmOrder = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
+    setFlowErrorMessage(null);
 
     const orderNumber = `PN-CL-${Math.floor(100000 + Math.random() * 900000)}`;
 
     try {
-      if (formData.paymentMethod === 'webpay') {
-        // 1. Iniciar transacción en Webpay Plus
-        const tx = await initWebpayTransaction({
-          buyOrder: orderNumber,
-          sessionId: `sess_${Date.now()}`,
-          amount: finalTotal,
-          returnUrl: `${window.location.origin}/checkout?status=webpay_return`
-        });
-
-        // Si la API real de Webpay está conectada y retorna URL oficial de Transbank
-        if (tx.isLive && tx.url && tx.token) {
-          const orderDetails = {
-            orderNumber,
-            status: 'Pendiente',
-            paymentStatus: 'pending_webpay',
-            paymentMethod: 'Webpay Plus (Transbank)',
-            paymentDetails: { token: tx.token },
-            items: [...cart],
-            subtotal,
-            discountAmount,
-            shippingCost,
-            finalTotal,
-            customer: { ...formData },
-            date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-          };
-          await createOrder(orderDetails);
-          redirectToWebpayForm(tx.url, tx.token);
-          return;
-        }
-
-        // Modo Preparatorio / Simulado de Webpay (hasta conectar la API real)
+      if (formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') {
         const orderDetails = {
           orderNumber,
-          status: 'En Preparación',
-          paymentStatus: 'authorized',
-          paymentMethod: 'Webpay Plus (Transbank)',
-          paymentDetails: tx.mockDetails || { status: 'AUTHORIZED' },
+          status: 'Pendiente',
+          paymentStatus: 'pending_flow',
+          paymentMethod: 'Flow (Webpay Plus / Tarjetas)',
           items: [...cart],
           subtotal,
           discountAmount,
           shippingCost,
           finalTotal,
           customer: { ...formData },
-          date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+          date: new Date().toLocaleDateString('es-CL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })
         };
 
-        await createOrder(orderDetails);
-        setLastOrder(orderDetails);
-        clearCart();
-        setIsProcessing(false);
-        setStep(3);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        showToast('¡Pago con Webpay Plus procesado exitosamente!');
-        return;
+        // Guardar respaldo local del pedido antes de redirigir a Flow
+        localStorage.setItem('pending_patria_order', JSON.stringify(orderDetails));
+
+        // Iniciar transacción en Flow a través de nuestro endpoint seguro
+        const tx = await initFlowPayment({
+          commerceOrder: orderNumber,
+          subject: `Orden Patria Nostra ${orderNumber}`,
+          amount: finalTotal,
+          email: formData.email,
+          orderDetails
+        });
+
+        if (tx && tx.redirectUrl) {
+          showToast('Redirigiendo a pasarela Flow segura...');
+          redirectToFlow(tx.redirectUrl);
+          return;
+        }
       }
 
-      // Otros métodos de pago (Transferencia bancaria, etc.)
+      // Otros métodos de pago (Transferencia o tarjeta simulada)
       const orderDetails = {
         orderNumber,
         status: formData.paymentMethod === 'transfer' ? 'Pendiente' : 'En Preparación',
         paymentStatus: formData.paymentMethod === 'transfer' ? 'pending_transfer' : 'authorized',
-        paymentMethod: formData.paymentMethod === 'transfer' ? 'Transferencia Bancaria' : (formData.paymentMethod === 'card' ? 'Tarjeta de Crédito' : 'Mercado Pago'),
+        paymentMethod: formData.paymentMethod === 'transfer' ? 'Transferencia Bancaria' : 'Tarjeta de Crédito',
         items: [...cart],
         subtotal,
         discountAmount,
         shippingCost,
         finalTotal,
         customer: { ...formData },
-        date: new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+        date: new Date().toLocaleDateString('es-CL', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
       };
 
       await createOrder(orderDetails);
       setLastOrder(orderDetails);
       clearCart();
       setIsProcessing(false);
+
+      // DESCARGA AUTOMÁTICA DEL PDF
+      try {
+        generateOrderPdf(orderDetails, { autoDownload: true });
+      } catch (pdfErr) {
+        console.error('Error generando PDF de orden:', pdfErr);
+      }
+
       setStep(3);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      showToast('¡Pedido confirmado exitosamente!');
+      showToast('¡Pedido confirmado! Se ha descargado tu orden en PDF.');
     } catch (err) {
       console.error('Error procesando pago:', err);
       setIsProcessing(false);
-      showToast('Error al conectar con la pasarela de pago. Intenta nuevamente.');
+      showToast(`Error al conectar con la pasarela: ${err.message || 'Intenta nuevamente'}`);
     }
   };
 
@@ -198,7 +292,20 @@ export const CheckoutPage = () => {
         {/* ========================================================================= */}
         {/* STEP 3: ORDER CONFIRMED RECEIPT SCREEN                                    */}
         {/* ========================================================================= */}
-        {step === 3 && currentOrder ? (
+        {isVerifyingFlow ? (
+          <div className="max-w-xl mx-auto text-center py-16 px-6 bg-[#080808] border border-neutral-900 my-8 hard-box shadow-2xl">
+            <Loader2 className="w-12 h-12 text-[#C52222] animate-spin mx-auto mb-4" />
+            <span className="text-[#C52222] font-condensed font-bold text-xs tracking-[0.25em] uppercase block mb-1">
+              CONEXIÓN CON FLOW EN CURSO
+            </span>
+            <h2 className="font-condensed text-2xl sm:text-3xl font-extrabold uppercase text-white mb-3">
+              CONFIRMANDO TU PAGO CON FLOW...
+            </h2>
+            <p className="text-xs text-neutral-400 max-w-md mx-auto leading-relaxed">
+              Estamos verificando criptográficamente tu transacción con los servidores de Flow. En unos segundos se confirmará tu pedido y se descargará automáticamente tu orden de compra en PDF.
+            </p>
+          </div>
+        ) : step === 3 && currentOrder ? (
           <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300">
             
             {/* Success Hero Badge */}
@@ -208,16 +315,61 @@ export const CheckoutPage = () => {
               </div>
               
               <span className="text-[#C52222] font-condensed font-bold text-xs tracking-[0.25em] uppercase block mb-1">
-                COMPRA PROCESADA CON ÉXITO
+                COMPRA PROCESADA CON ÉXITO • FLOW
               </span>
               <h1 className="font-condensed text-3xl sm:text-4xl font-extrabold uppercase text-white mb-2">
-                ¡GRACIAS POR TU PEDIDO!
+                ¡GRACIAS POR TU COMPRA!
               </h1>
               <p className="text-xs sm:text-sm text-neutral-400 font-mono mb-4">
                 Nº de Orden: <strong className="text-white text-base">{currentOrder.orderNumber}</strong>
               </p>
               <p className="text-xs text-neutral-500 max-w-md mx-auto">
-                Hemos enviado la confirmación y el comprobante detallado a <strong className="text-neutral-300">{currentOrder.customer.email}</strong>.
+                Tu transacción ha sido confirmada. El comprobante y la orden de compra han sido generados exitosamente.
+              </p>
+            </div>
+
+            {/* Aviso de Descarga Automática de PDF */}
+            <div className="bg-[#08120a] border border-emerald-900/80 p-4 mb-8 flex items-center gap-3 text-xs text-emerald-300">
+              <Check className="w-5 h-5 text-emerald-400 shrink-0" />
+              <div className="leading-relaxed">
+                <strong className="text-white font-bold block sm:inline mr-1">¡Comprobante PDF descargado automáticamente!</strong>
+                Tu orden de compra oficial se ha guardado en tus descargas con el número de orden y los datos de envío.
+              </div>
+            </div>
+
+            {/* Sección Exclusiva: Coordinación de Despacho y Correo Oficial */}
+            <div className="bg-[#0c0c0c] border-2 border-[#C52222] p-6 sm:p-7 mb-8 hard-box shadow-2xl relative overflow-hidden">
+              <div className="flex items-center gap-2.5 text-[#C52222] mb-3">
+                <Truck className="w-6 h-6 shrink-0" />
+                <h3 className="font-condensed font-extrabold text-base sm:text-lg tracking-wider uppercase text-white">
+                  COORDINACIÓN DE ENVÍO & SEGUIMIENTO
+                </h3>
+              </div>
+              
+              <p className="text-xs sm:text-sm text-neutral-200 font-sans leading-relaxed mb-4">
+                ¡GRACIAS! Para coordinar el envío te enviaremos un correo con el número de seguimiento de Chilexpress o Starken. También puedes escribirnos directamente a nuestro correo de coordinación para cualquier consulta sobre tu despacho:
+              </p>
+
+              <div className="bg-black border border-neutral-800 p-4 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-[#C52222] shrink-0" />
+                  <div>
+                    <span className="text-[10px] font-condensed tracking-wider uppercase text-neutral-500 block">CORREO EXCLUSIVO DE SEGUIMIENTO:</span>
+                    <a 
+                      href="mailto:contacto@patrianostradistro.cl" 
+                      className="text-sm sm:text-base font-mono font-bold text-white hover:text-[#C52222] transition-colors select-all"
+                    >
+                      contacto@patrianostradistro.cl
+                    </a>
+                  </div>
+                </div>
+                <span className="text-[10px] font-condensed tracking-wider uppercase text-[#C52222] bg-[#C52222]/15 border border-[#C52222]/40 px-3 py-1.5 self-start sm:self-center">
+                  Canal directo pos-compra
+                </span>
+              </div>
+
+              <p className="text-[11px] text-neutral-400 font-sans">
+                💡 <em>Por favor indica tu <strong>Nº de Orden ({currentOrder.orderNumber})</strong> en el asunto para dar prioridad inmediata a tu paquete.</em>
               </p>
             </div>
 
@@ -230,8 +382,8 @@ export const CheckoutPage = () => {
               <div className="grid grid-cols-4 gap-2 relative">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-[#C52222] text-white flex items-center justify-center text-xs font-bold mb-2">✓</div>
-                  <span className="text-[11px] font-condensed font-bold text-white uppercase">PAGO RECIBIDO</span>
-                  <span className="text-[9px] text-neutral-500 mt-0.5">Completado</span>
+                  <span className="text-[11px] font-condensed font-bold text-white uppercase">PAGO FLOW</span>
+                  <span className="text-[9px] text-neutral-500 mt-0.5">Aprobado</span>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-[#C52222] text-white flex items-center justify-center text-xs font-bold mb-2 animate-pulse">2</div>
@@ -271,7 +423,7 @@ export const CheckoutPage = () => {
                 <h4 className="font-condensed font-bold text-neutral-200 tracking-wider uppercase mb-3 pb-2 border-b border-neutral-900">
                   DETALLES DEL PAGO
                 </h4>
-                <p className="text-neutral-400">Método: <strong className="text-white uppercase">{currentOrder.customer.paymentMethod}</strong></p>
+                <p className="text-neutral-400">Método: <strong className="text-white uppercase">{currentOrder.paymentMethod || 'Flow (Webpay Plus)'}</strong></p>
                 <p className="text-neutral-400">Fecha: <span className="text-neutral-300">{currentOrder.date}</span></p>
                 <p className="text-neutral-400">Subtotal: <span className="text-neutral-300">{formatCLP(currentOrder.subtotal)}</span></p>
                 {currentOrder.discountAmount > 0 && (
@@ -288,15 +440,18 @@ export const CheckoutPage = () => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => showToast('Comprobante digital descargado en PDF')}
-                className="flex-1 bg-[#121212] hover:bg-neutral-800 text-neutral-200 border border-neutral-800 py-3.5 text-xs font-condensed font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                onClick={() => {
+                  generateOrderPdf(currentOrder, { autoDownload: true });
+                  showToast('Descargando comprobante en PDF...');
+                }}
+                className="flex-1 bg-[#141414] hover:bg-neutral-800 text-white border border-[#C52222] py-4 text-xs font-condensed font-bold tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-98"
               >
-                <Download className="w-4 h-4" />
-                <span>DESCARGAR FACTURA / RESUMEN</span>
+                <Download className="w-4 h-4 text-[#C52222]" />
+                <span>VOLVER A DESCARGAR FACTURA / ORDEN EN PDF</span>
               </button>
               <Link
                 to="/catalogo"
-                className="flex-1 btn-crimson py-3.5 text-xs font-condensed font-bold tracking-widest uppercase text-center flex items-center justify-center gap-2"
+                className="flex-1 btn-crimson py-4 text-xs font-condensed font-bold tracking-widest uppercase text-center flex items-center justify-center gap-2"
               >
                 <span>SEGUIR COMPRANDO</span>
                 <span>→</span>
@@ -488,19 +643,20 @@ export const CheckoutPage = () => {
                     {/* Payment Method Selector Grid */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       
-                      {/* WebPay Plus */}
+                      {/* Flow / WebPay */}
                       <button
                         type="button"
-                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'webpay' }))}
+                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'flow' }))}
                         className={`p-3.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
-                          formData.paymentMethod === 'webpay' ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
+                          (formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
                         }`}
                       >
-                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">WEBPAY PLUS</span>
-                        <span className="text-[9px] text-neutral-400">RedCompra / Débito</span>
+                        <ShieldCheck className="w-4 h-4 text-[#C52222]" />
+                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">FLOW (WEBPAY)</span>
+                        <span className="text-[9px] text-neutral-400">Débito / Crédito / Mach</span>
                       </button>
 
-                      {/* Tarjeta */}
+                      {/* Tarjeta Directa */}
                       <button
                         type="button"
                         onClick={() => setFormData(f => ({ ...f, paymentMethod: 'card' }))}
@@ -510,6 +666,7 @@ export const CheckoutPage = () => {
                       >
                         <CreditCard className="w-4 h-4" />
                         <span className="font-condensed font-bold text-xs tracking-wider uppercase">TARJETA CRÉDITO</span>
+                        <span className="text-[9px] text-neutral-400">Internacional</span>
                       </button>
 
                       {/* Transferencia */}
@@ -522,39 +679,40 @@ export const CheckoutPage = () => {
                       >
                         <Building className="w-4 h-4" />
                         <span className="font-condensed font-bold text-xs tracking-wider uppercase">TRANSFERENCIA</span>
+                        <span className="text-[9px] text-neutral-400">Manual / Banco</span>
                       </button>
 
-                      {/* MercadoPago */}
+                      {/* Flow Servipag */}
                       <button
                         type="button"
-                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'mercadopago' }))}
+                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'flow' }))}
                         className={`p-3.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
                           formData.paymentMethod === 'mercadopago' ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
                         }`}
                       >
-                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">MERCADO PAGO</span>
-                        <span className="text-[9px] text-neutral-400">Cuotas sin interés</span>
+                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">SERVIPAG / CAJA</span>
+                        <span className="text-[9px] text-neutral-400">Vía Flow</span>
                       </button>
 
                     </div>
 
                     {/* Method Details */}
-                    {formData.paymentMethod === 'webpay' ? (
+                    {(formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') ? (
                       <div className="bg-black border border-neutral-800 p-5 text-xs font-sans space-y-2 rounded">
                         <div className="flex items-center justify-between">
                           <span className="text-white font-condensed font-bold text-sm tracking-wider uppercase flex items-center gap-2">
                             <ShieldCheck className="w-4 h-4 text-[#C52222]" />
-                            PASARELA OFICIAL TRANSBANK WEBPAY PLUS
+                            PASARELA OFICIAL FLOW CHILE (WEBPAY PLUS & TARJETAS)
                           </span>
                           <span className="text-[10px] text-emerald-400 font-mono font-bold uppercase tracking-wider bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded">
-                            Listo para conectar
+                            Conectado y Seguro
                           </span>
                         </div>
                         <p className="text-neutral-300 leading-relaxed">
-                          Paga en cuotas sin interés o al contado con tarjetas de débito (<strong className="text-white">Redcompra</strong>), crédito (<strong className="text-white">Visa, Mastercard, AMEX, Magna</strong>) o tarjetas de prepago chilenas.
+                          Paga en cuotas o al contado con tarjetas de débito (<strong className="text-white">Redcompra</strong>), crédito (<strong className="text-white">Visa, Mastercard, AMEX, Magna</strong>) o prepago (<strong className="text-white">Mach, Tenpo, Klap</strong>) a través de Flow.
                         </p>
                         <p className="text-neutral-500 text-[11px] pt-1 border-t border-neutral-900">
-                          🔒 Serás conectado directamente a los servidores seguros y encriptados de Transbank para ingresar tus datos financieros con total privacidad.
+                          🔒 Serás conectado a la pasarela cifrada de Flow. Al pagar, volverás a nuestra web con confirmación inmediata y descarga automática del PDF con tu orden de compra.
                         </p>
                       </div>
                     ) : formData.paymentMethod === 'transfer' ? (
@@ -565,7 +723,7 @@ export const CheckoutPage = () => {
                         <p className="text-neutral-300">Nº Cuenta: <strong className="text-white font-mono">00-12345678-09</strong></p>
                         <p className="text-neutral-300">RUT: <strong className="text-white">76.543.210-K</strong></p>
                         <p className="text-neutral-300">Nombre: <strong className="text-white">Patria Nostra SpA</strong></p>
-                        <p className="text-neutral-500 text-[10px] pt-1">Envía tu comprobante con tu número de orden a pagos@patrianostradistro.cl</p>
+                        <p className="text-neutral-500 text-[10px] pt-1">Al completar el pedido se generará automáticamente tu comprobante en PDF con los datos para coordinar el envío.</p>
                       </div>
                     ) : (
                       <div className="space-y-4 bg-black border border-neutral-800 p-4 rounded">
@@ -637,9 +795,9 @@ export const CheckoutPage = () => {
                       className="btn-crimson flex-1 font-condensed font-bold text-xs tracking-[0.2em] uppercase py-4 cursor-pointer shadow-xl flex items-center justify-center gap-2 active:scale-98"
                     >
                       {isProcessing ? (
-                        <span>CONECTANDO CON PASARELA DE PAGO...</span>
+                        <span>CONECTANDO CON FLOW...</span>
                       ) : (
-                        <span>{formData.paymentMethod === 'webpay' ? `PAGAR CON WEBPAY PLUS (${formatCLP(finalTotal)}) →` : `CONFIRMAR Y PAGAR ${formatCLP(finalTotal)} →`}</span>
+                        <span>{(formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') ? `PAGAR CON FLOW WEBPAY (${formatCLP(finalTotal)}) →` : `CONFIRMAR Y PAGAR ${formatCLP(finalTotal)} →`}</span>
                       )}
                     </button>
                   </div>
