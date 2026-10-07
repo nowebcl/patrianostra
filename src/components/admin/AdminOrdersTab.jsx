@@ -5,6 +5,7 @@ import {
   CheckCircle2, 
   MapPin, 
   Phone, 
+  Mail,
   ShoppingBag, 
   Trash2,
   ExternalLink
@@ -35,7 +36,9 @@ export const AdminOrdersTab = () => {
         const matchNum = o.orderNumber?.toLowerCase().includes(q);
         const matchName = `${o.customer?.firstName} ${o.customer?.lastName}`.toLowerCase().includes(q);
         const matchCity = o.customer?.city?.toLowerCase().includes(q);
-        if (!matchNum && !matchName && !matchCity) return false;
+        const matchEmail = o.customer?.email?.toLowerCase().includes(q);
+        const matchPhone = o.customer?.phone?.toLowerCase().includes(q);
+        if (!matchNum && !matchName && !matchCity && !matchEmail && !matchPhone) return false;
       }
       return true;
     });
@@ -172,29 +175,55 @@ export const AdminOrdersTab = () => {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start text-xs">
                   
                   {/* Customer Info */}
-                  <div className="md:col-span-6 bg-[#080808] border border-neutral-800/80 rounded-xl p-3.5 space-y-2">
-                    <div className="font-condensed font-bold uppercase text-white text-sm flex items-center justify-between">
+                  <div className="md:col-span-6 bg-[#080808] border border-neutral-800/80 rounded-xl p-3.5 space-y-2.5">
+                    <div className="font-condensed font-bold uppercase text-white text-sm flex items-center justify-between border-b border-neutral-800/60 pb-2">
                       <span>{order.customer?.firstName} {order.customer?.lastName}</span>
-                      {order.customer?.rut && <span className="text-neutral-500 font-mono text-xs font-normal">{order.customer.rut}</span>}
+                      {order.customer?.rut && <span className="text-neutral-400 font-mono text-xs font-normal">RUT: {order.customer.rut}</span>}
                     </div>
 
-                    <div className="space-y-1 text-neutral-300">
-                      <p className="flex items-start gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-[#C52222] shrink-0 mt-0.5" />
-                        <span><strong>{order.customer?.address}</strong>, {order.customer?.city}</span>
-                      </p>
-                      
-                      <p className="flex items-center gap-2 pt-1">
-                        <span className="font-mono text-neutral-400">{order.customer?.phone}</span>
+                    <div className="space-y-2 text-neutral-300">
+                      {/* Correo Electrónico */}
+                      <p className="flex items-center gap-2 bg-[#121212] p-2 rounded-lg border border-neutral-800/60">
+                        <Mail className="w-3.5 h-3.5 text-[#C52222] shrink-0" />
+                        <span className="text-neutral-400 font-sans text-[11px]">Email:</span>
                         <a 
-                          href={`https://wa.me/${(order.customer?.phone || '').replace(/[^0-9]/g, '')}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="px-2 py-0.5 bg-emerald-950/60 hover:bg-emerald-900 border border-emerald-800 text-emerald-300 rounded text-[10px] font-condensed font-bold uppercase"
+                          href={`mailto:${order.customer?.email}`} 
+                          className="font-mono text-white hover:text-[#C52222] underline font-bold truncate text-xs flex-1"
                         >
-                          WhatsApp ↗
+                          {order.customer?.email || 'No especificado'}
                         </a>
                       </p>
+
+                      {/* Dirección */}
+                      <p className="flex items-start gap-1.5 text-xs">
+                        <MapPin className="w-3.5 h-3.5 text-[#C52222] shrink-0 mt-0.5" />
+                        <span><strong>{order.customer?.address}</strong>, {order.customer?.city} {order.customer?.region ? `(${order.customer.region})` : ''}</span>
+                      </p>
+                      
+                      {/* Teléfono / WhatsApp / Llamada */}
+                      <div className="flex flex-wrap items-center gap-2 pt-1.5 border-t border-neutral-800/60">
+                        <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span className="font-mono font-bold text-white text-xs">{order.customer?.phone || 'Sin teléfono'}</span>
+                        {order.customer?.phone && (
+                          <>
+                            <a 
+                              href={`https://wa.me/${order.customer.phone.replace(/[^0-9]/g, '')}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="px-2 py-0.5 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-700 text-emerald-300 rounded text-[10px] font-condensed font-bold uppercase inline-flex items-center gap-1"
+                            >
+                              <span>WhatsApp</span>
+                              <span>↗</span>
+                            </a>
+                            <a 
+                              href={`tel:${order.customer.phone}`} 
+                              className="px-2 py-0.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 rounded text-[10px] font-condensed font-bold uppercase"
+                            >
+                              Llamar 📞
+                            </a>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
 

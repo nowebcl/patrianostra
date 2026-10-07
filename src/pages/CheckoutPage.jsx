@@ -52,20 +52,17 @@ export const CheckoutPage = () => {
   const [flowErrorMessage, setFlowErrorMessage] = useState(null);
 
   const [formData, setFormData] = useState({
-    email: 'cliente@patrianostradistro.cl',
-    firstName: 'Matías',
-    lastName: 'González',
-    rut: '18.420.912-K',
-    phone: '+56 9 8765 4321',
-    address: 'Av. Providencia 1240, Depto 402',
+    email: '',
+    firstName: '',
+    lastName: '',
+    rut: '',
+    phone: '',
+    address: '',
     region: 'Región Metropolitana de Santiago',
-    city: 'Santiago / Providencia',
+    city: '',
     postalCode: '7500000',
-    shippingMethod: 'express', // 'express' (Chilexpress 24h) or 'starken'
-    paymentMethod: 'flow', // 'flow' (Webpay Plus / Tarjetas / Servipag / Mach), 'card', 'transfer'
-    cardNumber: '•••• •••• •••• 4242',
-    cardExpiry: '12/26',
-    cardCvc: '•••'
+    shippingMethod: 'express',
+    paymentMethod: 'flow'
   });
 
   // Efecto para verificar retorno automático desde Flow
@@ -163,6 +160,31 @@ export const CheckoutPage = () => {
 
   const handleGoToPayment = (e) => {
     e.preventDefault();
+
+    const cleanEmail = (formData.email || '').trim();
+    const cleanPhone = (formData.phone || '').trim();
+
+    if (!cleanEmail) {
+      showToast('⚠️ El correo electrónico es OBLIGATORIO para enviar tu confirmación');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      showToast('⚠️ Por favor ingresa un correo electrónico válido (ej: nombre@gmail.com)');
+      return;
+    }
+
+    if (!cleanPhone) {
+      showToast('⚠️ El número de WhatsApp o llamado es OBLIGATORIO para coordinar el despacho');
+      return;
+    }
+
+    if (cleanPhone.replace(/[^0-9]/g, '').length < 8) {
+      showToast('⚠️ Por favor ingresa un número de teléfono/WhatsApp válido (+56 9 ...)');
+      return;
+    }
+
     setStep(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -393,13 +415,14 @@ export const CheckoutPage = () => {
               {/* Shipping Address Summary */}
               <div className="bg-[#080808] border border-neutral-900 p-5 text-xs font-sans space-y-2">
                 <h4 className="font-condensed font-bold text-neutral-200 tracking-wider uppercase mb-3 pb-2 border-b border-neutral-900">
-                  DIRECCIÓN DE ENTREGA 🇨🇱
+                  DATOS DE CONTACTO & ENTREGA 🇨🇱
                 </h4>
                 <p className="text-white font-medium">{currentOrder.customer.firstName} {currentOrder.customer.lastName}</p>
-                <p className="text-neutral-400">RUT: {currentOrder.customer.rut}</p>
-                <p className="text-neutral-400">{currentOrder.customer.address}</p>
+                <p className="text-neutral-400">RUT: <span className="text-neutral-300 font-mono">{currentOrder.customer.rut}</span></p>
+                <p className="text-neutral-400">Correo: <strong className="text-white font-mono">{currentOrder.customer.email}</strong></p>
+                <p className="text-neutral-400">WhatsApp / Teléfono: <strong className="text-emerald-400 font-mono">{currentOrder.customer.phone}</strong></p>
+                <p className="text-neutral-400 pt-1 border-t border-neutral-900">{currentOrder.customer.address}</p>
                 <p className="text-neutral-400">{currentOrder.customer.city}, {currentOrder.customer.region}</p>
-                <p className="text-neutral-400">Teléfono: {currentOrder.customer.phone}</p>
               </div>
 
               {/* Payment Summary */}
@@ -477,14 +500,17 @@ export const CheckoutPage = () => {
                     </h3>
 
                     <div>
-                      <label className="text-[11px] font-condensed tracking-wider text-neutral-400 uppercase block mb-1.5">CORREO ELECTRÓNICO *</label>
+                      <label className="text-[11px] font-condensed tracking-wider text-white uppercase block mb-1.5 flex items-center justify-between">
+                        <span>CORREO ELECTRÓNICO * <span className="text-neutral-400 font-normal normal-case">(Para confirmación de compra y orden)</span></span>
+                        <span className="text-[10px] text-[#C52222] font-sans font-bold tracking-wider">OBLIGATORIO</span>
+                      </label>
                       <input 
                         required
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="tu@correo.com"
+                        placeholder="tu-correo@ejemplo.cl"
                         className="w-full bg-black border border-neutral-800 text-xs font-sans text-white p-3 focus:outline-none focus:border-[#C52222]"
                       />
                     </div>
@@ -530,7 +556,10 @@ export const CheckoutPage = () => {
                         />
                       </div>
                       <div>
-                        <label className="text-[11px] font-condensed tracking-wider text-neutral-400 uppercase block mb-1.5">TELÉFONO DE CONTACTO *</label>
+                        <label className="text-[11px] font-condensed tracking-wider text-white uppercase block mb-1.5 flex items-center justify-between">
+                          <span>Nº WHATSAPP O LLAMADO *</span>
+                          <span className="text-[10px] text-emerald-400 font-sans font-bold tracking-wider">OBLIGATORIO</span>
+                        </label>
                         <input 
                           required
                           type="tel"
@@ -540,6 +569,9 @@ export const CheckoutPage = () => {
                           placeholder="+56 9 1234 5678"
                           className="w-full bg-black border border-neutral-800 text-xs font-sans text-white p-3 focus:outline-none focus:border-[#C52222]"
                         />
+                        <span className="text-[10px] text-neutral-400 mt-1 block">
+                          Para coordinar la entrega a tu dirección.
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -639,9 +671,12 @@ export const CheckoutPage = () => {
 
                     {/* Summary of Shipping Data */}
                     <div className="bg-black border border-neutral-900 p-4 text-xs font-sans flex items-center justify-between">
-                      <div>
+                      <div className="space-y-0.5">
                         <span className="text-[10px] font-condensed text-neutral-500 uppercase tracking-wider block">COORDINAR ENVÍO A DIRECCIÓN:</span>
                         <p className="text-neutral-200 font-medium">{formData.firstName} {formData.lastName} — {formData.address}, {formData.city}</p>
+                        <p className="text-neutral-400 font-mono text-[11px]">
+                          Email: <span className="text-white">{formData.email}</span> • Tel/WhatsApp: <span className="text-emerald-400">{formData.phone}</span>
+                        </p>
                       </div>
                       <button 
                         type="button" 
