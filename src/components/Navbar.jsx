@@ -38,8 +38,9 @@ export const Navbar = () => {
           <Link to="/" className="group block relative">
             <div className="w-12 h-14 sm:w-16 sm:h-18 relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <img 
-                src="/logo.png" 
+                src="/logo.webp" 
                 alt="Patria Nostra Logo Shield" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }}
                 className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,0,0,0.9)]"
               />
             </div>

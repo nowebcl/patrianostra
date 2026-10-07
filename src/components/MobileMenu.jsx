@@ -15,7 +15,12 @@ export const MobileMenu = () => {
         <div>
           <div className="flex items-center justify-between pb-4 border-b border-neutral-900 mb-6">
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="w-10 h-12 block">
-              <img src="/logo.png" alt="Shield Logo" className="w-full h-full object-contain" />
+              <img 
+                src="/logo.webp" 
+                alt="Shield Logo" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }}
+                className="w-full h-full object-contain" 
+              />
             </Link>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}

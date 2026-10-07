@@ -41,6 +41,9 @@ export const Hero = () => {
               <img 
                 src={slide.image} 
                 alt={slide.alt} 
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                decoding="async"
                 className={`${slide.imgClass} filter contrast-105 brightness-95 transition-transform duration-[6500ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}

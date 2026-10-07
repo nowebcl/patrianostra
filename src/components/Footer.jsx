@@ -16,8 +16,9 @@ export const Footer = () => {
           <div className="md:col-span-3 flex flex-col items-start">
             <div className="w-14 h-16 mb-4">
               <img 
-                src="/logo.png" 
+                src="/logo.webp" 
                 alt="Patria Nostra Shield Emblem" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }}
                 className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(0,0,0,0.9)]"
               />
             </div>

@@ -6,7 +6,7 @@ export const pb = new PocketBase(POCKETBASE_URL);
 
 // Helper para obtener URL de archivo de PocketBase con fallback seguro
 export const getProductImageUrl = (record, filename, queryParams = {}) => {
-  if (!record) return '/producto.png';
+  if (!record) return '/producto.webp';
 
   // Si ya es una URL completa o una ruta local relativa
   if (typeof filename === 'string' && (filename.startsWith('http') || filename.startsWith('/'))) {
@@ -24,7 +24,7 @@ export const getProductImageUrl = (record, filename, queryParams = {}) => {
   }
 
   // Fallback
-  return record.image || '/producto.png';
+  return record.image || '/producto.webp';
 };
 
 // Transforma un registro de PocketBase al formato uniforme de la aplicación
@@ -37,9 +37,9 @@ export const mapPbProduct = (record) => {
   const getFileUrl = (rec, file) => (pb.files.getURL ? pb.files.getURL(rec, file) : pb.files.getUrl(rec, file));
   const gallery = images.length > 0
     ? images.map(img => getFileUrl(record, img))
-    : (record.gallery || [record.image || '/producto.png']);
+    : (record.gallery || [record.image || '/producto.webp']);
 
-  const mainImage = gallery.length > 0 ? gallery[0] : (record.image || '/producto.png');
+  const mainImage = gallery.length > 0 ? gallery[0] : (record.image || '/producto.webp');
 
   // Procesar especificaciones y tallas en caso de venir como string JSON
   let specs = record.specs;

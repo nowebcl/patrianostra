@@ -68,8 +68,9 @@ export const AdminLoginPage = () => {
           <div className="text-center space-y-2">
             <div className="w-14 h-16 mx-auto mb-3">
               <img 
-                src="/logo.png" 
+                src="/logo.webp" 
                 alt="Patria Nostra" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.png'; }}
                 className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(197,34,34,0.5)]"
               />
             </div>
