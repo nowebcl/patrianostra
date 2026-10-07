@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { ShieldCheck, Lock, CheckCircle2, Truck, CreditCard, Building, ArrowLeft, Download, ShoppingBag, Sparkles, Check, Mail, Loader2, AlertCircle } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, Truck, ArrowLeft, Download, ShoppingBag, Sparkles, Check, Mail, Loader2, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useStore } from '../context/StoreContext';
 import { formatCLP } from '../utils/currency';
@@ -283,10 +283,6 @@ export const CheckoutPage = () => {
             <ArrowLeft className="w-4 h-4" />
             <span>PATRIA NOSTRA • CHILE 🇨🇱</span>
           </Link>
-          <div className="flex items-center gap-2 text-xs text-neutral-400 font-condensed tracking-wider uppercase">
-            <Lock className="w-3.5 h-3.5 text-[#C52222]" />
-            <span>PAGO SEGURO SSL 256-BIT ENCRIPTADO</span>
-          </div>
         </div>
 
         {/* ========================================================================= */}
@@ -337,40 +333,28 @@ export const CheckoutPage = () => {
               </div>
             </div>
 
-            {/* Sección Exclusiva: Coordinación de Despacho y Correo Oficial */}
-            <div className="bg-[#0c0c0c] border-2 border-[#C52222] p-6 sm:p-7 mb-8 hard-box shadow-2xl relative overflow-hidden">
-              <div className="flex items-center gap-2.5 text-[#C52222] mb-3">
-                <Truck className="w-6 h-6 shrink-0" />
-                <h3 className="font-condensed font-extrabold text-base sm:text-lg tracking-wider uppercase text-white">
-                  COORDINACIÓN DE ENVÍO & SEGUIMIENTO
+            {/* Coordinación de Despacho */}
+            <div className="bg-[#0c0c0c] border border-[#C52222] p-5 mb-8 hard-box shadow-2xl">
+              <div className="flex items-center gap-2.5 text-[#C52222] mb-2">
+                <Truck className="w-5 h-5 shrink-0" />
+                <h3 className="font-condensed font-extrabold text-base tracking-wider uppercase text-white">
+                  COORDINAR ENVÍO A DIRECCIÓN...
                 </h3>
               </div>
               
-              <p className="text-xs sm:text-sm text-neutral-200 font-sans leading-relaxed mb-4">
-                ¡GRACIAS! Para coordinar el envío te enviaremos un correo con el número de seguimiento de Chilexpress o Starken. También puedes escribirnos directamente a nuestro correo de coordinación para cualquier consulta sobre tu despacho:
+              <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed mb-3">
+                ¡GRACIAS! Para coordinar el envío te enviaremos un correo. También puedes escribirnos a:
               </p>
 
-              <div className="bg-black border border-neutral-800 p-4 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-[#C52222] shrink-0" />
-                  <div>
-                    <span className="text-[10px] font-condensed tracking-wider uppercase text-neutral-500 block">CORREO EXCLUSIVO DE SEGUIMIENTO:</span>
-                    <a 
-                      href="mailto:contacto@patrianostradistro.cl" 
-                      className="text-sm sm:text-base font-mono font-bold text-white hover:text-[#C52222] transition-colors select-all"
-                    >
-                      contacto@patrianostradistro.cl
-                    </a>
-                  </div>
-                </div>
-                <span className="text-[10px] font-condensed tracking-wider uppercase text-[#C52222] bg-[#C52222]/15 border border-[#C52222]/40 px-3 py-1.5 self-start sm:self-center">
-                  Canal directo pos-compra
-                </span>
+              <div className="bg-black border border-neutral-800 p-3 rounded flex items-center gap-3">
+                <Mail className="w-4 h-4 text-[#C52222] shrink-0" />
+                <a 
+                  href="mailto:contacto@patrianostradistro.cl" 
+                  className="text-sm font-mono font-bold text-white hover:text-[#C52222] transition-colors select-all"
+                >
+                  contacto@patrianostradistro.cl
+                </a>
               </div>
-
-              <p className="text-[11px] text-neutral-400 font-sans">
-                💡 <em>Por favor indica tu <strong>Nº de Orden ({currentOrder.orderNumber})</strong> en el asunto para dar prioridad inmediata a tu paquete.</em>
-              </p>
             </div>
 
             {/* Tracking Progress Timeline */}
@@ -382,7 +366,7 @@ export const CheckoutPage = () => {
               <div className="grid grid-cols-4 gap-2 relative">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-[#C52222] text-white flex items-center justify-center text-xs font-bold mb-2">✓</div>
-                  <span className="text-[11px] font-condensed font-bold text-white uppercase">PAGO FLOW</span>
+                  <span className="text-[11px] font-condensed font-bold text-white uppercase">PAGO WEBPAY</span>
                   <span className="text-[9px] text-neutral-500 mt-0.5">Aprobado</span>
                 </div>
                 <div className="flex flex-col items-center text-center">
@@ -392,13 +376,13 @@ export const CheckoutPage = () => {
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-500 flex items-center justify-center text-xs font-bold mb-2">3</div>
-                  <span className="text-[11px] font-condensed font-bold text-neutral-500 uppercase">DESPACHO CHILEXPRESS</span>
-                  <span className="text-[9px] text-neutral-600 mt-0.5">Pendiente</span>
+                  <span className="text-[11px] font-condensed font-bold text-neutral-500 uppercase">DESPACHO A COORDINAR</span>
+                  <span className="text-[9px] text-neutral-600 mt-0.5">Por coordinar</span>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-500 flex items-center justify-center text-xs font-bold mb-2">4</div>
                   <span className="text-[11px] font-condensed font-bold text-neutral-500 uppercase">ENTREGADO</span>
-                  <span className="text-[9px] text-neutral-600 mt-0.5">24/48 hrs</span>
+                  <span className="text-[9px] text-neutral-600 mt-0.5">Finalizado</span>
                 </div>
               </div>
             </div>
@@ -636,137 +620,27 @@ export const CheckoutPage = () => {
                   
                   <div className="bg-[#080808] border border-neutral-900 p-6 space-y-5">
                     <h3 className="font-condensed text-sm font-bold tracking-wider uppercase text-neutral-200 pb-2 border-b border-neutral-900 flex items-center justify-between">
-                      <span>SELECCIONA TU MÉTODO DE PAGO</span>
+                      <span>MÉTODO DE PAGO</span>
                       <ShieldCheck className="w-4 h-4 text-[#C52222]" />
                     </h3>
 
-                    {/* Payment Method Selector Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      
-                      {/* Flow / WebPay */}
-                      <button
-                        type="button"
-                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'flow' }))}
-                        className={`p-3.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
-                          (formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
-                        }`}
-                      >
-                        <ShieldCheck className="w-4 h-4 text-[#C52222]" />
-                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">FLOW (WEBPAY)</span>
-                        <span className="text-[9px] text-neutral-400">Débito / Crédito / Mach</span>
-                      </button>
-
-                      {/* Tarjeta Directa */}
-                      <button
-                        type="button"
-                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'card' }))}
-                        className={`p-3.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
-                          formData.paymentMethod === 'card' ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
-                        }`}
-                      >
-                        <CreditCard className="w-4 h-4" />
-                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">TARJETA CRÉDITO</span>
-                        <span className="text-[9px] text-neutral-400">Internacional</span>
-                      </button>
-
-                      {/* Transferencia */}
-                      <button
-                        type="button"
-                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'transfer' }))}
-                        className={`p-3.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
-                          formData.paymentMethod === 'transfer' ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
-                        }`}
-                      >
-                        <Building className="w-4 h-4" />
-                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">TRANSFERENCIA</span>
-                        <span className="text-[9px] text-neutral-400">Manual / Banco</span>
-                      </button>
-
-                      {/* Flow Servipag */}
-                      <button
-                        type="button"
-                        onClick={() => setFormData(f => ({ ...f, paymentMethod: 'flow' }))}
-                        className={`p-3.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
-                          formData.paymentMethod === 'mercadopago' ? 'border-[#C52222] bg-[#C52222]/15 text-white' : 'border-neutral-800 text-neutral-400 hover:border-neutral-700'
-                        }`}
-                      >
-                        <span className="font-condensed font-bold text-xs tracking-wider uppercase">SERVIPAG / CAJA</span>
-                        <span className="text-[9px] text-neutral-400">Vía Flow</span>
-                      </button>
-
+                    {/* Pago Seguro con Webpay Plus Exclusivo */}
+                    <div className="border border-[#C52222] bg-[#C52222]/10 p-5 rounded space-y-2">
+                      <div className="flex items-center gap-2.5 text-white">
+                        <ShieldCheck className="w-5 h-5 text-[#C52222] shrink-0" />
+                        <span className="font-condensed font-extrabold text-sm tracking-wider uppercase">
+                          PAGO SEGURO CON WEBPAY PLUS
+                        </span>
+                      </div>
+                      <p className="text-xs text-neutral-300 leading-relaxed">
+                        Paga de manera 100% segura con tus tarjetas de débito (Redcompra), crédito o prepago a través de Webpay Plus.
+                      </p>
                     </div>
-
-                    {/* Method Details */}
-                    {(formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') ? (
-                      <div className="bg-black border border-neutral-800 p-5 text-xs font-sans space-y-2 rounded">
-                        <div className="flex items-center justify-between">
-                          <span className="text-white font-condensed font-bold text-sm tracking-wider uppercase flex items-center gap-2">
-                            <ShieldCheck className="w-4 h-4 text-[#C52222]" />
-                            PASARELA OFICIAL FLOW CHILE (WEBPAY PLUS & TARJETAS)
-                          </span>
-                          <span className="text-[10px] text-emerald-400 font-mono font-bold uppercase tracking-wider bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded">
-                            Conectado y Seguro
-                          </span>
-                        </div>
-                        <p className="text-neutral-300 leading-relaxed">
-                          Paga en cuotas o al contado con tarjetas de débito (<strong className="text-white">Redcompra</strong>), crédito (<strong className="text-white">Visa, Mastercard, AMEX, Magna</strong>) o prepago (<strong className="text-white">Mach, Tenpo, Klap</strong>) a través de Flow.
-                        </p>
-                        <p className="text-neutral-500 text-[11px] pt-1 border-t border-neutral-900">
-                          🔒 Serás conectado a la pasarela cifrada de Flow. Al pagar, volverás a nuestra web con confirmación inmediata y descarga automática del PDF con tu orden de compra.
-                        </p>
-                      </div>
-                    ) : formData.paymentMethod === 'transfer' ? (
-                      <div className="bg-black border border-neutral-800 p-4 text-xs font-sans space-y-1.5 rounded">
-                        <p className="text-[#C52222] font-condensed font-bold tracking-wider uppercase">DATOS BANCARIOS PARA TRANSFERENCIA:</p>
-                        <p className="text-neutral-300">Banco: <strong className="text-white">Banco de Chile / BancoEstado</strong></p>
-                        <p className="text-neutral-300">Tipo de Cuenta: <strong className="text-white">Cuenta Corriente</strong></p>
-                        <p className="text-neutral-300">Nº Cuenta: <strong className="text-white font-mono">00-12345678-09</strong></p>
-                        <p className="text-neutral-300">RUT: <strong className="text-white">76.543.210-K</strong></p>
-                        <p className="text-neutral-300">Nombre: <strong className="text-white">Patria Nostra SpA</strong></p>
-                        <p className="text-neutral-500 text-[10px] pt-1">Al completar el pedido se generará automáticamente tu comprobante en PDF con los datos para coordinar el envío.</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-4 bg-black border border-neutral-800 p-4 rounded">
-                        <div>
-                          <label className="text-[11px] font-condensed tracking-wider text-neutral-400 uppercase block mb-1.5">NÚMERO DE TARJETA</label>
-                          <input 
-                            type="text"
-                            name="cardNumber"
-                            value={formData.cardNumber}
-                            onChange={handleInputChange}
-                            className="w-full bg-[#080808] border border-neutral-800 text-xs font-mono text-white p-3 focus:outline-none focus:border-[#C52222]"
-                          />
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="text-[11px] font-condensed tracking-wider text-neutral-400 uppercase block mb-1.5">EXPIRACIÓN (MM/AA)</label>
-                            <input 
-                              type="text"
-                              name="cardExpiry"
-                              value={formData.cardExpiry}
-                              onChange={handleInputChange}
-                              className="w-full bg-[#080808] border border-neutral-800 text-xs font-mono text-white p-3 focus:outline-none focus:border-[#C52222]"
-                            />
-                          </div>
-                          <div>
-                            <label className="text-[11px] font-condensed tracking-wider text-neutral-400 uppercase block mb-1.5">CVC / CWW</label>
-                            <input 
-                              type="text"
-                              name="cardCvc"
-                              value={formData.cardCvc}
-                              onChange={handleInputChange}
-                              className="w-full bg-[#080808] border border-neutral-800 text-xs font-mono text-white p-3 focus:outline-none focus:border-[#C52222]"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    )}
 
                     {/* Summary of Shipping Data */}
                     <div className="bg-black border border-neutral-900 p-4 text-xs font-sans flex items-center justify-between">
                       <div>
-                        <span className="text-[10px] font-condensed text-neutral-500 uppercase tracking-wider block">ENVIAR A:</span>
+                        <span className="text-[10px] font-condensed text-neutral-500 uppercase tracking-wider block">COORDINAR ENVÍO A DIRECCIÓN:</span>
                         <p className="text-neutral-200 font-medium">{formData.firstName} {formData.lastName} — {formData.address}, {formData.city}</p>
                       </div>
                       <button 
@@ -795,9 +669,9 @@ export const CheckoutPage = () => {
                       className="btn-crimson flex-1 font-condensed font-bold text-xs tracking-[0.2em] uppercase py-4 cursor-pointer shadow-xl flex items-center justify-center gap-2 active:scale-98"
                     >
                       {isProcessing ? (
-                        <span>CONECTANDO CON FLOW...</span>
+                        <span>CONECTANDO CON WEBPAY PLUS...</span>
                       ) : (
-                        <span>{(formData.paymentMethod === 'flow' || formData.paymentMethod === 'webpay') ? `PAGAR CON FLOW WEBPAY (${formatCLP(finalTotal)}) →` : `CONFIRMAR Y PAGAR ${formatCLP(finalTotal)} →`}</span>
+                        <span>PAGAR CON WEBPAY PLUS ({formatCLP(finalTotal)}) →</span>
                       )}
                     </button>
                   </div>
@@ -845,25 +719,13 @@ export const CheckoutPage = () => {
                   </div>
                 )}
                 <div className="flex justify-between text-neutral-400">
-                  <span>ENVÍO CHILE</span>
-                  <span>{shippingCost === 0 ? <strong className="text-emerald-400">GRATIS</strong> : formatCLP(shippingCost)}</span>
+                  <span>DESPACHO</span>
+                  <span className="text-white font-medium">Despacho a coordinar</span>
                 </div>
                 <div className="flex justify-between text-base font-bold text-white pt-3 border-t border-neutral-800">
                   <span>TOTAL FINAL</span>
                   <span className="text-[#C52222] text-lg font-bold">{formatCLP(finalTotal)}</span>
                 </div>
-              </div>
-
-              {/* Security guarantees */}
-              <div className="mt-6 pt-4 border-t border-neutral-900 space-y-2 text-[10px] font-sans text-neutral-500">
-                <p className="flex items-center gap-1.5 text-neutral-400">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#C52222]" />
-                  <span>Garantía oficial de satisfacción de 30 días</span>
-                </p>
-                <p className="flex items-center gap-1.5 text-neutral-400">
-                  <Truck className="w-3.5 h-3.5 text-neutral-500" />
-                  <span>Despacho con código de seguimiento en tiempo real</span>
-                </p>
               </div>
 
             </div>

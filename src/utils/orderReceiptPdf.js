@@ -146,7 +146,7 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setTextColor(...muted);
   doc.text(`${cust.city || ''}, ${cust.region || ''}`, margin + colW + 10, y + 17);
   doc.text(`Código Postal: ${cust.postalCode || '7500000'}`, margin + colW + 10, y + 22);
-  doc.text(`Método de Despacho: Chilexpress / Starken 24-48 hrs`, margin + colW + 10, y + 27);
+  doc.text(`Despacho: Despacho a coordinar`, margin + colW + 10, y + 27);
 
   // 5. Tabla de Productos Comprados
   y = 104;
@@ -228,9 +228,8 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   }
 
   y += 5;
-  doc.text('Envío nacional (Chile):', sumX, y + 4);
-  const shippingStr = order.shippingCost === 0 ? 'GRATIS' : formatCLP(order.shippingCost || 0);
-  doc.text(shippingStr, pageWidth - margin - 2, y + 4, { align: 'right' });
+  doc.text('Despacho:', sumX, y + 4);
+  doc.text('A coordinar', pageWidth - margin - 2, y + 4, { align: 'right' });
 
   y += 6;
   doc.setFillColor(...crimson);
@@ -253,13 +252,12 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9.5);
   doc.setTextColor(...crimson);
-  doc.text('📦 SEGUIMIENTO Y COORDINACIÓN DE ENVÍOS', margin + 6, y + 7);
+  doc.text('📦 COORDINAR ENVÍO A DIRECCIÓN...', margin + 6, y + 7);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
   doc.setTextColor(...dark);
-  doc.text('Tu pedido ha sido recibido y pasará a embalaje para su despacho inmediato.', margin + 6, y + 13);
-  doc.text('Para coordinar la entrega o solicitar tu código de seguimiento oficial, escríbenos a:', margin + 6, y + 18);
+  doc.text('¡GRACIAS! Para coordinar el envío te enviaremos un correo, o escríbenos a:', margin + 6, y + 14);
 
   // Email destacado exclusivamente para seguimiento pos-compra
   doc.setFillColor(255, 255, 255);
