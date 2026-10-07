@@ -39,10 +39,17 @@ export const initFlowPayment = async ({
       })
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (parseErr) {
+      console.error('Error de parseo JSON del endpoint /api/flow/create:', text);
+      throw new Error(`Error en el servidor de pagos (${response.status}): ${text ? text.slice(0, 120) : 'Respuesta vacía del servidor'}`);
+    }
 
     if (!response.ok || !data.success) {
-      throw new Error(data.error || 'Error al comunicar con la pasarela Flow');
+      throw new Error(data.error || `Error en la pasarela Flow (${response.status})`);
     }
 
     return {
@@ -66,7 +73,13 @@ export const initFlowPayment = async ({
 export const checkFlowPaymentStatus = async (token) => {
   try {
     const response = await fetch(`/api/flow/status?token=${encodeURIComponent(token)}`);
-    const data = await response.json();
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error(`Respuesta inválida al consultar estado (${response.status})`);
+    }
 
     if (!response.ok || !data.success) {
       throw new Error(data.error || 'No se pudo verificar el estado del pago');

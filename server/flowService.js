@@ -15,6 +15,25 @@ export function getFlowConfig() {
 }
 
 /**
+ * Valida y normaliza el correo para cumplir con la validación estricta de dominios de Flow
+ */
+export function sanitizeFlowEmail(email) {
+  if (!email || typeof email !== 'string') return 'cliente@patrianostradistro.cl';
+  const clean = email.trim().toLowerCase();
+  // Flow rechaza dominios de prueba como ejemplo.cl o test.cl
+  if (
+    clean.includes('@ejemplo.') ||
+    clean.includes('@test.') ||
+    clean.includes('@example.') ||
+    !clean.includes('@') ||
+    clean.length < 5
+  ) {
+    return 'cliente@patrianostradistro.cl';
+  }
+  return clean;
+}
+
+/**
  * Genera la firma HMAC-SHA256 según especificación oficial de Flow
  * 1. Ordena alfabéticamente los nombres de los parámetros
  * 2. Concatena clave + valor
@@ -42,14 +61,15 @@ export async function createFlowPayment({
   // El monto mínimo que Flow permite en CLP es 350
   const cleanAmount = Math.max(350, Math.round(Number(amount) || 350));
   const baseUrl = clientOrigin || 'http://localhost:3000';
+  const cleanEmail = sanitizeFlowEmail(email);
 
   const params = {
     apiKey,
-    commerceOrder: String(commerceOrder),
+    commerceOrder: String(commerceOrder || `PN-${Date.now()}`),
     subject: subject ? String(subject).slice(0, 100) : `Orden ${commerceOrder}`,
     currency: 'CLP',
     amount: cleanAmount,
-    email: email || 'cliente@patrianostradistro.cl',
+    email: cleanEmail,
     urlConfirmation: `${baseUrl}/api/flow/confirm`,
     urlReturn: `${baseUrl}/api/flow/return`
   };
@@ -74,7 +94,9 @@ export async function createFlowPayment({
   }
 
   if (!response.ok || !data.token) {
-    throw new Error(data.message || `Error al crear pago en Flow (código ${data.code || response.status})`);
+    const errorMsg = data.message || `Error al crear pago en Flow (código ${data.code || response.status})`;
+    console.error('❌ Error Flow API:', data);
+    throw new Error(errorMsg);
   }
 
   // Guardar en caché el pedido asociado a este token para recuperarlo en el retorno
