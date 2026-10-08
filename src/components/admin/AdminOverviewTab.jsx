@@ -10,7 +10,7 @@ import { useStore } from '../../context/StoreContext';
 import { formatCLP } from '../../utils/currency';
 
 export const AdminOverviewTab = ({ setActiveTab, onOpenNewProduct }) => {
-  const { products, orders, updateOrderStatus } = useStore();
+  const { products, orders, updateOrderStatus, isUnderConstruction, setMaintenanceMode } = useStore();
 
   const totalSales = orders
     .filter(o => o.status !== 'Cancelado')
@@ -40,6 +40,49 @@ export const AdminOverviewTab = ({ setActiveTab, onOpenNewProduct }) => {
         >
           <Plus className="w-4 h-4" />
           <span>Nueva Prenda</span>
+        </button>
+      </div>
+
+      {/* Store Status Hero Banner */}
+      <div className={`p-4 sm:p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all ${
+        isUnderConstruction 
+          ? 'bg-[#140b0b] border-[#C52222]/50 shadow-lg shadow-[#C52222]/10' 
+          : 'bg-[#0b140e] border-emerald-900/60 shadow-lg shadow-emerald-950/20'
+      }`}>
+        <div className="flex items-start sm:items-center gap-3.5">
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+            isUnderConstruction ? 'bg-[#C52222]/20 text-[#C52222]' : 'bg-emerald-950/60 text-emerald-400'
+          }`}>
+            <span className={`w-3 h-3 rounded-full ${isUnderConstruction ? 'bg-[#C52222] animate-ping' : 'bg-emerald-400'}`} />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="font-condensed font-extrabold text-base uppercase text-white tracking-wider">
+                {isUnderConstruction ? 'Modo En Construcción Activo' : 'Tienda Abierta al Público'}
+              </h2>
+              <span className={`text-[10px] font-condensed font-bold uppercase px-2 py-0.5 rounded ${
+                isUnderConstruction ? 'bg-[#C52222] text-white' : 'bg-emerald-500 text-black'
+              }`}>
+                {isUnderConstruction ? 'PÚBLICO RESTRINGIDO' : 'PÚBLICO ACTIVO'}
+              </span>
+            </div>
+            <p className="text-xs text-neutral-400 mt-0.5">
+              {isUnderConstruction 
+                ? 'Los clientes ven la pantalla "Pronto Inauguración". Solo tú como administrador puedes ver y gestionar la tienda.'
+                : 'Cualquier persona que ingrese puede ver el catálogo y comprar.'}
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setMaintenanceMode(!isUnderConstruction)}
+          className={`px-4 py-2 rounded-xl text-xs font-condensed font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
+            isUnderConstruction
+              ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-md shadow-emerald-900/30'
+              : 'bg-[#C52222] hover:bg-[#a81c1c] text-white shadow-md shadow-red-950/30'
+          }`}
+        >
+          {isUnderConstruction ? '✓ Inaugurar Tienda Ahora' : '🔒 Activar Modo En Construcción'}
         </button>
       </div>
 

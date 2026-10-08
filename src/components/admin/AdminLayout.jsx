@@ -15,7 +15,7 @@ import { useStore } from '../../context/StoreContext';
 
 export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, children }) => {
   const navigate = useNavigate();
-  const { adminCreds, logoutAdmin, orders, products } = useStore();
+  const { adminCreds, logoutAdmin, orders, products, isUnderConstruction, setMaintenanceMode } = useStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const pendingCount = orders.filter(o => o.status === 'Pendiente' || o.status === 'En Preparación').length;
@@ -59,16 +59,32 @@ export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, childre
       <div className="md:hidden bg-[#111] border-b border-neutral-800 p-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="" className="w-7 h-8 object-contain" />
-          <span className="font-condensed font-extrabold text-sm tracking-widest text-white uppercase">
-            PATRIA NOSTRA • ADMIN
-          </span>
+          <div>
+            <span className="font-condensed font-extrabold text-sm tracking-widest text-white uppercase block leading-none">
+              PATRIA NOSTRA • ADMIN
+            </span>
+            {isUnderConstruction && (
+              <span className="text-[9px] font-condensed font-bold text-[#C52222] uppercase tracking-wider">
+                ● En Construcción
+              </span>
+            )}
+          </div>
         </div>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 text-neutral-400 hover:text-white rounded-lg bg-black border border-neutral-800"
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleLogout}
+            className="p-2 text-neutral-400 hover:text-red-400 rounded-lg bg-black border border-neutral-800"
+            title="Cerrar Sesión"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-neutral-400 hover:text-white rounded-lg bg-black border border-neutral-800"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* LEFT SIDEBAR (Menú Lateral) */}
@@ -134,8 +150,40 @@ export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, childre
           </nav>
         </div>
 
-        {/* Bottom Sidebar: Store Link & Logout */}
-        <div className="pt-4 border-t border-neutral-800/80 space-y-2">
+        {/* Bottom Sidebar: Store Link, Status & Logout */}
+        <div className="pt-4 border-t border-neutral-800/80 space-y-3">
+          
+          {/* Status del Modo En Construcción */}
+          <div className="bg-[#121212] border border-neutral-800 rounded-xl p-3 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-condensed font-bold uppercase tracking-wider text-neutral-400">
+                Público General
+              </span>
+              <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[9px] font-condensed font-bold uppercase ${
+                isUnderConstruction ? 'bg-[#C52222]/20 text-[#C52222] border border-[#C52222]/40' : 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/40'
+              }`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${isUnderConstruction ? 'bg-[#C52222] animate-pulse' : 'bg-emerald-400'}`} />
+                {isUnderConstruction ? 'En Construcción' : 'Tienda Abierta'}
+              </span>
+            </div>
+            
+            <p className="text-[10px] text-neutral-500 leading-tight">
+              {isUnderConstruction 
+                ? 'El público ve "Pronto Inauguración". Tú puedes seguir subiendo prendas normalmente.' 
+                : 'La tienda está visible para todos los clientes.'}
+            </p>
+
+            <button
+              onClick={() => setMaintenanceMode(!isUnderConstruction)}
+              className={`w-full py-1.5 px-2 rounded-lg text-[10px] font-condensed font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                isUnderConstruction
+                  ? 'bg-emerald-900/40 hover:bg-emerald-800/60 border border-emerald-700/60 text-emerald-300'
+                  : 'bg-red-950/40 hover:bg-red-900/60 border border-red-800/60 text-red-300'
+              }`}
+            >
+              {isUnderConstruction ? '✓ Abrir Tienda al Público' : '🔒 Poner en Construcción'}
+            </button>
+          </div>
           
           <a
             href="/"
@@ -145,23 +193,25 @@ export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, childre
           >
             <div className="flex items-center gap-2.5">
               <ExternalLink className="w-4 h-4 text-[#C52222]" />
-              <span>Ver Tienda</span>
+              <span>Ver Tienda (Preview)</span>
             </div>
             <ChevronRight className="w-3.5 h-3.5 text-neutral-500" />
           </a>
 
-          <div className="flex items-center justify-between px-2 pt-2">
-            <div className="truncate pr-2">
-              <span className="text-[11px] text-neutral-400 font-mono block truncate">
+          {/* Email & Logout Button */}
+          <div className="pt-2 space-y-2">
+            <div className="px-2 truncate">
+              <span className="text-[10px] text-neutral-400 font-mono block truncate">
                 {adminCreds.email}
               </span>
             </div>
+
             <button
               onClick={handleLogout}
-              className="p-2 text-neutral-500 hover:text-red-400 hover:bg-red-950/30 rounded-lg cursor-pointer transition-colors"
-              title="Cerrar Sesión"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-red-950/40 hover:bg-[#C52222] border border-red-900/60 hover:border-[#C52222] text-red-300 hover:text-white rounded-xl text-xs font-condensed font-bold uppercase tracking-wider cursor-pointer transition-all shadow-sm active:scale-95"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Cerrar Sesión</span>
             </button>
           </div>
 

@@ -181,10 +181,66 @@ export const StoreProvider = ({ children }) => {
   // 3. Admin Profile State
   const [adminCreds, setAdminCreds] = useState(DEFAULT_ADMIN_CREDS);
 
-  // 4. Admin Auth Session (Validación criptográfica estricta mediante PocketBase JWT)
+  // 4. Admin Auth Session (Validación criptográfica estricta mediante PocketBase JWT + localStorage para sincronía entre pestañas)
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
+    try {
+      const savedAuth = localStorage.getItem('pn_admin_authenticated');
+      if (savedAuth === 'true') return true;
+    } catch (e) {}
     return Boolean(pb.authStore && pb.authStore.isValid);
   });
+
+  // Sincronizar cambios de sesión en tiempo real y entre pestañas
+  useEffect(() => {
+    const handleStorage = (e) => {
+      if (e.key === 'pn_admin_authenticated' || e.key === 'pocketbase_auth') {
+        const isAuth = localStorage.getItem('pn_admin_authenticated') === 'true' || Boolean(pb.authStore && pb.authStore.isValid);
+        setIsAdminAuthenticated(isAuth);
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
+    const unsubPb = pb.authStore.onChange((token, model) => {
+      const valid = Boolean(token && pb.authStore.isValid);
+      setIsAdminAuthenticated(valid);
+      if (valid) {
+        localStorage.setItem('pn_admin_authenticated', 'true');
+      } else {
+        localStorage.removeItem('pn_admin_authenticated');
+      }
+    });
+
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      if (typeof unsubPb === 'function') unsubPb();
+    };
+  }, []);
+
+  // Refrescar periódicamente la sesión de administrador para evitar tokens expirados silenciosamente
+  useEffect(() => {
+    if (pb.authStore && pb.authStore.isValid) {
+      const refreshSession = async () => {
+        try {
+          if (pb.authStore.isSuperuser) {
+            await pb.collection('_superusers').authRefresh();
+          } else if (pb.authStore.model?.collectionName === 'users') {
+            await pb.collection('users').authRefresh();
+          } else {
+            await pb.collection('_superusers').authRefresh().catch(() => pb.collection('users').authRefresh());
+          }
+          setIsAdminAuthenticated(true);
+          localStorage.setItem('pn_admin_authenticated', 'true');
+        } catch (e) {
+          console.warn('Verificación de sesión PocketBase:', e?.message || e);
+          if (!pb.authStore.isValid) {
+            setIsAdminAuthenticated(false);
+            localStorage.removeItem('pn_admin_authenticated');
+          }
+        }
+      };
+      refreshSession();
+    }
+  }, []);
 
   // 5. PocketBase Remote Connection and Loading State
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
@@ -198,11 +254,11 @@ export const StoreProvider = ({ children }) => {
       try {
         setIsLoadingProducts(true);
         const records = await pb.collection('products').getFullList({
-          requestKey: null
+          requestKey: null,
+          sort: '-created,-@rowid'
         });
 
         if (isMounted && Array.isArray(records)) {
-          records.sort((a, b) => new Date(b.created || 0) - new Date(a.created || 0));
           const mapped = records.map(mapPbProduct);
           const testItem = initialProducts.find(p => p.id === 'test-pago-flow');
           const hasTest = mapped.some(p => p.id === 'test-pago-flow' || p.sku === 'PN-TEST-FLOW');
@@ -292,6 +348,84 @@ export const StoreProvider = ({ children }) => {
     };
   }, [isAdminAuthenticated]);
 
+  // 7. Store Construction / Maintenance Mode (por defecto activo para el público)
+  const [isUnderConstruction, setIsUnderConstruction] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pn_under_construction');
+      if (saved !== null) return JSON.parse(saved);
+    } catch (e) {}
+    return true; // Default: En construcción
+  });
+
+  // Sincronización del estado de En Construcción desde PocketBase
+  useEffect(() => {
+    let isMounted = true;
+    let unsubscribeFn = null;
+
+    const fetchMaintenanceSetting = async () => {
+      try {
+        const records = await pb.collection('settings').getFullList({
+          filter: 'key = "maintenance_mode"',
+          requestKey: null
+        });
+        if (isMounted && records.length > 0 && records[0].value?.enabled !== undefined) {
+          const enabled = Boolean(records[0].value.enabled);
+          setIsUnderConstruction(enabled);
+          localStorage.setItem('pn_under_construction', JSON.stringify(enabled));
+        }
+      } catch (err) {
+        console.warn('Configuración de modo construcción en PocketBase:', err?.message || err);
+      }
+    };
+
+    fetchMaintenanceSetting();
+
+    pb.collection('settings').subscribe('*', (e) => {
+      if (!isMounted) return;
+      if (e.record?.key === 'maintenance_mode' && e.record.value?.enabled !== undefined) {
+        const enabled = Boolean(e.record.value.enabled);
+        setIsUnderConstruction(enabled);
+        localStorage.setItem('pn_under_construction', JSON.stringify(enabled));
+      }
+    }).then(unsub => {
+      unsubscribeFn = unsub;
+    }).catch(e => {
+      console.warn('Suscripción tiempo real settings:', e?.message || e);
+    });
+
+    return () => {
+      isMounted = false;
+      if (unsubscribeFn) unsubscribeFn();
+      else pb.collection('settings').unsubscribe('*').catch(() => {});
+    };
+  }, []);
+
+  const setMaintenanceMode = async (enabled) => {
+    setIsUnderConstruction(enabled);
+    localStorage.setItem('pn_under_construction', JSON.stringify(enabled));
+
+    if (pb.authStore && pb.authStore.isValid) {
+      try {
+        const records = await pb.collection('settings').getFullList({
+          filter: 'key = "maintenance_mode"',
+          requestKey: null
+        });
+        if (records.length > 0) {
+          await pb.collection('settings').update(records[0].id, {
+            value: { enabled }
+          }, { requestKey: null });
+        } else {
+          await pb.collection('settings').create({
+            key: 'maintenance_mode',
+            value: { enabled }
+          }, { requestKey: null });
+        }
+      } catch (err) {
+        console.error('Error al actualizar modo construcción en PocketBase:', err);
+      }
+    }
+  };
+
   // Sync to localStorage
   useEffect(() => {
     try {
@@ -311,8 +445,13 @@ export const StoreProvider = ({ children }) => {
 
   // ==================== PRODUCT ACTIONS ====================
   const addProduct = async (productData) => {
-    const newId = productData.id || `prod-${Date.now()}`;
-    const sizes = Array.isArray(productData.sizes) ? productData.sizes : ['S', 'M', 'L', 'XL'];
+    if (!pb.authStore.isValid) {
+      throw new Error('No hay una sesión activa de administrador en PocketBase. Por favor vuelve a iniciar sesión en el panel.');
+    }
+
+    const sizes = Array.isArray(productData.sizes) && productData.sizes.length > 0 
+      ? productData.sizes 
+      : ['S', 'M', 'L', 'XL'];
     
     // Calcular sizeStock y stock total
     let sizeStock = productData.sizeStock;
@@ -327,96 +466,92 @@ export const StoreProvider = ({ children }) => {
     }
     const totalStock = Object.values(sizeStock).reduce((sum, n) => sum + (Number(n) || 0), 0);
 
-    const newProduct = {
-      ...productData,
-      id: newId,
-      sku: productData.sku || `PN-${Math.floor(100 + Math.random() * 900)}`,
-      stock: totalStock,
-      sizeStock,
-      price: Math.round(Number(productData.price) || 0),
-      originalPrice: productData.originalPrice ? Math.round(Number(productData.originalPrice)) : null,
-      badge: productData.badge || null,
-      gender: productData.gender || 'Unisex',
-      gsm: productData.gsm || '320 GSM',
-      fit: productData.fit || 'Relaxed Fit',
-      image: productData.image || '/producto.webp',
-      gallery: productData.gallery && productData.gallery.length > 0 ? productData.gallery : [productData.image || '/producto.webp'],
-      specs: Array.isArray(productData.specs) ? productData.specs : (productData.specs ? productData.specs.split('\n').filter(Boolean) : []),
-      sizes,
-      isFeatured: !!productData.isFeatured
-    };
+    const sku = productData.sku || `PN-POL-${Math.floor(100 + Math.random() * 900)}`;
+    const category = (productData.category || 'poleras').toLowerCase();
+    const price = Math.round(Number(productData.price) || 0);
+    const originalPrice = productData.originalPrice ? Math.round(Number(productData.originalPrice)) : null;
+    const badge = productData.badge || '';
+    const description = productData.description || '';
+    const gender = productData.gender || 'Unisex';
+    const gsm = productData.gsm || '240 GSM Algodón Pesado';
+    const fit = productData.fit || 'Corte Regular';
+    const specs = Array.isArray(productData.specs) ? productData.specs : (productData.specs ? productData.specs.split('\n').filter(Boolean) : []);
+    const isFeatured = !!productData.isFeatured;
+    const mainImageUrl = productData.image || '/producto.webp';
+    const galleryUrls = productData.gallery && productData.gallery.length > 0 ? productData.gallery : [mainImageUrl];
 
-    // Si hay sesión activa en PocketBase, intentar persistir remotamente
-    if (pb.authStore.isValid) {
-      try {
-        let pbRecord;
-        const hasFiles = (productData.imageItems && productData.imageItems.some(it => it.file instanceof File)) ||
-                         (productData.mainImageFile instanceof File) ||
-                         (Array.isArray(productData.galleryFiles) && productData.galleryFiles.some(f => f instanceof File));
+    const hasFiles = (Array.isArray(productData.imageItems) && productData.imageItems.some(it => it.file instanceof File)) ||
+                     (productData.mainImageFile instanceof File) ||
+                     (Array.isArray(productData.galleryFiles) && productData.galleryFiles.some(f => f instanceof File));
 
-        if (hasFiles) {
-          const fd = new FormData();
-          fd.append('name', newProduct.name);
-          fd.append('description', newProduct.description || '');
-          fd.append('price', String(newProduct.price));
-          if (newProduct.originalPrice) fd.append('originalPrice', String(newProduct.originalPrice));
-          fd.append('category', (newProduct.category || 'poleras').toLowerCase());
-          if (newProduct.badge) fd.append('badge', newProduct.badge);
-          fd.append('stock', String(newProduct.stock));
-          fd.append('sizeStock', JSON.stringify(newProduct.sizeStock));
-          fd.append('gender', newProduct.gender || 'Unisex');
-          fd.append('sku', newProduct.sku);
-          fd.append('gsm', newProduct.gsm || '240 GSM Algodón Pesado');
-          fd.append('fit', newProduct.fit || 'Corte Regular');
-          fd.append('specs', JSON.stringify(newProduct.specs || []));
-          fd.append('sizes', JSON.stringify(newProduct.sizes || []));
-          fd.append('isFeatured', String(newProduct.isFeatured));
+    let pbRecord;
 
-          if (Array.isArray(productData.imageItems)) {
-            productData.imageItems.forEach(it => {
-              if (it.file instanceof File) fd.append('images', it.file);
-            });
-          } else {
-            if (productData.mainImageFile instanceof File) fd.append('images', productData.mainImageFile);
-            if (Array.isArray(productData.galleryFiles)) {
-              productData.galleryFiles.forEach(f => {
-                if (f instanceof File) fd.append('images', f);
-              });
-            }
-          }
-          pbRecord = await pb.collection('products').create(fd);
-        } else {
-          pbRecord = await pb.collection('products').create({
-            name: newProduct.name,
-            description: newProduct.description,
-            price: newProduct.price,
-            originalPrice: newProduct.originalPrice,
-            category: (newProduct.category || '').toLowerCase(),
-            badge: newProduct.badge,
-            stock: newProduct.stock,
-            sizeStock: newProduct.sizeStock,
-            gender: newProduct.gender,
-            sku: newProduct.sku,
-            gsm: newProduct.gsm,
-            fit: newProduct.fit,
-            specs: newProduct.specs,
-            sizes: newProduct.sizes,
-            isFeatured: newProduct.isFeatured
+    if (hasFiles) {
+      const fd = new FormData();
+      fd.append('name', productData.name.trim().toUpperCase());
+      fd.append('description', description);
+      fd.append('price', String(price));
+      if (originalPrice) fd.append('originalPrice', String(originalPrice));
+      fd.append('category', category);
+      if (badge) fd.append('badge', badge);
+      fd.append('stock', String(totalStock));
+      fd.append('sizeStock', JSON.stringify(sizeStock));
+      fd.append('gender', gender);
+      fd.append('sku', sku);
+      fd.append('gsm', gsm);
+      fd.append('fit', fit);
+      fd.append('specs', JSON.stringify(specs));
+      fd.append('sizes', JSON.stringify(sizes));
+      fd.append('isFeatured', String(isFeatured));
+      fd.append('image', mainImageUrl);
+      fd.append('gallery', JSON.stringify(galleryUrls));
+
+      if (Array.isArray(productData.imageItems)) {
+        productData.imageItems.forEach(it => {
+          if (it.file instanceof File) fd.append('images', it.file);
+        });
+      } else {
+        if (productData.mainImageFile instanceof File) fd.append('images', productData.mainImageFile);
+        if (Array.isArray(productData.galleryFiles)) {
+          productData.galleryFiles.forEach(f => {
+            if (f instanceof File) fd.append('images', f);
           });
         }
-        const mapped = mapPbProduct(pbRecord);
-        setProducts(prev => [mapped, ...prev.filter(p => p.id !== mapped.id)]);
-        return mapped;
-      } catch (err) {
-        console.warn('No se pudo guardar en PocketBase, usando memoria local:', err?.message || err);
       }
+
+      pbRecord = await pb.collection('products').create(fd, { requestKey: null });
+    } else {
+      pbRecord = await pb.collection('products').create({
+        name: productData.name.trim().toUpperCase(),
+        description,
+        price,
+        originalPrice,
+        category,
+        badge,
+        stock: totalStock,
+        sizeStock,
+        gender,
+        sku,
+        gsm,
+        fit,
+        specs,
+        sizes,
+        isFeatured,
+        image: mainImageUrl,
+        gallery: galleryUrls
+      }, { requestKey: null });
     }
 
-    setProducts(prev => [newProduct, ...prev]);
-    return newProduct;
+    const mapped = mapPbProduct(pbRecord);
+    setProducts(prev => [mapped, ...prev.filter(p => p.id !== mapped.id)]);
+    return mapped;
   };
 
   const updateProduct = async (productId, updatedData) => {
+    if (!pb.authStore.isValid) {
+      throw new Error('No hay una sesión activa de administrador en PocketBase.');
+    }
+
     let finalSizeStock = updatedData.sizeStock;
     let finalStock = updatedData.stock;
 
@@ -424,73 +559,56 @@ export const StoreProvider = ({ children }) => {
       finalStock = Object.values(finalSizeStock).reduce((sum, n) => sum + (Number(n) || 0), 0);
     }
 
-    setProducts(prev => prev.map(p => {
-      if (p.id === productId) {
-        const nextSizeStock = finalSizeStock || p.sizeStock;
-        const nextStock = finalStock !== undefined 
-          ? Number(finalStock) 
-          : (nextSizeStock ? Object.values(nextSizeStock).reduce((sum, n) => sum + (Number(n) || 0), 0) : p.stock);
+    const hasNewFiles = Array.isArray(updatedData.imageItems) && updatedData.imageItems.some(it => it.file instanceof File);
 
-        return {
-          ...p,
-          ...updatedData,
-          stock: nextStock,
-          sizeStock: nextSizeStock,
-          price: updatedData.price !== undefined ? Math.round(Number(updatedData.price)) : p.price,
-          originalPrice: updatedData.originalPrice !== undefined ? (updatedData.originalPrice ? Math.round(Number(updatedData.originalPrice)) : null) : p.originalPrice,
-          specs: Array.isArray(updatedData.specs) ? updatedData.specs : (updatedData.specs ? updatedData.specs.split('\n').filter(Boolean) : p.specs),
-          gallery: updatedData.gallery || p.gallery || [updatedData.image || p.image || '/producto.webp']
-        };
-      }
-      return p;
-    }));
+    let updatedRecord;
 
-    if (pb.authStore.isValid) {
-      try {
-        if (Array.isArray(updatedData.imageItems) && updatedData.imageItems.length > 0) {
-          const fd = new FormData();
-          if (updatedData.name !== undefined) fd.append('name', updatedData.name);
-          if (updatedData.description !== undefined) fd.append('description', updatedData.description);
-          if (updatedData.price !== undefined) fd.append('price', String(Math.round(Number(updatedData.price))));
-          if (updatedData.originalPrice !== undefined) fd.append('originalPrice', updatedData.originalPrice ? String(Math.round(Number(updatedData.originalPrice))) : '');
-          if (finalStock !== undefined) fd.append('stock', String(Number(finalStock)));
-          if (finalSizeStock !== undefined) fd.append('sizeStock', JSON.stringify(finalSizeStock));
-          if (updatedData.badge !== undefined) fd.append('badge', updatedData.badge || '');
-          if (updatedData.category !== undefined) fd.append('category', (updatedData.category || '').toLowerCase());
-          if (updatedData.isFeatured !== undefined) fd.append('isFeatured', String(!!updatedData.isFeatured));
-          if (updatedData.sizes !== undefined) fd.append('sizes', JSON.stringify(updatedData.sizes));
-          if (updatedData.specs !== undefined) fd.append('specs', JSON.stringify(updatedData.specs));
+    if (hasNewFiles || (Array.isArray(updatedData.imageItems) && updatedData.imageItems.length > 0)) {
+      const fd = new FormData();
+      if (updatedData.name !== undefined) fd.append('name', updatedData.name.trim().toUpperCase());
+      if (updatedData.description !== undefined) fd.append('description', updatedData.description);
+      if (updatedData.price !== undefined) fd.append('price', String(Math.round(Number(updatedData.price))));
+      if (updatedData.originalPrice !== undefined) fd.append('originalPrice', updatedData.originalPrice ? String(Math.round(Number(updatedData.originalPrice))) : '');
+      if (finalStock !== undefined) fd.append('stock', String(Number(finalStock)));
+      if (finalSizeStock !== undefined) fd.append('sizeStock', JSON.stringify(finalSizeStock));
+      if (updatedData.badge !== undefined) fd.append('badge', updatedData.badge || '');
+      if (updatedData.category !== undefined) fd.append('category', (updatedData.category || '').toLowerCase());
+      if (updatedData.isFeatured !== undefined) fd.append('isFeatured', String(!!updatedData.isFeatured));
+      if (updatedData.sizes !== undefined) fd.append('sizes', JSON.stringify(updatedData.sizes));
+      if (updatedData.specs !== undefined) fd.append('specs', JSON.stringify(updatedData.specs));
+      if (updatedData.image !== undefined) fd.append('image', updatedData.image);
+      if (updatedData.gallery !== undefined) fd.append('gallery', JSON.stringify(updatedData.gallery));
 
-          updatedData.imageItems.forEach(it => {
-            if (it.file instanceof File) {
-              fd.append('images', it.file);
-            } else if (it.rawName) {
-              fd.append('images', it.rawName);
-            }
-          });
-
-          const updatedRecord = await pb.collection('products').update(productId, fd);
-          const mapped = mapPbProduct(updatedRecord);
-          setProducts(prev => prev.map(p => p.id === productId ? mapped : p));
-        } else {
-          await pb.collection('products').update(productId, {
-            ...(updatedData.name !== undefined ? { name: updatedData.name } : {}),
-            ...(updatedData.description !== undefined ? { description: updatedData.description } : {}),
-            ...(updatedData.price !== undefined ? { price: Math.round(Number(updatedData.price)) } : {}),
-            ...(updatedData.originalPrice !== undefined ? { originalPrice: updatedData.originalPrice ? Math.round(Number(updatedData.originalPrice)) : null } : {}),
-            ...(finalStock !== undefined ? { stock: Number(finalStock) } : {}),
-            ...(finalSizeStock !== undefined ? { sizeStock: finalSizeStock } : {}),
-            ...(updatedData.badge !== undefined ? { badge: updatedData.badge } : {}),
-            ...(updatedData.category !== undefined ? { category: updatedData.category.toLowerCase() } : {}),
-            ...(updatedData.isFeatured !== undefined ? { isFeatured: !!updatedData.isFeatured } : {}),
-            ...(updatedData.sizes !== undefined ? { sizes: updatedData.sizes } : {}),
-            ...(updatedData.specs !== undefined ? { specs: updatedData.specs } : {})
-          });
+      updatedData.imageItems.forEach(it => {
+        if (it.file instanceof File) {
+          fd.append('images', it.file);
+        } else if (it.rawName) {
+          fd.append('images', it.rawName);
         }
-      } catch (err) {
-        console.warn('Error sincronizando edición en PocketBase:', err?.message || err);
-      }
+      });
+
+      updatedRecord = await pb.collection('products').update(productId, fd, { requestKey: null });
+    } else {
+      updatedRecord = await pb.collection('products').update(productId, {
+        ...(updatedData.name !== undefined ? { name: updatedData.name.trim().toUpperCase() } : {}),
+        ...(updatedData.description !== undefined ? { description: updatedData.description } : {}),
+        ...(updatedData.price !== undefined ? { price: Math.round(Number(updatedData.price)) } : {}),
+        ...(updatedData.originalPrice !== undefined ? { originalPrice: updatedData.originalPrice ? Math.round(Number(updatedData.originalPrice)) : null } : {}),
+        ...(finalStock !== undefined ? { stock: Number(finalStock) } : {}),
+        ...(finalSizeStock !== undefined ? { sizeStock: finalSizeStock } : {}),
+        ...(updatedData.badge !== undefined ? { badge: updatedData.badge } : {}),
+        ...(updatedData.category !== undefined ? { category: updatedData.category.toLowerCase() } : {}),
+        ...(updatedData.isFeatured !== undefined ? { isFeatured: !!updatedData.isFeatured } : {}),
+        ...(updatedData.sizes !== undefined ? { sizes: updatedData.sizes } : {}),
+        ...(updatedData.specs !== undefined ? { specs: updatedData.specs } : {}),
+        ...(updatedData.image !== undefined ? { image: updatedData.image } : {}),
+        ...(updatedData.gallery !== undefined ? { gallery: updatedData.gallery } : {})
+      }, { requestKey: null });
     }
+
+    const mapped = mapPbProduct(updatedRecord);
+    setProducts(prev => prev.map(p => p.id === productId ? mapped : p));
+    return mapped;
   };
 
   const updateSizeStock = async (productId, size, newQty) => {
@@ -512,7 +630,7 @@ export const StoreProvider = ({ children }) => {
         await pb.collection('products').update(productId, {
           sizeStock: updatedProduct.sizeStock,
           stock: updatedProduct.stock
-        });
+        }, { requestKey: null });
       } catch (err) {
         console.warn('Error actualizando stock por talla en PocketBase:', err?.message || err);
       }
@@ -539,7 +657,7 @@ export const StoreProvider = ({ children }) => {
         await pb.collection('products').update(productId, {
           sizeStock: updatedProduct.sizeStock,
           stock: updatedProduct.stock
-        });
+        }, { requestKey: null });
       } catch (err) {
         console.warn('Error ajustando stock por talla en PocketBase:', err?.message || err);
       }
@@ -547,14 +665,10 @@ export const StoreProvider = ({ children }) => {
   };
 
   const deleteProduct = async (productId) => {
-    setProducts(prev => prev.filter(p => p.id !== productId));
     if (pb.authStore.isValid) {
-      try {
-        await pb.collection('products').delete(productId);
-      } catch (err) {
-        console.warn('Error eliminando en PocketBase:', err?.message || err);
-      }
+      await pb.collection('products').delete(productId, { requestKey: null });
     }
+    setProducts(prev => prev.filter(p => p.id !== productId));
   };
 
   const updateStock = async (productId, newStock) => {
@@ -562,7 +676,7 @@ export const StoreProvider = ({ children }) => {
     setProducts(prev => prev.map(p => p.id === productId ? { ...p, stock: safeStock } : p));
     if (pb.authStore.isValid) {
       try {
-        await pb.collection('products').update(productId, { stock: safeStock });
+        await pb.collection('products').update(productId, { stock: safeStock }, { requestKey: null });
       } catch (err) {
         console.warn('Error actualizando stock en PocketBase:', err?.message || err);
       }
@@ -582,7 +696,7 @@ export const StoreProvider = ({ children }) => {
 
     if (pb.authStore.isValid && finalStock !== null) {
       try {
-        await pb.collection('products').update(productId, { stock: finalStock });
+        await pb.collection('products').update(productId, { stock: finalStock }, { requestKey: null });
       } catch (err) {
         console.warn('Error ajustando stock en PocketBase:', err?.message || err);
       }
@@ -712,34 +826,70 @@ export const StoreProvider = ({ children }) => {
       return { success: false, message: 'Por favor ingresa usuario y contraseña.' };
     }
 
-    // Autenticación criptográfica estricta contra PocketBase _superusers en el servidor
+    // 1. Intentar como Superuser en _superusers (PocketBase v0.23+)
     try {
       const authData = await pb.collection('_superusers').authWithPassword(input, password);
       if (authData && authData.token && pb.authStore.isValid) {
         setIsAdminAuthenticated(true);
+        localStorage.setItem('pn_admin_authenticated', 'true');
         setAdminCreds({
           username: authData.record?.email || input,
           email: authData.record?.email || input,
-          name: 'Administrador Patria Nostra',
+          name: authData.record?.name || 'Administrador Patria Nostra',
           role: 'Super Administrador'
         });
         return { success: true };
       }
     } catch (pbErr) {
-      console.warn('Acceso denegado por PocketBase:', pbErr?.message || pbErr);
-      setIsAdminAuthenticated(false);
-      return { 
-        success: false, 
-        message: 'Credenciales inválidas. Verifica tu correo y contraseña.' 
-      };
+      // Continuar con los siguientes métodos
+    }
+
+    // 2. Intentar como Admin clásico (PocketBase < v0.23)
+    try {
+      if (pb.admins) {
+        const authData = await pb.admins.authWithPassword(input, password);
+        if (authData && authData.token && pb.authStore.isValid) {
+          setIsAdminAuthenticated(true);
+          localStorage.setItem('pn_admin_authenticated', 'true');
+          setAdminCreds({
+            username: authData.admin?.email || input,
+            email: authData.admin?.email || input,
+            name: 'Administrador Patria Nostra',
+            role: 'Super Administrador'
+          });
+          return { success: true };
+        }
+      }
+    } catch (adminErr) {
+      // Continuar
+    }
+
+    // 3. Intentar como usuario en colección 'users'
+    try {
+      const authData = await pb.collection('users').authWithPassword(input, password);
+      if (authData && authData.token && pb.authStore.isValid) {
+        setIsAdminAuthenticated(true);
+        localStorage.setItem('pn_admin_authenticated', 'true');
+        setAdminCreds({
+          username: authData.record?.email || input,
+          email: authData.record?.email || input,
+          name: authData.record?.name || 'Administrador Patria Nostra',
+          role: 'Administrador'
+        });
+        return { success: true };
+      }
+    } catch (userErr) {
+      // Fallaron todos
     }
 
     setIsAdminAuthenticated(false);
-    return { success: false, message: 'Credenciales inválidas. Acceso denegado.' };
+    localStorage.removeItem('pn_admin_authenticated');
+    return { success: false, message: 'Credenciales inválidas. Verifica tu correo y contraseña.' };
   };
 
   const logoutAdmin = () => {
     setIsAdminAuthenticated(false);
+    localStorage.removeItem('pn_admin_authenticated');
     pb.authStore.clear();
   };
 
@@ -799,6 +949,9 @@ export const StoreProvider = ({ children }) => {
         isPbConnected,
         adminCreds,
         isAdminAuthenticated,
+        isUnderConstruction,
+        setIsUnderConstruction,
+        setMaintenanceMode,
         addProduct,
         updateProduct,
         deleteProduct,

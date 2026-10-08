@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Menu, Instagram, Mail } from 'lucide-react';
+import { ShoppingBag, Menu, Instagram, Mail, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useStore } from '../context/StoreContext';
 
 export const Navbar = () => {
   const { totalItems, setIsCartOpen, setIsMobileMenuOpen } = useCart();
+  const { isAdminAuthenticated } = useStore();
 
   return (
     <header className="bg-black/95 backdrop-blur-md border-b border-neutral-900 sticky top-[33px] sm:top-[35px] z-40">
@@ -47,10 +49,23 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* 3. Right Column: Desktop (INSTAGRAM | CONTACTO | CARRITO) / Mobile Cart */}
+        {/* 3. Right Column: Desktop (ADMIN? | INSTAGRAM | CONTACTO | CARRITO) / Mobile Cart */}
         <div className="flex items-center justify-end">
           {/* Desktop Right Menu */}
           <div className="hidden lg:flex items-center space-x-5 text-xs font-condensed font-semibold tracking-[0.2em] text-neutral-300">
+            {isAdminAuthenticated && (
+              <>
+                <Link 
+                  to="/admin" 
+                  className="px-2.5 py-1 bg-[#C52222]/20 hover:bg-[#C52222] border border-[#C52222]/50 text-white rounded font-condensed font-bold tracking-widest uppercase transition-all flex items-center gap-1.5 text-[11px]"
+                  title="Panel de Administración"
+                >
+                  <Shield className="w-3.5 h-3.5 text-[#C52222] group-hover:text-white" />
+                  <span>ADMIN</span>
+                </Link>
+                <span className="text-neutral-800 select-none">|</span>
+              </>
+            )}
             <a 
               href="https://www.instagram.com/patria.nostra.distro/" 
               target="_blank" 
@@ -78,17 +93,29 @@ export const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Cart Button */}
-          <button 
-            onClick={() => setIsCartOpen(true)}
-            className="flex lg:hidden text-neutral-300 hover:text-white p-2 relative cursor-pointer active:scale-95 -mr-2" 
-            aria-label="Abrir carrito"
-          >
-            <ShoppingBag className="w-6 h-6" />
-            <span className="absolute top-1 right-1 bg-[#C52222] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-              {totalItems}
-            </span>
-          </button>
+          {/* Mobile Admin & Cart Buttons */}
+          <div className="flex items-center gap-1 lg:hidden -mr-2">
+            {isAdminAuthenticated && (
+              <Link
+                to="/admin"
+                className="p-2 text-[#C52222] hover:text-white"
+                title="Panel de Administración"
+              >
+                <Shield className="w-5 h-5" />
+              </Link>
+            )}
+
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="text-neutral-300 hover:text-white p-2 relative cursor-pointer active:scale-95" 
+              aria-label="Abrir carrito"
+            >
+              <ShoppingBag className="w-6 h-6" />
+              <span className="absolute top-1 right-1 bg-[#C52222] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {totalItems}
+              </span>
+            </button>
+          </div>
         </div>
 
       </div>

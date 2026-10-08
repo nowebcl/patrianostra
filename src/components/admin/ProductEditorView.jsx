@@ -53,6 +53,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
   const [galleryFiles, setGalleryFiles] = useState([]);
   const [imageItems, setImageItems] = useState([]);
   const [error, setError] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     if (productToEdit) {
@@ -331,8 +332,9 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     if (!formData.name.trim()) {
       setError('Por favor ingresa un nombre para la prenda.');
       return;
@@ -342,32 +344,41 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
       return;
     }
 
-    const mainItem = imageItems[0];
-    const additionals = imageItems.slice(1);
+    setIsSaving(true);
+    try {
+      const mainItem = imageItems[0];
+      const additionals = imageItems.slice(1);
 
-    const payload = {
-      ...(productToEdit || {}),
-      name: formData.name.trim().toUpperCase(),
-      price: Math.round(Number(formData.price)),
-      originalPrice: formData.originalPrice ? Math.round(Number(formData.originalPrice)) : null,
-      category: formData.category,
-      stock: parseInt(formData.stock, 10) || 0,
-      sizeStock: formData.sizeStock,
-      sizes: formData.sizes,
-      image: mainItem?.url || formData.image || '/producto.webp',
-      gallery: imageItems.length > 0 ? imageItems.map(it => it.url) : [formData.image || '/producto.webp'],
-      imageItems,
-      mainImageFile: mainItem?.file || null,
-      galleryFiles: additionals.filter(it => it.file !== null).map(it => it.file),
-      badge: formData.badge || null,
-      description: formData.description.trim(),
-      isFeatured: formData.isFeatured,
-      sku: productToEdit?.sku || `PN-POL-${Math.floor(100 + Math.random() * 900)}`,
-      gsm: productToEdit?.gsm || '240 GSM Algodón Pesado',
-      fit: productToEdit?.fit || 'Corte Regular'
-    };
+      const payload = {
+        ...(productToEdit || {}),
+        name: formData.name.trim().toUpperCase(),
+        price: Math.round(Number(formData.price)),
+        originalPrice: formData.originalPrice ? Math.round(Number(formData.originalPrice)) : null,
+        category: formData.category,
+        stock: parseInt(formData.stock, 10) || 0,
+        sizeStock: formData.sizeStock,
+        sizes: formData.sizes,
+        image: mainItem?.url || formData.image || '/producto.webp',
+        gallery: imageItems.length > 0 ? imageItems.map(it => it.url) : [formData.image || '/producto.webp'],
+        imageItems,
+        mainImageFile: mainItem?.file || null,
+        galleryFiles: additionals.filter(it => it.file !== null).map(it => it.file),
+        badge: formData.badge || null,
+        description: formData.description.trim(),
+        isFeatured: formData.isFeatured,
+        sku: productToEdit?.sku || `PN-POL-${Math.floor(100 + Math.random() * 900)}`,
+        gsm: productToEdit?.gsm || '240 GSM Algodón Pesado',
+        fit: productToEdit?.fit || 'Corte Regular'
+      };
 
-    onSave(payload);
+      await onSave(payload);
+    } catch (err) {
+      console.error('Error al guardar prenda:', err);
+      const detail = err?.response?.data?.message || err?.response?.message || err?.message || 'Error desconocido al guardar en la base de datos';
+      setError(`No se pudo guardar en la base de datos: ${detail}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -380,7 +391,8 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-wider text-neutral-400 hover:text-white transition-colors cursor-pointer"
+          disabled={isSaving}
+          className="inline-flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-wider text-neutral-400 hover:text-white transition-colors cursor-pointer disabled:opacity-50"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver a la lista de productos</span>
@@ -401,17 +413,19 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
             <button
               type="button"
               onClick={onBack}
-              className="px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white font-condensed font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer"
+              disabled={isSaving}
+              className="px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 disabled:opacity-50 text-neutral-300 hover:text-white font-condensed font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer"
             >
               Cancelar
             </button>
             <button
               type="button"
               onClick={handleSubmit}
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#C52222] hover:bg-[#a81c1c] text-white font-condensed font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-[#C52222]/25 transition-all cursor-pointer active:scale-95"
+              disabled={isSaving}
+              className="flex items-center gap-2 px-6 py-2.5 bg-[#C52222] hover:bg-[#a81c1c] disabled:opacity-50 text-white font-condensed font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-[#C52222]/25 transition-all cursor-pointer active:scale-95"
             >
               <Save className="w-4 h-4" />
-              <span>Guardar Prenda</span>
+              <span>{isSaving ? 'Guardando en BD...' : 'Guardar Prenda'}</span>
             </button>
           </div>
         </div>
@@ -950,10 +964,15 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
           {/* Botón Guardar Inferior */}
           <button
             type="submit"
-            className="w-full py-3.5 bg-[#C52222] hover:bg-[#a81c1c] text-white font-condensed font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-[#C52222]/25 transition-all cursor-pointer active:scale-98 flex items-center justify-center gap-2"
+            disabled={isSaving}
+            className="w-full py-3.5 bg-[#C52222] hover:bg-[#a81c1c] disabled:opacity-50 text-white font-condensed font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-[#C52222]/25 transition-all cursor-pointer active:scale-98 flex items-center justify-center gap-2"
           >
             <Save className="w-4 h-4" />
-            <span>{productToEdit ? 'Guardar Cambios de la Prenda' : 'Publicar Prenda en Catálogo'}</span>
+            <span>
+              {isSaving 
+                ? 'Guardando en la base de datos...' 
+                : (productToEdit ? 'Guardar Cambios de la Prenda' : 'Publicar Prenda en Catálogo')}
+            </span>
           </button>
 
         </div>

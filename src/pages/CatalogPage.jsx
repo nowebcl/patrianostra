@@ -44,7 +44,7 @@ export const CatalogPage = () => {
       if (sortBy === 'name-asc') return a.name.localeCompare(b.name);
       return 0;
     });
-  }, [searchQuery, selectedCategory, sortBy]);
+  }, [products, searchQuery, selectedCategory, sortBy]);
 
   return (
     <div className="min-h-screen bg-black text-[#E5E5E5] pt-8 pb-20">

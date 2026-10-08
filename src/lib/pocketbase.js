@@ -33,13 +33,20 @@ export const mapPbProduct = (record) => {
 
   const images = Array.isArray(record.images) ? record.images : [];
   
-  // Construir galería con URLs de PocketBase
   const getFileUrl = (rec, file) => (pb.files.getURL ? pb.files.getURL(rec, file) : pb.files.getUrl(rec, file));
+
+  let rawGallery = record.gallery;
+  if (typeof rawGallery === 'string') {
+    try { rawGallery = JSON.parse(rawGallery); } catch { rawGallery = null; }
+  }
+
   const gallery = images.length > 0
     ? images.map(img => getFileUrl(record, img))
-    : (record.gallery || [record.image || '/producto.webp']);
+    : (Array.isArray(rawGallery) && rawGallery.length > 0 ? rawGallery : [record.image || '/producto.webp']);
 
-  const mainImage = gallery.length > 0 ? gallery[0] : (record.image || '/producto.webp');
+  const mainImage = images.length > 0
+    ? getFileUrl(record, images[0])
+    : (record.image || (Array.isArray(rawGallery) && rawGallery[0]) || '/producto.webp');
 
   // Procesar especificaciones y tallas en caso de venir como string JSON
   let specs = record.specs;

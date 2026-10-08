@@ -7,7 +7,8 @@ import {
   ExternalLink, 
   Minus, 
   CheckCircle2,
-  Package
+  Package,
+  ArrowUpDown
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { formatCLP } from '../../utils/currency';
@@ -20,6 +21,7 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
   const { products, addProduct, updateProduct, deleteProduct, adjustStock } = useStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
+  const [sortBy, setSortBy] = useState('newest');
   const [productToDelete, setProductToDelete] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -29,7 +31,7 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
   };
 
   const filteredProducts = useMemo(() => {
-    return products.filter(p => {
+    const list = products.filter(p => {
       if (selectedCategory !== 'TODOS') {
         const cat = p.category?.toUpperCase();
         const sel = selectedCategory.toUpperCase();
@@ -45,29 +47,71 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
         const q = searchQuery.toLowerCase();
         const matchName = p.name?.toLowerCase().includes(q);
         const matchCat = p.category?.toLowerCase().includes(q);
-        if (!matchName && !matchCat) return false;
+        const matchSku = p.sku?.toLowerCase().includes(q);
+        if (!matchName && !matchCat && !matchSku) return false;
       }
       return true;
     });
-  }, [products, selectedCategory, searchQuery]);
 
-  const handleSaveProduct = (formData) => {
-    if (productToEdit) {
-      updateProduct(productToEdit.id, formData);
-      showNotification(`"${formData.name}" actualizado`);
-    } else {
-      addProduct(formData);
-      showNotification(`¡"${formData.name}" creado con éxito!`);
+    return list.slice().sort((a, b) => {
+      if (sortBy === 'newest') {
+        const timeA = a.created ? new Date(a.created).getTime() : 0;
+        const timeB = b.created ? new Date(b.created).getTime() : 0;
+        if (timeA !== timeB) return timeB - timeA;
+        return products.indexOf(a) - products.indexOf(b);
+      }
+      if (sortBy === 'oldest') {
+        const timeA = a.created ? new Date(a.created).getTime() : 0;
+        const timeB = b.created ? new Date(b.created).getTime() : 0;
+        if (timeA !== timeB) return timeA - timeB;
+        return products.indexOf(b) - products.indexOf(a);
+      }
+      if (sortBy === 'stock-asc') {
+        return (a.stock || 0) - (b.stock || 0);
+      }
+      if (sortBy === 'stock-desc') {
+        return (b.stock || 0) - (a.stock || 0);
+      }
+      if (sortBy === 'price-desc') {
+        return (b.price || 0) - (a.price || 0);
+      }
+      if (sortBy === 'price-asc') {
+        return (a.price || 0) - (b.price || 0);
+      }
+      if (sortBy === 'name-asc') {
+        return (a.name || '').localeCompare(b.name || '');
+      }
+      return 0;
+    });
+  }, [products, selectedCategory, searchQuery, sortBy]);
+
+  const handleSaveProduct = async (formData) => {
+    try {
+      if (productToEdit) {
+        await updateProduct(productToEdit.id, formData);
+        showNotification(`"${formData.name}" actualizado en la base de datos`);
+      } else {
+        await addProduct(formData);
+        showNotification(`¡"${formData.name}" creado con éxito en la base de datos!`);
+      }
+      setIsEditing(false);
+      setProductToEdit(null);
+    } catch (err) {
+      console.error('Error al guardar prenda en base de datos:', err);
+      throw err;
     }
-    setIsEditing(false);
-    setProductToEdit(null);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (productToDelete) {
-      deleteProduct(productToDelete.id);
-      showNotification(`Prenda eliminada`);
-      setProductToDelete(null);
+      try {
+        await deleteProduct(productToDelete.id);
+        showNotification(`Prenda eliminada`);
+        setProductToDelete(null);
+      } catch (err) {
+        console.error('Error al eliminar prenda:', err);
+        alert('Error al eliminar prenda en la base de datos: ' + (err?.message || err));
+      }
     }
   };
 
@@ -119,31 +163,53 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
         </button>
       </div>
 
-      {/* Filter & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      {/* Filter, Search & Sorting Bar */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 bg-[#111] p-3 rounded-2xl border border-neutral-800/80">
         
-        {/* Search */}
-        <div className="relative flex-1 max-w-sm">
-          <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar prenda..."
-            className="w-full bg-[#121212] border border-neutral-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#C52222]"
-          />
+        {/* Left: Search & Sorting */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-1">
+          {/* Search */}
+          <div className="relative flex-1 min-w-[200px]">
+            <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar por nombre, categoría o SKU..."
+              className="w-full bg-[#181818] border border-neutral-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#C52222] transition-colors"
+            />
+          </div>
+
+          {/* Sort Selector */}
+          <div className="relative shrink-0 flex items-center">
+            <ArrowUpDown className="w-3.5 h-3.5 text-[#C52222] absolute left-3 pointer-events-none" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="appearance-none bg-[#181818] border border-neutral-800 hover:border-neutral-700 text-white text-xs font-condensed font-bold uppercase tracking-wider rounded-xl pl-8 pr-8 py-2 focus:outline-none focus:border-[#C52222] cursor-pointer transition-all"
+            >
+              <option value="newest" className="bg-[#151515] text-white">⚡ Últimos subidos (Más recientes)</option>
+              <option value="oldest" className="bg-[#151515] text-white">⏳ Primeros subidos (Más antiguos)</option>
+              <option value="stock-asc" className="bg-[#151515] text-white">⚠️ Menor stock primero</option>
+              <option value="stock-desc" className="bg-[#151515] text-white">📦 Mayor stock primero</option>
+              <option value="price-desc" className="bg-[#151515] text-white">💎 Mayor precio</option>
+              <option value="price-asc" className="bg-[#151515] text-white">🏷️ Menor precio</option>
+              <option value="name-asc" className="bg-[#151515] text-white">🔤 Nombre (A - Z)</option>
+            </select>
+            <div className="absolute right-3 pointer-events-none text-[10px] text-neutral-400">▼</div>
+          </div>
         </div>
 
-        {/* Category Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+        {/* Right: Category Pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0">
           {CATEGORIES.map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-condensed font-bold uppercase transition-all whitespace-nowrap cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-[#C52222] text-white'
-                  : 'bg-[#121212] border border-neutral-800 text-neutral-400 hover:text-white'
+                  ? 'bg-[#C52222] text-white shadow-sm'
+                  : 'bg-[#181818] border border-neutral-800 text-neutral-400 hover:text-white'
               }`}
             >
               {cat}
@@ -195,10 +261,18 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                     )}
                   </div>
 
-                  {/* Title & Price */}
-                  <span className="text-[10px] font-condensed uppercase tracking-wider text-neutral-500 font-bold block">
-                    {product.category}
-                  </span>
+                  {/* Title, Category, SKU & Date */}
+                  <div className="flex items-center justify-between gap-1 mb-1 text-[10px] font-condensed uppercase tracking-wider text-neutral-500 font-bold">
+                    <span className="truncate">
+                      {product.category} {product.sku ? `• ${product.sku}` : ''}
+                    </span>
+                    {product.created && (
+                      <span className="text-[9px] font-mono text-neutral-400 bg-neutral-900 px-1.5 py-0.5 rounded border border-neutral-800 shrink-0" title={`Subido: ${new Date(product.created).toLocaleString('es-CL')}`}>
+                        {new Date(product.created).toLocaleDateString('es-CL', { day: '2-digit', month: 'short' })}
+                      </span>
+                    )}
+                  </div>
+
                   <h3 className="font-condensed font-extrabold text-sm text-white uppercase truncate mb-1">
                     {product.name}
                   </h3>

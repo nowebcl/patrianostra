@@ -83,10 +83,16 @@ export const Hero = () => {
             </span>
           </div>
 
-          {/* Main Gothic Title (Enlarged to match reference proportions) */}
-          <h1 className="font-gothic text-7xl sm:text-8xl lg:text-[7.5rem] font-bold text-white leading-[0.9] tracking-tight mb-6 sm:mb-8 select-none drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-            patria<br />nostra
-          </h1>
+          {/* Main Gothic Title Logo Artwork */}
+          <div className="mb-6 sm:mb-8 select-none">
+            <h1 className="sr-only">Patria Nostra</h1>
+            <img 
+              src="/PATRIA NOSTRA PNG.png" 
+              alt="Patria Nostra" 
+              onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/patria-nostra-title.png'; }}
+              className="w-auto h-32 sm:h-44 md:h-52 lg:h-60 max-w-[90vw] sm:max-w-md object-contain filter drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
+            />
+          </div>
 
           {/* Descriptive Manifesto Paragraph */}
           <p className="text-neutral-400 font-sans text-xs sm:text-sm md:text-base leading-relaxed max-w-md mb-8 sm:mb-10 font-normal">
