@@ -179,36 +179,57 @@ export const StoreProvider = ({ children }) => {
   });
 
   // 3. Admin Profile State
-  const [adminCreds, setAdminCreds] = useState(DEFAULT_ADMIN_CREDS);
+  const [adminCreds, setAdminCreds] = useState(() => {
+    const model = pb.authStore?.model || pb.authStore?.record;
+    if (model && model.email) {
+      return {
+        username: model.email,
+        email: model.email,
+        name: model.name || 'Administrador Patria Nostra',
+        role: pb.authStore.isSuperuser ? 'Super Administrador' : 'Administrador'
+      };
+    }
+    return DEFAULT_ADMIN_CREDS;
+  });
 
-  // 4. Admin Auth Session (Validación criptográfica estricta mediante PocketBase JWT + localStorage para sincronía entre pestañas)
+  // 4. Admin Auth Session (Validación criptográfica estricta mediante PocketBase JWT)
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
-    try {
-      const savedAuth = localStorage.getItem('pn_admin_authenticated');
-      if (savedAuth === 'true') return true;
-    } catch (e) {}
     return Boolean(pb.authStore && pb.authStore.isValid);
   });
 
   // Sincronizar cambios de sesión en tiempo real y entre pestañas
   useEffect(() => {
-    const handleStorage = (e) => {
-      if (e.key === 'pn_admin_authenticated' || e.key === 'pocketbase_auth') {
-        const isAuth = localStorage.getItem('pn_admin_authenticated') === 'true' || Boolean(pb.authStore && pb.authStore.isValid);
-        setIsAdminAuthenticated(isAuth);
-      }
-    };
-    window.addEventListener('storage', handleStorage);
-
-    const unsubPb = pb.authStore.onChange((token, model) => {
-      const valid = Boolean(token && pb.authStore.isValid);
+    const checkAuth = () => {
+      const valid = Boolean(pb.authStore && pb.authStore.isValid);
       setIsAdminAuthenticated(valid);
       if (valid) {
         localStorage.setItem('pn_admin_authenticated', 'true');
+        const model = pb.authStore?.model || pb.authStore?.record;
+        if (model && model.email) {
+          setAdminCreds({
+            username: model.email,
+            email: model.email,
+            name: model.name || 'Administrador Patria Nostra',
+            role: pb.authStore.isSuperuser ? 'Super Administrador' : 'Administrador'
+          });
+        }
       } else {
         localStorage.removeItem('pn_admin_authenticated');
       }
+    };
+
+    checkAuth();
+
+    const unsubPb = pb.authStore.onChange((token, model) => {
+      checkAuth();
     });
+
+    const handleStorage = (e) => {
+      if (e.key === 'pn_admin_authenticated' || e.key === 'pocketbase_auth') {
+        checkAuth();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
 
     return () => {
       window.removeEventListener('storage', handleStorage);
@@ -444,8 +465,17 @@ export const StoreProvider = ({ children }) => {
   }, [orders]);
 
   // ==================== PRODUCT ACTIONS ====================
+  const cleanUrl = (url) => {
+    if (!url || typeof url !== 'string') return '';
+    // Descartar data URLs (base64) o blob URLs para no romper límites de PocketBase ni payload
+    if (url.startsWith('data:') || url.startsWith('blob:')) return '';
+    return url;
+  };
+
   const addProduct = async (productData) => {
-    if (!pb.authStore.isValid) {
+    if (!pb.authStore || !pb.authStore.isValid) {
+      setIsAdminAuthenticated(false);
+      localStorage.removeItem('pn_admin_authenticated');
       throw new Error('No hay una sesión activa de administrador en PocketBase. Por favor vuelve a iniciar sesión en el panel.');
     }
 
@@ -477,8 +507,11 @@ export const StoreProvider = ({ children }) => {
     const fit = productData.fit || 'Corte Regular';
     const specs = Array.isArray(productData.specs) ? productData.specs : (productData.specs ? productData.specs.split('\n').filter(Boolean) : []);
     const isFeatured = !!productData.isFeatured;
-    const mainImageUrl = productData.image || '/producto.webp';
-    const galleryUrls = productData.gallery && productData.gallery.length > 0 ? productData.gallery : [mainImageUrl];
+
+    const mainImageUrl = cleanUrl(productData.image);
+    const galleryUrls = (Array.isArray(productData.gallery) ? productData.gallery : [])
+      .map(cleanUrl)
+      .filter(Boolean);
 
     const hasFiles = (Array.isArray(productData.imageItems) && productData.imageItems.some(it => it.file instanceof File)) ||
                      (productData.mainImageFile instanceof File) ||
@@ -503,6 +536,7 @@ export const StoreProvider = ({ children }) => {
       fd.append('specs', JSON.stringify(specs));
       fd.append('sizes', JSON.stringify(sizes));
       fd.append('isFeatured', String(isFeatured));
+      // Enviar URL limpia o vacía (las fotos reales quedan guardadas en el campo 'images')
       fd.append('image', mainImageUrl);
       fd.append('gallery', JSON.stringify(galleryUrls));
 
@@ -537,8 +571,8 @@ export const StoreProvider = ({ children }) => {
         specs,
         sizes,
         isFeatured,
-        image: mainImageUrl,
-        gallery: galleryUrls
+        image: mainImageUrl || '/producto.webp',
+        gallery: galleryUrls.length > 0 ? galleryUrls : ['/producto.webp']
       }, { requestKey: null });
     }
 
@@ -548,8 +582,10 @@ export const StoreProvider = ({ children }) => {
   };
 
   const updateProduct = async (productId, updatedData) => {
-    if (!pb.authStore.isValid) {
-      throw new Error('No hay una sesión activa de administrador en PocketBase.');
+    if (!pb.authStore || !pb.authStore.isValid) {
+      setIsAdminAuthenticated(false);
+      localStorage.removeItem('pn_admin_authenticated');
+      throw new Error('No hay una sesión activa de administrador en PocketBase. Por favor vuelve a iniciar sesión en el panel.');
     }
 
     let finalSizeStock = updatedData.sizeStock;
@@ -560,10 +596,11 @@ export const StoreProvider = ({ children }) => {
     }
 
     const hasNewFiles = Array.isArray(updatedData.imageItems) && updatedData.imageItems.some(it => it.file instanceof File);
+    const hasImageItems = Array.isArray(updatedData.imageItems) && updatedData.imageItems.length > 0;
 
     let updatedRecord;
 
-    if (hasNewFiles || (Array.isArray(updatedData.imageItems) && updatedData.imageItems.length > 0)) {
+    if (hasNewFiles || hasImageItems) {
       const fd = new FormData();
       if (updatedData.name !== undefined) fd.append('name', updatedData.name.trim().toUpperCase());
       if (updatedData.description !== undefined) fd.append('description', updatedData.description);
@@ -576,8 +613,16 @@ export const StoreProvider = ({ children }) => {
       if (updatedData.isFeatured !== undefined) fd.append('isFeatured', String(!!updatedData.isFeatured));
       if (updatedData.sizes !== undefined) fd.append('sizes', JSON.stringify(updatedData.sizes));
       if (updatedData.specs !== undefined) fd.append('specs', JSON.stringify(updatedData.specs));
-      if (updatedData.image !== undefined) fd.append('image', updatedData.image);
-      if (updatedData.gallery !== undefined) fd.append('gallery', JSON.stringify(updatedData.gallery));
+
+      if (updatedData.image !== undefined) {
+        fd.append('image', cleanUrl(updatedData.image));
+      }
+      if (updatedData.gallery !== undefined) {
+        const cleanGallery = (Array.isArray(updatedData.gallery) ? updatedData.gallery : [])
+          .map(cleanUrl)
+          .filter(Boolean);
+        fd.append('gallery', JSON.stringify(cleanGallery));
+      }
 
       updatedData.imageItems.forEach(it => {
         if (it.file instanceof File) {
@@ -589,6 +634,11 @@ export const StoreProvider = ({ children }) => {
 
       updatedRecord = await pb.collection('products').update(productId, fd, { requestKey: null });
     } else {
+      const cleanImage = updatedData.image !== undefined ? cleanUrl(updatedData.image) : undefined;
+      const cleanGallery = updatedData.gallery !== undefined 
+        ? (Array.isArray(updatedData.gallery) ? updatedData.gallery : []).map(cleanUrl).filter(Boolean)
+        : undefined;
+
       updatedRecord = await pb.collection('products').update(productId, {
         ...(updatedData.name !== undefined ? { name: updatedData.name.trim().toUpperCase() } : {}),
         ...(updatedData.description !== undefined ? { description: updatedData.description } : {}),
@@ -601,8 +651,8 @@ export const StoreProvider = ({ children }) => {
         ...(updatedData.isFeatured !== undefined ? { isFeatured: !!updatedData.isFeatured } : {}),
         ...(updatedData.sizes !== undefined ? { sizes: updatedData.sizes } : {}),
         ...(updatedData.specs !== undefined ? { specs: updatedData.specs } : {}),
-        ...(updatedData.image !== undefined ? { image: updatedData.image } : {}),
-        ...(updatedData.gallery !== undefined ? { gallery: updatedData.gallery } : {})
+        ...(cleanImage !== undefined ? { image: cleanImage } : {}),
+        ...(cleanGallery !== undefined ? { gallery: cleanGallery } : {})
       }, { requestKey: null });
     }
 

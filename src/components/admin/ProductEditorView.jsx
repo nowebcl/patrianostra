@@ -13,6 +13,7 @@ import {
   X
 } from 'lucide-react';
 import { formatCLP } from '../../utils/currency';
+import { optimizeImageFile, formatPbError } from '../../utils/imageOptimizer';
 
 const CATEGORIES = ['Poleras', 'Polerones', 'Camisetas', 'Pantalones', 'Accesorios'];
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL', 'Única'];
@@ -133,62 +134,63 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
   }, [productToEdit]);
 
   // Handler: Subir Foto Principal desde el PC
-  const handleMainImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const handleMainImageChange = async (e) => {
+    const rawFile = e.target.files?.[0];
+    if (!rawFile) return;
 
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const dataUrl = ev.target.result;
-      const newItem = {
-        id: `pc-main-${Date.now()}`,
-        url: dataUrl,
-        file,
-        rawName: null
-      };
+    // Vista previa instantánea sin sobrecargar memoria con cadenas gigantescas base64
+    const previewUrl = URL.createObjectURL(rawFile);
 
-      setImageItems(prev => {
-        const additionals = prev.slice(1);
-        return [newItem, ...additionals];
-      });
+    // Optimización/compresión inteligente a WebP antes de enviar a PocketBase
+    const optimizedFile = await optimizeImageFile(rawFile);
 
-      setMainImageFile(file);
-      setFormData(prev => ({
-        ...prev,
-        image: dataUrl,
-        gallery: [dataUrl, ...(prev.gallery.length > 1 ? prev.gallery.slice(1) : [])]
-      }));
+    const newItem = {
+      id: `pc-main-${Date.now()}`,
+      url: previewUrl,
+      file: optimizedFile,
+      rawName: null
     };
-    reader.readAsDataURL(file);
+
+    setImageItems(prev => {
+      const additionals = prev.slice(1);
+      return [newItem, ...additionals];
+    });
+
+    setMainImageFile(optimizedFile);
+    setFormData(prev => ({
+      ...prev,
+      image: previewUrl,
+      gallery: [previewUrl, ...(prev.gallery.length > 1 ? prev.gallery.slice(1) : [])]
+    }));
+
     e.target.value = '';
   };
 
   // Handler: Subir Fotos Adicionales desde el PC (Múltiples)
-  const handleGalleryImagesChange = (e) => {
-    const files = Array.from(e.target.files || []);
-    if (files.length === 0) return;
+  const handleGalleryImagesChange = async (e) => {
+    const rawFiles = Array.from(e.target.files || []);
+    if (rawFiles.length === 0) return;
 
-    files.forEach((file, idx) => {
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        const dataUrl = ev.target.result;
-        const newItem = {
+    const newItems = await Promise.all(
+      rawFiles.map(async (rawFile, idx) => {
+        const previewUrl = URL.createObjectURL(rawFile);
+        const optimizedFile = await optimizeImageFile(rawFile);
+        return {
           id: `pc-gal-${Date.now()}-${idx}-${Math.random().toString(36).slice(2, 7)}`,
-          url: dataUrl,
-          file,
+          url: previewUrl,
+          file: optimizedFile,
           rawName: null
         };
+      })
+    );
 
-        setImageItems(prev => [...prev, newItem]);
-        setFormData(prev => ({
-          ...prev,
-          gallery: [...prev.gallery, dataUrl]
-        }));
-      };
-      reader.readAsDataURL(file);
-    });
+    setImageItems(prev => [...prev, ...newItems]);
+    setGalleryFiles(prev => [...prev, ...newItems.map(it => it.file)]);
+    setFormData(prev => ({
+      ...prev,
+      gallery: [...prev.gallery, ...newItems.map(it => it.url)]
+    }));
 
-    setGalleryFiles(prev => [...prev, ...files]);
     e.target.value = '';
   };
 
@@ -233,11 +235,11 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         }));
         return next;
       }
-      const resetItem = { id: 'empty-main', url: '/producto.png', file: null, rawName: null };
+      const resetItem = { id: 'empty-main', url: '/producto.webp', file: null, rawName: null };
       setFormData(f => ({
         ...f,
-        image: '/producto.png',
-        gallery: ['/producto.png']
+        image: '/producto.webp',
+        gallery: ['/producto.webp']
       }));
       return [resetItem];
     });
@@ -374,7 +376,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
       await onSave(payload);
     } catch (err) {
       console.error('Error al guardar prenda:', err);
-      const detail = err?.response?.data?.message || err?.response?.message || err?.message || 'Error desconocido al guardar en la base de datos';
+      const detail = formatPbError(err);
       setError(`No se pudo guardar en la base de datos: ${detail}`);
     } finally {
       setIsSaving(false);
