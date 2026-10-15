@@ -48,6 +48,81 @@ export const products = [
     "defaultColor": "Negro"
   },
   {
+    "id": "7dzt1phpjxbo8n0",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-POL-555",
+    "name": "ORGULLO SUR -  FAMILIA PATRIA TRADICIÓN",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "poleras",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "S": 3,
+      "M": 6,
+      "L": 7,
+      "XL": 4,
+      "XXL": 2
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "specs": [],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "isFeatured": false,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_front_850ggt66qg.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_front_850ggt66qg.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_negro_6rvk4wvhgg.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_azul_5uesn4s6rg.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_burdeo_ajpk95xg89.webp"
+    ],
+    "rawImages": [
+      "os_puma_front_850ggt66qg.webp",
+      "os_puma_negro_6rvk4wvhgg.webp",
+      "os_puma_azul_5uesn4s6rg.webp",
+      "os_puma_burdeo_ajpk95xg89.webp"
+    ],
+    "colors": [
+      "Negro",
+      "Azul",
+      "Burdeo"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_negro_6rvk4wvhgg.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_azul_5uesn4s6rg.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_burdeo_ajpk95xg89.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_negro_6rvk4wvhgg.webp"
+      },
+      {
+        "name": "Azul",
+        "hex": "#1E3A8A",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_azul_5uesn4s6rg.webp"
+      },
+      {
+        "name": "Burdeo",
+        "hex": "#581C24",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_burdeo_ajpk95xg89.webp"
+      }
+    ],
+    "defaultColor": "Negro",
+    "created": "2026-10-15 01:26:57.919Z",
+    "updated": "2026-10-15 03:16:29.382Z"
+  },
+  {
     "id": "w0v7vlfae8kvxbf",
     "collectionId": "pbc_4092854851",
     "collectionName": "products",
@@ -78,16 +153,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_jkldqyoycl.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_jkldqyoycl.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_cp2hyi3cx3.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_bqezx89v1v.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_g48dl0rmt8.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_54wr6pko58.webp"
     ],
     "rawImages": [
-      "guaren_korps_negra_jkldqyoycl.webp",
-      "guaren_korps_azul_cp2hyi3cx3.webp",
-      "guaren_korps_rac_gris_bqezx89v1v.webp"
+      "guaren_korps_negra_0rfs1pcybn.webp",
+      "guaren_korps_azul_g48dl0rmt8.webp",
+      "guaren_korps_rac_gris_54wr6pko58.webp"
     ],
     "colors": [
       "Negro",
@@ -95,30 +170,30 @@ export const products = [
       "Gris"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_jkldqyoycl.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_cp2hyi3cx3.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_bqezx89v1v.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_g48dl0rmt8.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_54wr6pko58.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_jkldqyoycl.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_cp2hyi3cx3.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_g48dl0rmt8.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_bqezx89v1v.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_54wr6pko58.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 22:34:41.559Z",
-    "updated": "2026-10-15 00:12:05.977Z"
+    "updated": "2026-10-15 03:15:35.717Z"
   },
   {
     "id": "widyfm28vkok03v",
@@ -151,18 +226,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_ibklmxt871.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_l6fttypodm.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_ibklmxt871.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_espalda_7h0yrj38zu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_azul_e1p3mznizy.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_burdeo_18mmph001h.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_l6fttypodm.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_espalda_volzroghw0.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_azul_rw5yaja59q.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_burdeo_u4xvglhh0z.webp"
     ],
     "rawImages": [
-      "mgk_negro_ibklmxt871.webp",
-      "mgk_espalda_7h0yrj38zu.webp",
-      "mgk_azul_e1p3mznizy.webp",
-      "mgk_burdeo_18mmph001h.webp"
+      "mgk_negro_l6fttypodm.webp",
+      "mgk_espalda_volzroghw0.webp",
+      "mgk_azul_rw5yaja59q.webp",
+      "mgk_burdeo_u4xvglhh0z.webp"
     ],
     "colors": [
       "Negro",
@@ -170,30 +245,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_ibklmxt871.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_azul_e1p3mznizy.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_burdeo_18mmph001h.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_l6fttypodm.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_azul_rw5yaja59q.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_burdeo_u4xvglhh0z.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_ibklmxt871.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_l6fttypodm.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_azul_e1p3mznizy.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_azul_rw5yaja59q.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_burdeo_18mmph001h.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_burdeo_u4xvglhh0z.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 22:30:00.108Z",
-    "updated": "2026-10-14 22:30:00.108Z"
+    "updated": "2026-10-15 03:16:38.112Z"
   },
   {
     "id": "tnt4dcxkydotci3",
@@ -226,18 +301,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_front_35bpyo90h8.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_front_djg4olfef1.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_front_35bpyo90h8.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_negra_7599vi1a6v.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_azul_463rhenv8e.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_burdeo_aecxblzxhb.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_front_djg4olfef1.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_negra_a8xpm4r7ly.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_azul_apqrneuxld.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_burdeo_eccms5x52t.webp"
     ],
     "rawImages": [
-      "os_defiende_front_35bpyo90h8.webp",
-      "os_defiende_negra_7599vi1a6v.webp",
-      "os_defiende_azul_463rhenv8e.webp",
-      "os_defiende_burdeo_aecxblzxhb.webp"
+      "os_defiende_front_djg4olfef1.webp",
+      "os_defiende_negra_a8xpm4r7ly.webp",
+      "os_defiende_azul_apqrneuxld.webp",
+      "os_defiende_burdeo_eccms5x52t.webp"
     ],
     "colors": [
       "Negro",
@@ -245,30 +320,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_negra_7599vi1a6v.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_azul_463rhenv8e.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_burdeo_aecxblzxhb.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_negra_a8xpm4r7ly.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_azul_apqrneuxld.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_burdeo_eccms5x52t.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_negra_7599vi1a6v.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_negra_a8xpm4r7ly.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_azul_463rhenv8e.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_azul_apqrneuxld.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_burdeo_aecxblzxhb.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_burdeo_eccms5x52t.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 22:22:06.252Z",
-    "updated": "2026-10-14 22:22:22.114Z"
+    "updated": "2026-10-15 03:16:45.559Z"
   },
   {
     "id": "q3zatn38l9b3pl4",
@@ -301,18 +376,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_front_v3se7kto15.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_front_xkbosczuot.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_front_v3se7kto15.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_negro_bm0pt6adz2.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_azul_yvamg1ggll.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_burdeo_f1e1tp8elt.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_front_xkbosczuot.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_negro_1474986zuk.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_azul_2k7mnbg4rr.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_burdeo_wxnk623a3w.webp"
     ],
     "rawImages": [
-      "os_guerra_front_v3se7kto15.webp",
-      "os_guerra_negro_bm0pt6adz2.webp",
-      "os_guerra_azul_yvamg1ggll.webp",
-      "os_guerra_burdeo_f1e1tp8elt.webp"
+      "os_guerra_front_xkbosczuot.webp",
+      "os_guerra_negro_1474986zuk.webp",
+      "os_guerra_azul_2k7mnbg4rr.webp",
+      "os_guerra_burdeo_wxnk623a3w.webp"
     ],
     "colors": [
       "Negro",
@@ -320,30 +395,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_negro_bm0pt6adz2.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_azul_yvamg1ggll.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_burdeo_f1e1tp8elt.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_negro_1474986zuk.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_azul_2k7mnbg4rr.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_burdeo_wxnk623a3w.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_negro_bm0pt6adz2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_negro_1474986zuk.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_azul_yvamg1ggll.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_azul_2k7mnbg4rr.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_burdeo_f1e1tp8elt.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_burdeo_wxnk623a3w.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 02:06:11.172Z",
-    "updated": "2026-10-14 02:06:11.172Z"
+    "updated": "2026-10-15 03:16:53.079Z"
   },
   {
     "id": "2vccikwqyveqkka",
@@ -376,42 +451,49 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_ydtqr8su4c.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_wy5zszyoxd.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_ydtqr8su4c.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_azul_8ex0lzv68u.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_burdeo_p8rm9jhuxv.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_espalda_xjvvwuam3o.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_wy5zszyoxd.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_azul_pgnpk3z2kk.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_burdeo_nuz9n8v85f.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_espalda_3q0kgxarma.webp"
     ],
     "rawImages": [
-      "orgullo_sur_20_an_os_ydtqr8su4c.webp",
-      "os_20_an_os_azul_8ex0lzv68u.webp",
-      "os_20_an_os_burdeo_p8rm9jhuxv.webp",
-      "os_20_an_os_espalda_xjvvwuam3o.webp"
+      "orgullo_sur_20_an_os_wy5zszyoxd.webp",
+      "os_20_an_os_azul_pgnpk3z2kk.webp",
+      "os_20_an_os_burdeo_nuz9n8v85f.webp",
+      "os_20_an_os_espalda_3q0kgxarma.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_azul_8ex0lzv68u.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_burdeo_p8rm9jhuxv.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_wy5zszyoxd.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_azul_pgnpk3z2kk.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_burdeo_nuz9n8v85f.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_wy5zszyoxd.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_azul_8ex0lzv68u.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_azul_pgnpk3z2kk.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_burdeo_p8rm9jhuxv.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/os_20_an_os_burdeo_nuz9n8v85f.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "2026-10-14 02:00:18.234Z",
-    "updated": "2026-10-14 02:00:18.234Z"
+    "updated": "2026-10-15 03:17:01.719Z"
   },
   {
     "id": "ihx18u07guqzhdg",
@@ -444,18 +526,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_6fuf492n6d.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_n2fsbqbz0r.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_6fuf492n6d.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_6wv53xc297.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_78zaxqyll6.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_h5h1lexxfd.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_n2fsbqbz0r.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_nny5wbcsba.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_xgvr65ju2j.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_50s5c5gep2.webp"
     ],
     "rawImages": [
-      "os_resistir_front_6fuf492n6d.webp",
-      "os_resistir_negro_back_6wv53xc297.webp",
-      "os_resistir_azul_78zaxqyll6.webp",
-      "os_resistir_burdeo_ack_h5h1lexxfd.webp"
+      "os_resistir_front_n2fsbqbz0r.webp",
+      "os_resistir_negro_back_nny5wbcsba.webp",
+      "os_resistir_azul_xgvr65ju2j.webp",
+      "os_resistir_burdeo_ack_50s5c5gep2.webp"
     ],
     "colors": [
       "Negro",
@@ -463,30 +545,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_6wv53xc297.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_78zaxqyll6.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_h5h1lexxfd.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_nny5wbcsba.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_xgvr65ju2j.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_50s5c5gep2.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_6wv53xc297.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_nny5wbcsba.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_78zaxqyll6.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_xgvr65ju2j.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_h5h1lexxfd.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_50s5c5gep2.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:54:05.395Z",
-    "updated": "2026-10-14 01:54:05.395Z"
+    "updated": "2026-10-15 03:17:09.661Z"
   },
   {
     "id": "raeo8oemcaqhyhj",
@@ -519,40 +601,40 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_frente_vvauipb5kp.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_frente_juvmtg2bl2.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_frente_vvauipb5kp.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_espalda_negro_pm7gitmcen.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_azul_8nzvpcr7pb.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_frente_juvmtg2bl2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_espalda_negro_w1lvlhmrga.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_azul_tkhjzvqu1o.webp"
     ],
     "rawImages": [
-      "orgullo_sur_rock_n_frente_vvauipb5kp.webp",
-      "orgullo_sur_rock_n_espalda_negro_pm7gitmcen.webp",
-      "orgullo_sur_rock_n_azul_8nzvpcr7pb.webp"
+      "orgullo_sur_rock_n_frente_juvmtg2bl2.webp",
+      "orgullo_sur_rock_n_espalda_negro_w1lvlhmrga.webp",
+      "orgullo_sur_rock_n_azul_tkhjzvqu1o.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_espalda_negro_pm7gitmcen.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_azul_8nzvpcr7pb.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_espalda_negro_w1lvlhmrga.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_azul_tkhjzvqu1o.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_espalda_negro_pm7gitmcen.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_espalda_negro_w1lvlhmrga.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_azul_8nzvpcr7pb.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_azul_tkhjzvqu1o.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:53:05.553Z",
-    "updated": "2026-10-14 01:53:05.553Z"
+    "updated": "2026-10-15 03:17:15.860Z"
   },
   {
     "id": "ds8l7aajjvd34lc",
@@ -585,18 +667,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_frente_23h2sa2yw9.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_frente_2o5operstg.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_frente_23h2sa2yw9.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_negro_back_d1pb3y2um8.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_azul_dwov0jfol7.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutchland_burdeo_2klb0t0p99.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_frente_2o5operstg.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_negro_back_rqdz2lucc2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_azul_ey6eu38u5p.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutchland_burdeo_g04mvogsh5.webp"
     ],
     "rawImages": [
-      "os_deutschland_frente_23h2sa2yw9.webp",
-      "os_deutschland_negro_back_d1pb3y2um8.webp",
-      "os_deutschland_azul_dwov0jfol7.webp",
-      "os_deutchland_burdeo_2klb0t0p99.webp"
+      "os_deutschland_frente_2o5operstg.webp",
+      "os_deutschland_negro_back_rqdz2lucc2.webp",
+      "os_deutschland_azul_ey6eu38u5p.webp",
+      "os_deutchland_burdeo_g04mvogsh5.webp"
     ],
     "colors": [
       "Negro",
@@ -604,30 +686,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_negro_back_d1pb3y2um8.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_azul_dwov0jfol7.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutchland_burdeo_2klb0t0p99.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_negro_back_rqdz2lucc2.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_azul_ey6eu38u5p.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutchland_burdeo_g04mvogsh5.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_negro_back_d1pb3y2um8.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_negro_back_rqdz2lucc2.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_azul_dwov0jfol7.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_azul_ey6eu38u5p.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutchland_burdeo_2klb0t0p99.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutchland_burdeo_g04mvogsh5.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:52:13.530Z",
-    "updated": "2026-10-14 01:52:13.530Z"
+    "updated": "2026-10-15 03:17:23.025Z"
   },
   {
     "id": "g8xo76etqugspea",
@@ -660,40 +742,40 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_s3jgiw7qvk.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_g7bog2vebp.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_s3jgiw7qvk.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_in33tq4sco.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_azul_fuip629lc3.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_g7bog2vebp.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_5frh7zohvj.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_azul_7zddf0yk16.webp"
     ],
     "rawImages": [
-      "antes_muerto_negro_front_s3jgiw7qvk.webp",
-      "antes_muerto_negro_in33tq4sco.webp",
-      "antes_muerto_azul_fuip629lc3.webp"
+      "antes_muerto_negro_front_g7bog2vebp.webp",
+      "antes_muerto_negro_5frh7zohvj.webp",
+      "antes_muerto_azul_7zddf0yk16.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_s3jgiw7qvk.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_azul_fuip629lc3.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_5frh7zohvj.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_azul_7zddf0yk16.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_s3jgiw7qvk.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_5frh7zohvj.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_azul_fuip629lc3.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_azul_7zddf0yk16.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:10:40.518Z",
-    "updated": "2026-10-14 01:27:13.516Z"
+    "updated": "2026-10-15 03:17:31.254Z"
   },
   {
     "id": "wsasgcqh1q227cp",
@@ -726,16 +808,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_c3y0zmcrtx.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_cihpje41t2.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_c3y0zmcrtx.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_azul_2fj7l7xz6x.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_burdeo_bkf300sx29.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_cihpje41t2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_azul_2bpphvkwvl.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_burdeo_1bkhgu6xje.webp"
     ],
     "rawImages": [
-      "fuck_antifa_2_negro_c3y0zmcrtx.webp",
-      "fuck_antifa_2_azul_2fj7l7xz6x.webp",
-      "fuck_antifa_2_burdeo_bkf300sx29.webp"
+      "fuck_antifa_2_negro_cihpje41t2.webp",
+      "fuck_antifa_2_azul_2bpphvkwvl.webp",
+      "fuck_antifa_2_burdeo_1bkhgu6xje.webp"
     ],
     "colors": [
       "Negro",
@@ -743,30 +825,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_c3y0zmcrtx.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_azul_2fj7l7xz6x.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_burdeo_bkf300sx29.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_cihpje41t2.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_azul_2bpphvkwvl.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_burdeo_1bkhgu6xje.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_c3y0zmcrtx.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_cihpje41t2.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_azul_2fj7l7xz6x.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_azul_2bpphvkwvl.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_burdeo_bkf300sx29.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_burdeo_1bkhgu6xje.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:05:13.854Z",
-    "updated": "2026-10-14 01:31:17.314Z"
+    "updated": "2026-10-15 03:17:37.249Z"
   },
   {
     "id": "znm6nwy145ae8li",
@@ -799,16 +881,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_emsocosqh1.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_0z6gjr1o3x.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_emsocosqh1.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_azul_y9b7bp1yli.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_yout_local_burdeo_oeuaaluvz5.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_0z6gjr1o3x.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_azul_eln03mgzej.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_yout_local_burdeo_51pg6rfxqr.webp"
     ],
     "rawImages": [
-      "kill_your_local_negro_emsocosqh1.webp",
-      "kill_your_local_azul_y9b7bp1yli.webp",
-      "kill_yout_local_burdeo_oeuaaluvz5.webp"
+      "kill_your_local_negro_0z6gjr1o3x.webp",
+      "kill_your_local_azul_eln03mgzej.webp",
+      "kill_yout_local_burdeo_51pg6rfxqr.webp"
     ],
     "colors": [
       "Negro",
@@ -816,30 +898,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_emsocosqh1.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_azul_y9b7bp1yli.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_yout_local_burdeo_oeuaaluvz5.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_0z6gjr1o3x.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_azul_eln03mgzej.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_yout_local_burdeo_51pg6rfxqr.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_emsocosqh1.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_0z6gjr1o3x.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_azul_y9b7bp1yli.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_azul_eln03mgzej.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_yout_local_burdeo_oeuaaluvz5.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_yout_local_burdeo_51pg6rfxqr.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:04:05.037Z",
-    "updated": "2026-10-14 01:29:53.464Z"
+    "updated": "2026-10-15 03:17:43.350Z"
   },
   {
     "id": "zt38ep304vg274u",
@@ -872,18 +954,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_b23bg3vs51.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_h4y4osmpx6.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_b23bg3vs51.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_espalda_9qcj1ggq0z.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_burdeo_eqfp2hwnqu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_azul_copz4lf0wh.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_h4y4osmpx6.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_espalda_o89dzn87mi.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_burdeo_2a858bo8tf.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_azul_kw623y5jx8.webp"
     ],
     "rawImages": [
-      "haz_el_amor_negro_b23bg3vs51.webp",
-      "haz_el_amor_negro_espalda_9qcj1ggq0z.webp",
-      "haz_el_amor_burdeo_eqfp2hwnqu.webp",
-      "haz_el_amor_azul_copz4lf0wh.webp"
+      "haz_el_amor_negro_h4y4osmpx6.webp",
+      "haz_el_amor_negro_espalda_o89dzn87mi.webp",
+      "haz_el_amor_burdeo_2a858bo8tf.webp",
+      "haz_el_amor_azul_kw623y5jx8.webp"
     ],
     "colors": [
       "Negro",
@@ -891,30 +973,30 @@ export const products = [
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_b23bg3vs51.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_burdeo_eqfp2hwnqu.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_azul_copz4lf0wh.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_espalda_o89dzn87mi.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_burdeo_2a858bo8tf.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_azul_kw623y5jx8.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_b23bg3vs51.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_espalda_o89dzn87mi.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_burdeo_eqfp2hwnqu.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_burdeo_2a858bo8tf.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_azul_copz4lf0wh.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_azul_kw623y5jx8.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:57:34.930Z",
-    "updated": "2026-10-14 01:31:31.202Z"
+    "updated": "2026-10-15 03:17:50.691Z"
   },
   {
     "id": "5uyyis64dllnjg6",
@@ -947,18 +1029,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_pmrn72vajr.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_72zpcnavrx.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_pmrn72vajr.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_41e4d0eax1.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_azul_bam3d49hkw.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_burdeo_vk9y01dz98.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_72zpcnavrx.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_s4zfmstp9b.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_azul_wq8x8r40r9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_burdeo_0sze428ga2.webp"
     ],
     "rawImages": [
-      "revuelta_negro_frente_pmrn72vajr.webp",
-      "revuelta_negro_41e4d0eax1.webp",
-      "revuelta_azul_bam3d49hkw.webp",
-      "revuelta_burdeo_vk9y01dz98.webp"
+      "revuelta_negro_frente_72zpcnavrx.webp",
+      "revuelta_negro_s4zfmstp9b.webp",
+      "revuelta_azul_wq8x8r40r9.webp",
+      "revuelta_burdeo_0sze428ga2.webp"
     ],
     "colors": [
       "Negro",
@@ -966,30 +1048,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_pmrn72vajr.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_azul_bam3d49hkw.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_burdeo_vk9y01dz98.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_s4zfmstp9b.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_azul_wq8x8r40r9.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_burdeo_0sze428ga2.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_pmrn72vajr.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_s4zfmstp9b.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_azul_bam3d49hkw.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_azul_wq8x8r40r9.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_burdeo_vk9y01dz98.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_burdeo_0sze428ga2.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:47:24.052Z",
-    "updated": "2026-10-14 01:26:56.287Z"
+    "updated": "2026-10-15 03:17:57.673Z"
   },
   {
     "id": "7hfg6yamuwjyw3q",
@@ -1022,18 +1104,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_ejziwxcrep.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_i0z8fjaaud.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_ejziwxcrep.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worrie_azul_dvlbywtktq.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_burdeo_u9zbu4cd7t.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_back_p6oqhrlu0b.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_i0z8fjaaud.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worrie_azul_2i8zjfoou2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_burdeo_l2xfh0j5pn.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_back_2thxe38yil.webp"
     ],
     "rawImages": [
-      "dont_worries_negro_ejziwxcrep.webp",
-      "dont_worrie_azul_dvlbywtktq.webp",
-      "dont_worries_burdeo_u9zbu4cd7t.webp",
-      "dont_worries_back_p6oqhrlu0b.webp"
+      "dont_worries_negro_i0z8fjaaud.webp",
+      "dont_worrie_azul_2i8zjfoou2.webp",
+      "dont_worries_burdeo_l2xfh0j5pn.webp",
+      "dont_worries_back_2thxe38yil.webp"
     ],
     "colors": [
       "Negro",
@@ -1041,30 +1123,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_ejziwxcrep.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worrie_azul_dvlbywtktq.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_burdeo_u9zbu4cd7t.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_i0z8fjaaud.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worrie_azul_2i8zjfoou2.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_burdeo_l2xfh0j5pn.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_ejziwxcrep.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_i0z8fjaaud.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worrie_azul_dvlbywtktq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worrie_azul_2i8zjfoou2.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_burdeo_u9zbu4cd7t.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_burdeo_l2xfh0j5pn.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:41:44.556Z",
-    "updated": "2026-10-14 01:27:33.315Z"
+    "updated": "2026-10-15 03:18:04.629Z"
   },
   {
     "id": "gmiyiqs3ohmjvqg",
@@ -1097,16 +1179,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_bd2pshu00n.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_q7lqzk69m0.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_bd2pshu00n.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_azul_ykofra5k7k.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_burdeo_d7sf0r5z2t.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_q7lqzk69m0.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_azul_s9qfzq3700.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_burdeo_vo1rkzu47z.webp"
     ],
     "rawImages": [
-      "defiende_chile_negro_bd2pshu00n.webp",
-      "defiende_chile_azul_ykofra5k7k.webp",
-      "defiende_chile_burdeo_d7sf0r5z2t.webp"
+      "defiende_chile_negro_q7lqzk69m0.webp",
+      "defiende_chile_azul_s9qfzq3700.webp",
+      "defiende_chile_burdeo_vo1rkzu47z.webp"
     ],
     "colors": [
       "Negro",
@@ -1114,30 +1196,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_bd2pshu00n.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_azul_ykofra5k7k.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_burdeo_d7sf0r5z2t.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_q7lqzk69m0.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_azul_s9qfzq3700.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_burdeo_vo1rkzu47z.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_bd2pshu00n.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_q7lqzk69m0.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_azul_ykofra5k7k.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_azul_s9qfzq3700.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_burdeo_d7sf0r5z2t.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_burdeo_vo1rkzu47z.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:30:42.124Z",
-    "updated": "2026-10-14 01:31:56.661Z"
+    "updated": "2026-10-15 03:18:10.655Z"
   },
   {
     "id": "r9b4hsv78gnrejd",
@@ -1170,16 +1252,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_xxu9t4f9tk.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_96hbo93cyx.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_xxu9t4f9tk.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_azul_zzya6wauzl.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_burdeo_usooo62siq.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_96hbo93cyx.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_azul_jcm8a6bdqq.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_burdeo_x8dvent3hy.webp"
     ],
     "rawImages": [
-      "rac_negro_xxu9t4f9tk.webp",
-      "rac_azul_zzya6wauzl.webp",
-      "rac_burdeo_usooo62siq.webp"
+      "rac_negro_96hbo93cyx.webp",
+      "rac_azul_jcm8a6bdqq.webp",
+      "rac_burdeo_x8dvent3hy.webp"
     ],
     "colors": [
       "Negro",
@@ -1187,30 +1269,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_xxu9t4f9tk.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_azul_zzya6wauzl.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_burdeo_usooo62siq.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_96hbo93cyx.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_azul_jcm8a6bdqq.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_burdeo_x8dvent3hy.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_xxu9t4f9tk.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_96hbo93cyx.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_azul_zzya6wauzl.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_azul_jcm8a6bdqq.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_burdeo_usooo62siq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_burdeo_x8dvent3hy.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:27:18.100Z",
-    "updated": "2026-10-14 01:26:39.628Z"
+    "updated": "2026-10-15 03:18:16.661Z"
   },
   {
     "id": "t8kftpln5kclns3",
@@ -1243,16 +1325,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_atztyns94v.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_nxjo6gbh31.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_atztyns94v.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_is_rac_azul_iglk52squy.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_burdeo_thtqsfgmvn.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_nxjo6gbh31.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_is_rac_azul_ve35mu55nu.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_burdeo_g8ls74u0bb.webp"
     ],
     "rawImages": [
-      "real_oi_negro_atztyns94v.webp",
-      "real_oi_is_rac_azul_iglk52squy.webp",
-      "real_oi_burdeo_thtqsfgmvn.webp"
+      "real_oi_negro_nxjo6gbh31.webp",
+      "real_oi_is_rac_azul_ve35mu55nu.webp",
+      "real_oi_burdeo_g8ls74u0bb.webp"
     ],
     "colors": [
       "Negro",
@@ -1260,30 +1342,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_atztyns94v.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_is_rac_azul_iglk52squy.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_burdeo_thtqsfgmvn.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_nxjo6gbh31.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_is_rac_azul_ve35mu55nu.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_burdeo_g8ls74u0bb.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_atztyns94v.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_nxjo6gbh31.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_is_rac_azul_iglk52squy.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_is_rac_azul_ve35mu55nu.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_burdeo_thtqsfgmvn.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_burdeo_g8ls74u0bb.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:26:13.075Z",
-    "updated": "2026-10-14 01:26:25.145Z"
+    "updated": "2026-10-15 03:18:34.121Z"
   },
   {
     "id": "olw2lhukndwkhjl",
@@ -1316,38 +1398,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_rsq793mmjj.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_27hyyxemoq.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_rsq793mmjj.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_azul_30pgdloy8d.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_27hyyxemoq.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_azul_nqwf377t55.webp"
     ],
     "rawImages": [
-      "hate_st_pauli_negro_rsq793mmjj.webp",
-      "hate_st_pauli_azul_30pgdloy8d.webp"
+      "hate_st_pauli_negro_27hyyxemoq.webp",
+      "hate_st_pauli_azul_nqwf377t55.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_rsq793mmjj.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_azul_30pgdloy8d.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_27hyyxemoq.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_azul_nqwf377t55.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_rsq793mmjj.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_27hyyxemoq.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_azul_30pgdloy8d.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_azul_nqwf377t55.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:20:56.081Z",
-    "updated": "2026-10-14 01:28:03.410Z"
+    "updated": "2026-10-15 03:18:39.192Z"
   },
   {
     "id": "hs8vrfqznpjs8rr",
@@ -1380,38 +1462,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_0h7shxf8iv.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_k7o6s5vrts.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_0h7shxf8iv.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_azul_ebyueasggf.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_k7o6s5vrts.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_azul_cj5ms0820r.webp"
     ],
     "rawImages": [
-      "bart_and_homer_negro_0h7shxf8iv.webp",
-      "bart_and_homer_azul_ebyueasggf.webp"
+      "bart_and_homer_negro_k7o6s5vrts.webp",
+      "bart_and_homer_azul_cj5ms0820r.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_0h7shxf8iv.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_azul_ebyueasggf.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_k7o6s5vrts.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_azul_cj5ms0820r.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_0h7shxf8iv.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_k7o6s5vrts.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_azul_ebyueasggf.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_azul_cj5ms0820r.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:19:54.209Z",
-    "updated": "2026-10-14 01:27:48.832Z"
+    "updated": "2026-10-15 03:18:44.342Z"
   },
   {
     "id": "f6ia4amxjkrpj0s",
@@ -1444,16 +1526,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_ve0saa1ja7.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_6rn69ekkot.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_ve0saa1ja7.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_azul_8619oktd6a.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_burdeo_ym0ppdtww2.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_6rn69ekkot.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_azul_68igflvdk6.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_burdeo_x9z6ao1e76.webp"
     ],
     "rawImages": [
-      "revolt_against_negro_ve0saa1ja7.webp",
-      "revolt_against_azul_8619oktd6a.webp",
-      "revolt_against_burdeo_ym0ppdtww2.webp"
+      "revolt_against_negro_6rn69ekkot.webp",
+      "revolt_against_azul_68igflvdk6.webp",
+      "revolt_against_burdeo_x9z6ao1e76.webp"
     ],
     "colors": [
       "Negro",
@@ -1461,30 +1543,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_ve0saa1ja7.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_azul_8619oktd6a.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_burdeo_ym0ppdtww2.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_6rn69ekkot.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_azul_68igflvdk6.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_burdeo_x9z6ao1e76.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_ve0saa1ja7.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_6rn69ekkot.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_azul_8619oktd6a.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_azul_68igflvdk6.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_burdeo_ym0ppdtww2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_burdeo_x9z6ao1e76.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:18:37.497Z",
-    "updated": "2026-10-14 01:28:30.267Z"
+    "updated": "2026-10-15 03:18:50.444Z"
   },
   {
     "id": "zye45zi1ybyif5t",
@@ -1517,16 +1599,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_4ktuc2fp05.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_ul6x4vdxlf.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_4ktuc2fp05.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_azul_cmkewwh4wz.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_burdeo_lycyamrv5b.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_ul6x4vdxlf.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_azul_7tejswleih.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_burdeo_303o192hrx.webp"
     ],
     "rawImages": [
-      "ian_stuart_boots_negro_4ktuc2fp05.webp",
-      "ian_stuart_boots_azul_cmkewwh4wz.webp",
-      "ian_stuart_boots_burdeo_lycyamrv5b.webp"
+      "ian_stuart_boots_negro_ul6x4vdxlf.webp",
+      "ian_stuart_boots_azul_7tejswleih.webp",
+      "ian_stuart_boots_burdeo_303o192hrx.webp"
     ],
     "colors": [
       "Negro",
@@ -1534,30 +1616,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_4ktuc2fp05.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_azul_cmkewwh4wz.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_burdeo_lycyamrv5b.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_ul6x4vdxlf.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_azul_7tejswleih.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_burdeo_303o192hrx.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_4ktuc2fp05.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_ul6x4vdxlf.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_azul_cmkewwh4wz.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_azul_7tejswleih.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_burdeo_lycyamrv5b.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_burdeo_303o192hrx.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:10:53.698Z",
-    "updated": "2026-10-14 01:16:56.794Z"
+    "updated": "2026-10-15 03:18:56.455Z"
   },
   {
     "id": "id829igy7r88ree",
@@ -1590,38 +1672,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_v7gitwaeyy.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_q27wmhu5ij.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_v7gitwaeyy.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_azul_zjayqdwpun.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_q27wmhu5ij.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_azul_u65w1ubtnd.webp"
     ],
     "rawImages": [
-      "les_vilains_negro_v7gitwaeyy.webp",
-      "les_vilains_azul_zjayqdwpun.webp"
+      "les_vilains_negro_q27wmhu5ij.webp",
+      "les_vilains_azul_u65w1ubtnd.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_v7gitwaeyy.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_azul_zjayqdwpun.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_q27wmhu5ij.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_azul_u65w1ubtnd.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_v7gitwaeyy.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_q27wmhu5ij.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_azul_zjayqdwpun.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_azul_u65w1ubtnd.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:06:17.068Z",
-    "updated": "2026-10-14 01:24:12.828Z"
+    "updated": "2026-10-15 03:19:01.675Z"
   },
   {
     "id": "ginfpuq02bh8hi2",
@@ -1654,38 +1736,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_cvw1nqzl6z.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_f3sf3s06gg.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_cvw1nqzl6z.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_st_george_azul_rkhqw10xlo.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_f3sf3s06gg.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_st_george_azul_82ja27aqkk.webp"
     ],
     "rawImages": [
-      "legion_of_negro_cvw1nqzl6z.webp",
-      "legion_of_st_george_azul_rkhqw10xlo.webp"
+      "legion_of_negro_f3sf3s06gg.webp",
+      "legion_of_st_george_azul_82ja27aqkk.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_cvw1nqzl6z.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_st_george_azul_rkhqw10xlo.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_f3sf3s06gg.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_st_george_azul_82ja27aqkk.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_cvw1nqzl6z.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_f3sf3s06gg.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_st_george_azul_rkhqw10xlo.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_st_george_azul_82ja27aqkk.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 00:02:05.486Z",
-    "updated": "2026-10-14 01:23:36.687Z"
+    "updated": "2026-10-15 03:19:05.430Z"
   },
   {
     "id": "s6w6e7u0xs3ckk5",
@@ -1718,16 +1800,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_rm3upltet5.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_any7gvu17v.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_rm3upltet5.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_azul_va6qi1x31x.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_burdeo_64jr6kzsz1.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_any7gvu17v.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_azul_7z8qpym2r0.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_burdeo_c4sn2sn3h3.webp"
     ],
     "rawImages": [
-      "bdc_pro_patria_negro_rm3upltet5.webp",
-      "bdc_pro_patria_azul_va6qi1x31x.webp",
-      "bdc_pro_patria_burdeo_64jr6kzsz1.webp"
+      "bdc_pro_patria_negro_any7gvu17v.webp",
+      "bdc_pro_patria_azul_7z8qpym2r0.webp",
+      "bdc_pro_patria_burdeo_c4sn2sn3h3.webp"
     ],
     "colors": [
       "Negro",
@@ -1735,30 +1817,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_rm3upltet5.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_azul_va6qi1x31x.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_burdeo_64jr6kzsz1.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_any7gvu17v.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_azul_7z8qpym2r0.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_burdeo_c4sn2sn3h3.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_rm3upltet5.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_any7gvu17v.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_azul_va6qi1x31x.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_azul_7z8qpym2r0.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_burdeo_64jr6kzsz1.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_burdeo_c4sn2sn3h3.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 23:58:24.698Z",
-    "updated": "2026-10-14 01:13:56.481Z"
+    "updated": "2026-10-15 03:19:11.377Z"
   },
   {
     "id": "5shmafzthatzjw3",
@@ -1791,16 +1873,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_4w6invn8i4.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_xfotq14jul.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_4w6invn8i4.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_azul_roqaibd50g.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_burdeo_o41bgzyiz3.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_xfotq14jul.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_azul_8tur1unlup.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_burdeo_ks54s02hrp.webp"
     ],
     "rawImages": [
-      "bdc_estaremos_no_front_negro_4w6invn8i4.webp",
-      "bdc_estaremos_no_front_azul_roqaibd50g.webp",
-      "bdc_estaremos_no_front_burdeo_o41bgzyiz3.webp"
+      "bdc_estaremos_no_front_negro_xfotq14jul.webp",
+      "bdc_estaremos_no_front_azul_8tur1unlup.webp",
+      "bdc_estaremos_no_front_burdeo_ks54s02hrp.webp"
     ],
     "colors": [
       "Negro",
@@ -1808,30 +1890,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_4w6invn8i4.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_azul_roqaibd50g.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_burdeo_o41bgzyiz3.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_xfotq14jul.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_azul_8tur1unlup.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_burdeo_ks54s02hrp.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_4w6invn8i4.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_xfotq14jul.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_azul_roqaibd50g.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_azul_8tur1unlup.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_burdeo_o41bgzyiz3.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_burdeo_ks54s02hrp.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 23:57:41.972Z",
-    "updated": "2026-10-13 23:57:41.972Z"
+    "updated": "2026-10-15 03:19:20.344Z"
   },
   {
     "id": "6vfqt7tjqsxs21a",
@@ -1864,38 +1946,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_odaqejbrpo.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_odaqejbrpo.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_zjxrpexqaq.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_z3jhr1aq0s.webp"
     ],
     "rawImages": [
-      "fortress_negro_odaqejbrpo.webp",
-      "fortress_azul_zjxrpexqaq.webp"
+      "fortress_negro_hmraerxvv2.webp",
+      "fortress_azul_z3jhr1aq0s.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_odaqejbrpo.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_zjxrpexqaq.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_z3jhr1aq0s.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_odaqejbrpo.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_zjxrpexqaq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_z3jhr1aq0s.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 23:56:34.794Z",
-    "updated": "2026-10-13 23:56:34.794Z"
+    "updated": "2026-10-15 03:19:25.577Z"
   },
   {
     "id": "2gdxeb8s9dbpjcn",
@@ -1928,16 +2010,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_1mbakfc6gd.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_0237vcsrll.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_1mbakfc6gd.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfarm_azul_brptg6u3y6.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_burdeo_rxbtdalmxb.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_0237vcsrll.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfarm_azul_eimnuqgwpx.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_burdeo_wxa6ptqj75.webp"
     ],
     "rawImages": [
-      "pitbullfar_negro_1mbakfc6gd.webp",
-      "pitbullfarm_azul_brptg6u3y6.webp",
-      "pitbullfar_burdeo_rxbtdalmxb.webp"
+      "pitbullfar_negro_0237vcsrll.webp",
+      "pitbullfarm_azul_eimnuqgwpx.webp",
+      "pitbullfar_burdeo_wxa6ptqj75.webp"
     ],
     "colors": [
       "Negro",
@@ -1945,30 +2027,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_1mbakfc6gd.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfarm_azul_brptg6u3y6.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_burdeo_rxbtdalmxb.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_0237vcsrll.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfarm_azul_eimnuqgwpx.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_burdeo_wxa6ptqj75.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_1mbakfc6gd.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_0237vcsrll.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfarm_azul_brptg6u3y6.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfarm_azul_eimnuqgwpx.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_burdeo_rxbtdalmxb.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_burdeo_wxa6ptqj75.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 23:40:20.859Z",
-    "updated": "2026-10-14 01:30:09.728Z"
+    "updated": "2026-10-15 03:19:32.583Z"
   },
   {
     "id": "ct0zfn4d7y70iiq",
@@ -2001,29 +2083,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_z2yh8emjbb.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_z2yh8emjbb.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp"
     ],
     "rawImages": [
-      "skullhead_white_gris_z2yh8emjbb.webp"
+      "skullhead_white_gris_pksautc8zo.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_z2yh8emjbb.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_z2yh8emjbb.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:32:13.262Z",
-    "updated": "2026-10-14 01:17:34.391Z"
+    "updated": "2026-10-15 03:19:35.303Z"
   },
   {
     "id": "96lrgercqt19nep",
@@ -2056,38 +2138,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_qax4ahbrzz.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_g89opjemo2.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_qax4ahbrzz.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_azul_ct807slv22.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_g89opjemo2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_azul_3efm4htqjo.webp"
     ],
     "rawImages": [
-      "brutal_attack_blood_negro_qax4ahbrzz.webp",
-      "brutal_attack_blood_azul_ct807slv22.webp"
+      "brutal_attack_blood_negro_g89opjemo2.webp",
+      "brutal_attack_blood_azul_3efm4htqjo.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_qax4ahbrzz.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_azul_ct807slv22.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_g89opjemo2.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_azul_3efm4htqjo.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_qax4ahbrzz.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_g89opjemo2.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_azul_ct807slv22.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_azul_3efm4htqjo.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 23:14:57.104Z",
-    "updated": "2026-10-14 01:30:25.693Z"
+    "updated": "2026-10-15 03:19:40.851Z"
   },
   {
     "id": "exm9q8ozi839f4z",
@@ -2120,29 +2202,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_bckw6zyu44.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_bckw6zyu44.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp"
     ],
     "rawImages": [
-      "english_rose_rising_gris_bckw6zyu44.webp"
+      "english_rose_rising_gris_fq5v2parla.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_bckw6zyu44.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_bckw6zyu44.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:08:12.333Z",
-    "updated": "2026-10-14 01:19:43.017Z"
+    "updated": "2026-10-15 03:19:43.494Z"
   },
   {
     "id": "p96n74ouz4ghxh4",
@@ -2175,29 +2257,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_qpm6e56pda.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_qpm6e56pda.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp"
     ],
     "rawImages": [
-      "bully_boys_texas_gris_qpm6e56pda.webp"
+      "bully_boys_texas_gris_9vwbwd29nm.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_qpm6e56pda.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_qpm6e56pda.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:07:33.277Z",
-    "updated": "2026-10-14 01:21:44.979Z"
+    "updated": "2026-10-15 03:19:45.950Z"
   },
   {
     "id": "93t03x6mc4rsebe",
@@ -2230,29 +2312,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_5ooknz5q78.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_5ooknz5q78.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp"
     ],
     "rawImages": [
-      "skrewdriver_after_gris_5ooknz5q78.webp"
+      "skrewdriver_after_gris_fids65kczo.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_5ooknz5q78.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_5ooknz5q78.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:06:18.318Z",
-    "updated": "2026-10-14 01:25:39.219Z"
+    "updated": "2026-10-15 03:19:48.394Z"
   },
   {
     "id": "ha40mxd0m3d5sgg",
@@ -2285,18 +2367,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_gr6bp98us1.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_4l4lpzv85w.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_gr6bp98us1.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_azul_twjs5cj0n3.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_burdeo_shqixa90oe.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_back_mv4t1got8w.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_4l4lpzv85w.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_azul_3wgl6t500u.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_burdeo_6ei8f18vhx.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_back_y5t1x5r5ad.webp"
     ],
     "rawImages": [
-      "torquemada_1488_negro_gr6bp98us1.webp",
-      "torquemada_1488_azul_twjs5cj0n3.webp",
-      "torquemada_1488_burdeo_shqixa90oe.webp",
-      "torquemada_1488_back_mv4t1got8w.webp"
+      "torquemada_1488_negro_4l4lpzv85w.webp",
+      "torquemada_1488_azul_3wgl6t500u.webp",
+      "torquemada_1488_burdeo_6ei8f18vhx.webp",
+      "torquemada_1488_back_y5t1x5r5ad.webp"
     ],
     "colors": [
       "Negro",
@@ -2304,30 +2386,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_gr6bp98us1.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_azul_twjs5cj0n3.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_burdeo_shqixa90oe.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_4l4lpzv85w.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_azul_3wgl6t500u.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_burdeo_6ei8f18vhx.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_gr6bp98us1.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_4l4lpzv85w.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_azul_twjs5cj0n3.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_azul_3wgl6t500u.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_burdeo_shqixa90oe.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_burdeo_6ei8f18vhx.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 22:17:31.613Z",
-    "updated": "2026-10-14 01:17:49.424Z"
+    "updated": "2026-10-15 03:19:55.168Z"
   },
   {
     "id": "be6e4kz38n1zfer",
@@ -2360,16 +2442,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_00fo5gz6rx.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_qjubucn94f.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_00fo5gz6rx.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_azul_ag91en37lr.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_burdeo_b8lrubegyy.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_qjubucn94f.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_azul_6kiipqpotv.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_burdeo_gp39jn6dk5.webp"
     ],
     "rawImages": [
-      "skullhead_rnr_negro_00fo5gz6rx.webp",
-      "skullhead_rnr_azul_ag91en37lr.webp",
-      "skullhead_rnr_burdeo_b8lrubegyy.webp"
+      "skullhead_rnr_negro_qjubucn94f.webp",
+      "skullhead_rnr_azul_6kiipqpotv.webp",
+      "skullhead_rnr_burdeo_gp39jn6dk5.webp"
     ],
     "colors": [
       "Negro",
@@ -2377,30 +2459,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_00fo5gz6rx.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_azul_ag91en37lr.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_burdeo_b8lrubegyy.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_qjubucn94f.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_azul_6kiipqpotv.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_burdeo_gp39jn6dk5.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_00fo5gz6rx.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_qjubucn94f.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_azul_ag91en37lr.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_azul_6kiipqpotv.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_burdeo_b8lrubegyy.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_burdeo_gp39jn6dk5.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 22:16:34.327Z",
-    "updated": "2026-10-13 23:27:56.097Z"
+    "updated": "2026-10-15 03:20:00.906Z"
   },
   {
     "id": "1sv0wg9suunrhfn",
@@ -2433,38 +2515,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_haub667pjy.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_v5lbb5n8yf.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_haub667pjy.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_azul_x93vu0mv77.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_v5lbb5n8yf.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_azul_n3xefocjlj.webp"
     ],
     "rawImages": [
-      "skrewdriver_our_pride_negro_haub667pjy.webp",
-      "skrewdriver_our_pride_azul_x93vu0mv77.webp"
+      "skrewdriver_our_pride_negro_v5lbb5n8yf.webp",
+      "skrewdriver_our_pride_azul_n3xefocjlj.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_haub667pjy.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_azul_x93vu0mv77.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_v5lbb5n8yf.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_azul_n3xefocjlj.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_haub667pjy.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_v5lbb5n8yf.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_azul_x93vu0mv77.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_azul_n3xefocjlj.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 22:06:52.673Z",
-    "updated": "2026-10-14 01:15:35.726Z"
+    "updated": "2026-10-15 03:20:04.461Z"
   },
   {
     "id": "wms223809kok3nw",
@@ -2497,40 +2579,40 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_0ypn5mkll0.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_ky9lziia1h.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_0ypn5mkll0.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_azul_415rm0bhxf.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_back_e64yoateqi.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_ky9lziia1h.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_azul_d6co2o2lm2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_back_mgc7gzr8cf.webp"
     ],
     "rawImages": [
-      "skrewdriver_rising_negro_0ypn5mkll0.webp",
-      "skrewdriver_rising_azul_415rm0bhxf.webp",
-      "skrewdriver_rising_back_e64yoateqi.webp"
+      "skrewdriver_rising_negro_ky9lziia1h.webp",
+      "skrewdriver_rising_azul_d6co2o2lm2.webp",
+      "skrewdriver_rising_back_mgc7gzr8cf.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_0ypn5mkll0.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_azul_415rm0bhxf.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_ky9lziia1h.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_azul_d6co2o2lm2.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_0ypn5mkll0.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_ky9lziia1h.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_azul_415rm0bhxf.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_azul_d6co2o2lm2.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 22:06:09.701Z",
-    "updated": "2026-10-14 01:22:42.649Z"
+    "updated": "2026-10-15 03:20:10.493Z"
   },
   {
     "id": "80glg7t5mr73fja",
@@ -2563,16 +2645,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_yvoyr4kssc.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_y122a52xgl.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_yvoyr4kssc.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_azul_ar5q9t9n7m.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_burdeo_2b1ay0warj.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_y122a52xgl.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_azul_pdy0gb3m2s.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_burdeo_ot7xuxf4lq.webp"
     ],
     "rawImages": [
-      "skrewdriver_honour_negro_yvoyr4kssc.webp",
-      "skrewdriver_honour_azul_ar5q9t9n7m.webp",
-      "skrewdriver_honour_burdeo_2b1ay0warj.webp"
+      "skrewdriver_honour_negro_y122a52xgl.webp",
+      "skrewdriver_honour_azul_pdy0gb3m2s.webp",
+      "skrewdriver_honour_burdeo_ot7xuxf4lq.webp"
     ],
     "colors": [
       "Negro",
@@ -2580,30 +2662,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_yvoyr4kssc.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_azul_ar5q9t9n7m.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_burdeo_2b1ay0warj.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_y122a52xgl.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_azul_pdy0gb3m2s.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_burdeo_ot7xuxf4lq.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_yvoyr4kssc.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_y122a52xgl.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_azul_ar5q9t9n7m.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_azul_pdy0gb3m2s.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_burdeo_2b1ay0warj.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_burdeo_ot7xuxf4lq.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:58:42.026Z",
-    "updated": "2026-10-14 01:15:19.618Z"
+    "updated": "2026-10-15 03:20:16.393Z"
   },
   {
     "id": "n70pbjaxiggalw3",
@@ -2636,16 +2718,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_lcdzok1voi.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_clj2y2r4d9.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_lcdzok1voi.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_azul_few410vhiq.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_burdeo_4htsrg2wq0.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_clj2y2r4d9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_azul_ekrwnff1qc.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_burdeo_tpvvjjnba6.webp"
     ],
     "rawImages": [
-      "skrewdriver_all_skrewed_negra_lcdzok1voi.webp",
-      "skrewdriver_all_skrewed_azul_few410vhiq.webp",
-      "skrewdriver_all_skrewed_burdeo_4htsrg2wq0.webp"
+      "skrewdriver_all_skrewed_negra_clj2y2r4d9.webp",
+      "skrewdriver_all_skrewed_azul_ekrwnff1qc.webp",
+      "skrewdriver_all_skrewed_burdeo_tpvvjjnba6.webp"
     ],
     "colors": [
       "Negro",
@@ -2653,30 +2735,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_lcdzok1voi.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_azul_few410vhiq.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_burdeo_4htsrg2wq0.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_clj2y2r4d9.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_azul_ekrwnff1qc.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_burdeo_tpvvjjnba6.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_lcdzok1voi.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_clj2y2r4d9.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_azul_few410vhiq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_azul_ekrwnff1qc.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_burdeo_4htsrg2wq0.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_burdeo_tpvvjjnba6.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:53:21.934Z",
-    "updated": "2026-10-14 01:21:03.950Z"
+    "updated": "2026-10-15 03:20:22.662Z"
   },
   {
     "id": "q9jzx8ail9rvbor",
@@ -2709,16 +2791,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_oagjqzs5rc.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_z0y0q5rv68.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_oagjqzs5rc.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_azul_zm9t8zm5k0.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_burdeo_786ildge7h.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_z0y0q5rv68.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_azul_mbejmgij0b.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_burdeo_r1z44iwz4o.webp"
     ],
     "rawImages": [
-      "skrewdriver_blood_negro_oagjqzs5rc.webp",
-      "skrewdriver_blood_azul_zm9t8zm5k0.webp",
-      "skrewdriver_blood_burdeo_786ildge7h.webp"
+      "skrewdriver_blood_negro_z0y0q5rv68.webp",
+      "skrewdriver_blood_azul_mbejmgij0b.webp",
+      "skrewdriver_blood_burdeo_r1z44iwz4o.webp"
     ],
     "colors": [
       "Negro",
@@ -2726,30 +2808,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_oagjqzs5rc.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_azul_zm9t8zm5k0.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_burdeo_786ildge7h.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_z0y0q5rv68.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_azul_mbejmgij0b.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_burdeo_r1z44iwz4o.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_oagjqzs5rc.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_z0y0q5rv68.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_azul_zm9t8zm5k0.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_azul_mbejmgij0b.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_burdeo_786ildge7h.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_burdeo_r1z44iwz4o.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:52:22.206Z",
-    "updated": "2026-10-14 01:29:35.310Z"
+    "updated": "2026-10-15 03:20:28.760Z"
   },
   {
     "id": "dpnsuxczmqemden",
@@ -2782,16 +2864,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_895vlwu7mm.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_1k6oui1ee8.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_895vlwu7mm.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_azul_p7s4k32st4.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_burdeo_vr5dwb211l.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_1k6oui1ee8.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_azul_kk4gx9ela9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_burdeo_4i4l75l6jy.webp"
     ],
     "rawImages": [
-      "skrewdriver_all_skrew_negro_895vlwu7mm.webp",
-      "skrewdriver_all_skrew_azul_p7s4k32st4.webp",
-      "skrewdriver_all_skrew_burdeo_vr5dwb211l.webp"
+      "skrewdriver_all_skrew_negro_1k6oui1ee8.webp",
+      "skrewdriver_all_skrew_azul_kk4gx9ela9.webp",
+      "skrewdriver_all_skrew_burdeo_4i4l75l6jy.webp"
     ],
     "colors": [
       "Negro",
@@ -2799,30 +2881,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_895vlwu7mm.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_azul_p7s4k32st4.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_burdeo_vr5dwb211l.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_1k6oui1ee8.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_azul_kk4gx9ela9.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_burdeo_4i4l75l6jy.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_895vlwu7mm.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_1k6oui1ee8.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_azul_p7s4k32st4.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_azul_kk4gx9ela9.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_burdeo_vr5dwb211l.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_burdeo_4i4l75l6jy.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:36:17.602Z",
-    "updated": "2026-10-14 01:30:58.848Z"
+    "updated": "2026-10-15 03:20:34.689Z"
   },
   {
     "id": "bigavjkw8zvmrxe",
@@ -2855,16 +2937,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_k2eace5s91.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_424vl6f07m.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_k2eace5s91.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_azul_9m58ur2y44.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_burdeo_g6n90qlzyv.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_424vl6f07m.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_azul_wezvhpfki7.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_burdeo_fxiyja32b1.webp"
     ],
     "rawImages": [
-      "midtown_bootboys_auto_negro_k2eace5s91.webp",
-      "midtown_bootboys_auto_azul_9m58ur2y44.webp",
-      "midtown_bootboys_auto_burdeo_g6n90qlzyv.webp"
+      "midtown_bootboys_auto_negro_424vl6f07m.webp",
+      "midtown_bootboys_auto_azul_wezvhpfki7.webp",
+      "midtown_bootboys_auto_burdeo_fxiyja32b1.webp"
     ],
     "colors": [
       "Negro",
@@ -2872,30 +2954,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_k2eace5s91.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_azul_9m58ur2y44.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_burdeo_g6n90qlzyv.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_424vl6f07m.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_azul_wezvhpfki7.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_burdeo_fxiyja32b1.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_k2eace5s91.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_424vl6f07m.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_azul_9m58ur2y44.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_azul_wezvhpfki7.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_burdeo_g6n90qlzyv.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_burdeo_fxiyja32b1.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:31:19.257Z",
-    "updated": "2026-10-14 01:25:10.309Z"
+    "updated": "2026-10-15 03:20:40.596Z"
   },
   {
     "id": "fy1d5148czwe2xh",
@@ -2928,16 +3010,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_vcw6f5gii9.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_ukkxuwglzf.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_vcw6f5gii9.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_azul_2mlpl09y78.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_burdeo_gwfg649lwl.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_ukkxuwglzf.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_azul_fxa8hw47pl.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_burdeo_bad98v0fir.webp"
     ],
     "rawImages": [
-      "modtown_bootboys_88_negro_vcw6f5gii9.webp",
-      "midtown_bootboys_88_azul_2mlpl09y78.webp",
-      "midtown_bootboys_88_burdeo_gwfg649lwl.webp"
+      "modtown_bootboys_88_negro_ukkxuwglzf.webp",
+      "midtown_bootboys_88_azul_fxa8hw47pl.webp",
+      "midtown_bootboys_88_burdeo_bad98v0fir.webp"
     ],
     "colors": [
       "Negro",
@@ -2945,30 +3027,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_vcw6f5gii9.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_azul_2mlpl09y78.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_burdeo_gwfg649lwl.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_ukkxuwglzf.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_azul_fxa8hw47pl.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_burdeo_bad98v0fir.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_vcw6f5gii9.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_ukkxuwglzf.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_azul_2mlpl09y78.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_azul_fxa8hw47pl.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_burdeo_gwfg649lwl.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/midtown_bootboys_88_burdeo_bad98v0fir.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:29:48.484Z",
-    "updated": "2026-10-14 01:19:12.570Z"
+    "updated": "2026-10-15 03:20:46.420Z"
   },
   {
     "id": "w1lfn7jvx0wkt1v",
@@ -3001,16 +3083,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_25xhj0vvqf.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_2oq5a8wz6t.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_25xhj0vvqf.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_azul_1jiyiy1kg2.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_burdeo_p8p4s6rmbf.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_2oq5a8wz6t.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_azul_4duo4beqa3.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_burdeo_32cd6cqlm8.webp"
     ],
     "rawImages": [
-      "landser_negra_25xhj0vvqf.webp",
-      "landser_azul_1jiyiy1kg2.webp",
-      "landser_burdeo_p8p4s6rmbf.webp"
+      "landser_negra_2oq5a8wz6t.webp",
+      "landser_azul_4duo4beqa3.webp",
+      "landser_burdeo_32cd6cqlm8.webp"
     ],
     "colors": [
       "Negro",
@@ -3018,30 +3100,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_25xhj0vvqf.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_azul_1jiyiy1kg2.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_burdeo_p8p4s6rmbf.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_2oq5a8wz6t.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_azul_4duo4beqa3.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_burdeo_32cd6cqlm8.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_25xhj0vvqf.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_2oq5a8wz6t.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_azul_1jiyiy1kg2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_azul_4duo4beqa3.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_burdeo_p8p4s6rmbf.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_burdeo_32cd6cqlm8.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 21:20:28.986Z",
-    "updated": "2026-10-14 01:25:56.860Z"
+    "updated": "2026-10-15 03:20:53.104Z"
   },
   {
     "id": "n7wumbkz9n2xzdp",
@@ -3074,29 +3156,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/patria_nostra_png_azcn8d7hxe.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/test_tiny_5wqko79dm9.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/patria_nostra_png_azcn8d7hxe.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/test_tiny_5wqko79dm9.webp"
     ],
     "rawImages": [
-      "patria_nostra_png_azcn8d7hxe.webp"
+      "test_tiny_5wqko79dm9.webp"
     ],
     "colors": [
       "Negro"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/patria_nostra_png_azcn8d7hxe.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/test_tiny_5wqko79dm9.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/patria_nostra_png_azcn8d7hxe.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/test_tiny_5wqko79dm9.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-09 01:32:54.895Z",
-    "updated": "2026-10-09 01:32:54.895Z"
+    "updated": "2026-10-15 03:14:58.900Z"
   },
   {
     "id": "i4w68u1hsp7dbji",
@@ -3129,35 +3211,42 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_ys6oa3bf4a.png",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_ys6oa3bf4a.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_back_j5r7v1l9pb.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_blue_x4pozcz31u.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_eed82b47ex.png"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_back_knja0hzxgz.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_blue_5mo5yh1w3d.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp"
     ],
     "rawImages": [
-      "fuck_antifa_front_ys6oa3bf4a.png",
-      "fuck_antifa_back_j5r7v1l9pb.png",
-      "fuck_antifa_blue_x4pozcz31u.png",
-      "fuck_antifa_burdeo_eed82b47ex.png"
+      "fuck_antifa_front_098smipn9h.webp",
+      "fuck_antifa_back_knja0hzxgz.webp",
+      "fuck_antifa_blue_5mo5yh1w3d.webp",
+      "fuck_antifa_burdeo_qe8hmyfozx.webp"
     ],
     "colors": [
+      "Negro",
       "Burdeo"
     ],
     "colorImages": {
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_eed82b47ex.png"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp"
+      },
+      {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_eed82b47ex.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp"
       }
     ],
-    "defaultColor": "Burdeo",
+    "defaultColor": "Negro",
     "created": "2026-10-08 01:37:54.327Z",
-    "updated": "2026-10-14 01:28:17.569Z"
+    "updated": "2026-10-15 03:21:00.408Z"
   },
   {
     "id": "jns9569rn1saydi",
@@ -3190,20 +3279,20 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0ksl3v19dt.png",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0ksl3v19dt.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_mimetizado_13es9f9vo8.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_22lg8z0j8e.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_tq874p90te.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_56hnxhdduc.png"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_mimetizado_ejux1savpv.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_o1kxfv0cpt.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_lu7wvqrjf8.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_6y4z0tavhw.webp"
     ],
     "rawImages": [
-      "ahtr_rojo_0ksl3v19dt.png",
-      "ahtr_mimetizado_13es9f9vo8.png",
-      "ahtr_gris_22lg8z0j8e.png",
-      "ahtr_burdeo_tq874p90te.png",
-      "ahtr_azul_56hnxhdduc.png"
+      "ahtr_rojo_g3wxqgappe.webp",
+      "ahtr_mimetizado_ejux1savpv.webp",
+      "ahtr_gris_o1kxfv0cpt.webp",
+      "ahtr_burdeo_lu7wvqrjf8.webp",
+      "ahtr_azul_6y4z0tavhw.webp"
     ],
     "colors": [
       "Rojo",
@@ -3212,36 +3301,36 @@ export const products = [
       "Azul"
     ],
     "colorImages": {
-      "Rojo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0ksl3v19dt.png",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_22lg8z0j8e.png",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_tq874p90te.png",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_56hnxhdduc.png"
+      "Rojo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_o1kxfv0cpt.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_lu7wvqrjf8.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_6y4z0tavhw.webp"
     },
     "colorItems": [
       {
         "name": "Rojo",
         "hex": "#B91C1C",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0ksl3v19dt.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_22lg8z0j8e.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_o1kxfv0cpt.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_tq874p90te.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_lu7wvqrjf8.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_56hnxhdduc.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_6y4z0tavhw.webp"
       }
     ],
     "defaultColor": "Rojo",
     "created": "2026-10-08 01:30:16.654Z",
-    "updated": "2026-10-08 23:45:15.435Z"
+    "updated": "2026-10-15 03:21:08.416Z"
   },
   {
     "id": "p8ak8isspvn204u",
@@ -3274,35 +3363,42 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_3o2iinv1fs.png",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_3o2iinv1fs.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_navy_orgullo_sur_chile_xh6i9dlj6e.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_odlimyy2d8.png",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orguillo_sur_chile_retro_elremwe7mt.png"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_navy_orgullo_sur_chile_vk0q5yt4z9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orguillo_sur_chile_retro_iqtwbmnyqi.webp"
     ],
     "rawImages": [
-      "camiseta_orgullo_sur_chile_3o2iinv1fs.png",
-      "camiseta_navy_orgullo_sur_chile_xh6i9dlj6e.png",
-      "camiseta_burdeos_orgullo_sur_odlimyy2d8.png",
-      "camiseta_orguillo_sur_chile_retro_elremwe7mt.png"
+      "camiseta_orgullo_sur_chile_6y7v14szeb.webp",
+      "camiseta_navy_orgullo_sur_chile_vk0q5yt4z9.webp",
+      "camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp",
+      "camiseta_orguillo_sur_chile_retro_iqtwbmnyqi.webp"
     ],
     "colors": [
+      "Negro",
       "Burdeo"
     ],
     "colorImages": {
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_odlimyy2d8.png"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp"
+      },
+      {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_odlimyy2d8.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp"
       }
     ],
-    "defaultColor": "Burdeo",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:36:01.898Z"
+    "updated": "2026-10-15 03:21:14.887Z"
   },
   {
     "id": "4yfm51ebxrmk3sy",
@@ -3394,16 +3490,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_48y5roja2b.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_ybej90jt38.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_48y5roja2b.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_azul_191er7wp83.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_burdeo_mrb0zf6z5o.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_ybej90jt38.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_azul_05vrklz9h9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_burdeo_6cds00ipzr.webp"
     ],
     "rawImages": [
-      "youngland_negro_48y5roja2b.webp",
-      "youngland_azul_191er7wp83.webp",
-      "youngland_burdeo_mrb0zf6z5o.webp"
+      "youngland_negro_ybej90jt38.webp",
+      "youngland_azul_05vrklz9h9.webp",
+      "youngland_burdeo_6cds00ipzr.webp"
     ],
     "colors": [
       "Negro",
@@ -3411,30 +3507,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_48y5roja2b.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_azul_191er7wp83.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_burdeo_mrb0zf6z5o.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_ybej90jt38.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_azul_05vrklz9h9.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_burdeo_6cds00ipzr.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_48y5roja2b.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_negro_ybej90jt38.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_azul_191er7wp83.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_azul_05vrklz9h9.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_burdeo_mrb0zf6z5o.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/vd1dfhf0pmyx829/youngland_burdeo_6cds00ipzr.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:16:35.267Z"
+    "updated": "2026-10-15 03:21:20.780Z"
   },
   {
     "id": "d8uqsxzn3csvtnq",
@@ -3473,38 +3569,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_bsxxr1heq5.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_9xrgf3k1it.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_bsxxr1heq5.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_azul_rojo_t9sv5f6ccc.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_9xrgf3k1it.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_azul_rojo_pqlzb8euxe.webp"
     ],
     "rawImages": [
-      "ultima_thule_negro_rojo_bsxxr1heq5.webp",
-      "ultima_thule_azul_rojo_t9sv5f6ccc.webp"
+      "ultima_thule_negro_rojo_9xrgf3k1it.webp",
+      "ultima_thule_azul_rojo_pqlzb8euxe.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_bsxxr1heq5.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_azul_rojo_t9sv5f6ccc.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_9xrgf3k1it.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_azul_rojo_pqlzb8euxe.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_bsxxr1heq5.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_negro_rojo_9xrgf3k1it.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_azul_rojo_t9sv5f6ccc.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/d8uqsxzn3csvtnq/ultima_thule_azul_rojo_pqlzb8euxe.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:26:30.881Z"
+    "updated": "2026-10-15 03:21:24.423Z"
   },
   {
     "id": "xnbm6meqzw6g0sj",
@@ -3543,16 +3639,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_tkblhyrosp.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_m9oso3rwxo.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_tkblhyrosp.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_burdeo_amarillo_uifmzmfiq9.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_azul_amarillo_6x3m6zap7a.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_m9oso3rwxo.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_burdeo_amarillo_q5xrj64opj.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_azul_amarillo_m0rrlohslr.webp"
     ],
     "rawImages": [
-      "ultima_thule_negro_amarillo_tkblhyrosp.webp",
-      "ultima_thule_burdeo_amarillo_uifmzmfiq9.webp",
-      "ultima_thule_azul_amarillo_6x3m6zap7a.webp"
+      "ultima_thule_negro_amarillo_m9oso3rwxo.webp",
+      "ultima_thule_burdeo_amarillo_q5xrj64opj.webp",
+      "ultima_thule_azul_amarillo_m0rrlohslr.webp"
     ],
     "colors": [
       "Negro",
@@ -3560,30 +3656,30 @@ export const products = [
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_tkblhyrosp.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_burdeo_amarillo_uifmzmfiq9.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_azul_amarillo_6x3m6zap7a.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_m9oso3rwxo.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_burdeo_amarillo_q5xrj64opj.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_azul_amarillo_m0rrlohslr.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_tkblhyrosp.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_negro_amarillo_m9oso3rwxo.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_burdeo_amarillo_uifmzmfiq9.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_burdeo_amarillo_q5xrj64opj.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_azul_amarillo_6x3m6zap7a.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/xnbm6meqzw6g0sj/ultima_thule_azul_amarillo_m0rrlohslr.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:23:20.732Z"
+    "updated": "2026-10-15 03:21:30.385Z"
   },
   {
     "id": "3ukj32pwcxo9quj",
@@ -3622,16 +3718,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_wn9of47x2v.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_2227glpc5m.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_wn9of47x2v.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_azul_scx9hrnn3n.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_burdeo_jvmp7v39bc.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_2227glpc5m.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_azul_vuhz488ixf.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_burdeo_7dkeoxvhvl.webp"
     ],
     "rawImages": [
-      "total_anihilation_negra_wn9of47x2v.webp",
-      "total_anihilation_azul_scx9hrnn3n.webp",
-      "total_anihilation_burdeo_jvmp7v39bc.webp"
+      "total_anihilation_negra_2227glpc5m.webp",
+      "total_anihilation_azul_vuhz488ixf.webp",
+      "total_anihilation_burdeo_7dkeoxvhvl.webp"
     ],
     "colors": [
       "Negro",
@@ -3639,30 +3735,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_wn9of47x2v.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_azul_scx9hrnn3n.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_burdeo_jvmp7v39bc.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_2227glpc5m.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_azul_vuhz488ixf.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_burdeo_7dkeoxvhvl.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_wn9of47x2v.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_2227glpc5m.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_azul_scx9hrnn3n.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_azul_vuhz488ixf.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_burdeo_jvmp7v39bc.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_burdeo_7dkeoxvhvl.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:26:18.524Z"
+    "updated": "2026-10-15 03:21:36.933Z"
   },
   {
     "id": "klko0tp7g4bljv1",
@@ -3701,29 +3797,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_3ys1mc8iwl.png",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_8y0v21pp3a.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_3ys1mc8iwl.png"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_8y0v21pp3a.webp"
     ],
     "rawImages": [
-      "torqeumada_gd1bf3wuj8_3ys1mc8iwl.png"
+      "torqeumada_gd1bf3wuj8_8y0v21pp3a.webp"
     ],
     "colors": [
       "Negro"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_3ys1mc8iwl.png"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_8y0v21pp3a.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_3ys1mc8iwl.png"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/klko0tp7g4bljv1/torqeumada_gd1bf3wuj8_8y0v21pp3a.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:18:17.704Z"
+    "updated": "2026-10-15 03:21:39.338Z"
   },
   {
     "id": "6igzkpqxg3ds3z9",
@@ -3762,16 +3858,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_5cakos5iso.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_rn6m2l5kgr.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_5cakos5iso.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_azul_k2y4c2qf7r.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_burdeo_1dth4x7bt0.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_rn6m2l5kgr.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_azul_tpp8ewahu9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_burdeo_0aqh7vyrfv.webp"
     ],
     "rawImages": [
-      "tmf_negro_5cakos5iso.webp",
-      "tmf_azul_k2y4c2qf7r.webp",
-      "tmf_burdeo_1dth4x7bt0.webp"
+      "tmf_negro_rn6m2l5kgr.webp",
+      "tmf_azul_tpp8ewahu9.webp",
+      "tmf_burdeo_0aqh7vyrfv.webp"
     ],
     "colors": [
       "Negro",
@@ -3779,30 +3875,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_5cakos5iso.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_azul_k2y4c2qf7r.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_burdeo_1dth4x7bt0.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_rn6m2l5kgr.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_azul_tpp8ewahu9.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_burdeo_0aqh7vyrfv.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_5cakos5iso.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_negro_rn6m2l5kgr.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_azul_k2y4c2qf7r.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_azul_tpp8ewahu9.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_burdeo_1dth4x7bt0.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6igzkpqxg3ds3z9/tmf_burdeo_0aqh7vyrfv.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:17:19.731Z"
+    "updated": "2026-10-15 03:21:45.270Z"
   },
   {
     "id": "w3ngg3ij7xuirce",
@@ -3902,40 +3998,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_d99u940zci.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_hvhzge8q8b.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_d99u940zci.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_burdeo_ncqi2tsaze.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_azul_47zfnh1plq.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_hvhzge8q8b.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_burdeo_mvcpnhou4c.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_azul_1z3ms8xiw0.webp"
     ],
     "rawImages": [
-      "killbaby_kill_giveback_m95utxrf1u_d99u940zci.webp",
-      "kbk_give_back_burdeo_ncqi2tsaze.webp",
-      "kbk_give_back_azul_47zfnh1plq.webp"
+      "killbaby_kill_giveback_m95utxrf1u_hvhzge8q8b.webp",
+      "kbk_give_back_burdeo_mvcpnhou4c.webp",
+      "kbk_give_back_azul_1z3ms8xiw0.webp"
     ],
     "colors": [
+      "Negro",
       "Burdeo",
       "Azul"
     ],
     "colorImages": {
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_burdeo_ncqi2tsaze.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_azul_47zfnh1plq.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_hvhzge8q8b.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_burdeo_mvcpnhou4c.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_azul_1z3ms8xiw0.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_hvhzge8q8b.webp"
+      },
+      {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_burdeo_ncqi2tsaze.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_burdeo_mvcpnhou4c.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_azul_47zfnh1plq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/kbk_give_back_azul_1z3ms8xiw0.webp"
       }
     ],
-    "defaultColor": "Burdeo",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:32:23.054Z"
+    "updated": "2026-10-15 03:21:51.319Z"
   },
   {
     "id": "88gpphluhrxf6bt",
@@ -3974,16 +4077,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_b8nymx2y78.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_ux4zq11sim.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_b8nymx2y78.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_azul_xqjey2cpxj.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_burdeo_f34ncml8lf.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_ux4zq11sim.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_azul_swtqv3ajdq.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_burdeo_5kg42w49ff.webp"
     ],
     "rawImages": [
-      "kategorie_c_negro_b8nymx2y78.webp",
-      "kategorie_c_azul_xqjey2cpxj.webp",
-      "kategorie_c_burdeo_f34ncml8lf.webp"
+      "kategorie_c_negro_ux4zq11sim.webp",
+      "kategorie_c_azul_swtqv3ajdq.webp",
+      "kategorie_c_burdeo_5kg42w49ff.webp"
     ],
     "colors": [
       "Negro",
@@ -3991,30 +4094,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_b8nymx2y78.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_azul_xqjey2cpxj.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_burdeo_f34ncml8lf.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_ux4zq11sim.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_azul_swtqv3ajdq.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_burdeo_5kg42w49ff.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_b8nymx2y78.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_ux4zq11sim.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_azul_xqjey2cpxj.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_azul_swtqv3ajdq.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_burdeo_f34ncml8lf.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_burdeo_5kg42w49ff.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:18:04.065Z"
+    "updated": "2026-10-15 03:21:57.234Z"
   },
   {
     "id": "aefa1jvryj6bepu",
@@ -4053,40 +4156,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpebotas_tm0uc0uk2j_htm1h0tmxy.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpebotas_tm0uc0uk2j_uxo9w9xryk.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpebotas_tm0uc0uk2j_htm1h0tmxy.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperai_xx_an_osazul_qe26e9wf61.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperial_xx_an_os_burdeo_yviwukfesv.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpebotas_tm0uc0uk2j_uxo9w9xryk.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperai_xx_an_osazul_orhhva6wv1.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperial_xx_an_os_burdeo_o1ohvrv4b7.webp"
     ],
     "rawImages": [
-      "estirpebotas_tm0uc0uk2j_htm1h0tmxy.webp",
-      "estirpe_imperai_xx_an_osazul_qe26e9wf61.webp",
-      "estirpe_imperial_xx_an_os_burdeo_yviwukfesv.webp"
+      "estirpebotas_tm0uc0uk2j_uxo9w9xryk.webp",
+      "estirpe_imperai_xx_an_osazul_orhhva6wv1.webp",
+      "estirpe_imperial_xx_an_os_burdeo_o1ohvrv4b7.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperai_xx_an_osazul_qe26e9wf61.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperial_xx_an_os_burdeo_yviwukfesv.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpebotas_tm0uc0uk2j_uxo9w9xryk.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperai_xx_an_osazul_orhhva6wv1.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperial_xx_an_os_burdeo_o1ohvrv4b7.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpebotas_tm0uc0uk2j_uxo9w9xryk.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperai_xx_an_osazul_qe26e9wf61.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperai_xx_an_osazul_orhhva6wv1.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperial_xx_an_os_burdeo_yviwukfesv.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aefa1jvryj6bepu/estirpe_imperial_xx_an_os_burdeo_o1ohvrv4b7.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:19:58.458Z"
+    "updated": "2026-10-15 03:22:03.191Z"
   },
   {
     "id": "j21oxguwgojedv3",
@@ -4125,40 +4235,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_0oa84sa9pu.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_p9zjt0ri8x.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_0oa84sa9pu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirp_imperial_seguimos_azul_jh62r25av2.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_imperail_seguimos_burdeo_k9jnn0if6s.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_p9zjt0ri8x.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirp_imperial_seguimos_azul_0f9tscgkjz.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_imperail_seguimos_burdeo_emtgr3e954.webp"
     ],
     "rawImages": [
-      "estirpe_aguila_53cndrl98s_0oa84sa9pu.webp",
-      "estirp_imperial_seguimos_azul_jh62r25av2.webp",
-      "estirpe_imperail_seguimos_burdeo_k9jnn0if6s.webp"
+      "estirpe_aguila_53cndrl98s_p9zjt0ri8x.webp",
+      "estirp_imperial_seguimos_azul_0f9tscgkjz.webp",
+      "estirpe_imperail_seguimos_burdeo_emtgr3e954.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirp_imperial_seguimos_azul_jh62r25av2.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_imperail_seguimos_burdeo_k9jnn0if6s.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_p9zjt0ri8x.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirp_imperial_seguimos_azul_0f9tscgkjz.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_imperail_seguimos_burdeo_emtgr3e954.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_p9zjt0ri8x.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirp_imperial_seguimos_azul_jh62r25av2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirp_imperial_seguimos_azul_0f9tscgkjz.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_imperail_seguimos_burdeo_k9jnn0if6s.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_imperail_seguimos_burdeo_emtgr3e954.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:20:14.978Z"
+    "updated": "2026-10-15 03:22:08.802Z"
   },
   {
     "id": "we8h04cmymu9bcy",
@@ -4197,38 +4314,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_79b7e3ki9w.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_0gvnj5qhx6.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_79b7e3ki9w.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/english_roses_rosas_azul_vy14jfv481.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_0gvnj5qhx6.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/english_roses_rosas_azul_kp4xdm3nox.webp"
     ],
     "rawImages": [
-      "englisg_rose_negro_rosas_79b7e3ki9w.webp",
-      "english_roses_rosas_azul_vy14jfv481.webp"
+      "englisg_rose_negro_rosas_0gvnj5qhx6.webp",
+      "english_roses_rosas_azul_kp4xdm3nox.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_79b7e3ki9w.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/english_roses_rosas_azul_vy14jfv481.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_0gvnj5qhx6.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/english_roses_rosas_azul_kp4xdm3nox.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_79b7e3ki9w.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_0gvnj5qhx6.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/english_roses_rosas_azul_vy14jfv481.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/english_roses_rosas_azul_kp4xdm3nox.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:15:04.291Z"
+    "updated": "2026-10-15 03:22:12.236Z"
   },
   {
     "id": "miplwt4pxntccpl",
@@ -4267,40 +4384,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_skinhead_ajux3bao8f_v6qq1woh0z.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_skinhead_ajux3bao8f_w8f17mrb4b.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_skinhead_ajux3bao8f_v6qq1woh0z.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_azul_xuxweihx4w.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_burdeo_67sip32joq.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_skinhead_ajux3bao8f_w8f17mrb4b.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_azul_cf5zvocdp0.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_burdeo_1p8b48aic5.webp"
     ],
     "rawImages": [
-      "english_rose_skinhead_ajux3bao8f_v6qq1woh0z.webp",
-      "english_rose_perro_azul_xuxweihx4w.webp",
-      "english_rose_perro_burdeo_67sip32joq.webp"
+      "english_rose_skinhead_ajux3bao8f_w8f17mrb4b.webp",
+      "english_rose_perro_azul_cf5zvocdp0.webp",
+      "english_rose_perro_burdeo_1p8b48aic5.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_azul_xuxweihx4w.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_burdeo_67sip32joq.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_skinhead_ajux3bao8f_w8f17mrb4b.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_azul_cf5zvocdp0.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_burdeo_1p8b48aic5.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_skinhead_ajux3bao8f_w8f17mrb4b.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_azul_xuxweihx4w.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_azul_cf5zvocdp0.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_burdeo_67sip32joq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/miplwt4pxntccpl/english_rose_perro_burdeo_1p8b48aic5.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:25:12.532Z"
+    "updated": "2026-10-15 03:22:16.812Z"
   },
   {
     "id": "lrr3c0wcmfk5x16",
@@ -4339,31 +4463,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_21e22emzjb_cfwk7r4l55.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_21e22emzjb_3rxzwfs5yd.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_21e22emzjb_cfwk7r4l55.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_azul_n89iem4mvd.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_21e22emzjb_3rxzwfs5yd.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_azul_hy6wpdt7p7.webp"
     ],
     "rawImages": [
-      "dramatic_battle_21e22emzjb_cfwk7r4l55.webp",
-      "dramatic_battle_azul_n89iem4mvd.webp"
+      "dramatic_battle_21e22emzjb_3rxzwfs5yd.webp",
+      "dramatic_battle_azul_hy6wpdt7p7.webp"
     ],
     "colors": [
+      "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_azul_n89iem4mvd.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_21e22emzjb_3rxzwfs5yd.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_azul_hy6wpdt7p7.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_21e22emzjb_3rxzwfs5yd.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_azul_n89iem4mvd.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/lrr3c0wcmfk5x16/dramatic_battle_azul_hy6wpdt7p7.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:19:32.667Z"
+    "updated": "2026-10-15 03:22:19.999Z"
   },
   {
     "id": "077e4rkpufe04vg",
@@ -4402,16 +4533,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_7xtl3y8weu.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_j8r9wjmhht.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_7xtl3y8weu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_burdeo_06sjpu4ulg.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_azul_fz3ckbtph7.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_j8r9wjmhht.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_burdeo_bi5c9uy3oe.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_azul_ahof7qx20p.webp"
     ],
     "rawImages": [
-      "division_250_negro_7xtl3y8weu.webp",
-      "division_250_burdeo_06sjpu4ulg.webp",
-      "division_250_azul_fz3ckbtph7.webp"
+      "division_250_negro_j8r9wjmhht.webp",
+      "division_250_burdeo_bi5c9uy3oe.webp",
+      "division_250_azul_ahof7qx20p.webp"
     ],
     "colors": [
       "Negro",
@@ -4419,30 +4550,30 @@ export const products = [
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_7xtl3y8weu.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_burdeo_06sjpu4ulg.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_azul_fz3ckbtph7.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_j8r9wjmhht.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_burdeo_bi5c9uy3oe.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_azul_ahof7qx20p.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_7xtl3y8weu.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_negro_j8r9wjmhht.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_burdeo_06sjpu4ulg.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_burdeo_bi5c9uy3oe.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_azul_fz3ckbtph7.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/077e4rkpufe04vg/division_250_azul_ahof7qx20p.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:28:42.177Z"
+    "updated": "2026-10-15 03:22:26.054Z"
   },
   {
     "id": "0ex06yboxobi04l",
@@ -4481,40 +4612,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_skinhead_szarotvhot_wlypxdpcaj.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_skinhead_szarotvhot_bhdkov6qvr.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_skinhead_szarotvhot_wlypxdpcaj.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_azul_rmm73aiy1q.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_burdeo_542ktzlb64.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_skinhead_szarotvhot_bhdkov6qvr.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_azul_fygfgbfxxk.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_burdeo_0glzxr5o3d.webp"
     ],
     "rawImages": [
-      "defender_skinhead_szarotvhot_wlypxdpcaj.webp",
-      "defender_made_in_athens_azul_rmm73aiy1q.webp",
-      "defender_made_in_athens_burdeo_542ktzlb64.webp"
+      "defender_skinhead_szarotvhot_bhdkov6qvr.webp",
+      "defender_made_in_athens_azul_fygfgbfxxk.webp",
+      "defender_made_in_athens_burdeo_0glzxr5o3d.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_azul_rmm73aiy1q.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_burdeo_542ktzlb64.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_skinhead_szarotvhot_bhdkov6qvr.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_azul_fygfgbfxxk.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_burdeo_0glzxr5o3d.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_skinhead_szarotvhot_bhdkov6qvr.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_azul_rmm73aiy1q.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_azul_fygfgbfxxk.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_burdeo_542ktzlb64.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/0ex06yboxobi04l/defender_made_in_athens_burdeo_0glzxr5o3d.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:26:46.723Z"
+    "updated": "2026-10-15 03:22:31.762Z"
   },
   {
     "id": "e8h1w91d7f5c94j",
@@ -4553,16 +4691,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_ucg2uf8c84.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_wbifmu8pbh.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_ucg2uf8c84.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_azul_h4ko8dllzj.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_burdeo_4g499k0e8g.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_wbifmu8pbh.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_azul_m6l5vlntr2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_burdeo_x64h60k1pa.webp"
     ],
     "rawImages": [
-      "bunker_84_negro_ucg2uf8c84.webp",
-      "bunker_84_azul_h4ko8dllzj.webp",
-      "bunker_84_burdeo_4g499k0e8g.webp"
+      "bunker_84_negro_wbifmu8pbh.webp",
+      "bunker_84_azul_m6l5vlntr2.webp",
+      "bunker_84_burdeo_x64h60k1pa.webp"
     ],
     "colors": [
       "Negro",
@@ -4570,30 +4708,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_ucg2uf8c84.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_azul_h4ko8dllzj.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_burdeo_4g499k0e8g.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_wbifmu8pbh.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_azul_m6l5vlntr2.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_burdeo_x64h60k1pa.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_ucg2uf8c84.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_wbifmu8pbh.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_azul_h4ko8dllzj.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_azul_m6l5vlntr2.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_burdeo_4g499k0e8g.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_burdeo_x64h60k1pa.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:24:10.802Z"
+    "updated": "2026-10-15 03:22:38.064Z"
   },
   {
     "id": "rque69yh26fkau2",
@@ -4632,18 +4770,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_frente_60hlmwgk2z.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_frente_dvrlj2e54a.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_frente_60hlmwgk2z.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_negro_trasero_qeeekrynz3.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_azul_tras_82n8n3xo4g.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_burdeo_tras_kx2p2zg46r.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_frente_dvrlj2e54a.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_negro_trasero_eafwty0gvr.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_azul_tras_2yspis1jc5.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_burdeo_tras_28g7bwn5gq.webp"
     ],
     "rawImages": [
-      "brutal_attack_frente_60hlmwgk2z.webp",
-      "brutal_attack_negro_trasero_qeeekrynz3.webp",
-      "brutal_attack_azul_tras_82n8n3xo4g.webp",
-      "brutal_attack_burdeo_tras_kx2p2zg46r.webp"
+      "brutal_attack_frente_dvrlj2e54a.webp",
+      "brutal_attack_negro_trasero_eafwty0gvr.webp",
+      "brutal_attack_azul_tras_2yspis1jc5.webp",
+      "brutal_attack_burdeo_tras_28g7bwn5gq.webp"
     ],
     "colors": [
       "Negro",
@@ -4651,30 +4789,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_negro_trasero_qeeekrynz3.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_azul_tras_82n8n3xo4g.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_burdeo_tras_kx2p2zg46r.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_negro_trasero_eafwty0gvr.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_azul_tras_2yspis1jc5.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_burdeo_tras_28g7bwn5gq.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_negro_trasero_qeeekrynz3.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_negro_trasero_eafwty0gvr.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_azul_tras_82n8n3xo4g.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_azul_tras_2yspis1jc5.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_burdeo_tras_kx2p2zg46r.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_burdeo_tras_28g7bwn5gq.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-13 23:25:58.338Z"
+    "updated": "2026-10-15 03:22:47.162Z"
   },
   {
     "id": "g203eo7z49huy9g",
@@ -4713,40 +4851,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_9inxb9xh6b.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_gzj1jdeyc6.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_9inxb9xh6b.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_azul_rvmzwfy8js.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_burdeo_cg6id7htlb.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_gzj1jdeyc6.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_azul_8ilrshf5l1.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_burdeo_94g54zbhym.webp"
     ],
     "rawImages": [
-      "brassic_zprhrn5bqs_9inxb9xh6b.webp",
-      "brassic_azul_rvmzwfy8js.webp",
-      "brassic_burdeo_cg6id7htlb.webp"
+      "brassic_zprhrn5bqs_gzj1jdeyc6.webp",
+      "brassic_azul_8ilrshf5l1.webp",
+      "brassic_burdeo_94g54zbhym.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_azul_rvmzwfy8js.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_burdeo_cg6id7htlb.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_gzj1jdeyc6.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_azul_8ilrshf5l1.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_burdeo_94g54zbhym.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_gzj1jdeyc6.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_azul_rvmzwfy8js.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_azul_8ilrshf5l1.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_burdeo_cg6id7htlb.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_burdeo_94g54zbhym.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:14:43.257Z"
+    "updated": "2026-10-15 03:22:53.308Z"
   },
   {
     "id": "t5l2wuli39x7eaz",
@@ -4785,49 +4930,56 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_3kom8v5jzc.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_3kom8v5jzc.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_fsqptjrq8d.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_l1rqbrbmvw.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_370c3pkf76.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_vcnjdvqjd1.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_ju2841kqyu.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0ezxsqf7nx.webp"
     ],
     "rawImages": [
-      "bound_for_glory_cv5eskcg8t_3kom8v5jzc.webp",
-      "bfg_glory_azul_fsqptjrq8d.webp",
-      "bfg_glory_burdeo_l1rqbrbmvw.webp",
-      "bfg_glory_gris_370c3pkf76.webp"
+      "bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
+      "bfg_glory_azul_vcnjdvqjd1.webp",
+      "bfg_glory_burdeo_ju2841kqyu.webp",
+      "bfg_glory_gris_0ezxsqf7nx.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo",
       "Gris"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_fsqptjrq8d.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_l1rqbrbmvw.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_370c3pkf76.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_vcnjdvqjd1.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_ju2841kqyu.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0ezxsqf7nx.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_fsqptjrq8d.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_vcnjdvqjd1.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_l1rqbrbmvw.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_ju2841kqyu.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_370c3pkf76.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0ezxsqf7nx.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:24:54.247Z"
+    "updated": "2026-10-15 03:23:00.166Z"
   },
   {
     "id": "4q1c282bazryu12",
@@ -4866,16 +5018,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_80vpw3y4zv.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_4bazxmpdu1.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_80vpw3y4zv.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_azul_ouke2ptrcu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_burdeo_bpnfjtymcw.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_4bazxmpdu1.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_azul_xehmgv5vy7.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_burdeo_076432et3p.webp"
     ],
     "rawImages": [
-      "bfg_over_negro_80vpw3y4zv.webp",
-      "bfg_over_azul_ouke2ptrcu.webp",
-      "bfg_over_burdeo_bpnfjtymcw.webp"
+      "bfg_over_negro_4bazxmpdu1.webp",
+      "bfg_over_azul_xehmgv5vy7.webp",
+      "bfg_over_burdeo_076432et3p.webp"
     ],
     "colors": [
       "Negro",
@@ -4883,30 +5035,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_80vpw3y4zv.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_azul_ouke2ptrcu.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_burdeo_bpnfjtymcw.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_4bazxmpdu1.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_azul_xehmgv5vy7.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_burdeo_076432et3p.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_80vpw3y4zv.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_negro_4bazxmpdu1.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_azul_ouke2ptrcu.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_azul_xehmgv5vy7.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_burdeo_bpnfjtymcw.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/4q1c282bazryu12/bfg_over_burdeo_076432et3p.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:29:14.914Z"
+    "updated": "2026-10-15 03:23:14.621Z"
   },
   {
     "id": "se27xmkiw8ygyca",
@@ -5006,16 +5158,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_26p1lx3p2m.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_5r0b048i48.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_26p1lx3p2m.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_azul_jux1p54kuo.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_burdeo_cz96mc5yq5.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_5r0b048i48.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_azul_xwl8j7wygb.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_burdeo_yn2qbya1s1.webp"
     ],
     "rawImages": [
-      "battle_zone_negra_26p1lx3p2m.webp",
-      "battle_zone_azul_jux1p54kuo.webp",
-      "battle_zone_burdeo_cz96mc5yq5.webp"
+      "battle_zone_negra_5r0b048i48.webp",
+      "battle_zone_azul_xwl8j7wygb.webp",
+      "battle_zone_burdeo_yn2qbya1s1.webp"
     ],
     "colors": [
       "Negro",
@@ -5023,30 +5175,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_26p1lx3p2m.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_azul_jux1p54kuo.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_burdeo_cz96mc5yq5.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_5r0b048i48.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_azul_xwl8j7wygb.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_burdeo_yn2qbya1s1.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_26p1lx3p2m.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_negra_5r0b048i48.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_azul_jux1p54kuo.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_azul_xwl8j7wygb.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_burdeo_cz96mc5yq5.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/o3zyrgl519tzh7n/battle_zone_burdeo_yn2qbya1s1.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:28:57.398Z"
+    "updated": "2026-10-15 03:23:20.977Z"
   },
   {
     "id": "nsrdfiqh0vkc1ej",
@@ -5085,16 +5237,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_0r8nnr5t5s.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_gfg5jq93sd.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_0r8nnr5t5s.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antosicial_skrew_azul_ld3pajl1uc.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_burdeo_j2h7jezk2o.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_gfg5jq93sd.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antosicial_skrew_azul_jod2nz34cb.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_burdeo_ou7pviy1gi.webp"
     ],
     "rawImages": [
-      "antisocial_skrew_negro_0r8nnr5t5s.webp",
-      "antosicial_skrew_azul_ld3pajl1uc.webp",
-      "antisocial_skrew_burdeo_j2h7jezk2o.webp"
+      "antisocial_skrew_negro_gfg5jq93sd.webp",
+      "antosicial_skrew_azul_jod2nz34cb.webp",
+      "antisocial_skrew_burdeo_ou7pviy1gi.webp"
     ],
     "colors": [
       "Negro",
@@ -5102,30 +5254,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_0r8nnr5t5s.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antosicial_skrew_azul_ld3pajl1uc.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_burdeo_j2h7jezk2o.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_gfg5jq93sd.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antosicial_skrew_azul_jod2nz34cb.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_burdeo_ou7pviy1gi.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_0r8nnr5t5s.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_negro_gfg5jq93sd.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antosicial_skrew_azul_ld3pajl1uc.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antosicial_skrew_azul_jod2nz34cb.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_burdeo_j2h7jezk2o.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nsrdfiqh0vkc1ej/antisocial_skrew_burdeo_ou7pviy1gi.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:15:55.111Z"
+    "updated": "2026-10-15 03:23:27.064Z"
   },
   {
     "id": "kil0l44pcawj1md",
@@ -5164,18 +5316,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_kdeslk0pqt.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_kdeslk0pqt.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_1m86q4eoma.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_us1539tnhq.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_drx5k07h4f.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_zpbm0mls4q.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_h09y27kjbu.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_t899linnl2.webp"
     ],
     "rawImages": [
-      "antosocial_negro_amarillo_kdeslk0pqt.webp",
-      "antisocial_azul_amarillo_1m86q4eoma.webp",
-      "antisocial_burdeo_amarillo_us1539tnhq.webp",
-      "antisocial_skrewdriver_gris_drx5k07h4f.webp"
+      "antosocial_negro_amarillo_ciwlwz896h.webp",
+      "antisocial_azul_amarillo_zpbm0mls4q.webp",
+      "antisocial_burdeo_amarillo_h09y27kjbu.webp",
+      "antisocial_skrewdriver_gris_t899linnl2.webp"
     ],
     "colors": [
       "Negro",
@@ -5184,36 +5336,36 @@ export const products = [
       "Gris"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_kdeslk0pqt.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_1m86q4eoma.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_us1539tnhq.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_drx5k07h4f.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_zpbm0mls4q.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_h09y27kjbu.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_t899linnl2.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_kdeslk0pqt.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_1m86q4eoma.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_zpbm0mls4q.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_us1539tnhq.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_h09y27kjbu.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_drx5k07h4f.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_t899linnl2.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:16:08.996Z"
+    "updated": "2026-10-15 03:23:33.900Z"
   },
   {
     "id": "t6az9rk82ill0jx",
@@ -5252,40 +5404,47 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_tom7xyj9y4.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_e5yb8isv6o.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_tom7xyj9y4.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_azul_15re1jy292.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_burdeo_rzalrsc5l9.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_e5yb8isv6o.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_azul_d4kymia10j.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_burdeo_0mbam8fuoe.webp"
     ],
     "rawImages": [
-      "7_muelles_igbu1eoxlk_tom7xyj9y4.webp",
-      "7_muelles_azul_15re1jy292.webp",
-      "7_muelles_burdeo_rzalrsc5l9.webp"
+      "7_muelles_igbu1eoxlk_e5yb8isv6o.webp",
+      "7_muelles_azul_d4kymia10j.webp",
+      "7_muelles_burdeo_0mbam8fuoe.webp"
     ],
     "colors": [
+      "Negro",
       "Azul",
       "Burdeo"
     ],
     "colorImages": {
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_azul_15re1jy292.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_burdeo_rzalrsc5l9.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_e5yb8isv6o.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_azul_d4kymia10j.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_burdeo_0mbam8fuoe.webp"
     },
     "colorItems": [
       {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_e5yb8isv6o.webp"
+      },
+      {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_azul_15re1jy292.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_azul_d4kymia10j.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_burdeo_rzalrsc5l9.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_burdeo_0mbam8fuoe.webp"
       }
     ],
-    "defaultColor": "Azul",
+    "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:22:21.506Z"
+    "updated": "2026-10-15 03:23:39.537Z"
   }
 ];
 

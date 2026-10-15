@@ -19,6 +19,7 @@ export const ProductCard = ({ product }) => {
 
   const rawImage = currentImage || product.image || '/producto.webp';
   const thumbUrl = getThumbUrl(rawImage, '100x100');
+  const cardImageUrl = getThumbUrl(rawImage, '500x500');
   const [isHighResLoaded, setIsHighResLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -73,16 +74,16 @@ export const ProductCard = ({ product }) => {
           />
         )}
 
-        {/* Imagen principal con fade-in suave */}
+        {/* Imagen de la tarjeta (500x500 WebP ultra nítida y liviana) */}
         <img 
-          src={rawImage} 
+          src={cardImageUrl} 
           alt={product.name} 
           loading="lazy"
           decoding="async"
           onLoad={() => setIsHighResLoaded(true)}
           onError={(e) => {
             e.currentTarget.onerror = null;
-            e.currentTarget.src = '/producto.webp';
+            e.currentTarget.src = rawImage || '/producto.webp';
             setIsHighResLoaded(true);
           }}
           className={`product-img relative z-10 w-full h-full object-contain filter contrast-105 transition-opacity duration-300 ${
