@@ -52,18 +52,17 @@ export const ProductCard = ({ product }) => {
   return (
     <div className="product-card group relative flex flex-col justify-between p-3 sm:p-4 bg-[#080808] border border-neutral-900 transition-all duration-300 hover:border-neutral-700">
       
-      {/* Limited Badge */}
-      {product.badge && (
-        <div className="absolute top-3 right-3 z-10 pointer-events-none">
-          <span className="badge-limited">{product.badge}</span>
-        </div>
-      )}
-
       {/* Product Image Container (Direct link to Single Product page) */}
       <Link 
         to={`/producto/${product.id}`}
         className="relative w-full aspect-square bg-[#050505] flex items-center justify-center p-2 overflow-hidden mb-3 block"
       >
+        {/* Limited / Destacado / Nuevo Badge (Siempre al frente sobre la foto) */}
+        {product.badge && (
+          <div className="absolute top-2.5 right-2.5 z-20 pointer-events-none">
+            <span className="badge-limited shadow-md">{product.badge}</span>
+          </div>
+        )}
         {/* Placeholder ultra-ligero de 13 KB para respuesta instantánea (<40ms) */}
         {!isHighResLoaded && rawImage !== '/producto.webp' && (
           <img 
