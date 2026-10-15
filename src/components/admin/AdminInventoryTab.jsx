@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Boxes, 
   Search, 
@@ -15,12 +15,20 @@ import {
 import { useStore } from '../../context/StoreContext';
 import { formatCLP } from '../../utils/currency';
 import { sortSizes } from '../../utils/sizes';
+import { getThumbUrl } from '../../lib/pocketbase';
+
+const ITEMS_PER_PAGE = 25;
 
 export const AdminInventoryTab = () => {
   const { products, updateStock, adjustStock, updateSizeStock, adjustSizeStock } = useStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [stockFilter, setStockFilter] = useState('ALL'); // ALL, CRITICAL_SIZES, LOW, OUT, NORMAL
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [toastMessage, setToastMessage] = useState(null);
+
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [stockFilter, searchQuery]);
 
   const showNotification = (msg) => {
     setToastMessage(msg);
@@ -70,6 +78,10 @@ export const AdminInventoryTab = () => {
       return true;
     });
   }, [products, stockFilter, searchQuery]);
+
+  const displayedProducts = useMemo(() => {
+    return filteredProducts.slice(0, visibleCount);
+  }, [filteredProducts, visibleCount]);
 
   const handleRestockEmptySizes = () => {
     let restockedCount = 0;
@@ -222,6 +234,19 @@ export const AdminInventoryTab = () => {
         </div>
       </div>
 
+      {/* Table Header Counter */}
+      <div className="flex items-center justify-between text-xs font-condensed tracking-wider uppercase text-neutral-400">
+        <span>Mostrando <strong className="text-white">{displayedProducts.length}</strong> de <strong className="text-white">{filteredProducts.length}</strong> prendas en inventario</span>
+        {visibleCount < filteredProducts.length && (
+          <button
+            onClick={() => setVisibleCount(filteredProducts.length)}
+            className="text-[11px] text-[#C52222] hover:underline cursor-pointer"
+          >
+            Mostrar todas ({filteredProducts.length})
+          </button>
+        )}
+      </div>
+
       {/* Inventory Table with Size-by-Size Controls */}
       <div className="bg-[#080808] border border-neutral-900 rounded-xl overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
@@ -236,7 +261,7 @@ export const AdminInventoryTab = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-900">
-              {filteredProducts.map(product => {
+              {displayedProducts.map((product, idx) => {
                 const stock = product.stock || 0;
                 const isOut = stock <= 0;
                 const isLow = stock < 10 && stock > 0;
@@ -252,10 +277,13 @@ export const AdminInventoryTab = () => {
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-black border border-neutral-800 rounded-lg p-1 shrink-0 flex items-center justify-center">
                           <img
-                            src={product.image || '/producto.webp'}
+                            src={getThumbUrl(product.image, '100x100')}
                             alt={product.name}
+                            loading={idx < 10 ? "eager" : "lazy"}
+                            fetchPriority={idx < 5 ? "high" : "auto"}
+                            decoding={idx < 10 ? "sync" : "async"}
                             className="w-full h-full object-contain"
-                            onError={(e) => { e.currentTarget.src = '/producto.webp'; }}
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
                           />
                         </div>
                         <div className="min-w-0">
@@ -388,6 +416,31 @@ export const AdminInventoryTab = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Inventory Pagination Controls */}
+        {visibleCount < filteredProducts.length && (
+          <div className="p-4 bg-[#0a0a0a] border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-condensed">
+            <span className="text-neutral-500 uppercase tracking-wider">
+              Mostrando {displayedProducts.length} de {filteredProducts.length} prendas
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}
+                className="px-5 py-2.5 bg-[#181818] hover:bg-[#222] border border-neutral-700 text-white font-bold tracking-wider uppercase rounded-lg transition-all cursor-pointer shadow active:scale-95"
+              >
+                + Cargar más filas ({filteredProducts.length - visibleCount} restantes)
+              </button>
+              <button
+                type="button"
+                onClick={() => setVisibleCount(filteredProducts.length)}
+                className="px-3 py-2 text-neutral-400 hover:text-white uppercase cursor-pointer"
+              >
+                Mostrar todas ({filteredProducts.length})
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
     </div>

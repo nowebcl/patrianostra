@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { formatCLP } from '../../utils/currency';
+import { getThumbUrl } from '../../lib/pocketbase';
 
 const STATUS_LIST = ['TODOS', 'PENDIENTE', 'EN PREPARACIÓN', 'ENVIADO', 'ENTREGADO'];
 
@@ -239,8 +240,10 @@ export const AdminOrdersTab = () => {
                           <div className="flex items-center gap-2 min-w-0">
                             <div className="w-7 h-7 bg-neutral-900 rounded p-0.5 shrink-0 border border-neutral-800">
                               <img 
-                                src={item.colorImage || item.product?.image || '/producto.webp'} 
+                                src={getThumbUrl(item.colorImage || item.product?.image || '/producto.webp', '100x100')} 
                                 alt="" 
+                                loading="lazy"
+                                decoding="async"
                                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
                                 className="w-full h-full object-contain" 
                               />

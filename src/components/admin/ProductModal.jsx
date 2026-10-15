@@ -12,7 +12,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
     category: 'Hoodies',
     stock: 15,
     sizes: ['S', 'M', 'L', 'XL'],
-    image: '/producto.png',
+    image: '/producto.webp',
     badge: '',
     description: '',
     isFeatured: true
@@ -29,7 +29,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
         category: productToEdit.category || 'Hoodies',
         stock: productToEdit.stock !== undefined ? Number(productToEdit.stock) : 10,
         sizes: Array.isArray(productToEdit.sizes) ? productToEdit.sizes : ['S', 'M', 'L', 'XL'],
-        image: productToEdit.image || '/producto.png',
+        image: productToEdit.image || '/producto.webp',
         badge: productToEdit.badge || '',
         description: productToEdit.description || '',
         isFeatured: !!productToEdit.isFeatured
@@ -42,7 +42,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
         category: 'Polerones',
         stock: 15,
         sizes: ['S', 'M', 'L', 'XL'],
-        image: '/producto.png',
+        image: '/producto.webp',
         badge: 'EDICIÓN LIMITADA',
         description: 'Confeccionado en algodón premium peinado con corte estructurado y serigrafía de alta densidad.',
         isFeatured: true

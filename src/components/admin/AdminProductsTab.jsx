@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Plus, 
   Search, 
@@ -15,13 +15,20 @@ import { formatCLP } from '../../utils/currency';
 import { sortSizes } from '../../utils/sizes';
 import { ProductEditorView } from './ProductEditorView';
 
+const ITEMS_PER_PAGE = 18;
+
 export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setProductToEdit }) => {
   const { products, addProduct, updateProduct, deleteProduct, adjustStock } = useStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
   const [sortBy, setSortBy] = useState('newest');
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [productToDelete, setProductToDelete] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
+
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [searchQuery, selectedCategory, sortBy]);
 
   const categories = useMemo(() => {
     const base = ['TODOS', 'POLERAS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS'];
@@ -88,6 +95,10 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
       return 0;
     });
   }, [products, selectedCategory, searchQuery, sortBy]);
+
+  const displayedProducts = useMemo(() => {
+    return filteredProducts.slice(0, visibleCount);
+  }, [filteredProducts, visibleCount]);
 
   const handleSaveProduct = async (formData) => {
     try {
@@ -223,6 +234,19 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
 
       </div>
 
+      {/* Products Counter & Info */}
+      <div className="flex items-center justify-between text-xs font-condensed tracking-wider uppercase text-neutral-400">
+        <span>Mostrando <strong className="text-white">{displayedProducts.length}</strong> de <strong className="text-white">{filteredProducts.length}</strong> prendas</span>
+        {visibleCount < filteredProducts.length && (
+          <button
+            onClick={() => setVisibleCount(filteredProducts.length)}
+            className="text-[11px] text-[#C52222] hover:underline cursor-pointer"
+          >
+            Mostrar todas ({filteredProducts.length})
+          </button>
+        )}
+      </div>
+
       {/* Products Grid */}
       {filteredProducts.length === 0 ? (
         <div className="bg-[#111] border border-neutral-800 rounded-2xl p-10 text-center text-neutral-400 space-y-2">
@@ -231,7 +255,7 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProducts.map(product => {
+          {displayedProducts.map((product, idx) => {
             const stock = product.stock || 0;
             const isOut = stock <= 0;
             const isLow = stock < 10 && stock > 0;
@@ -248,6 +272,9 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                     <img
                       src={product.image || '/producto.webp'}
                       alt={product.name}
+                      loading={idx < 6 ? "eager" : "lazy"}
+                      fetchPriority={idx < 3 ? "high" : "auto"}
+                      decoding={idx < 6 ? "sync" : "async"}
                       className="max-h-full max-w-full object-contain filter contrast-105"
                       onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
                     />
@@ -406,6 +433,24 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Pagination Load More */}
+      {visibleCount < filteredProducts.length && (
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 pb-4">
+          <button
+            onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}
+            className="px-8 py-3 bg-[#181818] hover:bg-[#222] border border-neutral-700 hover:border-neutral-500 text-white font-condensed font-bold tracking-widest text-xs uppercase rounded-xl transition-all cursor-pointer shadow-lg active:scale-95"
+          >
+            + Cargar más prendas ({filteredProducts.length - visibleCount} restantes)
+          </button>
+          <button
+            onClick={() => setVisibleCount(filteredProducts.length)}
+            className="px-4 py-2 text-neutral-400 hover:text-white font-condensed tracking-wider text-xs uppercase cursor-pointer"
+          >
+            Mostrar todas las {filteredProducts.length}
+          </button>
         </div>
       )}
 

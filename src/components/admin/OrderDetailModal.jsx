@@ -15,6 +15,7 @@ import {
   FileText
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
+import { getThumbUrl } from '../../lib/pocketbase';
 
 const STATUS_COLORS = {
   'Pendiente': 'bg-amber-500/20 text-amber-300 border-amber-500/40',
@@ -206,8 +207,10 @@ export const OrderDetailModal = ({ order, isOpen, onClose }) => {
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-12 h-12 bg-black border border-neutral-800 rounded p-1 shrink-0">
                       <img 
-                        src={item.colorImage || item.product?.image || '/producto.webp'} 
+                        src={getThumbUrl(item.colorImage || item.product?.image || '/producto.webp', '100x100')} 
                         alt={item.product?.name} 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain"
                         onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
                       />
