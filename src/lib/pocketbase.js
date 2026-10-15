@@ -72,14 +72,15 @@ export const mapPbProduct = (record) => {
   const col = record.collectionId || record.collectionName || 'pbc_4092854851';
   
   const getFileUrl = (file) => {
-    if (!file || typeof file !== 'string' || !file.trim()) return '/producto.webp';
+    if (!file || typeof file !== 'string' || !file.trim()) return null;
+    if (file.startsWith('blob:') || file.startsWith('data:')) return null;
     if (file.startsWith('http://') || file.startsWith('https://') || file.startsWith('/')) {
       return file;
     }
     if (record.id && file) {
       return `${POCKETBASE_URL}/api/files/${col}/${record.id}/${file}`;
     }
-    return '/producto.webp';
+    return null;
   };
 
   // 1. Procesar galería original
@@ -98,7 +99,7 @@ export const mapPbProduct = (record) => {
     if (item && typeof item === 'object' && item.url) {
       const fullUrl = getFileUrl(item.url);
       if (fullUrl && fullUrl !== '/producto.webp' && !gallery.includes(fullUrl)) gallery.push(fullUrl);
-      if (item.color) {
+      if (item.color && fullUrl && fullUrl !== '/producto.webp') {
         colorImages[item.color] = fullUrl;
         if (!colors.includes(item.color)) colors.push(item.color);
       }
@@ -115,7 +116,7 @@ export const mapPbProduct = (record) => {
       gallery.push(fullUrl);
     }
     const detected = detectColorFromText(img);
-    if (detected && !colorImages[detected.name]) {
+    if (detected && fullUrl && fullUrl !== '/producto.webp' && !colorImages[detected.name]) {
       colorImages[detected.name] = fullUrl;
       if (!colors.includes(detected.name)) {
         colors.push(detected.name);
@@ -123,11 +124,20 @@ export const mapPbProduct = (record) => {
     }
   });
 
-  // Si record.image tiene un valor válido explícito, asegurar que esté al inicio de gallery
-  if (record.image && typeof record.image === 'string' && record.image.trim()) {
-    const fullMain = getFileUrl(record.image);
-    if (fullMain && fullMain !== '/producto.webp' && !gallery.includes(fullMain)) {
-      gallery.unshift(fullMain);
+  // Determinar la foto principal real del producto
+  let mainImage = (record.image ? getFileUrl(record.image) : null) || gallery[0] || '/producto.webp';
+  if (mainImage === '/producto.webp' && gallery.length > 0 && gallery[0] !== '/producto.webp') {
+    mainImage = gallery[0];
+  }
+
+  // Asegurar que mainImage esté al inicio de gallery si es una foto válida
+  if (mainImage && mainImage !== '/producto.webp') {
+    const existingIdx = gallery.indexOf(mainImage);
+    if (existingIdx > 0) {
+      gallery.splice(existingIdx, 1);
+      gallery.unshift(mainImage);
+    } else if (existingIdx === -1) {
+      gallery.unshift(mainImage);
     }
   }
 
@@ -135,8 +145,6 @@ export const mapPbProduct = (record) => {
   if (gallery.length === 0) {
     gallery.push('/producto.webp');
   }
-
-  const mainImage = gallery[0] || '/producto.webp';
 
   // Procesar campo colors directo si viene en el registro
   let rawColors = record.colors;

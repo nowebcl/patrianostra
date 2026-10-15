@@ -48,6 +48,70 @@ export const products = [
     "defaultColor": "Negro"
   },
   {
+    "id": "w3iaz67xdivbr2p",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-POL-907",
+    "name": "PRUEBA 3",
+    "price": 12000,
+    "originalPrice": null,
+    "category": "poleras",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "S": 3,
+      "M": 6,
+      "L": 7,
+      "XL": 4,
+      "XXL": 2
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "specs": [],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "isFeatured": false,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
+    ],
+    "rawImages": [
+      "9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
+      "40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
+    ],
+    "colors": [
+      "Negro",
+      "Blanco"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
+      "Blanco": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp"
+      },
+      {
+        "name": "Blanco",
+        "hex": "#FFFFFF",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
+      }
+    ],
+    "defaultColor": "Negro",
+    "created": "2026-10-15 23:06:38.073Z",
+    "updated": "2026-10-15 23:06:38.417Z"
+  },
+  {
     "id": "th2u9vs6emt2vkj",
     "collectionId": "pbc_4092854851",
     "collectionName": "products",
@@ -257,7 +321,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-15 22:45:56.752Z",
-    "updated": "2026-10-15 22:45:56.752Z"
+    "updated": "2026-10-15 23:27:14.893Z"
   },
   {
     "id": "7dzt1phpjxbo8n0",
@@ -3390,7 +3454,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-09 01:32:54.895Z",
-    "updated": "2026-10-15 03:14:58.900Z"
+    "updated": "2026-10-15 23:05:59.448Z"
   },
   {
     "id": "i4w68u1hsp7dbji",
@@ -3611,59 +3675,6 @@ export const products = [
     "defaultColor": "Negro",
     "created": "",
     "updated": "2026-10-15 03:21:14.887Z"
-  },
-  {
-    "id": "4yfm51ebxrmk3sy",
-    "collectionId": "pbc_4092854851",
-    "collectionName": "products",
-    "sku": "PN-POL-209",
-    "name": "TEST",
-    "price": 12000,
-    "originalPrice": null,
-    "category": "polerones",
-    "badge": "NUEVO",
-    "stock": 15,
-    "sizeStock": {
-      "L": 4,
-      "M": 4,
-      "S": 3,
-      "XL": 2,
-      "XXL": 2
-    },
-    "gender": "Unisex",
-    "gsm": "240 GSM Algodón Pesado",
-    "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
-    "specs": [],
-    "sizes": [
-      "L",
-      "M",
-      "S",
-      "XL",
-      "XXL"
-    ],
-    "isFeatured": false,
-    "image": "/producto.webp",
-    "gallery": [
-      "/producto.webp"
-    ],
-    "rawImages": [],
-    "colors": [
-      "Negro"
-    ],
-    "colorImages": {
-      "Negro": "/producto.webp"
-    },
-    "colorItems": [
-      {
-        "name": "Negro",
-        "hex": "#111111",
-        "image": "/producto.webp"
-      }
-    ],
-    "defaultColor": "Negro",
-    "created": "",
-    "updated": "2026-10-08 12:52:50.339Z"
   },
   {
     "id": "vd1dfhf0pmyx829",

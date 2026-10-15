@@ -274,21 +274,29 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     };
 
     setImageItems(prev => {
-      // Si la foto principal era el placeholder, reemplazarla
-      if (prev.length === 1 && (prev[0].url === '/producto.webp' || prev[0].url === '/producto.png')) {
-        return [newItem];
-      }
+      // Filtrar placeholders existentes (items que sean /producto.webp sin archivo)
+      const filtered = prev.filter(it => 
+        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+      );
       // Si ya existía un item asignado a este color, reemplazarlo por la nueva foto
-      const existingIdx = prev.findIndex(it => it.color === targetUploadColor);
+      const existingIdx = filtered.findIndex(it => it.color === targetUploadColor);
       if (existingIdx !== -1) {
-        const next = [...prev];
+        const next = [...filtered];
         next[existingIdx] = newItem;
         return next;
       }
-      return [...prev, newItem];
+      return [...filtered, newItem];
     });
 
-    setColorImages(prev => ({ ...prev, [targetUploadColor]: previewUrl }));
+    setColorImages(prev => {
+      const next = { ...prev, [targetUploadColor]: previewUrl };
+      const primaryColor = colors[0] || 'Negro';
+      // Si el color primario tenía placeholder, asignarle también la nueva foto
+      if (!next[primaryColor] || next[primaryColor].includes('/producto.webp') || next[primaryColor].includes('/producto.png')) {
+        next[primaryColor] = previewUrl;
+      }
+      return next;
+    });
 
     // Si es el primer color o foto principal vacía, ponerla de principal
     setFormData(prev => ({
@@ -330,7 +338,11 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     };
 
     setImageItems(prev => {
-      const additionals = prev.slice(1);
+      // Filtrar placeholders existentes
+      const realItems = prev.filter(it => 
+        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+      );
+      const additionals = realItems.filter((_, idx) => idx > 0);
       return [newItem, ...additionals];
     });
 
@@ -339,7 +351,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     setFormData(prev => ({
       ...prev,
       image: previewUrl,
-      gallery: [previewUrl, ...(prev.gallery.length > 1 ? prev.gallery.slice(1) : [])]
+      gallery: [previewUrl, ...(prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'))]
     }));
 
     e.target.value = '';
@@ -366,11 +378,17 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
       })
     );
 
-    setImageItems(prev => [...prev, ...newItems]);
+    setImageItems(prev => {
+      const realItems = prev.filter(it => 
+        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+      );
+      return [...realItems, ...newItems];
+    });
     setGalleryFiles(prev => [...prev, ...newItems.map(it => it.file)]);
     setFormData(prev => ({
       ...prev,
-      gallery: [...prev.gallery, ...newItems.map(it => it.url)]
+      image: prev.image === '/producto.webp' || prev.image === '/producto.png' ? newItems[0].url : prev.image,
+      gallery: [...prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'), ...newItems.map(it => it.url)]
     }));
 
     // Auto-vincular a colores si coincidieron
@@ -522,21 +540,31 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
 
     setIsSaving(true);
     try {
-      const mainItem = imageItems[0];
-      const additionals = imageItems.slice(1);
+      // Filtrar items que sean placeholders si hay fotos reales
+      const realItems = imageItems.filter(it => 
+        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+      );
+      const effectiveItems = realItems.length > 0 ? realItems : imageItems;
+      const mainItem = effectiveItems[0];
+      const additionals = effectiveItems.slice(1);
 
       // Preparar mapeo definitivo de colores
       const activeColors = colors.length > 0 ? colors : ['Negro'];
       const finalColorImages = { ...colorImages };
 
-      // Si algún color no tiene foto asignada, vincularla a la principal
+      // Si algún color no tiene foto asignada o tiene placeholder, vincularlo a la principal real
       activeColors.forEach(c => {
-        if (!finalColorImages[c] && mainItem?.url) {
+        const currentUrl = finalColorImages[c];
+        const isPlaceholder = !currentUrl || currentUrl === '/producto.webp' || currentUrl === '/producto.png';
+        if (isPlaceholder && mainItem?.url) {
           finalColorImages[c] = mainItem.url;
         }
       });
 
-      const primaryImg = finalColorImages[activeColors[0]] || mainItem?.url || formData.image || '/producto.webp';
+      const primaryImg = (finalColorImages[activeColors[0]] && !finalColorImages[activeColors[0]].includes('/producto.webp')) 
+        || (mainItem?.url && !mainItem.url.includes('/producto.webp') ? mainItem.url : null)
+        || formData.image 
+        || '/producto.webp';
 
       const payload = {
         ...(productToEdit || {}),
@@ -551,10 +579,10 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         colorImages: finalColorImages,
         defaultColor: activeColors[0],
         image: primaryImg,
-        gallery: imageItems.length > 0 ? imageItems.map(it => it.url) : [primaryImg],
-        imageItems,
-        mainImageFile: mainItem?.file || null,
-        galleryFiles: additionals.filter(it => it.file !== null).map(it => it.file),
+        gallery: effectiveItems.length > 0 ? effectiveItems.map(it => it.url) : [primaryImg],
+        imageItems: effectiveItems,
+        mainImageFile: mainItem?.file instanceof File ? mainItem.file : null,
+        galleryFiles: additionals.filter(it => it.file instanceof File).map(it => it.file),
         badge: formData.badge || null,
         description: formData.description.trim(),
         isFeatured: formData.isFeatured,

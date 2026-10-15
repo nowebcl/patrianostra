@@ -582,15 +582,39 @@ export const StoreProvider = ({ children }) => {
     const specs = Array.isArray(productData.specs) ? productData.specs : (productData.specs ? productData.specs.split('\n').filter(Boolean) : []);
     const isFeatured = !!productData.isFeatured;
 
-    const mainImageUrl = cleanUrl(productData.image);
-    const galleryUrls = (Array.isArray(productData.gallery) ? productData.gallery : [])
-      .map(cleanUrl)
-      .filter(Boolean);
+    const activeColors = Array.isArray(productData.colors) && productData.colors.length > 0
+      ? productData.colors
+      : [productData.defaultColor || 'Negro'];
 
-    const hasFiles = (Array.isArray(productData.imageItems) && productData.imageItems.some(it => it.file instanceof File)) ||
-                     (productData.mainImageFile instanceof File) ||
-                     (Array.isArray(productData.galleryFiles) && productData.galleryFiles.some(f => f instanceof File));
+    // 1. Recopilar todos los archivos reales a subir con su color asignado
+    let filesToUpload = [];
+    if (Array.isArray(productData.imageItems)) {
+      filesToUpload = productData.imageItems
+        .filter(it => it && it.file instanceof File)
+        .map(it => ({
+          file: it.file,
+          color: it.color || productData.defaultColor || activeColors[0] || 'Negro'
+        }));
+    } else {
+      if (productData.mainImageFile instanceof File) {
+        filesToUpload.push({
+          file: productData.mainImageFile,
+          color: productData.defaultColor || activeColors[0] || 'Negro'
+        });
+      }
+      if (Array.isArray(productData.galleryFiles)) {
+        productData.galleryFiles.forEach(f => {
+          if (f instanceof File) {
+            filesToUpload.push({
+              file: f,
+              color: null
+            });
+          }
+        });
+      }
+    }
 
+    const hasFiles = filesToUpload.length > 0;
     let pbRecord;
 
     if (hasFiles) {
@@ -610,32 +634,20 @@ export const StoreProvider = ({ children }) => {
       fd.append('specs', JSON.stringify(specs));
       fd.append('sizes', JSON.stringify(sizes));
       fd.append('isFeatured', String(isFeatured));
-      if (Array.isArray(productData.colors) && productData.colors.length > 0) {
-        fd.append('colors', JSON.stringify(productData.colors));
-      }
-      // Enviar URL limpia o vacía (las fotos reales quedan guardadas en el campo 'images')
-      fd.append('image', mainImageUrl);
-      fd.append('gallery', JSON.stringify(galleryUrls));
+      fd.append('colors', JSON.stringify(activeColors));
 
-      if (Array.isArray(productData.imageItems)) {
-        productData.imageItems.forEach(it => {
-          if (it.file instanceof File) {
-            fd.append('images', getFileWithColor(it.file, it.color || productData.defaultColor));
-          }
-        });
-      } else {
-        if (productData.mainImageFile instanceof File) {
-          fd.append('images', getFileWithColor(productData.mainImageFile, productData.defaultColor));
-        }
-        if (Array.isArray(productData.galleryFiles)) {
-          productData.galleryFiles.forEach(f => {
-            if (f instanceof File) fd.append('images', f);
-          });
-        }
-      }
+      // Adjuntar archivos reales a FormData con su color en el nombre
+      filesToUpload.forEach(item => {
+        fd.append('images', getFileWithColor(item.file, item.color));
+      });
 
       pbRecord = await pb.collection('products').create(fd, { requestKey: null });
     } else {
+      const fallbackMain = cleanUrl(productData.image) || '/producto.webp';
+      const fallbackGallery = (Array.isArray(productData.gallery) ? productData.gallery : [])
+        .map(cleanUrl)
+        .filter(Boolean);
+
       pbRecord = await pb.collection('products').create({
         name: productData.name.trim().toUpperCase(),
         description,
@@ -651,10 +663,10 @@ export const StoreProvider = ({ children }) => {
         fit,
         specs,
         sizes,
-        colors: Array.isArray(productData.colors) && productData.colors.length > 0 ? productData.colors : ['Negro'],
+        colors: activeColors,
         isFeatured,
-        image: mainImageUrl || '/producto.webp',
-        gallery: galleryUrls.length > 0 ? galleryUrls : ['/producto.webp']
+        image: fallbackMain,
+        gallery: fallbackGallery.length > 0 ? fallbackGallery : ['/producto.webp']
       }, { requestKey: null });
     }
 
@@ -663,31 +675,26 @@ export const StoreProvider = ({ children }) => {
       const col = pbRecord.collectionId || pbRecord.collectionName || 'pbc_4092854851';
       const galleryWithColorObjects = pbRecord.images.map((img, idx) => {
         const fullUrl = `${POCKETBASE_URL}/api/files/${col}/${pbRecord.id}/${img}`;
-        let itemColor = productData.imageItems?.[idx]?.color;
-        if (!itemColor && productData.colorImages && typeof productData.colorImages === 'object') {
-          for (const [colName, colUrl] of Object.entries(productData.colorImages)) {
-            if (colUrl && (colUrl.includes(img) || fullUrl.includes(colUrl))) {
-              itemColor = colName;
-              break;
-            }
-          }
-        }
-        const detectedColor = detectColorFromText(img)?.name;
-        const finalColor = itemColor || detectedColor || (idx === 0 ? productData.defaultColor || 'Negro' : null);
+        const colorFromUpload = filesToUpload[idx]?.color;
+        const colorFromFilename = detectColorFromText(img)?.name;
+        const finalColor = colorFromUpload || colorFromFilename || (idx === 0 ? (productData.defaultColor || activeColors[0]) : null);
         return {
           url: fullUrl,
           color: finalColor
         };
       });
 
-      const activeColors = Array.isArray(productData.colors) && productData.colors.length > 0
-        ? productData.colors
-        : [productData.defaultColor || 'Negro'];
+      // Determinar la foto principal dando prioridad a la variante por defecto o la primera foto real subida
+      const targetDefaultColor = productData.defaultColor || activeColors[0];
+      const defaultColorMatch = galleryWithColorObjects.find(g => 
+        g.color === targetDefaultColor && g.url && !g.url.includes('/producto.webp') && !g.url.startsWith('blob:')
+      );
+      const firstRealImage = galleryWithColorObjects.find(g => 
+        g.url && !g.url.includes('/producto.webp') && !g.url.startsWith('blob:')
+      );
+      const mainImg = defaultColorMatch?.url || firstRealImage?.url || '/producto.webp';
 
-      const mainImg = (productData.defaultColor && productData.colorImages?.[productData.defaultColor])
-        || galleryWithColorObjects[0]?.url 
-        || '/producto.webp';
-
+      // Garantizar que todos los colores activos tengan una foto asignada en la galería
       activeColors.forEach(colName => {
         const exists = galleryWithColorObjects.some(g => g.color === colName);
         if (!exists) {
@@ -710,12 +717,6 @@ export const StoreProvider = ({ children }) => {
     }
 
     const mapped = mapPbProduct(pbRecord);
-    if (productData.colors && Array.isArray(productData.colors) && productData.colors.length > 0) {
-      mapped.colors = Array.from(new Set([...(mapped.colors || []), ...productData.colors]));
-    }
-    if (productData.colorImages && typeof productData.colorImages === 'object') {
-      mapped.colorImages = { ...(mapped.colorImages || {}), ...productData.colorImages };
-    }
     if (productData.defaultColor) {
       mapped.defaultColor = productData.defaultColor;
     }
@@ -738,6 +739,10 @@ export const StoreProvider = ({ children }) => {
       finalStock = Object.values(finalSizeStock).reduce((sum, n) => sum + (Number(n) || 0), 0);
     }
 
+    const activeColors = Array.isArray(updatedData.colors) && updatedData.colors.length > 0
+      ? updatedData.colors
+      : [updatedData.defaultColor || 'Negro'];
+
     const hasNewFiles = Array.isArray(updatedData.imageItems) && updatedData.imageItems.some(it => it.file instanceof File);
     const hasImageItems = Array.isArray(updatedData.imageItems) && updatedData.imageItems.length > 0;
 
@@ -756,14 +761,22 @@ export const StoreProvider = ({ children }) => {
       if (updatedData.isFeatured !== undefined) fd.append('isFeatured', String(!!updatedData.isFeatured));
       if (updatedData.sizes !== undefined) fd.append('sizes', JSON.stringify(updatedData.sizes));
       if (updatedData.specs !== undefined) fd.append('specs', JSON.stringify(updatedData.specs));
-      if (updatedData.colors !== undefined) fd.append('colors', JSON.stringify(updatedData.colors));
+      fd.append('colors', JSON.stringify(activeColors));
 
-      updatedData.imageItems.forEach(it => {
+      // Distinguir entre archivos nuevos a subir y archivos existentes a conservar
+      const newFilesToUpload = [];
+      const existingImagesToKeep = [];
+
+      (updatedData.imageItems || []).forEach(it => {
+        if (!it) return;
         if (it.file instanceof File) {
-          fd.append('images', getFileWithColor(it.file, it.color || updatedData.defaultColor));
+          const itemColor = it.color || updatedData.defaultColor || activeColors[0] || 'Negro';
+          newFilesToUpload.push({ file: it.file, color: itemColor });
+          fd.append('images', getFileWithColor(it.file, itemColor));
         } else {
           const raw = it.rawName || (typeof it.url === 'string' && it.url.includes('/api/files/') ? it.url.split('/').pop().split('?')[0] : null);
-          if (raw) {
+          if (raw && !raw.startsWith('blob:') && raw !== 'producto.webp') {
+            existingImagesToKeep.push({ rawName: raw, url: it.url, color: it.color });
             fd.append('images', raw);
           }
         }
@@ -776,30 +789,25 @@ export const StoreProvider = ({ children }) => {
         const col = updatedRecord.collectionId || updatedRecord.collectionName || 'pbc_4092854851';
         const galleryWithColorObjects = updatedRecord.images.map((img, idx) => {
           const fullUrl = `${POCKETBASE_URL}/api/files/${col}/${updatedRecord.id}/${img}`;
-          let itemColor = updatedData.imageItems?.[idx]?.color;
-          if (!itemColor && updatedData.colorImages && typeof updatedData.colorImages === 'object') {
-            for (const [colName, colUrl] of Object.entries(updatedData.colorImages)) {
-              if (colUrl && (colUrl.includes(img) || fullUrl.includes(colUrl))) {
-                itemColor = colName;
-                break;
-              }
-            }
-          }
+          
+          const matchExisting = existingImagesToKeep.find(ex => ex.rawName === img || (ex.url && ex.url.includes(img)));
+          const matchNew = newFilesToUpload.find(nf => img.toLowerCase().includes((nf.color || '').toLowerCase()));
           const detectedColor = detectColorFromText(img)?.name;
-          const finalColor = itemColor || detectedColor || (idx === 0 ? updatedData.defaultColor || 'Negro' : null);
+          const finalColor = matchExisting?.color || matchNew?.color || detectedColor || (idx === 0 ? (updatedData.defaultColor || activeColors[0]) : null);
           return {
             url: fullUrl,
             color: finalColor
           };
         });
 
-        const activeColors = Array.isArray(updatedData.colors) && updatedData.colors.length > 0
-          ? updatedData.colors
-          : (updatedRecord.colors || [updatedData.defaultColor || 'Negro']);
-
-        const mainImg = (updatedData.defaultColor && updatedData.colorImages?.[updatedData.defaultColor])
-          || galleryWithColorObjects[0]?.url 
-          || '/producto.webp';
+        const targetDefaultColor = updatedData.defaultColor || activeColors[0];
+        const defaultColorMatch = galleryWithColorObjects.find(g => 
+          g.color === targetDefaultColor && g.url && !g.url.includes('/producto.webp') && !g.url.startsWith('blob:')
+        );
+        const firstRealImage = galleryWithColorObjects.find(g => 
+          g.url && !g.url.includes('/producto.webp') && !g.url.startsWith('blob:')
+        );
+        const mainImg = defaultColorMatch?.url || firstRealImage?.url || '/producto.webp';
 
         activeColors.forEach(colName => {
           const exists = galleryWithColorObjects.some(g => g.color === colName);
@@ -813,7 +821,7 @@ export const StoreProvider = ({ children }) => {
 
         try {
           updatedRecord = await pb.collection('products').update(updatedRecord.id, {
-            image: cleanUrl(mainImg) || galleryWithColorObjects[0]?.url || '/producto.webp',
+            image: mainImg,
             gallery: galleryWithColorObjects,
             colors: activeColors
           }, { requestKey: null });
@@ -825,33 +833,28 @@ export const StoreProvider = ({ children }) => {
       // Sin archivos nuevos de PC: actualizar campos y persistir variantes de color directamente
       let galleryWithColorObjects = [];
       if (hasImageItems) {
-        galleryWithColorObjects = updatedData.imageItems.map((it, idx) => {
-          let itemColor = it.color;
-          if (!itemColor && updatedData.colorImages && typeof updatedData.colorImages === 'object') {
-            for (const [colName, colUrl] of Object.entries(updatedData.colorImages)) {
-              if (colUrl === it.url) {
-                itemColor = colName;
-                break;
-              }
-            }
-          }
-          const detectedColor = detectColorFromText(it.rawName || it.url)?.name;
-          const finalColor = itemColor || detectedColor || (idx === 0 ? updatedData.defaultColor || 'Negro' : null);
-          return {
-            url: it.url,
-            color: finalColor
-          };
-        }).filter(it => it.url && !it.url.startsWith('blob:'));
+        galleryWithColorObjects = updatedData.imageItems
+          .map((it, idx) => {
+            const detectedColor = detectColorFromText(it.rawName || it.url)?.name;
+            const finalColor = it.color || detectedColor || (idx === 0 ? (updatedData.defaultColor || activeColors[0]) : null);
+            return {
+              url: it.url,
+              color: finalColor
+            };
+          })
+          .filter(it => it.url && !it.url.startsWith('blob:') && !it.url.startsWith('data:'));
       } else if (Array.isArray(updatedData.gallery)) {
         galleryWithColorObjects = updatedData.gallery.map(cleanGalleryItem).filter(Boolean);
       }
 
-      const mainImg = (updatedData.defaultColor && updatedData.colorImages?.[updatedData.defaultColor])
-        || galleryWithColorObjects[0]?.url
-        || cleanUrl(updatedData.image)
-      const activeColors = Array.isArray(updatedData.colors) && updatedData.colors.length > 0
-        ? updatedData.colors
-        : [updatedData.defaultColor || 'Negro'];
+      const targetDefaultColor = updatedData.defaultColor || activeColors[0];
+      const defaultColorMatch = galleryWithColorObjects.find(g => 
+        g.color === targetDefaultColor && g.url && !g.url.includes('/producto.webp')
+      );
+      const firstRealImage = galleryWithColorObjects.find(g => 
+        g.url && !g.url.includes('/producto.webp')
+      );
+      const mainImg = defaultColorMatch?.url || firstRealImage?.url || cleanUrl(updatedData.image) || '/producto.webp';
 
       activeColors.forEach(colName => {
         const exists = galleryWithColorObjects.some(g => g.color === colName);
@@ -875,19 +878,13 @@ export const StoreProvider = ({ children }) => {
         ...(updatedData.isFeatured !== undefined ? { isFeatured: !!updatedData.isFeatured } : {}),
         ...(updatedData.sizes !== undefined ? { sizes: updatedData.sizes } : {}),
         ...(updatedData.specs !== undefined ? { specs: updatedData.specs } : {}),
-        ...(updatedData.colors !== undefined ? { colors: activeColors } : {}),
+        colors: activeColors,
         image: cleanUrl(mainImg) || '/producto.webp',
         gallery: galleryWithColorObjects.length > 0 ? galleryWithColorObjects : ['/producto.webp']
       }, { requestKey: null });
     }
 
     const mapped = mapPbProduct(updatedRecord);
-    if (updatedData.colors && Array.isArray(updatedData.colors) && updatedData.colors.length > 0) {
-      mapped.colors = Array.from(new Set([...(mapped.colors || []), ...updatedData.colors]));
-    }
-    if (updatedData.colorImages && typeof updatedData.colorImages === 'object') {
-      mapped.colorImages = { ...(mapped.colorImages || {}), ...updatedData.colorImages };
-    }
     if (updatedData.defaultColor) {
       mapped.defaultColor = updatedData.defaultColor;
     }
