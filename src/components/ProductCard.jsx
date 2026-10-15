@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
-import { getThumbUrl } from '../lib/pocketbase';
 
 export const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -18,13 +17,6 @@ export const ProductCard = ({ product }) => {
   const [currentImage, setCurrentImage] = React.useState(product.colorImages?.[defaultColor] || product.image || '/producto.webp');
 
   const rawImage = currentImage || product.image || '/producto.webp';
-  const thumbUrl = getThumbUrl(rawImage, '100x100');
-  const cardImageUrl = getThumbUrl(rawImage, '500x500');
-  const [isHighResLoaded, setIsHighResLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsHighResLoaded(false);
-  }, [rawImage]);
 
   // Primer talla disponible por defecto
   const defaultAvailableSize = sizes.find(sz => (sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1) > 0) || sizes[0];
@@ -63,31 +55,18 @@ export const ProductCard = ({ product }) => {
             <span className="badge-limited shadow-md">{product.badge}</span>
           </div>
         )}
-        {/* Placeholder ultra-ligero de 13 KB para respuesta instantánea (<40ms) */}
-        {!isHighResLoaded && rawImage !== '/producto.webp' && (
-          <img 
-            src={thumbUrl} 
-            alt="" 
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-contain filter blur-[1px] opacity-80"
-          />
-        )}
 
-        {/* Imagen de la tarjeta (500x500 WebP ultra nítida y liviana) */}
+        {/* Imagen de la prenda (WebP directo ultra nítido y liviano de ~60KB) */}
         <img 
-          src={cardImageUrl} 
+          src={rawImage} 
           alt={product.name} 
           loading="lazy"
           decoding="async"
-          onLoad={() => setIsHighResLoaded(true)}
           onError={(e) => {
             e.currentTarget.onerror = null;
-            e.currentTarget.src = rawImage || '/producto.webp';
-            setIsHighResLoaded(true);
+            e.currentTarget.src = '/producto.webp';
           }}
-          className={`product-img relative z-10 w-full h-full object-contain filter contrast-105 transition-opacity duration-300 ${
-            isHighResLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="product-img relative z-10 w-full h-full object-contain filter contrast-105 transition-transform duration-300 group-hover:scale-105"
         />
 
         {/* Hover Action to view single product */}
