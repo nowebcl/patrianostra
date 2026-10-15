@@ -48,6 +48,218 @@ export const products = [
     "defaultColor": "Negro"
   },
   {
+    "id": "th2u9vs6emt2vkj",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-HLD-BN",
+    "name": "POLERÓN PATRIA PESADO - BURDEO & NEGRO",
+    "price": 29990,
+    "originalPrice": 35990,
+    "category": "polerones",
+    "badge": "LIMITED",
+    "stock": 18,
+    "sizeStock": {
+      "M": 6,
+      "L": 6,
+      "XL": 6
+    },
+    "gender": "Unisex",
+    "gsm": "380 GSM Frisa Pesada",
+    "fit": "Oversize Fit",
+    "description": "Polerón hoodie premium confeccionado en frisa pesada de 380 GSM con capucha forrada y bolsillo canguro reforzado. Variantes en Burdeo y Negro clásico.",
+    "specs": [
+      "Frisa pesada 380 GSM",
+      "Bolsillo canguro y capucha con cordón plano",
+      "Estampado en espalda de alta densidad"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "isFeatured": true,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_negro_p4k6a37j6z.webp"
+    ],
+    "rawImages": [
+      "hoodie_patria_burdeo_4wi031cecs.webp",
+      "hoodie_patria_negro_p4k6a37j6z.webp"
+    ],
+    "colors": [
+      "Burdeo",
+      "Negro"
+    ],
+    "colorImages": {
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp",
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_negro_p4k6a37j6z.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Burdeo",
+        "hex": "#581C24",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp"
+      },
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_negro_p4k6a37j6z.webp"
+      }
+    ],
+    "defaultColor": "Burdeo",
+    "created": "2026-10-15 22:55:22.508Z",
+    "updated": "2026-10-15 22:55:22.683Z"
+  },
+  {
+    "id": "6yi6jpcn9sv4rh2",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-POL-SUR3",
+    "name": "POLERA COMBATE SUR - EDICIÓN 3 COLORES",
+    "price": 14990,
+    "originalPrice": 19990,
+    "category": "poleras",
+    "badge": "NUEVO",
+    "stock": 24,
+    "sizeStock": {
+      "S": 6,
+      "M": 6,
+      "L": 6,
+      "XL": 6
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Polera oficial de alta densidad 240 GSM. Confeccionada con estampados curados al horno y disponible en tres variantes de color oficiales: Negro, Blanco y Azul.",
+    "specs": [
+      "100% Algodón Peinado 240 GSM",
+      "Estampado serigráfico de máxima resistencia",
+      "Costuras reforzadas en cuello y hombros"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "isFeatured": true,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_blanco_77im0vffcj.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_azul_jyqiecw04f.webp"
+    ],
+    "rawImages": [
+      "polera_sur_negro_m3f54cks1c.webp",
+      "polera_sur_blanco_77im0vffcj.webp",
+      "polera_sur_azul_jyqiecw04f.webp"
+    ],
+    "colors": [
+      "Negro",
+      "Blanco",
+      "Azul"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp",
+      "Blanco": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_blanco_77im0vffcj.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_azul_jyqiecw04f.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp"
+      },
+      {
+        "name": "Blanco",
+        "hex": "#FFFFFF",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_blanco_77im0vffcj.webp"
+      },
+      {
+        "name": "Azul",
+        "hex": "#1E3A8A",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_azul_jyqiecw04f.webp"
+      }
+    ],
+    "defaultColor": "Negro",
+    "created": "2026-10-15 22:55:21.897Z",
+    "updated": "2026-10-15 22:55:22.086Z"
+  },
+  {
+    "id": "tgk513fzgmwyok7",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-POL-868",
+    "name": "PRUEBA  POLERAS COLOR",
+    "price": 12000,
+    "originalPrice": null,
+    "category": "poleras",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "S": 3,
+      "M": 6,
+      "L": 7,
+      "XL": 4,
+      "XXL": 2
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "specs": [],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "isFeatured": false,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+    ],
+    "rawImages": [
+      "9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
+      "40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp",
+      "38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+    ],
+    "colors": [
+      "Negro",
+      "Blanco",
+      "Burdeo"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
+      "Blanco": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp"
+      },
+      {
+        "name": "Blanco",
+        "hex": "#FFFFFF",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp"
+      },
+      {
+        "name": "Burdeo",
+        "hex": "#581C24",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+      }
+    ],
+    "defaultColor": "Negro",
+    "created": "2026-10-15 22:45:56.752Z",
+    "updated": "2026-10-15 22:45:56.752Z"
+  },
+  {
     "id": "7dzt1phpjxbo8n0",
     "collectionId": "pbc_4092854851",
     "collectionName": "products",

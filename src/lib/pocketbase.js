@@ -138,6 +138,19 @@ export const mapPbProduct = (record) => {
 
   const mainImage = gallery[0] || '/producto.webp';
 
+  // Procesar campo colors directo si viene en el registro
+  let rawColors = record.colors;
+  if (typeof rawColors === 'string') {
+    try { rawColors = JSON.parse(rawColors); } catch { rawColors = []; }
+  }
+  if (Array.isArray(rawColors)) {
+    rawColors.forEach(c => {
+      if (typeof c === 'string' && c.trim() && !colors.includes(c.trim())) {
+        colors.push(c.trim());
+      }
+    });
+  }
+
   // Si no se detectó ningún color, asignar 'Negro' a la foto principal por defecto
   if (colors.length === 0) {
     colors.push('Negro');
@@ -147,6 +160,13 @@ export const mapPbProduct = (record) => {
       colorImages[colors[0]] = mainImage;
     }
   }
+
+  // Garantizar que todos los colores tengan una foto asignada
+  colors.forEach(c => {
+    if (!colorImages[c]) {
+      colorImages[c] = mainImage;
+    }
+  });
 
   const colorItems = colors.map(cName => {
     const def = COLOR_DEFINITIONS.find(d => d.name === cName) || { name: cName, hex: '#444444' };

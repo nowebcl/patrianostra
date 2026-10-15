@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { products as initialProducts } from '../data/products';
-import { pb, mapPbProduct } from '../lib/pocketbase';
+import { pb, mapPbProduct, POCKETBASE_URL, detectColorFromText, COLOR_DEFINITIONS, getThumbUrl } from '../lib/pocketbase';
 
 const StoreContext = createContext();
 
@@ -610,6 +610,9 @@ export const StoreProvider = ({ children }) => {
       fd.append('specs', JSON.stringify(specs));
       fd.append('sizes', JSON.stringify(sizes));
       fd.append('isFeatured', String(isFeatured));
+      if (Array.isArray(productData.colors) && productData.colors.length > 0) {
+        fd.append('colors', JSON.stringify(productData.colors));
+      }
       // Enviar URL limpia o vacía (las fotos reales quedan guardadas en el campo 'images')
       fd.append('image', mainImageUrl);
       fd.append('gallery', JSON.stringify(galleryUrls));
@@ -648,6 +651,7 @@ export const StoreProvider = ({ children }) => {
         fit,
         specs,
         sizes,
+        colors: Array.isArray(productData.colors) && productData.colors.length > 0 ? productData.colors : ['Negro'],
         isFeatured,
         image: mainImageUrl || '/producto.webp',
         gallery: galleryUrls.length > 0 ? galleryUrls : ['/producto.webp']
@@ -659,7 +663,15 @@ export const StoreProvider = ({ children }) => {
       const col = pbRecord.collectionId || pbRecord.collectionName || 'pbc_4092854851';
       const galleryWithColorObjects = pbRecord.images.map((img, idx) => {
         const fullUrl = `${POCKETBASE_URL}/api/files/${col}/${pbRecord.id}/${img}`;
-        const itemColor = productData.imageItems?.[idx]?.color;
+        let itemColor = productData.imageItems?.[idx]?.color;
+        if (!itemColor && productData.colorImages && typeof productData.colorImages === 'object') {
+          for (const [colName, colUrl] of Object.entries(productData.colorImages)) {
+            if (colUrl && (colUrl.includes(img) || fullUrl.includes(colUrl))) {
+              itemColor = colName;
+              break;
+            }
+          }
+        }
         const detectedColor = detectColorFromText(img)?.name;
         const finalColor = itemColor || detectedColor || (idx === 0 ? productData.defaultColor || 'Negro' : null);
         return {
@@ -668,12 +680,29 @@ export const StoreProvider = ({ children }) => {
         };
       });
 
-      const mainImg = galleryWithColorObjects[0]?.url || '/producto.webp';
+      const activeColors = Array.isArray(productData.colors) && productData.colors.length > 0
+        ? productData.colors
+        : [productData.defaultColor || 'Negro'];
+
+      const mainImg = (productData.defaultColor && productData.colorImages?.[productData.defaultColor])
+        || galleryWithColorObjects[0]?.url 
+        || '/producto.webp';
+
+      activeColors.forEach(colName => {
+        const exists = galleryWithColorObjects.some(g => g.color === colName);
+        if (!exists) {
+          galleryWithColorObjects.push({
+            url: mainImg,
+            color: colName
+          });
+        }
+      });
 
       try {
         pbRecord = await pb.collection('products').update(pbRecord.id, {
           image: mainImg,
-          gallery: galleryWithColorObjects
+          gallery: galleryWithColorObjects,
+          colors: activeColors
         }, { requestKey: null });
       } catch (linkErr) {
         console.warn('Auto-enlace de variantes en PocketBase:', linkErr);
@@ -727,6 +756,7 @@ export const StoreProvider = ({ children }) => {
       if (updatedData.isFeatured !== undefined) fd.append('isFeatured', String(!!updatedData.isFeatured));
       if (updatedData.sizes !== undefined) fd.append('sizes', JSON.stringify(updatedData.sizes));
       if (updatedData.specs !== undefined) fd.append('specs', JSON.stringify(updatedData.specs));
+      if (updatedData.colors !== undefined) fd.append('colors', JSON.stringify(updatedData.colors));
 
       updatedData.imageItems.forEach(it => {
         if (it.file instanceof File) {
@@ -763,14 +793,29 @@ export const StoreProvider = ({ children }) => {
           };
         });
 
+        const activeColors = Array.isArray(updatedData.colors) && updatedData.colors.length > 0
+          ? updatedData.colors
+          : (updatedRecord.colors || [updatedData.defaultColor || 'Negro']);
+
         const mainImg = (updatedData.defaultColor && updatedData.colorImages?.[updatedData.defaultColor])
           || galleryWithColorObjects[0]?.url 
           || '/producto.webp';
 
+        activeColors.forEach(colName => {
+          const exists = galleryWithColorObjects.some(g => g.color === colName);
+          if (!exists) {
+            galleryWithColorObjects.push({
+              url: mainImg,
+              color: colName
+            });
+          }
+        });
+
         try {
           updatedRecord = await pb.collection('products').update(updatedRecord.id, {
             image: cleanUrl(mainImg) || galleryWithColorObjects[0]?.url || '/producto.webp',
-            gallery: galleryWithColorObjects
+            gallery: galleryWithColorObjects,
+            colors: activeColors
           }, { requestKey: null });
         } catch (linkErr) {
           console.warn('Auto-enlace de variantes en PocketBase update:', linkErr);
@@ -804,7 +849,19 @@ export const StoreProvider = ({ children }) => {
       const mainImg = (updatedData.defaultColor && updatedData.colorImages?.[updatedData.defaultColor])
         || galleryWithColorObjects[0]?.url
         || cleanUrl(updatedData.image)
-        || '/producto.webp';
+      const activeColors = Array.isArray(updatedData.colors) && updatedData.colors.length > 0
+        ? updatedData.colors
+        : [updatedData.defaultColor || 'Negro'];
+
+      activeColors.forEach(colName => {
+        const exists = galleryWithColorObjects.some(g => g.color === colName);
+        if (!exists) {
+          galleryWithColorObjects.push({
+            url: mainImg,
+            color: colName
+          });
+        }
+      });
 
       updatedRecord = await pb.collection('products').update(productId, {
         ...(updatedData.name !== undefined ? { name: updatedData.name.trim().toUpperCase() } : {}),
@@ -818,6 +875,7 @@ export const StoreProvider = ({ children }) => {
         ...(updatedData.isFeatured !== undefined ? { isFeatured: !!updatedData.isFeatured } : {}),
         ...(updatedData.sizes !== undefined ? { sizes: updatedData.sizes } : {}),
         ...(updatedData.specs !== undefined ? { specs: updatedData.specs } : {}),
+        ...(updatedData.colors !== undefined ? { colors: activeColors } : {}),
         image: cleanUrl(mainImg) || '/producto.webp',
         gallery: galleryWithColorObjects.length > 0 ? galleryWithColorObjects : ['/producto.webp']
       }, { requestKey: null });
