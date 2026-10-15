@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
 
-export const ProductCard = ({ product }) => {
+export const ProductCard = ({ product, priority = false }) => {
   const { addToCart } = useCart();
   const rawSizes = product.sizes && product.sizes.length > 0 ? product.sizes : ['S', 'M', 'L', 'XL', 'XXL'];
   const sizes = sortSizes(rawSizes);
@@ -60,8 +60,9 @@ export const ProductCard = ({ product }) => {
         <img 
           src={rawImage} 
           alt={product.name} 
-          loading="lazy"
-          decoding="async"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding={priority ? "sync" : "async"}
           onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = '/producto.webp';

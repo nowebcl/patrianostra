@@ -166,8 +166,8 @@ export const CatalogPage = () => {
               <span>MOSTRANDO {displayedProducts.length} DE {filteredProducts.length} PRODUCTOS</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-              {displayedProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
+              {displayedProducts.map((product, idx) => (
+                <ProductCard key={product.id} product={product} priority={idx < 4} />
               ))}
             </div>
 
