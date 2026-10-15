@@ -4,6 +4,7 @@ import { ShieldCheck, CheckCircle2, Truck, ArrowLeft, Download, ShoppingBag, Spa
 import { useCart } from '../context/CartContext';
 import { useStore } from '../context/StoreContext';
 import { formatCLP } from '../utils/currency';
+import { getThumbUrl } from '../lib/pocketbase';
 import { initFlowPayment, checkFlowPaymentStatus, redirectToFlow } from '../services/paymentService';
 import { generateOrderPdf } from '../utils/orderReceiptPdf';
 
@@ -727,13 +728,22 @@ export const CheckoutPage = () => {
               <div className="divide-y divide-neutral-900 max-h-72 overflow-y-auto mb-4">
                 {cart.map((item, idx) => (
                   <div key={idx} className="py-3 flex items-center justify-between gap-3 text-xs">
-                    <div className="w-14 h-14 bg-black border border-neutral-900 p-1 shrink-0">
-                      <img src={item.product.image} alt={item.product.name} className="w-full h-full object-contain" />
+                    <div className="w-14 h-14 bg-black border border-neutral-900 p-1 shrink-0 overflow-hidden">
+                      <img 
+                        src={getThumbUrl(item.colorImage || item.product?.image, '100x100')} 
+                        alt={item.product?.name || 'Prenda'} 
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
+                        className="w-full h-full object-contain" 
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="font-condensed font-bold uppercase text-neutral-200 truncate">{item.product.name}</h4>
                       <p className="text-[11px] text-neutral-400 font-sans">
-                        Talla: <span className="text-white font-semibold">{item.size}</span> • Cant: <span className="text-white font-semibold">{item.quantity}</span>
+                        Talla: <span className="text-white font-semibold">{item.size}</span>
+                        {item.color && (
+                          <span> • Color: <span className="text-[#C52222] font-semibold">{item.color}</span></span>
+                        )}
+                        <span> • Cant: <span className="text-white font-semibold">{item.quantity}</span></span>
                       </p>
                     </div>
                     <span className="font-condensed font-bold text-white">{formatCLP(item.product.price * item.quantity)}</span>

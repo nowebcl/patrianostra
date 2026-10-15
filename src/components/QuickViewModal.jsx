@@ -14,9 +14,30 @@ export const QuickViewModal = () => {
   const sizes = sortSizes(rawSizes);
 
   const firstInStock = sizes.find(s => (sizeStock[s] ?? 1) > 0) || sizes[0] || 'L';
+  const colors = quickViewProduct?.colors || [];
+  const defaultColor = quickViewProduct?.defaultColor || colors[0] || 'Negro';
+
   const [selectedSize, setSelectedSize] = useState(firstInStock);
+  const [selectedColor, setSelectedColor] = useState(defaultColor);
+  const [activeImage, setActiveImage] = useState(quickViewProduct?.colorImages?.[defaultColor] || quickViewProduct?.image || '/producto.webp');
+
+  React.useEffect(() => {
+    if (quickViewProduct) {
+      const initColor = quickViewProduct.defaultColor || (quickViewProduct.colors && quickViewProduct.colors[0]) || 'Negro';
+      setSelectedColor(initColor);
+      setActiveImage(quickViewProduct.colorImages?.[initColor] || quickViewProduct.image || '/producto.webp');
+      const inStock = sizes.find(s => (quickViewProduct.sizeStock?.[s] ?? 1) > 0) || sizes[0] || 'L';
+      setSelectedSize(inStock);
+    }
+  }, [quickViewProduct?.id, quickViewProduct?.image, quickViewProduct?.colorImages]);
 
   if (!quickViewProduct) return null;
+
+  const handleColorChange = (colorName) => {
+    setSelectedColor(colorName);
+    const target = quickViewProduct.colorImages?.[colorName] || quickViewProduct.image || '/producto.webp';
+    setActiveImage(target);
+  };
 
   const currentSizeStock = sizeStock[selectedSize] !== undefined 
     ? Number(sizeStock[selectedSize]) 
@@ -26,7 +47,7 @@ export const QuickViewModal = () => {
 
   const handleAddToCart = () => {
     if (isCurrentOutOfStock) return;
-    addToCart(quickViewProduct.id, selectedSize, 1);
+    addToCart(quickViewProduct.id, selectedSize, 1, selectedColor, activeImage);
     setQuickViewProduct(null);
   };
 
@@ -45,15 +66,15 @@ export const QuickViewModal = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
           {/* Image */}
-          <div className="relative aspect-square bg-[#050505] border border-neutral-900 p-4 flex items-center justify-center">
+          <div className="relative aspect-square bg-[#050505] border border-neutral-900 p-4 flex items-center justify-center overflow-hidden">
             {quickViewProduct.badge && (
               <span className="badge-limited absolute top-3 right-3">{quickViewProduct.badge}</span>
             )}
             <img 
-              src={quickViewProduct.image} 
+              src={activeImage || quickViewProduct.image || '/producto.webp'} 
               alt={quickViewProduct.name} 
               onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
-              className="w-full h-full object-contain filter contrast-105" 
+              className="w-full h-full object-contain filter contrast-105 transition-all duration-300" 
             />
           </div>
 
@@ -81,6 +102,41 @@ export const QuickViewModal = () => {
             <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-5 line-clamp-3">
               {quickViewProduct.description}
             </p>
+
+            {/* Colors */}
+            {colors.length > 0 && (
+              <div className="mb-5">
+                <span className="text-[11px] font-condensed font-semibold tracking-wider text-neutral-400 uppercase block mb-2">
+                  COLOR: <strong className="text-white ml-1">{selectedColor}</strong>
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {colors.map(colorName => {
+                    const isSelected = selectedColor === colorName;
+                    const item = quickViewProduct.colorItems?.find(ci => ci.name === colorName);
+                    const hex = item?.hex || (colorName.toLowerCase().includes('blanco') ? '#FFFFFF' : '#111111');
+
+                    return (
+                      <button
+                        key={colorName}
+                        type="button"
+                        onClick={() => handleColorChange(colorName)}
+                        className={`px-3 py-1.5 border text-xs font-condensed font-semibold tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                          isSelected
+                            ? 'border-[#C52222] bg-[#1a1a1a] text-white shadow-md ring-1 ring-[#C52222]'
+                            : 'border-neutral-800 text-neutral-300 hover:border-neutral-600 bg-black'
+                        }`}
+                      >
+                        <span 
+                          className="w-3 h-3 rounded-full border border-neutral-700/80 shrink-0" 
+                          style={{ backgroundColor: hex }} 
+                        />
+                        <span>{colorName}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Sizes */}
             <div className="mb-6">

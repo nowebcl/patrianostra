@@ -206,10 +206,10 @@ export const OrderDetailModal = ({ order, isOpen, onClose }) => {
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-12 h-12 bg-black border border-neutral-800 rounded p-1 shrink-0">
                       <img 
-                        src={item.product?.image || '/producto.png'} 
+                        src={item.colorImage || item.product?.image || '/producto.webp'} 
                         alt={item.product?.name} 
                         className="w-full h-full object-contain"
-                        onError={(e) => { e.target.src = '/producto.png'; }}
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
                       />
                     </div>
                     <div className="min-w-0">
@@ -218,6 +218,9 @@ export const OrderDetailModal = ({ order, isOpen, onClose }) => {
                       </h4>
                       <p className="text-[11px] text-neutral-400 font-mono">
                         SKU: <span className="text-neutral-300">{item.product?.sku || 'PN-SKU'}</span> • Talla: <span className="text-[#C52222] font-bold">{item.size}</span>
+                        {item.color && (
+                          <span> • Color: <span className="text-white font-bold">{item.color}</span></span>
+                        )}
                       </p>
                     </div>
                   </div>

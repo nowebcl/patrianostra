@@ -15,8 +15,6 @@ import { formatCLP } from '../../utils/currency';
 import { sortSizes } from '../../utils/sizes';
 import { ProductEditorView } from './ProductEditorView';
 
-const CATEGORIES = ['TODOS', 'POLERAS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS'];
-
 export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setProductToEdit }) => {
   const { products, addProduct, updateProduct, deleteProduct, adjustStock } = useStore();
   const [searchQuery, setSearchQuery] = useState('');
@@ -24,6 +22,12 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
   const [sortBy, setSortBy] = useState('newest');
   const [productToDelete, setProductToDelete] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
+
+  const categories = useMemo(() => {
+    const base = ['TODOS', 'POLERAS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS'];
+    const fromProducts = products.map(p => (p.category || '').toUpperCase().trim()).filter(Boolean);
+    return Array.from(new Set([...base, ...fromProducts]));
+  }, [products]);
 
   const showNotification = (msg) => {
     setToastMessage(msg);
@@ -33,8 +37,8 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
   const filteredProducts = useMemo(() => {
     const list = products.filter(p => {
       if (selectedCategory !== 'TODOS') {
-        const cat = p.category?.toUpperCase();
-        const sel = selectedCategory.toUpperCase();
+        const cat = (p.category || '').toUpperCase().trim();
+        const sel = selectedCategory.toUpperCase().trim();
         if (sel === 'POLERAS' || sel === 'CAMISETAS') {
           if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
         } else if (sel === 'POLERONES') {
@@ -202,7 +206,7 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
 
         {/* Right: Category Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0">
-          {CATEGORIES.map(cat => (
+          {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
@@ -242,10 +246,10 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                   {/* Image & Badges */}
                   <div className="relative aspect-square w-full bg-[#050505] rounded-xl border border-neutral-900 p-2 mb-3 flex items-center justify-center overflow-hidden">
                     <img
-                      src={product.image || '/producto.png'}
+                      src={product.image || '/producto.webp'}
                       alt={product.name}
-                      className="max-h-full max-w-full object-contain"
-                      onError={(e) => { e.target.src = '/producto.png'; }}
+                      className="max-h-full max-w-full object-contain filter contrast-105"
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
                     />
                     
                     {product.badge && (
@@ -260,6 +264,30 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                       </span>
                     )}
                   </div>
+
+                  {/* Available Colors Indicator */}
+                  {product.colors && product.colors.length > 0 && (
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <span className="text-[9px] font-condensed uppercase tracking-wider text-neutral-500 font-bold">Colores:</span>
+                      <div className="flex items-center gap-1">
+                        {product.colors.map(col => {
+                          const item = product.colorItems?.find(ci => ci.name === col);
+                          const hex = item?.hex || (col.toLowerCase().includes('blanco') ? '#FFFFFF' : '#111111');
+                          return (
+                            <span 
+                              key={col}
+                              title={col}
+                              className="w-2.5 h-2.5 rounded-full border border-neutral-700 inline-block"
+                              style={{ backgroundColor: hex }}
+                            />
+                          );
+                        })}
+                      </div>
+                      <span className="text-[9px] font-condensed text-neutral-400 font-medium truncate">
+                        {product.colors.join(', ')}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Title, Category, SKU & Date */}
                   <div className="flex items-center justify-between gap-1 mb-1 text-[10px] font-condensed uppercase tracking-wider text-neutral-500 font-bold">

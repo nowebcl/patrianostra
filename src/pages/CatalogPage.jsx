@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/ProductCard';
@@ -9,7 +9,14 @@ export const CatalogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('TODOS');
   const [sortBy, setSortBy] = useState('featured');
 
-  const categories = ['TODOS', 'POLERAS', 'POLERONES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
+  const ITEMS_PER_PAGE = 16;
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  const categories = useMemo(() => {
+    const base = ['TODOS', 'POLERAS', 'POLERONES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
+    const fromProducts = products.map(p => (p.category || '').toUpperCase().trim()).filter(Boolean);
+    return Array.from(new Set([...base, ...fromProducts]));
+  }, [products]);
 
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
@@ -17,8 +24,8 @@ export const CatalogPage = () => {
       if (selectedCategory === 'EDICIÓN LIMITADA') {
         if (!product.badge) return false;
       } else if (selectedCategory !== 'TODOS') {
-        const cat = (product.category || '').toUpperCase();
-        const sel = selectedCategory.toUpperCase();
+        const cat = (product.category || '').toUpperCase().trim();
+        const sel = selectedCategory.toUpperCase().trim();
         if (sel === 'POLERAS' || sel === 'CAMISETAS') {
           if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
         } else if (sel === 'POLERONES') {
@@ -45,6 +52,15 @@ export const CatalogPage = () => {
       return 0;
     });
   }, [products, searchQuery, selectedCategory, sortBy]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [searchQuery, selectedCategory, sortBy]);
+
+  const displayedProducts = useMemo(() => {
+    return filteredProducts.slice(0, visibleCount);
+  }, [filteredProducts, visibleCount]);
 
   return (
     <div className="min-h-screen bg-black text-[#E5E5E5] pt-8 pb-20">
@@ -147,13 +163,24 @@ export const CatalogPage = () => {
         ) : (
           <div>
             <div className="flex items-center justify-between text-xs font-condensed tracking-widest text-neutral-500 uppercase mb-4">
-              <span>MOSTRANDO {filteredProducts.length} PRODUCTOS</span>
+              <span>MOSTRANDO {displayedProducts.length} DE {filteredProducts.length} PRODUCTOS</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-              {filteredProducts.map(product => (
+              {displayedProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
+
+            {visibleCount < filteredProducts.length && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}
+                  className="px-8 py-3.5 bg-black hover:bg-neutral-900 text-white border border-neutral-700 hover:border-white font-condensed font-bold tracking-[0.2em] text-xs uppercase transition-all duration-200 shadow-xl cursor-pointer"
+                >
+                  + CARGAR MÁS PRENDAS ({filteredProducts.length - visibleCount} RESTANTES)
+                </button>
+              </div>
+            )}
           </div>
         )}
 

@@ -22,19 +22,43 @@ export const ProductDetailPage = () => {
 
   const firstInStockSize = sizes.find(s => (sizeStock[s] ?? 1) > 0) || sizes[0] || 'L';
 
-  const [activeImage, setActiveImage] = useState(product.gallery?.[0] || product.image || '/producto.webp');
+  const defaultColor = product.defaultColor || (product.colors && product.colors[0]) || 'Negro';
+  const initialImg = (product.colorImages && product.colorImages[defaultColor]) || product.gallery?.[0] || product.image || '/producto.webp';
+
+  const [activeImage, setActiveImage] = useState(initialImg);
   const [selectedSize, setSelectedSize] = useState(firstInStockSize);
+  const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState('specs');
 
   useEffect(() => {
     if (product) {
-      setActiveImage(product.gallery?.[0] || product.image || '/producto.webp');
+      const initColor = product.defaultColor || (product.colors && product.colors[0]) || 'Negro';
+      setSelectedColor(initColor);
+      const initImg = (product.colorImages && product.colorImages[initColor]) || product.gallery?.[0] || product.image || '/producto.webp';
+      setActiveImage(initImg);
       const inStock = sizes.find(s => (product.sizeStock?.[s] ?? 1) > 0) || sizes[0] || 'L';
       setSelectedSize(inStock);
       setQuantity(1);
     }
   }, [product.id]);
+
+  const handleColorChange = (colorName) => {
+    setSelectedColor(colorName);
+    if (product.colorImages && product.colorImages[colorName]) {
+      setActiveImage(product.colorImages[colorName]);
+    }
+  };
+
+  const handleThumbnailClick = (img) => {
+    setActiveImage(img);
+    if (product.colorImages) {
+      const matched = Object.entries(product.colorImages).find(([col, url]) => url === img);
+      if (matched) {
+        setSelectedColor(matched[0]);
+      }
+    }
+  };
 
   const currentSizeStock = sizeStock[selectedSize] !== undefined 
     ? Number(sizeStock[selectedSize]) 
@@ -46,11 +70,11 @@ export const ProductDetailPage = () => {
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4);
 
   const handleAddToCart = () => {
-    addToCart(product.id, selectedSize, quantity);
+    addToCart(product.id, selectedSize, quantity, selectedColor, activeImage);
   };
 
   const handleBuyNow = () => {
-    addToCart(product.id, selectedSize, quantity);
+    addToCart(product.id, selectedSize, quantity, selectedColor, activeImage);
     navigate('/checkout');
   };
 
@@ -81,7 +105,7 @@ export const ProductDetailPage = () => {
                 </div>
               )}
               <img 
-                src={activeImage} 
+                src={activeImage || product.image || '/producto.webp'} 
                 alt={product.name} 
                 onError={(e) => {
                   e.currentTarget.onerror = null;
@@ -97,12 +121,17 @@ export const ProductDetailPage = () => {
                 {product.gallery.map((img, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setActiveImage(img)}
+                    onClick={() => handleThumbnailClick(img)}
                     className={`w-20 h-20 bg-[#070707] border p-1 shrink-0 transition-all cursor-pointer ${
                       activeImage === img ? 'border-[#C52222]' : 'border-neutral-900 hover:border-neutral-700 opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt={`${product.name} vista ${idx + 1}`} className="w-full h-full object-contain" />
+                    <img 
+                      src={img} 
+                      alt={`${product.name} vista ${idx + 1}`} 
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
+                      className="w-full h-full object-contain" 
+                    />
                   </button>
                 ))}
               </div>
@@ -170,6 +199,52 @@ export const ProductDetailPage = () => {
             <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed mb-6">
               {product.description}
             </p>
+
+            {/* Color Selector */}
+            {product.colors && product.colors.length > 0 && (
+              <div className="mb-6 bg-[#0a0a0a] border border-neutral-850 p-4 rounded-xl">
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-condensed font-bold tracking-wider text-neutral-300 uppercase flex items-center gap-2">
+                    <span>COLOR DE LA PRENDA:</span>
+                    <strong className="text-white text-sm bg-neutral-900 border border-neutral-700 px-2 py-0.5 rounded tracking-widest">{selectedColor}</strong>
+                  </span>
+                  <span className="text-[10px] font-condensed tracking-wider text-neutral-400 uppercase">
+                    {product.colors.length} {product.colors.length === 1 ? 'COLOR DISPONIBLE' : 'COLORES DISPONIBLES'}
+                  </span>
+                </div>
+                
+                <div className="flex flex-wrap gap-2.5">
+                  {product.colors.map(colorName => {
+                    const isSelected = selectedColor === colorName;
+                    const colorItem = product.colorItems?.find(c => c.name === colorName);
+                    const hex = colorItem?.hex || (colorName.toLowerCase().includes('blanco') ? '#FFFFFF' : '#111111');
+                    const colorImg = product.colorImages?.[colorName];
+
+                    return (
+                      <button
+                        key={colorName}
+                        type="button"
+                        onClick={() => handleColorChange(colorName)}
+                        className={`group/btn relative py-2 px-3 text-xs font-condensed font-bold tracking-wider transition-all uppercase flex items-center gap-2.5 cursor-pointer rounded-lg ${
+                          isSelected
+                            ? 'bg-[#161616] border-2 border-[#C52222] text-white shadow-[0_0_12px_rgba(197,34,34,0.35)] scale-[1.02]'
+                            : 'bg-[#111] border border-neutral-800 text-neutral-300 hover:border-neutral-600 hover:text-white'
+                        }`}
+                      >
+                        <span 
+                          className="w-4 h-4 rounded-full border border-neutral-700/80 shrink-0 shadow-inner flex items-center justify-center"
+                          style={{ backgroundColor: hex }}
+                        >
+                          {isSelected && hex === '#FFFFFF' && <span className="w-1.5 h-1.5 rounded-full bg-black"></span>}
+                        </span>
+                        <span>{colorName}</span>
+                        {isSelected && <Check className="w-3.5 h-3.5 text-[#C52222] ml-0.5" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Size Selector */}
             <div className="mb-6">

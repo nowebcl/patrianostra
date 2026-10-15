@@ -7,10 +7,10 @@
 
 export async function optimizeImageFile(file, options = {}) {
   const {
-    maxWidth = 1600,
-    maxHeight = 1600,
-    quality = 0.85,
-    maxSizeBytes = 1.8 * 1024 * 1024 // 1.8MB meta
+    maxWidth = 1000,
+    maxHeight = 1000,
+    quality = 0.82,
+    maxSizeBytes = 600 * 1024 // 600KB meta
   } = options;
 
   if (!file || !(file instanceof File || file instanceof Blob)) {

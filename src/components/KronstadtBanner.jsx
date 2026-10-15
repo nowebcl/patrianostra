@@ -11,6 +11,7 @@ export const KronstadtBanner = () => {
           alt="Kronstadt No Compromise x Patria Nostra Colaboración" 
           loading="lazy"
           decoding="async"
+          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/banner1.png'; }}
           className="w-full h-auto min-h-[160px] sm:min-h-[220px] md:min-h-[280px] lg:min-h-[320px] object-cover object-center select-none filter contrast-105"
         />
 

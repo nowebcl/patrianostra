@@ -36,7 +36,7 @@ export const CartProvider = ({ children }) => {
     }, 3000);
   };
 
-  const addToCart = (productId, size = 'L', quantity = 1) => {
+  const addToCart = (productId, size = 'L', quantity = 1, color = null, customImage = null) => {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -48,11 +48,14 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
+    const chosenColor = color || product.defaultColor || (product.colors && product.colors[0]) || 'Negro';
+    const chosenImage = customImage || (product.colorImages && product.colorImages[chosenColor]) || product.image;
+
     let reachedMax = false;
 
     setCart(prevCart => {
       const existingIndex = prevCart.findIndex(
-        item => item.product.id === productId && item.size === size
+        item => item.product.id === productId && item.size === size && (item.color === chosenColor)
       );
 
       if (existingIndex > -1) {
@@ -67,7 +70,13 @@ export const CartProvider = ({ children }) => {
         return updated;
       } else {
         const initialQty = Math.min(availableStock, quantity);
-        return [...prevCart, { product, size, quantity: initialQty }];
+        return [...prevCart, { 
+          product: { ...product, image: chosenImage }, 
+          size, 
+          color: chosenColor,
+          colorImage: chosenImage,
+          quantity: initialQty 
+        }];
       }
     });
 
@@ -75,7 +84,7 @@ export const CartProvider = ({ children }) => {
       showToast(`Stock máximo alcanzado (${availableStock} u.) para talla ${size}`);
     } else {
       setIsCartOpen(true);
-      showToast(`Añadido: ${product.name} (${size})`);
+      showToast(`Añadido: ${product.name} (${size} • ${chosenColor})`);
     }
   };
 

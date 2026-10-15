@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { X, Trash2, ShoppingBag, Tag, ArrowRight, Truck } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { formatCLP } from '../utils/currency';
+import { getThumbUrl } from '../lib/pocketbase';
 
 export const CartDrawer = () => {
   const navigate = useNavigate();
@@ -112,15 +113,26 @@ export const CartDrawer = () => {
             <div className="space-y-3">
               {cart.map((item, index) => (
                 <div key={`${item.product.id}-${item.size}-${index}`} className="flex items-center gap-4 py-3 border-b border-neutral-800">
-                  <div className="w-16 h-16 bg-neutral-950 border border-neutral-900 flex items-center justify-center p-1 shrink-0">
-                    <img src={item.product.image} alt={item.product.name} className="w-full h-full object-contain" />
+                  <div className="w-16 h-16 bg-neutral-950 border border-neutral-900 flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                    <img 
+                      src={getThumbUrl(item.colorImage || item.product?.image, '100x100')} 
+                      alt={item.product?.name || 'Prenda'} 
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
+                      className="w-full h-full object-contain" 
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-condensed text-sm font-semibold tracking-wider text-neutral-200 truncate uppercase">
                       {item.product.name}
                     </h4>
-                    <p className="text-xs text-neutral-400 mt-0.5">
-                      Talla: <span className="text-neutral-200 font-semibold">{item.size}</span>
+                    <p className="text-xs text-neutral-400 mt-0.5 flex items-center gap-2">
+                      <span>Talla: <strong className="text-white">{item.size}</strong></span>
+                      {item.color && (
+                        <>
+                          <span className="text-neutral-700">•</span>
+                          <span>Color: <strong className="text-[#C52222]">{item.color}</strong></span>
+                        </>
+                      )}
                     </p>
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center border border-neutral-800">

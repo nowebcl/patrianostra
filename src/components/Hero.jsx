@@ -44,6 +44,7 @@ export const Hero = () => {
                 loading={index === 0 ? 'eager' : 'lazy'}
                 fetchPriority={index === 0 ? 'high' : 'auto'}
                 decoding="async"
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = slide.image.replace('.webp', '.png'); }}
                 className={`${slide.imgClass} filter contrast-105 brightness-95 transition-transform duration-[6500ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}

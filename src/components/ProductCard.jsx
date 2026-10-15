@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
+import { getThumbUrl } from '../lib/pocketbase';
 
 export const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -10,14 +11,39 @@ export const ProductCard = ({ product }) => {
   const sizes = sortSizes(rawSizes);
   const sizeStock = product.sizeStock || {};
 
+  // Color state
+  const colors = product.colors || [];
+  const defaultColor = product.defaultColor || colors[0] || 'Negro';
+  const [selectedColor, setSelectedColor] = React.useState(defaultColor);
+  const [currentImage, setCurrentImage] = React.useState(product.colorImages?.[defaultColor] || product.image || '/producto.webp');
+
+  const rawImage = currentImage || product.image || '/producto.webp';
+  const thumbUrl = getThumbUrl(rawImage, '100x100');
+  const [isHighResLoaded, setIsHighResLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsHighResLoaded(false);
+  }, [rawImage]);
+
   // Primer talla disponible por defecto
   const defaultAvailableSize = sizes.find(sz => (sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1) > 0) || sizes[0];
   const [selectedSize, setSelectedSize] = React.useState(defaultAvailableSize);
 
-  // Actualizar talla por defecto si cambia el producto
+  // Actualizar por defecto si cambia el producto
   React.useEffect(() => {
+    const initColor = product.defaultColor || (product.colors && product.colors[0]) || 'Negro';
+    setSelectedColor(initColor);
+    setCurrentImage(product.colorImages?.[initColor] || product.image || '/producto.webp');
     setSelectedSize(defaultAvailableSize);
-  }, [product.id]);
+  }, [product.id, product.image, product.colorImages]);
+
+  const handleColorSelect = (colorName, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedColor(colorName);
+    const targetImg = product.colorImages?.[colorName] || product.image || '/producto.webp';
+    setCurrentImage(targetImg);
+  };
 
   const currentSizeStock = sizeStock[selectedSize] !== undefined ? Number(sizeStock[selectedSize]) : (product.stock || 0);
   const isOutOfStock = currentSizeStock <= 0;
@@ -27,7 +53,7 @@ export const ProductCard = ({ product }) => {
       
       {/* Limited Badge */}
       {product.badge && (
-        <div className="absolute top-3 right-3 z-10">
+        <div className="absolute top-3 right-3 z-10 pointer-events-none">
           <span className="badge-limited">{product.badge}</span>
         </div>
       )}
@@ -37,16 +63,31 @@ export const ProductCard = ({ product }) => {
         to={`/producto/${product.id}`}
         className="relative w-full aspect-square bg-[#050505] flex items-center justify-center p-2 overflow-hidden mb-3 block"
       >
+        {/* Placeholder ultra-ligero de 13 KB para respuesta instantánea (<40ms) */}
+        {!isHighResLoaded && rawImage !== '/producto.webp' && (
+          <img 
+            src={thumbUrl} 
+            alt="" 
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-contain filter blur-[1px] opacity-80"
+          />
+        )}
+
+        {/* Imagen principal con fade-in suave */}
         <img 
-          src={product.image} 
+          src={rawImage} 
           alt={product.name} 
           loading="lazy"
           decoding="async"
+          onLoad={() => setIsHighResLoaded(true)}
           onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = '/producto.webp';
+            setIsHighResLoaded(true);
           }}
-          className="product-img w-full h-full object-contain filter contrast-105"
+          className={`product-img relative z-10 w-full h-full object-contain filter contrast-105 transition-opacity duration-300 ${
+            isHighResLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
 
         {/* Hover Action to view single product */}
@@ -76,6 +117,35 @@ export const ProductCard = ({ product }) => {
               </span>
             )}
           </div>
+
+          {/* Color Dots if product has multiple colors */}
+          {colors.length > 1 && (
+            <div className="flex items-center gap-1.5 mt-2">
+              <span className="text-[9px] font-condensed tracking-wider text-neutral-500 uppercase">COLOR:</span>
+              <div className="flex items-center gap-1">
+                {colors.map(cName => {
+                  const item = product.colorItems?.find(ci => ci.name === cName);
+                  const hex = item?.hex || (cName.toLowerCase().includes('blanco') ? '#FFFFFF' : '#111111');
+                  const isSel = selectedColor === cName;
+                  return (
+                    <button
+                      key={cName}
+                      type="button"
+                      title={`Color: ${cName}`}
+                      onClick={(e) => handleColorSelect(cName, e)}
+                      className={`w-3.5 h-3.5 rounded-full border transition-all cursor-pointer ${
+                        isSel ? 'border-[#C52222] scale-125 shadow-[0_0_6px_rgba(197,34,34,0.6)] ring-1 ring-[#C52222]' : 'border-neutral-700 hover:scale-110 opacity-70 hover:opacity-100'
+                      }`}
+                      style={{ backgroundColor: hex }}
+                    />
+                  );
+                })}
+              </div>
+              <span className="text-[9px] font-condensed font-bold text-neutral-400 uppercase truncate max-w-[80px]">
+                {selectedColor}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Quick Size Selector */}
@@ -127,7 +197,7 @@ export const ProductCard = ({ product }) => {
           e.preventDefault();
           e.stopPropagation();
           if (!isOutOfStock) {
-            addToCart(product.id, selectedSize, 1);
+            addToCart(product.id, selectedSize, 1, selectedColor, currentImage);
           }
         }}
         className={`mt-3 w-full py-2 text-[11px] font-condensed font-bold tracking-[0.15em] uppercase transition-all duration-200 ${

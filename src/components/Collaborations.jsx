@@ -37,6 +37,7 @@ export const Collaborations = () => {
                 alt={collab.alt} 
                 loading="lazy"
                 decoding="async"
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = collab.image.replace('.webp', '.png'); }}
                 className="w-full h-auto object-cover select-none filter contrast-105 transition-transform duration-500 group-hover:scale-105"
               />
             </div>

@@ -15,7 +15,7 @@ import { useStore } from '../../context/StoreContext';
 
 export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, children }) => {
   const navigate = useNavigate();
-  const { adminCreds, logoutAdmin, orders, products, isUnderConstruction, setMaintenanceMode, isPbConnected } = useStore();
+  const { adminCreds, logoutAdmin, orders, products, isUnderConstruction, setMaintenanceMode } = useStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const pendingCount = orders.filter(o => o.status === 'Pendiente' || o.status === 'En Preparación').length;
@@ -63,17 +63,13 @@ export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, childre
             <span className="font-condensed font-extrabold text-sm tracking-widest text-white uppercase block leading-none">
               PATRIA NOSTRA • ADMIN
             </span>
-            <div className="flex items-center gap-2 mt-0.5">
-              {isUnderConstruction && (
+            {isUnderConstruction && (
+              <div className="mt-0.5">
                 <span className="text-[9px] font-condensed font-bold text-[#C52222] uppercase tracking-wider">
                   ● En Construcción
                 </span>
-              )}
-              <span className="flex items-center gap-1 text-[9px] font-condensed text-neutral-400">
-                <span className={`w-1.5 h-1.5 rounded-full ${isPbConnected ? 'bg-emerald-400' : 'bg-amber-400'}`} />
-                {isPbConnected ? 'BD Online' : 'Conectando'}
-              </span>
-            </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -113,13 +109,9 @@ export const AdminLayout = ({ activeTab, setActiveTab, onOpenNewProduct, childre
               <span className="font-condensed font-extrabold text-base tracking-widest text-white uppercase block leading-none">
                 PATRIA NOSTRA
               </span>
-              <div className="flex items-center gap-2">
+              <div>
                 <span className="text-[10px] font-condensed tracking-widest text-[#C52222] uppercase font-bold">
                   PANEL ADMIN
-                </span>
-                <span className="flex items-center gap-1 text-[9px] font-condensed text-neutral-400">
-                  <span className={`w-1.5 h-1.5 rounded-full ${isPbConnected ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
-                  {isPbConnected ? 'BD Online' : 'Conectando'}
                 </span>
               </div>
             </div>

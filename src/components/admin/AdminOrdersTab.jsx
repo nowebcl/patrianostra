@@ -238,10 +238,15 @@ export const AdminOrdersTab = () => {
                         <div key={idx} className="flex items-center justify-between gap-2 py-0.5">
                           <div className="flex items-center gap-2 min-w-0">
                             <div className="w-7 h-7 bg-neutral-900 rounded p-0.5 shrink-0 border border-neutral-800">
-                              <img src={item.product?.image || '/producto.png'} alt="" className="w-full h-full object-contain" />
+                              <img 
+                                src={item.colorImage || item.product?.image || '/producto.webp'} 
+                                alt="" 
+                                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
+                                className="w-full h-full object-contain" 
+                              />
                             </div>
                             <span className="font-condensed font-bold text-white uppercase text-xs truncate">
-                              {item.product?.name} <span className="text-[#C52222]">({item.size})</span> x{item.quantity}
+                              {item.product?.name} <span className="text-[#C52222]">({item.size}{item.color ? ` - ${item.color}` : ''})</span> x{item.quantity}
                             </span>
                           </div>
                           <span className="font-mono font-bold text-neutral-300 shrink-0">

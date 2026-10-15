@@ -175,6 +175,8 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
 
   items.forEach(item => {
     const pName = item.product?.name || item.name || 'Prenda Patria Nostra';
+    const pColor = item.color || item.product?.defaultColor || '';
+    const fullName = pColor ? `${pName} (${pColor})` : pName;
     const pSize = item.size || 'Única';
     const pQty = Number(item.quantity) || 1;
     const pPrice = Number(item.product?.price || item.price || 0);
@@ -192,7 +194,7 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
     doc.setTextColor(...dark);
     
     // Cortar nombre si es muy largo
-    const truncatedName = pName.length > 48 ? pName.slice(0, 45) + '...' : pName;
+    const truncatedName = fullName.length > 48 ? fullName.slice(0, 45) + '...' : fullName;
     doc.text(truncatedName, margin + 3, y + 5.2);
     doc.text(pSize, margin + 95, y + 5.2);
     doc.text(String(pQty), margin + 120, y + 5.2, { align: 'center' });

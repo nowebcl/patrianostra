@@ -156,7 +156,7 @@ export const StoreProvider = ({ children }) => {
       const saved = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length >= initialProducts.length) return parsed;
       }
     } catch (e) {
       console.error('Error loading products from localStorage:', e);
@@ -369,6 +369,56 @@ export const StoreProvider = ({ children }) => {
     };
   }, [isAdminAuthenticated]);
 
+  // Auto-reparar registros existentes en PocketBase que tengan campo image o gallery vacío
+  useEffect(() => {
+    if (!isAdminAuthenticated || !pb.authStore.isValid) return;
+
+    const repairEmptyImagesInPb = async () => {
+      try {
+        const records = await pb.collection('products').getFullList({ requestKey: null });
+        for (const r of records) {
+          const hasEmptyImage = !r.image || r.image === '';
+          const hasEmptyGallery = !r.gallery || (Array.isArray(r.gallery) && r.gallery.length === 0);
+          if ((hasEmptyImage || hasEmptyGallery) && Array.isArray(r.images) && r.images.length > 0) {
+            const col = r.collectionId || r.collectionName || 'pbc_4092854851';
+            const fullGallery = r.images.map(img => `${POCKETBASE_URL}/api/files/${col}/${r.id}/${img}`);
+            const mainImg = fullGallery[0];
+            await pb.collection('products').update(r.id, {
+              image: mainImg,
+              gallery: fullGallery
+            }, { requestKey: null });
+          }
+        }
+
+        // Auto-actualizar definición de miniaturas en la colección 'products' de PocketBase
+        if (pb.authStore.isSuperuser || pb.admins) {
+          try {
+            const col = await pb.collections.getOne('products');
+            const fields = col.fields || col.schema || [];
+            const imagesField = fields.find(f => f.name === 'images');
+            if (imagesField) {
+              const currentThumbs = imagesField.thumbs || [];
+              const desiredThumbs = ['100x100', '480x480'];
+              const missingThumbs = desiredThumbs.filter(t => !currentThumbs.includes(t));
+              if (missingThumbs.length > 0) {
+                imagesField.thumbs = Array.from(new Set([...currentThumbs, ...desiredThumbs]));
+                await pb.collections.update('products', {
+                  ...(col.fields ? { fields } : { schema: fields })
+                });
+              }
+            }
+          } catch (colErr) {
+            console.warn('Configuración de thumbs en PocketBase:', colErr?.message || colErr);
+          }
+        }
+      } catch (err) {
+        console.warn('Auto-reparación preventiva PocketBase:', err?.message || err);
+      }
+    };
+
+    repairEmptyImagesInPb();
+  }, [isAdminAuthenticated]);
+
   // 7. Store Construction / Maintenance Mode (por defecto activo para el público)
   const [isUnderConstruction, setIsUnderConstruction] = useState(() => {
     try {
@@ -472,6 +522,30 @@ export const StoreProvider = ({ children }) => {
     return url;
   };
 
+  const cleanGalleryItem = (item) => {
+    if (!item) return null;
+    if (typeof item === 'string') {
+      const u = cleanUrl(item);
+      return u ? u : null;
+    }
+    if (typeof item === 'object' && item.url) {
+      const u = cleanUrl(item.url);
+      if (!u) return null;
+      return { url: u, color: item.color || null };
+    }
+    return null;
+  };
+
+  const getFileWithColor = (file, colorName) => {
+    if (!(file instanceof File) || !colorName) return file;
+    const safeColor = colorName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    const dotIdx = file.name.lastIndexOf('.');
+    const ext = dotIdx >= 0 ? file.name.substring(dotIdx) : '.webp';
+    const baseName = dotIdx >= 0 ? file.name.substring(0, dotIdx) : file.name;
+    if (baseName.toLowerCase().includes(safeColor)) return file;
+    return new File([file], `${baseName}_${safeColor}${ext}`, { type: file.type });
+  };
+
   const addProduct = async (productData) => {
     if (!pb.authStore || !pb.authStore.isValid) {
       setIsAdminAuthenticated(false);
@@ -542,10 +616,14 @@ export const StoreProvider = ({ children }) => {
 
       if (Array.isArray(productData.imageItems)) {
         productData.imageItems.forEach(it => {
-          if (it.file instanceof File) fd.append('images', it.file);
+          if (it.file instanceof File) {
+            fd.append('images', getFileWithColor(it.file, it.color || productData.defaultColor));
+          }
         });
       } else {
-        if (productData.mainImageFile instanceof File) fd.append('images', productData.mainImageFile);
+        if (productData.mainImageFile instanceof File) {
+          fd.append('images', getFileWithColor(productData.mainImageFile, productData.defaultColor));
+        }
         if (Array.isArray(productData.galleryFiles)) {
           productData.galleryFiles.forEach(f => {
             if (f instanceof File) fd.append('images', f);
@@ -576,7 +654,43 @@ export const StoreProvider = ({ children }) => {
       }, { requestKey: null });
     }
 
+    // Auto-vincular de forma permanente la imagen y galería con sus variantes por color
+    if (pbRecord && Array.isArray(pbRecord.images) && pbRecord.images.length > 0) {
+      const col = pbRecord.collectionId || pbRecord.collectionName || 'pbc_4092854851';
+      const galleryWithColorObjects = pbRecord.images.map((img, idx) => {
+        const fullUrl = `${POCKETBASE_URL}/api/files/${col}/${pbRecord.id}/${img}`;
+        const itemColor = productData.imageItems?.[idx]?.color;
+        const detectedColor = detectColorFromText(img)?.name;
+        const finalColor = itemColor || detectedColor || (idx === 0 ? productData.defaultColor || 'Negro' : null);
+        return {
+          url: fullUrl,
+          color: finalColor
+        };
+      });
+
+      const mainImg = galleryWithColorObjects[0]?.url || '/producto.webp';
+
+      try {
+        pbRecord = await pb.collection('products').update(pbRecord.id, {
+          image: mainImg,
+          gallery: galleryWithColorObjects
+        }, { requestKey: null });
+      } catch (linkErr) {
+        console.warn('Auto-enlace de variantes en PocketBase:', linkErr);
+      }
+    }
+
     const mapped = mapPbProduct(pbRecord);
+    if (productData.colors && Array.isArray(productData.colors) && productData.colors.length > 0) {
+      mapped.colors = Array.from(new Set([...(mapped.colors || []), ...productData.colors]));
+    }
+    if (productData.colorImages && typeof productData.colorImages === 'object') {
+      mapped.colorImages = { ...(mapped.colorImages || {}), ...productData.colorImages };
+    }
+    if (productData.defaultColor) {
+      mapped.defaultColor = productData.defaultColor;
+    }
+
     setProducts(prev => [mapped, ...prev.filter(p => p.id !== mapped.id)]);
     return mapped;
   };
@@ -600,7 +714,7 @@ export const StoreProvider = ({ children }) => {
 
     let updatedRecord;
 
-    if (hasNewFiles || hasImageItems) {
+    if (hasNewFiles) {
       const fd = new FormData();
       if (updatedData.name !== undefined) fd.append('name', updatedData.name.trim().toUpperCase());
       if (updatedData.description !== undefined) fd.append('description', updatedData.description);
@@ -614,30 +728,83 @@ export const StoreProvider = ({ children }) => {
       if (updatedData.sizes !== undefined) fd.append('sizes', JSON.stringify(updatedData.sizes));
       if (updatedData.specs !== undefined) fd.append('specs', JSON.stringify(updatedData.specs));
 
-      if (updatedData.image !== undefined) {
-        fd.append('image', cleanUrl(updatedData.image));
-      }
-      if (updatedData.gallery !== undefined) {
-        const cleanGallery = (Array.isArray(updatedData.gallery) ? updatedData.gallery : [])
-          .map(cleanUrl)
-          .filter(Boolean);
-        fd.append('gallery', JSON.stringify(cleanGallery));
-      }
-
       updatedData.imageItems.forEach(it => {
         if (it.file instanceof File) {
-          fd.append('images', it.file);
-        } else if (it.rawName) {
-          fd.append('images', it.rawName);
+          fd.append('images', getFileWithColor(it.file, it.color || updatedData.defaultColor));
+        } else {
+          const raw = it.rawName || (typeof it.url === 'string' && it.url.includes('/api/files/') ? it.url.split('/').pop().split('?')[0] : null);
+          if (raw) {
+            fd.append('images', raw);
+          }
         }
       });
 
       updatedRecord = await pb.collection('products').update(productId, fd, { requestKey: null });
+
+      // Auto-vincular de forma permanente la imagen y galería con sus variantes por color
+      if (updatedRecord && Array.isArray(updatedRecord.images) && updatedRecord.images.length > 0) {
+        const col = updatedRecord.collectionId || updatedRecord.collectionName || 'pbc_4092854851';
+        const galleryWithColorObjects = updatedRecord.images.map((img, idx) => {
+          const fullUrl = `${POCKETBASE_URL}/api/files/${col}/${updatedRecord.id}/${img}`;
+          let itemColor = updatedData.imageItems?.[idx]?.color;
+          if (!itemColor && updatedData.colorImages && typeof updatedData.colorImages === 'object') {
+            for (const [colName, colUrl] of Object.entries(updatedData.colorImages)) {
+              if (colUrl && (colUrl.includes(img) || fullUrl.includes(colUrl))) {
+                itemColor = colName;
+                break;
+              }
+            }
+          }
+          const detectedColor = detectColorFromText(img)?.name;
+          const finalColor = itemColor || detectedColor || (idx === 0 ? updatedData.defaultColor || 'Negro' : null);
+          return {
+            url: fullUrl,
+            color: finalColor
+          };
+        });
+
+        const mainImg = (updatedData.defaultColor && updatedData.colorImages?.[updatedData.defaultColor])
+          || galleryWithColorObjects[0]?.url 
+          || '/producto.webp';
+
+        try {
+          updatedRecord = await pb.collection('products').update(updatedRecord.id, {
+            image: cleanUrl(mainImg) || galleryWithColorObjects[0]?.url || '/producto.webp',
+            gallery: galleryWithColorObjects
+          }, { requestKey: null });
+        } catch (linkErr) {
+          console.warn('Auto-enlace de variantes en PocketBase update:', linkErr);
+        }
+      }
     } else {
-      const cleanImage = updatedData.image !== undefined ? cleanUrl(updatedData.image) : undefined;
-      const cleanGallery = updatedData.gallery !== undefined 
-        ? (Array.isArray(updatedData.gallery) ? updatedData.gallery : []).map(cleanUrl).filter(Boolean)
-        : undefined;
+      // Sin archivos nuevos de PC: actualizar campos y persistir variantes de color directamente
+      let galleryWithColorObjects = [];
+      if (hasImageItems) {
+        galleryWithColorObjects = updatedData.imageItems.map((it, idx) => {
+          let itemColor = it.color;
+          if (!itemColor && updatedData.colorImages && typeof updatedData.colorImages === 'object') {
+            for (const [colName, colUrl] of Object.entries(updatedData.colorImages)) {
+              if (colUrl === it.url) {
+                itemColor = colName;
+                break;
+              }
+            }
+          }
+          const detectedColor = detectColorFromText(it.rawName || it.url)?.name;
+          const finalColor = itemColor || detectedColor || (idx === 0 ? updatedData.defaultColor || 'Negro' : null);
+          return {
+            url: it.url,
+            color: finalColor
+          };
+        }).filter(it => it.url && !it.url.startsWith('blob:'));
+      } else if (Array.isArray(updatedData.gallery)) {
+        galleryWithColorObjects = updatedData.gallery.map(cleanGalleryItem).filter(Boolean);
+      }
+
+      const mainImg = (updatedData.defaultColor && updatedData.colorImages?.[updatedData.defaultColor])
+        || galleryWithColorObjects[0]?.url
+        || cleanUrl(updatedData.image)
+        || '/producto.webp';
 
       updatedRecord = await pb.collection('products').update(productId, {
         ...(updatedData.name !== undefined ? { name: updatedData.name.trim().toUpperCase() } : {}),
@@ -647,16 +814,26 @@ export const StoreProvider = ({ children }) => {
         ...(finalStock !== undefined ? { stock: Number(finalStock) } : {}),
         ...(finalSizeStock !== undefined ? { sizeStock: finalSizeStock } : {}),
         ...(updatedData.badge !== undefined ? { badge: updatedData.badge } : {}),
-        ...(updatedData.category !== undefined ? { category: updatedData.category.toLowerCase() } : {}),
+        ...(updatedData.category !== undefined ? { category: (updatedData.category || '').toLowerCase() } : {}),
         ...(updatedData.isFeatured !== undefined ? { isFeatured: !!updatedData.isFeatured } : {}),
         ...(updatedData.sizes !== undefined ? { sizes: updatedData.sizes } : {}),
         ...(updatedData.specs !== undefined ? { specs: updatedData.specs } : {}),
-        ...(cleanImage !== undefined ? { image: cleanImage } : {}),
-        ...(cleanGallery !== undefined ? { gallery: cleanGallery } : {})
+        image: cleanUrl(mainImg) || '/producto.webp',
+        gallery: galleryWithColorObjects.length > 0 ? galleryWithColorObjects : ['/producto.webp']
       }, { requestKey: null });
     }
 
     const mapped = mapPbProduct(updatedRecord);
+    if (updatedData.colors && Array.isArray(updatedData.colors) && updatedData.colors.length > 0) {
+      mapped.colors = Array.from(new Set([...(mapped.colors || []), ...updatedData.colors]));
+    }
+    if (updatedData.colorImages && typeof updatedData.colorImages === 'object') {
+      mapped.colorImages = { ...(mapped.colorImages || {}), ...updatedData.colorImages };
+    }
+    if (updatedData.defaultColor) {
+      mapped.defaultColor = updatedData.defaultColor;
+    }
+
     setProducts(prev => prev.map(p => p.id === productId ? mapped : p));
     return mapped;
   };
@@ -789,10 +966,12 @@ export const StoreProvider = ({ children }) => {
           id: it.product?.id,
           name: it.product?.name,
           price: it.product?.price,
-          image: it.product?.image
+          image: it.colorImage || it.product?.image || '/producto.webp'
         },
-        size: it.size,
-        quantity: it.quantity
+        size: it.size || 'Única',
+        color: it.color || it.product?.defaultColor || 'Negro',
+        colorImage: it.colorImage || it.product?.image || '/producto.webp',
+        quantity: it.quantity || 1
       })) : [];
 
       const record = await pb.collection('orders').create({
