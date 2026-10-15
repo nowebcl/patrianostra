@@ -921,44 +921,25 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         {/* COLUMNA DERECHA: Colores por Prenda y Fotos por Color (5 columnas) */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* SECCIÓN: VARIANTES POR COLOR DE LA PRENDA */}
-          <div className="bg-[#111111] border border-neutral-800/80 rounded-2xl p-6 space-y-5 shadow-xl">
+          {/* SECCIÓN: VARIANTES POR COLOR DE LA PRENDA (MINIMAL) */}
+          <div className="bg-[#111111] border border-neutral-800/80 rounded-2xl p-5 space-y-4 shadow-xl">
             
-            <div className="flex items-center justify-between pb-3.5 border-b border-neutral-800">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#C52222]/20 border border-[#C52222]/40 flex items-center justify-center">
-                  <Palette className="w-4 h-4 text-[#C52222]" />
-                </div>
-                <div>
-                  <h3 className="text-xs font-condensed font-bold uppercase tracking-wider text-white">
-                    VARIANTES POR COLOR DE LA PRENDA
-                  </h3>
-                  <p className="text-[10px] text-neutral-400 font-sans">
-                    Asigna una foto exclusiva a cada color para que el cliente compre el color exacto
-                  </p>
-                </div>
+            {/* Header minimal */}
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800/80">
+              <div className="flex items-center gap-2">
+                <Palette className="w-3.5 h-3.5 text-[#C52222]" />
+                <span className="text-xs font-condensed font-bold uppercase tracking-wider text-white">
+                  Variantes por Color
+                </span>
               </div>
-              <span className="text-[10px] font-condensed font-bold text-[#ff4d4d] bg-[#C52222]/15 border border-[#C52222]/30 px-2.5 py-1 rounded-full uppercase tracking-wider">
-                {colors.length} {colors.length === 1 ? 'color activo' : 'colores activos'}
+              <span className="text-[10px] font-mono text-neutral-400">
+                {colors.length} {colors.length === 1 ? 'color' : 'colores'}
               </span>
             </div>
 
-            {/* Cuadro de Instrucciones Claras */}
-            <div className="p-3 bg-[#0d0d0d] border border-neutral-800/80 rounded-xl space-y-1">
-              <div className="text-[11px] font-condensed font-bold text-neutral-200 uppercase tracking-wide flex items-center gap-1.5">
-                <span>🎯 ¿Cómo funciona en la tienda?</span>
-              </div>
-              <p className="text-[11px] text-neutral-400 font-sans leading-relaxed">
-                Activa los colores de esta prenda y presiona <strong>"Subir Foto"</strong> en cada uno (ej: Negro, Blanco, Rojo). Cuando el cliente haga clic en <em>Blanco</em> en la tienda, verá la foto del producto blanco y se agregará al carrito en ese color exacto.
-              </p>
-            </div>
-
-            {/* Selector de Colores Rápidos (Chips) */}
+            {/* Selector de Colores (Chips Minimalistas) */}
             <div className="space-y-2">
-              <span className="text-[10px] font-condensed font-bold tracking-wider text-neutral-400 uppercase block">
-                Selecciona colores disponibles para esta prenda:
-              </span>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {COLOR_DEFINITIONS.map(def => {
                   const isChecked = colors.includes(def.name);
                   return (
@@ -966,14 +947,14 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                       key={def.name}
                       type="button"
                       onClick={() => handleToggleColor(def.name)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-condensed font-bold uppercase transition-all flex items-center gap-2 cursor-pointer ${
+                      className={`px-2.5 py-1.5 rounded-lg text-xs font-condensed font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
                         isChecked
-                          ? 'bg-[#181818] border-2 border-[#C52222] text-white shadow-sm'
-                          : 'bg-[#0a0a0a] border border-neutral-800 text-neutral-400 hover:text-white'
+                          ? 'bg-[#1a1a1a] border border-[#C52222] text-white shadow-sm'
+                          : 'bg-[#0a0a0a] border border-neutral-800/80 text-neutral-400 hover:text-white hover:border-neutral-700'
                       }`}
                     >
                       <span 
-                        className="w-3 h-3 rounded-full border border-neutral-700/80 shrink-0" 
+                        className="w-2.5 h-2.5 rounded-full shrink-0 border border-neutral-700/80" 
                         style={{ backgroundColor: def.hex }}
                       />
                       <span>{def.name}</span>
@@ -983,37 +964,37 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                 })}
               </div>
 
-              {/* Botón para color personalizado */}
+              {/* Botón color personalizado */}
               {!isAddingCustomColor ? (
                 <button
                   type="button"
                   onClick={() => setIsAddingCustomColor(true)}
-                  className="text-[11px] font-condensed font-bold text-neutral-400 hover:text-white flex items-center gap-1 uppercase tracking-wider pt-1 cursor-pointer"
+                  className="text-[11px] font-condensed font-bold text-neutral-400 hover:text-white flex items-center gap-1.5 uppercase tracking-wider pt-0.5 cursor-pointer transition-colors"
                 >
                   <Plus className="w-3 h-3 text-[#C52222]" />
-                  <span>+ Otro color personalizado</span>
+                  <span>Color personalizado</span>
                 </button>
               ) : (
-                <div className="flex gap-2 pt-1">
+                <div className="flex gap-1.5 pt-1">
                   <input
                     type="text"
                     value={customColorName}
                     onChange={(e) => setCustomColorName(e.target.value)}
-                    placeholder="Ej: Verde Olivo, Camuflado, Beige..."
-                    className="flex-1 bg-[#0a0a0a] border border-neutral-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-[#C52222]"
+                    placeholder="Nombre del color (ej: Beige, Olivo...)"
+                    className="flex-1 bg-[#0a0a0a] border border-neutral-700 rounded-lg px-2.5 py-1 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-[#C52222]"
                     autoFocus
                   />
                   <button
                     type="button"
                     onClick={handleAddCustomColor}
-                    className="px-3 py-1.5 bg-[#C52222] hover:bg-[#a81c1c] text-white font-condensed font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+                    className="px-3 py-1 bg-[#C52222] hover:bg-[#a81c1c] text-white font-condensed font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
                   >
                     Añadir
                   </button>
                   <button
                     type="button"
                     onClick={() => { setIsAddingCustomColor(false); setCustomColorName(''); }}
-                    className="px-2.5 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 font-condensed font-bold text-xs uppercase rounded-lg cursor-pointer"
+                    className="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white text-xs rounded-lg cursor-pointer"
                   >
                     ✕
                   </button>
@@ -1031,9 +1012,9 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
             />
 
             {/* Tarjetas de Asignación de Fotos por cada Color Activo */}
-            <div className="space-y-3 pt-2">
-              <span className="text-[10px] font-condensed font-bold tracking-wider text-neutral-400 uppercase block">
-                Fotos asignadas por cada color:
+            <div className="space-y-2 pt-2">
+              <span className="text-[10px] font-condensed font-bold tracking-wider text-neutral-500 uppercase block">
+                Foto por cada variante:
               </span>
 
               {colors.map((colorName, idx) => {
@@ -1044,71 +1025,55 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                 return (
                   <div 
                     key={colorName}
-                    className={`bg-[#080808] border rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group transition-all ${
-                      hasAssigned 
-                        ? 'border-neutral-800/90 hover:border-neutral-700' 
-                        : 'border-amber-500/40 bg-amber-950/10'
-                    }`}
+                    className="bg-[#0c0c0c] border border-neutral-800/80 hover:border-neutral-700 rounded-xl p-2.5 flex items-center justify-between gap-3 transition-colors"
                   >
                     {/* Indicador de Color y Miniatura */}
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="relative w-14 h-14 bg-black border border-neutral-800 rounded-xl flex items-center justify-center p-1 shrink-0 overflow-hidden shadow-inner">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="relative w-11 h-11 bg-black border border-neutral-800 rounded-lg flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
                         {assignedUrl ? (
                           <img 
                             src={assignedUrl} 
-                            alt={`Prenda ${colorName}`} 
+                            alt={colorName} 
                             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
-                            className="w-full h-full object-contain filter contrast-105" 
+                            className="w-full h-full object-contain" 
                           />
                         ) : (
-                          <ImageIcon className="w-6 h-6 text-neutral-600" />
+                          <ImageIcon className="w-4 h-4 text-neutral-600" />
                         )}
                         <span 
-                          className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border border-neutral-800 shadow"
+                          className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full border border-neutral-800 shadow"
                           style={{ backgroundColor: def.hex }}
                           title={`Color ${colorName}`}
                         />
                       </div>
 
-                      <div className="min-w-0 space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="font-condensed font-bold text-sm uppercase text-white truncate">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-condensed font-bold text-xs uppercase text-white truncate">
                             {colorName}
                           </span>
                           {idx === 0 && (
-                            <span className="text-[9px] font-condensed font-bold uppercase bg-[#C52222]/20 text-[#ff4d4d] px-2 py-0.5 rounded-md border border-[#C52222]/30">
+                            <span className="text-[9px] font-mono uppercase text-[#ff4d4d] bg-[#C52222]/15 px-1 py-0.2 rounded border border-[#C52222]/30">
                               Principal
                             </span>
                           )}
                         </div>
-
-                        {hasAssigned ? (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-condensed font-bold uppercase tracking-wider bg-emerald-950/50 border border-emerald-800/40 px-2 py-0.5 rounded">
-                            <Check className="w-3 h-3 text-emerald-400" />
-                            <span>Foto asignada</span>
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-amber-300 font-condensed font-bold uppercase tracking-wider bg-amber-950/50 border border-amber-800/40 px-2 py-0.5 rounded">
-                            <span>⚠️ Falta foto para {colorName}</span>
-                          </span>
-                        )}
+                        <span className="text-[10px] font-condensed text-neutral-400 block mt-0.5">
+                          {hasAssigned ? '✓ Foto asignada' : 'Sin foto asignada'}
+                        </span>
                       </div>
                     </div>
 
                     {/* Acciones para este color */}
-                    <div className="flex items-center gap-2 shrink-0 flex-wrap sm:flex-nowrap">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         type="button"
                         onClick={() => handleTriggerUploadForColor(colorName)}
                         title={`Subir foto de la prenda en color ${colorName}`}
-                        className={`px-3 py-1.5 rounded-lg text-[11px] font-condensed font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer ${
-                          hasAssigned
-                            ? 'bg-[#181818] hover:bg-[#252525] text-neutral-200 border border-neutral-700 hover:border-[#C52222]'
-                            : 'bg-[#C52222] hover:bg-[#a81c1c] text-white shadow-md shadow-[#C52222]/30'
-                        }`}
+                        className="px-2.5 py-1.5 bg-[#181818] hover:bg-[#C52222] text-neutral-300 hover:text-white border border-neutral-700/80 hover:border-[#C52222] rounded-lg text-[10px] font-condensed font-bold uppercase tracking-wider flex items-center gap-1 transition-all cursor-pointer"
                       >
-                        <Upload className="w-3.5 h-3.5" />
-                        <span>{hasAssigned ? 'Cambiar Foto' : `Subir Foto ${colorName}`}</span>
+                        <Upload className="w-3 h-3" />
+                        <span>{hasAssigned ? 'Cambiar' : 'Subir Foto'}</span>
                       </button>
 
                       {/* Selector de foto existente en la galería */}
@@ -1116,10 +1081,10 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                         <select
                           value={assignedUrl || ''}
                           onChange={(e) => handleAssignImageToColor(colorName, e.target.value)}
-                          className="bg-[#121212] border border-neutral-800 text-[10px] font-condensed text-neutral-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#C52222] cursor-pointer"
-                          title="O vincular a una foto ya subida en la galería"
+                          className="bg-[#121212] border border-neutral-800 text-[10px] font-condensed text-neutral-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#C52222] cursor-pointer"
+                          title="Vincular a una foto ya subida en la galería"
                         >
-                          <option value="">O elegir de galería...</option>
+                          <option value="">De galería...</option>
                           {imageItems.map((it, itemIdx) => (
                             <option key={it.id || itemIdx} value={it.url}>
                               Foto #{itemIdx + 1} {it.color ? `(${it.color})` : ''}
@@ -1132,8 +1097,8 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                         <button
                           type="button"
                           onClick={() => handleToggleColor(colorName)}
-                          title="Quitar este color de la prenda"
-                          className="p-1.5 bg-neutral-900 hover:bg-red-950/60 text-neutral-500 hover:text-red-400 rounded-lg border border-neutral-800 transition-colors cursor-pointer"
+                          title="Quitar este color"
+                          className="p-1.5 text-neutral-500 hover:text-red-400 rounded-lg hover:bg-neutral-800/60 transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
