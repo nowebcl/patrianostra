@@ -48,280 +48,196 @@ export const products = [
     "defaultColor": "Negro"
   },
   {
-    "id": "w3iaz67xdivbr2p",
+    "id": "5574umq66et5mpu",
     "collectionId": "pbc_4092854851",
     "collectionName": "products",
-    "sku": "PN-POL-907",
-    "name": "PRUEBA 3",
-    "price": 12000,
+    "sku": "PN-VIN-5MB",
+    "name": "VINILO TEST 5MB (CARGA ULTRA RÁPIDA WEBP)",
+    "price": 22000,
     "originalPrice": null,
-    "category": "poleras",
-    "badge": "NUEVO",
-    "stock": 22,
+    "category": "vinilos",
+    "badge": "VINILO TEST 5MB",
+    "stock": 10,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
-      "L": 7,
-      "XL": 4,
-      "XXL": 2
+      "Única": 10
     },
     "gender": "Unisex",
-    "gsm": "240 GSM Algodón Pesado",
-    "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
-    "specs": [],
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Producto de prueba creado con una imagen original de 10.46 MB (10714 KB) convertida automáticamente a WebP de solo 19 KB. Categoría: Vinilos / Música.",
+    "specs": [
+      "Imagen original de entrada: 10.46 MB (10714 KB)",
+      "Imagen WebP almacenada: 19 KB (-99.8%)",
+      "Formato: Vinilo 12\" LP Edición Limitada"
+    ],
     "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
+      "Única"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5574umq66et5mpu/vinilo_test_5mb_negro_9oj2kdkmvv.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5574umq66et5mpu/vinilo_test_5mb_negro_9oj2kdkmvv.webp"
     ],
     "rawImages": [
-      "9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
-      "40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
+      "vinilo_test_5mb_negro_9oj2kdkmvv.webp"
     ],
     "colors": [
-      "Negro",
-      "Blanco"
-    ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp",
-      "Blanco": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
-    },
-    "colorItems": [
-      {
-        "name": "Negro",
-        "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/9ad8b115_7b85_42a5_9c34_105c059de438_negro_e92vntywuc.webp"
-      },
-      {
-        "name": "Blanco",
-        "hex": "#FFFFFF",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3iaz67xdivbr2p/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_uax5lxkvf7.webp"
-      }
-    ],
-    "defaultColor": "Negro",
-    "created": "2026-10-15 23:06:38.073Z",
-    "updated": "2026-10-15 23:06:38.417Z"
-  },
-  {
-    "id": "th2u9vs6emt2vkj",
-    "collectionId": "pbc_4092854851",
-    "collectionName": "products",
-    "sku": "PN-HLD-BN",
-    "name": "POLERÓN PATRIA PESADO - BURDEO & NEGRO",
-    "price": 29990,
-    "originalPrice": 35990,
-    "category": "polerones",
-    "badge": "LIMITED",
-    "stock": 18,
-    "sizeStock": {
-      "M": 6,
-      "L": 6,
-      "XL": 6
-    },
-    "gender": "Unisex",
-    "gsm": "380 GSM Frisa Pesada",
-    "fit": "Oversize Fit",
-    "description": "Polerón hoodie premium confeccionado en frisa pesada de 380 GSM con capucha forrada y bolsillo canguro reforzado. Variantes en Burdeo y Negro clásico.",
-    "specs": [
-      "Frisa pesada 380 GSM",
-      "Bolsillo canguro y capucha con cordón plano",
-      "Estampado en espalda de alta densidad"
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL"
-    ],
-    "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp",
-    "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_negro_p4k6a37j6z.webp"
-    ],
-    "rawImages": [
-      "hoodie_patria_burdeo_4wi031cecs.webp",
-      "hoodie_patria_negro_p4k6a37j6z.webp"
-    ],
-    "colors": [
-      "Burdeo",
       "Negro"
     ],
     "colorImages": {
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp",
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_negro_p4k6a37j6z.webp"
-    },
-    "colorItems": [
-      {
-        "name": "Burdeo",
-        "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_burdeo_4wi031cecs.webp"
-      },
-      {
-        "name": "Negro",
-        "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/th2u9vs6emt2vkj/hoodie_patria_negro_p4k6a37j6z.webp"
-      }
-    ],
-    "defaultColor": "Burdeo",
-    "created": "2026-10-15 22:55:22.508Z",
-    "updated": "2026-10-15 22:55:22.683Z"
-  },
-  {
-    "id": "6yi6jpcn9sv4rh2",
-    "collectionId": "pbc_4092854851",
-    "collectionName": "products",
-    "sku": "PN-POL-SUR3",
-    "name": "POLERA COMBATE SUR - EDICIÓN 3 COLORES",
-    "price": 14990,
-    "originalPrice": 19990,
-    "category": "poleras",
-    "badge": "NUEVO",
-    "stock": 24,
-    "sizeStock": {
-      "S": 6,
-      "M": 6,
-      "L": 6,
-      "XL": 6
-    },
-    "gender": "Unisex",
-    "gsm": "240 GSM Algodón Pesado",
-    "fit": "Corte Regular",
-    "description": "Polera oficial de alta densidad 240 GSM. Confeccionada con estampados curados al horno y disponible en tres variantes de color oficiales: Negro, Blanco y Azul.",
-    "specs": [
-      "100% Algodón Peinado 240 GSM",
-      "Estampado serigráfico de máxima resistencia",
-      "Costuras reforzadas en cuello y hombros"
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp",
-    "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_blanco_77im0vffcj.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_azul_jyqiecw04f.webp"
-    ],
-    "rawImages": [
-      "polera_sur_negro_m3f54cks1c.webp",
-      "polera_sur_blanco_77im0vffcj.webp",
-      "polera_sur_azul_jyqiecw04f.webp"
-    ],
-    "colors": [
-      "Negro",
-      "Blanco",
-      "Azul"
-    ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp",
-      "Blanco": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_blanco_77im0vffcj.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_azul_jyqiecw04f.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5574umq66et5mpu/vinilo_test_5mb_negro_9oj2kdkmvv.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_negro_m3f54cks1c.webp"
-      },
-      {
-        "name": "Blanco",
-        "hex": "#FFFFFF",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_blanco_77im0vffcj.webp"
-      },
-      {
-        "name": "Azul",
-        "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6yi6jpcn9sv4rh2/polera_sur_azul_jyqiecw04f.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5574umq66et5mpu/vinilo_test_5mb_negro_9oj2kdkmvv.webp"
       }
     ],
     "defaultColor": "Negro",
-    "created": "2026-10-15 22:55:21.897Z",
-    "updated": "2026-10-15 22:55:22.086Z"
+    "created": "2026-10-20 02:31:52.298Z",
+    "updated": "2026-10-20 02:31:52.472Z"
   },
   {
-    "id": "tgk513fzgmwyok7",
+    "id": "s3uixooa4ml4e6y",
     "collectionId": "pbc_4092854851",
     "collectionName": "products",
-    "sku": "PN-POL-868",
-    "name": "PRUEBA  POLERAS COLOR",
-    "price": 12000,
+    "sku": "PN-POL-137",
+    "name": "BALACLAVA TOTENKOPF",
+    "price": 7500,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "accesorios",
     "badge": "NUEVO",
-    "stock": 22,
+    "stock": 10,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
-      "L": 7,
-      "XL": 4,
-      "XXL": 2
+      "Única": 10
     },
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Balaclava negra hecha en poliéster, estampado en DTF de alta calidad. \r\nProducto de Patria Nostra - Streetwear Division.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
+      "Única"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s3uixooa4ml4e6y/freeimgen_1792458994259_negro_j48gshwwcr.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s3uixooa4ml4e6y/freeimgen_1792458994259_negro_j48gshwwcr.webp"
     ],
     "rawImages": [
-      "9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
-      "40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp",
-      "38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+      "freeimgen_1792458994259_negro_j48gshwwcr.webp"
     ],
     "colors": [
-      "Negro",
-      "Blanco",
-      "Burdeo"
+      "Negro"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp",
-      "Blanco": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s3uixooa4ml4e6y/freeimgen_1792458994259_negro_j48gshwwcr.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/9ad8b115_7b85_42a5_9c34_105c059de438_negro_4pleephj27.webp"
-      },
-      {
-        "name": "Blanco",
-        "hex": "#FFFFFF",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/40030bb6_aa2a_4e75_b198_0735a6a08660_blanco_3coc5hdki9.webp"
-      },
-      {
-        "name": "Burdeo",
-        "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tgk513fzgmwyok7/38114dd3_9750_421f_ae3a_8b7b27b556a9_burdeo_cg3nzrjgnh.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s3uixooa4ml4e6y/freeimgen_1792458994259_negro_j48gshwwcr.webp"
       }
     ],
     "defaultColor": "Negro",
-    "created": "2026-10-15 22:45:56.752Z",
-    "updated": "2026-10-15 23:27:14.893Z"
+    "created": "2026-10-20 01:23:39.566Z",
+    "updated": "2026-10-20 02:26:34.946Z"
+  },
+  {
+    "id": "b8tvkg6ymxwfjgw",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-POL-701",
+    "name": "BALACLAVA CRUZ CELTA EN LLAMAS",
+    "price": 7500,
+    "originalPrice": null,
+    "category": "accesorios",
+    "badge": "NUEVO",
+    "stock": 9,
+    "sizeStock": {
+      "Única": 9
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Balaclava negra hecha en poliéster, estampado en DTF de alta calidad. \r\nProducto de Patria Nostra - Streetwear Division.",
+    "specs": [],
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/b8tvkg6ymxwfjgw/freeimgen_1792458999557_negro_nrt74kimdq.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/b8tvkg6ymxwfjgw/freeimgen_1792458999557_negro_nrt74kimdq.webp"
+    ],
+    "rawImages": [
+      "freeimgen_1792458999557_negro_nrt74kimdq.webp"
+    ],
+    "colors": [
+      "Negro"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/b8tvkg6ymxwfjgw/freeimgen_1792458999557_negro_nrt74kimdq.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/b8tvkg6ymxwfjgw/freeimgen_1792458999557_negro_nrt74kimdq.webp"
+      }
+    ],
+    "defaultColor": "Negro",
+    "created": "2026-10-20 01:22:49.735Z",
+    "updated": "2026-10-20 02:26:36.715Z"
+  },
+  {
+    "id": "j8fs18pb1dgg6rq",
+    "collectionId": "pbc_4092854851",
+    "collectionName": "products",
+    "sku": "PN-POL-635",
+    "name": "BALACLAVA ANTES MUERTO QUE TRAIDOR",
+    "price": 7500,
+    "originalPrice": null,
+    "category": "accesorios",
+    "badge": "NUEVO",
+    "stock": 10,
+    "sizeStock": {
+      "Única": 10
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Balaclava negra hecha en poliéster, estampado en DTF de alta calidad. \r\nProducto oficial de Patria Nostra - Streetwear Division.",
+    "specs": [],
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j8fs18pb1dgg6rq/freeimgen_1792459006556_negro_lir649g7ma.webp",
+    "gallery": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j8fs18pb1dgg6rq/freeimgen_1792459006556_negro_lir649g7ma.webp"
+    ],
+    "rawImages": [
+      "freeimgen_1792459006556_negro_lir649g7ma.webp"
+    ],
+    "colors": [
+      "Negro"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j8fs18pb1dgg6rq/freeimgen_1792459006556_negro_lir649g7ma.webp"
+    },
+    "colorItems": [
+      {
+        "name": "Negro",
+        "hex": "#111111",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j8fs18pb1dgg6rq/freeimgen_1792459006556_negro_lir649g7ma.webp"
+      }
+    ],
+    "defaultColor": "Negro",
+    "created": "2026-10-20 01:20:58.229Z",
+    "updated": "2026-10-20 02:26:38.335Z"
   },
   {
     "id": "7dzt1phpjxbo8n0",
@@ -331,13 +247,13 @@ export const products = [
     "name": "ORGULLO SUR -  FAMILIA PATRIA TRADICIÓN",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 22,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 7,
+      "M": 6,
+      "S": 3,
       "XL": 4,
       "XXL": 2
     },
@@ -347,9 +263,9 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
@@ -396,7 +312,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-15 01:26:57.919Z",
-    "updated": "2026-10-15 03:16:29.382Z"
+    "updated": "2026-10-20 00:45:06.318Z"
   },
   {
     "id": "w0v7vlfae8kvxbf",
@@ -429,16 +345,16 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_e0ep8o5mw6.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_g48dl0rmt8.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_54wr6pko58.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_e0ep8o5mw6.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_vjz3n4sc96.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_r3s079nvs0.webp"
     ],
     "rawImages": [
-      "guaren_korps_negra_0rfs1pcybn.webp",
-      "guaren_korps_azul_g48dl0rmt8.webp",
-      "guaren_korps_rac_gris_54wr6pko58.webp"
+      "guaren_korps_negra_e0ep8o5mw6.webp",
+      "guaren_korps_azul_vjz3n4sc96.webp",
+      "guaren_korps_rac_gris_r3s079nvs0.webp"
     ],
     "colors": [
       "Negro",
@@ -446,30 +362,30 @@ export const products = [
       "Gris"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_g48dl0rmt8.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_54wr6pko58.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_e0ep8o5mw6.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_vjz3n4sc96.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_r3s079nvs0.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_0rfs1pcybn.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_e0ep8o5mw6.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_g48dl0rmt8.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_azul_vjz3n4sc96.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_54wr6pko58.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_rac_gris_r3s079nvs0.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 22:34:41.559Z",
-    "updated": "2026-10-15 03:15:35.717Z"
+    "updated": "2026-10-20 02:26:44.843Z"
   },
   {
     "id": "widyfm28vkok03v",
@@ -554,13 +470,13 @@ export const products = [
     "name": "ORGULLO SUR - DEFIENDE TU HOGAR",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 22,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 7,
+      "M": 6,
+      "S": 3,
       "XL": 4,
       "XXL": 2
     },
@@ -570,9 +486,9 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
@@ -619,7 +535,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 22:22:06.252Z",
-    "updated": "2026-10-15 03:16:45.559Z"
+    "updated": "2026-10-20 00:45:30.106Z"
   },
   {
     "id": "q3zatn38l9b3pl4",
@@ -629,13 +545,13 @@ export const products = [
     "name": "ORGULLO SUR - GUERRA AL ENEMIGO DE MI TIERRA",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 24,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 5,
+      "M": 6,
+      "S": 3,
       "XL": 5,
       "XXL": 5
     },
@@ -645,9 +561,9 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
@@ -694,7 +610,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 02:06:11.172Z",
-    "updated": "2026-10-15 03:16:53.079Z"
+    "updated": "2026-10-20 00:45:42.147Z"
   },
   {
     "id": "2vccikwqyveqkka",
@@ -704,13 +620,13 @@ export const products = [
     "name": "ORGULLO SUR - XX AÑOS",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 24,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 5,
+      "M": 6,
+      "S": 3,
       "XL": 5,
       "XXL": 5
     },
@@ -720,9 +636,9 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
@@ -769,7 +685,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 02:00:18.234Z",
-    "updated": "2026-10-15 03:17:01.719Z"
+    "updated": "2026-10-20 00:45:50.165Z"
   },
   {
     "id": "ihx18u07guqzhdg",
@@ -779,13 +695,13 @@ export const products = [
     "name": "ORGULLO SUR - RESISTIR A LA TEMPESTAD",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 9,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 0,
+      "M": 6,
+      "S": 3,
       "XL": 0,
       "XXL": 0
     },
@@ -795,25 +711,25 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_n2fsbqbz0r.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_25zsi4k4e9.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_n2fsbqbz0r.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_nny5wbcsba.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_xgvr65ju2j.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_50s5c5gep2.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_25zsi4k4e9.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_e4v3cmmx70.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_bq2xd2wafa.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_2tunwmu9oy.webp"
     ],
     "rawImages": [
-      "os_resistir_front_n2fsbqbz0r.webp",
-      "os_resistir_negro_back_nny5wbcsba.webp",
-      "os_resistir_azul_xgvr65ju2j.webp",
-      "os_resistir_burdeo_ack_50s5c5gep2.webp"
+      "os_resistir_front_25zsi4k4e9.webp",
+      "os_resistir_negro_back_e4v3cmmx70.webp",
+      "os_resistir_azul_bq2xd2wafa.webp",
+      "os_resistir_burdeo_ack_2tunwmu9oy.webp"
     ],
     "colors": [
       "Negro",
@@ -821,30 +737,30 @@ export const products = [
       "Burdeo"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_nny5wbcsba.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_xgvr65ju2j.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_50s5c5gep2.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_e4v3cmmx70.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_bq2xd2wafa.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_2tunwmu9oy.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_nny5wbcsba.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_negro_back_e4v3cmmx70.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_xgvr65ju2j.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_azul_bq2xd2wafa.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_50s5c5gep2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_burdeo_ack_2tunwmu9oy.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:54:05.395Z",
-    "updated": "2026-10-15 03:17:09.661Z"
+    "updated": "2026-10-20 02:26:57.939Z"
   },
   {
     "id": "raeo8oemcaqhyhj",
@@ -854,13 +770,13 @@ export const products = [
     "name": "ORGULLO SUR - ROCK NACIONALISTA",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 15,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 2,
+      "M": 6,
+      "S": 3,
       "XL": 2,
       "XXL": 2
     },
@@ -870,9 +786,9 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
@@ -910,7 +826,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:53:05.553Z",
-    "updated": "2026-10-15 03:17:15.860Z"
+    "updated": "2026-10-20 00:46:18.576Z"
   },
   {
     "id": "ds8l7aajjvd34lc",
@@ -920,13 +836,13 @@ export const products = [
     "name": "ORGULLO SUR - DEUTSCHLAND TOUR 2025",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 30,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 7,
+      "M": 6,
+      "S": 3,
       "XL": 7,
       "XXL": 7
     },
@@ -936,9 +852,9 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
@@ -985,7 +901,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "2026-10-14 01:52:13.530Z",
-    "updated": "2026-10-15 03:17:23.025Z"
+    "updated": "2026-10-20 00:46:26.455Z"
   },
   {
     "id": "g8xo76etqugspea",
@@ -2222,38 +2138,38 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_imq1a107au.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_z3jhr1aq0s.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_imq1a107au.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_1luu7mwm12.webp"
     ],
     "rawImages": [
-      "fortress_negro_hmraerxvv2.webp",
-      "fortress_azul_z3jhr1aq0s.webp"
+      "fortress_negro_imq1a107au.webp",
+      "fortress_azul_1luu7mwm12.webp"
     ],
     "colors": [
       "Negro",
       "Azul"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_z3jhr1aq0s.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_imq1a107au.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_1luu7mwm12.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_hmraerxvv2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_imq1a107au.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_z3jhr1aq0s.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_azul_1luu7mwm12.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "2026-10-13 23:56:34.794Z",
-    "updated": "2026-10-15 03:19:25.577Z"
+    "updated": "2026-10-20 02:27:30.557Z"
   },
   {
     "id": "2gdxeb8s9dbpjcn",
@@ -2359,29 +2275,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_nlsfmmtkwt.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_nlsfmmtkwt.webp"
     ],
     "rawImages": [
-      "skullhead_white_gris_pksautc8zo.webp"
+      "skullhead_white_gris_nlsfmmtkwt.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_nlsfmmtkwt.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_pksautc8zo.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_nlsfmmtkwt.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:32:13.262Z",
-    "updated": "2026-10-15 03:19:35.303Z"
+    "updated": "2026-10-20 02:27:33.701Z"
   },
   {
     "id": "96lrgercqt19nep",
@@ -2478,29 +2394,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_2d0m783ikn.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_2d0m783ikn.webp"
     ],
     "rawImages": [
-      "english_rose_rising_gris_fq5v2parla.webp"
+      "english_rose_rising_gris_2d0m783ikn.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_2d0m783ikn.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_fq5v2parla.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_2d0m783ikn.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:08:12.333Z",
-    "updated": "2026-10-15 03:19:43.494Z"
+    "updated": "2026-10-20 02:27:36.369Z"
   },
   {
     "id": "p96n74ouz4ghxh4",
@@ -2533,29 +2449,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_80cqyom3yo.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_80cqyom3yo.webp"
     ],
     "rawImages": [
-      "bully_boys_texas_gris_9vwbwd29nm.webp"
+      "bully_boys_texas_gris_80cqyom3yo.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_80cqyom3yo.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_9vwbwd29nm.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_80cqyom3yo.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:07:33.277Z",
-    "updated": "2026-10-15 03:19:45.950Z"
+    "updated": "2026-10-20 02:27:37.993Z"
   },
   {
     "id": "93t03x6mc4rsebe",
@@ -2588,29 +2504,29 @@ export const products = [
       "XXL"
     ],
     "isFeatured": false,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_n368zjrsji.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_n368zjrsji.webp"
     ],
     "rawImages": [
-      "skrewdriver_after_gris_fids65kczo.webp"
+      "skrewdriver_after_gris_n368zjrsji.webp"
     ],
     "colors": [
       "Gris"
     ],
     "colorImages": {
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp"
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_n368zjrsji.webp"
     },
     "colorItems": [
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_fids65kczo.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_n368zjrsji.webp"
       }
     ],
     "defaultColor": "Gris",
     "created": "2026-10-13 23:06:18.318Z",
-    "updated": "2026-10-15 03:19:48.394Z"
+    "updated": "2026-10-20 02:27:39.624Z"
   },
   {
     "id": "ha40mxd0m3d5sgg",
@@ -3555,58 +3471,65 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0uapwz5atm.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_mimetizado_ejux1savpv.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_o1kxfv0cpt.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_lu7wvqrjf8.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_6y4z0tavhw.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0uapwz5atm.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_jpl5nzvpf8.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_m41145gs1y.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_46v0klht00.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/freeimgen_1792458270162_verde_militar_401la8gkf5.webp"
     ],
     "rawImages": [
-      "ahtr_rojo_g3wxqgappe.webp",
-      "ahtr_mimetizado_ejux1savpv.webp",
-      "ahtr_gris_o1kxfv0cpt.webp",
-      "ahtr_burdeo_lu7wvqrjf8.webp",
-      "ahtr_azul_6y4z0tavhw.webp"
+      "ahtr_rojo_0uapwz5atm.webp",
+      "ahtr_gris_jpl5nzvpf8.webp",
+      "ahtr_burdeo_m41145gs1y.webp",
+      "ahtr_azul_46v0klht00.webp",
+      "freeimgen_1792458270162_verde_militar_401la8gkf5.webp"
     ],
     "colors": [
       "Rojo",
       "Gris",
       "Burdeo",
-      "Azul"
+      "Azul",
+      "Verde Militar"
     ],
     "colorImages": {
-      "Rojo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_o1kxfv0cpt.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_lu7wvqrjf8.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_6y4z0tavhw.webp"
+      "Rojo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0uapwz5atm.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_jpl5nzvpf8.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_m41145gs1y.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_46v0klht00.webp",
+      "Verde Militar": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/freeimgen_1792458270162_verde_militar_401la8gkf5.webp"
     },
     "colorItems": [
       {
         "name": "Rojo",
         "hex": "#B91C1C",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_g3wxqgappe.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0uapwz5atm.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_o1kxfv0cpt.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_gris_jpl5nzvpf8.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_lu7wvqrjf8.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_burdeo_m41145gs1y.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_6y4z0tavhw.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_azul_46v0klht00.webp"
+      },
+      {
+        "name": "Verde Militar",
+        "hex": "#3F4E34",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/freeimgen_1792458270162_verde_militar_401la8gkf5.webp"
       }
     ],
     "defaultColor": "Rojo",
     "created": "2026-10-08 01:30:16.654Z",
-    "updated": "2026-10-15 03:21:08.416Z"
+    "updated": "2026-10-20 02:18:21.872Z"
   },
   {
     "id": "p8ak8isspvn204u",
@@ -3616,13 +3539,13 @@ export const products = [
     "name": "ORGULLO SUR - CHILE",
     "price": 16000,
     "originalPrice": null,
-    "category": "poleras",
+    "category": "orgullo sur",
     "badge": "NUEVO",
     "stock": 21,
     "sizeStock": {
-      "S": 3,
-      "M": 6,
       "L": 4,
+      "M": 6,
+      "S": 3,
       "XL": 4,
       "XXL": 4
     },
@@ -3632,49 +3555,67 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
     "specs": [],
     "sizes": [
-      "S",
-      "M",
       "L",
+      "M",
+      "S",
       "XL",
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_i4yjedif1o.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_navy_orgullo_sur_chile_vk0q5yt4z9.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orguillo_sur_chile_retro_iqtwbmnyqi.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_i4yjedif1o.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_navy_orgullo_sur_chile_9tn09tj9jw.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_5ipzzpao3u.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orguillo_sur_chile_retro_agpxliza7g.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/freeimgen_1792457644794_azul_s56qi6k7ti.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/freeimgen_1792457635449_gris_3t48cb4s4j.webp"
     ],
     "rawImages": [
-      "camiseta_orgullo_sur_chile_6y7v14szeb.webp",
-      "camiseta_navy_orgullo_sur_chile_vk0q5yt4z9.webp",
-      "camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp",
-      "camiseta_orguillo_sur_chile_retro_iqtwbmnyqi.webp"
+      "camiseta_orgullo_sur_chile_i4yjedif1o.webp",
+      "camiseta_navy_orgullo_sur_chile_9tn09tj9jw.webp",
+      "camiseta_burdeos_orgullo_sur_5ipzzpao3u.webp",
+      "camiseta_orguillo_sur_chile_retro_agpxliza7g.webp",
+      "freeimgen_1792457644794_azul_s56qi6k7ti.webp",
+      "freeimgen_1792457635449_gris_3t48cb4s4j.webp"
     ],
     "colors": [
       "Negro",
-      "Burdeo"
+      "Burdeo",
+      "Azul",
+      "Gris"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_i4yjedif1o.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_5ipzzpao3u.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/freeimgen_1792457644794_azul_s56qi6k7ti.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/freeimgen_1792457635449_gris_3t48cb4s4j.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_6y7v14szeb.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_i4yjedif1o.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_tmrb6qzpga.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_burdeos_orgullo_sur_5ipzzpao3u.webp"
+      },
+      {
+        "name": "Azul",
+        "hex": "#1E3A8A",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/freeimgen_1792457644794_azul_s56qi6k7ti.webp"
+      },
+      {
+        "name": "Gris",
+        "hex": "#6B7280",
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/freeimgen_1792457635449_gris_3t48cb4s4j.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-15 03:21:14.887Z"
+    "updated": "2026-10-20 02:28:08.042Z"
   },
   {
     "id": "vd1dfhf0pmyx829",
@@ -3981,7 +3922,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-15 03:21:36.933Z"
+    "updated": "2026-10-20 00:37:56.377Z"
   },
   {
     "id": "klko0tp7g4bljv1",
@@ -5153,18 +5094,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_hpl8i6gw8s.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_vcnjdvqjd1.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_ju2841kqyu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0ezxsqf7nx.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_hpl8i6gw8s.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_ekknmwr7nh.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_mf1g5r7sdt.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0mmmganc1g.webp"
     ],
     "rawImages": [
-      "bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
-      "bfg_glory_azul_vcnjdvqjd1.webp",
-      "bfg_glory_burdeo_ju2841kqyu.webp",
-      "bfg_glory_gris_0ezxsqf7nx.webp"
+      "bound_for_glory_cv5eskcg8t_hpl8i6gw8s.webp",
+      "bfg_glory_azul_ekknmwr7nh.webp",
+      "bfg_glory_burdeo_mf1g5r7sdt.webp",
+      "bfg_glory_gris_0mmmganc1g.webp"
     ],
     "colors": [
       "Negro",
@@ -5173,36 +5114,36 @@ export const products = [
       "Gris"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_vcnjdvqjd1.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_ju2841kqyu.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0ezxsqf7nx.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_hpl8i6gw8s.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_ekknmwr7nh.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_mf1g5r7sdt.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0mmmganc1g.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_rj5fr54rt2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bound_for_glory_cv5eskcg8t_hpl8i6gw8s.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_vcnjdvqjd1.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_azul_ekknmwr7nh.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_ju2841kqyu.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_burdeo_mf1g5r7sdt.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0ezxsqf7nx.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t5l2wuli39x7eaz/bfg_glory_gris_0mmmganc1g.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-15 03:23:00.166Z"
+    "updated": "2026-10-20 02:28:38.851Z"
   },
   {
     "id": "4q1c282bazryu12",
@@ -5288,7 +5229,7 @@ export const products = [
     "collectionId": "pbc_4092854851",
     "collectionName": "products",
     "sku": "PN-POL-011",
-    "name": "POLERA BDC & KBK",
+    "name": "BDC & KBK - ROCKING IN SAO PAULO ...",
     "price": 16000,
     "originalPrice": null,
     "category": "poleras",
@@ -5342,7 +5283,7 @@ export const products = [
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-14 01:24:03.472Z"
+    "updated": "2026-10-20 01:12:46.022Z"
   },
   {
     "id": "o3zyrgl519tzh7n",
@@ -5539,18 +5480,18 @@ export const products = [
       "XXL"
     ],
     "isFeatured": true,
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_dxrwry3pel.webp",
     "gallery": [
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_zpbm0mls4q.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_h09y27kjbu.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_t899linnl2.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_dxrwry3pel.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_5420c4pswa.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_xzu9dlaiuu.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_7luoq8g1fb.webp"
     ],
     "rawImages": [
-      "antosocial_negro_amarillo_ciwlwz896h.webp",
-      "antisocial_azul_amarillo_zpbm0mls4q.webp",
-      "antisocial_burdeo_amarillo_h09y27kjbu.webp",
-      "antisocial_skrewdriver_gris_t899linnl2.webp"
+      "antosocial_negro_amarillo_dxrwry3pel.webp",
+      "antisocial_azul_amarillo_5420c4pswa.webp",
+      "antisocial_burdeo_amarillo_xzu9dlaiuu.webp",
+      "antisocial_skrewdriver_gris_7luoq8g1fb.webp"
     ],
     "colors": [
       "Negro",
@@ -5559,36 +5500,36 @@ export const products = [
       "Gris"
     ],
     "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp",
-      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_zpbm0mls4q.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_h09y27kjbu.webp",
-      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_t899linnl2.webp"
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_dxrwry3pel.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_5420c4pswa.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_xzu9dlaiuu.webp",
+      "Gris": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_7luoq8g1fb.webp"
     },
     "colorItems": [
       {
         "name": "Negro",
         "hex": "#111111",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_ciwlwz896h.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_dxrwry3pel.webp"
       },
       {
         "name": "Azul",
         "hex": "#1E3A8A",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_zpbm0mls4q.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_azul_amarillo_5420c4pswa.webp"
       },
       {
         "name": "Burdeo",
         "hex": "#581C24",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_h09y27kjbu.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_burdeo_amarillo_xzu9dlaiuu.webp"
       },
       {
         "name": "Gris",
         "hex": "#6B7280",
-        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_t899linnl2.webp"
+        "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antisocial_skrewdriver_gris_7luoq8g1fb.webp"
       }
     ],
     "defaultColor": "Negro",
     "created": "",
-    "updated": "2026-10-15 03:23:33.900Z"
+    "updated": "2026-10-20 02:28:49.019Z"
   },
   {
     "id": "t6az9rk82ill0jx",

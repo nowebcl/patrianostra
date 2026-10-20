@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Image, Check, Plus, Minus, Sparkles } from 'lucide-react';
 
-const CATEGORIES = ['Poleras', 'Hoodies', 'Camisetas', 'Pantalones', 'Accesorios'];
+const CATEGORIES = ['Poleras', 'Polerones', 'Camisetas', 'Pantalones', 'Accesorios', 'Música', 'Vinilos', 'CDs', 'Casetes'];
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL', 'Única'];
 
 export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {

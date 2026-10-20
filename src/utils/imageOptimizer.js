@@ -1,29 +1,78 @@
 /**
- * Utilidad de optimización y compresión de imágenes en el navegador.
- * Convierte fotos de alta resolución (móvil, cámara) a WebP optimizado (<1MB),
- * garantizando compatibilidad con PocketBase, evitando límites de tamaño (5MB)
- * y previniendo errores 413 Payload Too Large en el servidor de producción.
+ * Utilidad de optimización y compresión estricta de imágenes.
+ * Convierte fotos pesadas (2MB, 5MB, 10MB+) a WebP/JPEG ultra-ligero (~40KB - 90KB),
+ * corrigiendo el bug de Safari/iOS WebKit donde canvas.toBlob('image/webp')
+ * hacía fallback silencioso a PNG sin comprimir de ~1.7MB.
  */
+
+function canvasToBlobAsync(canvas, mimeType, quality) {
+  return new Promise((resolve) => {
+    try {
+      canvas.toBlob(
+        (blob) => resolve(blob || null),
+        mimeType,
+        quality
+      );
+    } catch {
+      resolve(null);
+    }
+  });
+}
+
+function createScaledCanvas(img, maxW, maxH, bgColor = '#050505') {
+  let width = img.naturalWidth || img.width || 800;
+  let height = img.naturalHeight || img.height || 800;
+
+  if (width > maxW || height > maxH) {
+    const ratio = Math.min(maxW / width, maxH / height);
+    width = Math.max(1, Math.round(width * ratio));
+    height = Math.max(1, Math.round(height * ratio));
+  }
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d', { alpha: false });
+
+  if (!ctx) return null;
+
+  // Fondo oscuro sólido (#050505) idéntico a las tarjetas de la tienda
+  // Elimina el canal alfa (RGBA -> RGB), reduciendo el peso un 60% y evitando PNGs gigantes
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(img, 0, 0, width, height);
+
+  return canvas;
+}
 
 export async function optimizeImageFile(file, options = {}) {
   const {
-    maxWidth = 1000,
-    maxHeight = 1000,
-    quality = 0.82,
-    maxSizeBytes = 600 * 1024 // 600KB meta
+    maxWidth = 800,
+    maxHeight = 800,
+    quality = 0.78,
+    maxSizeBytes = 100 * 1024 // Meta estricta: <= 100 KB (ideal 40-80 KB)
   } = options;
 
   if (!file || !(file instanceof File || file instanceof Blob)) {
     return file;
   }
 
-  // Archivos vectoriales o GIFs animados se preservan
-  if (file.type === 'image/svg+xml' || file.type === 'image/gif') {
+  // Archivos vectoriales se preservan
+  if (file.type === 'image/svg+xml') {
     return file;
   }
 
-  // Si ya es un WebP o JPEG ligero (< 400KB), no es necesario re-comprimir
-  if (file.size < 400 * 1024 && (file.type === 'image/webp' || file.type === 'image/jpeg')) {
+  const originalName = file.name || 'producto.webp';
+  const baseName = originalName
+    .replace(/\.[^/.]+$/, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]/g, '_') || 'producto';
+
+  // Solo omitir si YA es un WebP real verificado y pesa menos de 75 KB
+  if (file.type === 'image/webp' && file.size > 0 && file.size <= 75 * 1024) {
     return file;
   }
 
@@ -32,58 +81,103 @@ export async function optimizeImageFile(file, options = {}) {
       const img = new Image();
       const objectUrl = URL.createObjectURL(file);
 
-      img.onload = () => {
+      img.onload = async () => {
         URL.revokeObjectURL(objectUrl);
         try {
-          let { width, height } = img;
-
-          // Redimensionar manteniendo proporción si excede los límites máximos
-          if (width > maxWidth || height > maxHeight) {
-            const ratio = Math.min(maxWidth / width, maxHeight / height);
-            width = Math.round(width * ratio);
-            height = Math.round(height * ratio);
-          }
-
-          const canvas = document.createElement('canvas');
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-
-          if (!ctx) {
+          const canvas = createScaledCanvas(img, maxWidth, maxHeight);
+          if (!canvas) {
             resolve(file);
             return;
           }
 
-          // Dibujar en canvas con suavizado de alta calidad
-          ctx.imageSmoothingEnabled = true;
-          ctx.imageSmoothingQuality = 'high';
-          ctx.drawImage(img, 0, 0, width, height);
+          // 1. Intentar codificación nativa a WebP
+          let blob = await canvasToBlobAsync(canvas, 'image/webp', quality);
 
-          // Intentar WebP primero; si no soporta, fallback a JPEG
-          const outputType = 'image/webp';
-          canvas.toBlob(
-            (blob) => {
-              if (!blob) {
-                resolve(file);
-                return;
+          // Verificar que el navegador REALMENTE haya codificado en image/webp
+          // (Safari/iOS hace fallback silencioso a image/png de ~1.7MB si no soporta encode WebP)
+          const isTrueWebP = blob && blob.type === 'image/webp';
+
+          if (isTrueWebP) {
+            // Si aún supera el peso meta (~100KB), recomprimir con menor calidad / dimensión
+            if (blob.size > maxSizeBytes) {
+              const tighterBlob = await canvasToBlobAsync(canvas, 'image/webp', 0.64);
+              if (tighterBlob && tighterBlob.type === 'image/webp' && tighterBlob.size < blob.size) {
+                blob = tighterBlob;
               }
+            }
+            if (blob.size > maxSizeBytes) {
+              const smallerCanvas = createScaledCanvas(img, 640, 640);
+              if (smallerCanvas) {
+                const smallerBlob = await canvasToBlobAsync(smallerCanvas, 'image/webp', 0.62);
+                if (smallerBlob && smallerBlob.type === 'image/webp' && smallerBlob.size < blob.size) {
+                  blob = smallerBlob;
+                }
+              }
+            }
 
-              const originalName = file.name || 'prenda.webp';
-              const baseName = originalName.replace(/\.[^/.]+$/, '');
-              const cleanFileName = `${baseName.toLowerCase().replace(/[^a-z0-9_-]/g, '_')}.webp`;
+            const optimizedWebP = new File([blob], `${baseName}.webp`, {
+              type: 'image/webp',
+              lastModified: Date.now()
+            });
+            resolve(optimizedWebP);
+            return;
+          }
 
-              const optimizedFile = new File([blob], cleanFileName, {
-                type: 'image/webp',
-                lastModified: Date.now()
+          // 2. Fallback para Safari / iOS / navegadores sin encoder WebP en Canvas:
+          // Codificar primero en JPEG de alta eficiencia (~50-75 KB) que el 100% de navegadores soporta
+          let jpegBlob = await canvasToBlobAsync(canvas, 'image/jpeg', quality);
+          if (jpegBlob && jpegBlob.size > maxSizeBytes) {
+            const tighterJpeg = await canvasToBlobAsync(canvas, 'image/jpeg', 0.65);
+            if (tighterJpeg && tighterJpeg.size < jpegBlob.size) {
+              jpegBlob = tighterJpeg;
+            }
+          }
+          if (jpegBlob && jpegBlob.size > maxSizeBytes) {
+            const smallerCanvas = createScaledCanvas(img, 640, 640);
+            if (smallerCanvas) {
+              const smallerJpeg = await canvasToBlobAsync(smallerCanvas, 'image/jpeg', 0.62);
+              if (smallerJpeg && smallerJpeg.size < jpegBlob.size) {
+                jpegBlob = smallerJpeg;
+              }
+            }
+          }
+
+          if (jpegBlob && jpegBlob.type === 'image/jpeg') {
+            // Intentar conversión rápida a WebP en servidor (/api/optimize-image) si está disponible
+            try {
+              const resp = await fetch('/api/optimize-image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'image/jpeg' },
+                body: jpegBlob
               });
+              if (resp.ok && resp.headers.get('content-type')?.includes('image/webp')) {
+                const serverWebpBlob = await resp.blob();
+                if (serverWebpBlob && serverWebpBlob.size > 0 && serverWebpBlob.size < 150 * 1024) {
+                  resolve(
+                    new File([serverWebpBlob], `${baseName}.webp`, {
+                      type: 'image/webp',
+                      lastModified: Date.now()
+                    })
+                  );
+                  return;
+                }
+              }
+            } catch {
+              // Si el endpoint no está disponible, usar el JPEG ligero (~55KB) directamente
+            }
 
-              resolve(optimizedFile);
-            },
-            outputType,
-            quality
-          );
+            // Entregar JPEG genuino (~55KB) con extensión .jpg real (nunca un PNG de 1.7MB disfrazado)
+            const optimizedJpeg = new File([jpegBlob], `${baseName}.jpg`, {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            });
+            resolve(optimizedJpeg);
+            return;
+          }
+
+          resolve(file);
         } catch (canvasErr) {
-          console.warn('Compresión en canvas no disponible, usando archivo original:', canvasErr);
+          console.warn('Error comprimiendo imagen en canvas:', canvasErr);
           resolve(file);
         }
       };
@@ -119,7 +213,7 @@ export function formatPbError(err) {
       .map(([field, detail]) => {
         const msg = detail?.message || (typeof detail === 'string' ? detail : JSON.stringify(detail));
         const translatedField = {
-          name: 'Nombre de prenda',
+          name: 'Nombre del producto',
           price: 'Precio',
           originalPrice: 'Precio anterior',
           stock: 'Inventario / Stock',

@@ -128,12 +128,15 @@ export const ProductCard = ({ product, priority = false }) => {
           )}
         </div>
 
-        {/* Quick Size Selector */}
+        {/* Quick Size / Format Selector */}
         <div className="mt-3 pt-2.5 border-t border-neutral-900/80">
           <div className="flex items-center justify-between mb-1.5 text-[10px] font-condensed tracking-wider uppercase">
-            <span className="text-neutral-400">TALLA: <strong className="text-white">{selectedSize}</strong></span>
+            <span className="text-neutral-400">
+              {sizes.length === 1 && selectedSize === 'Única' ? 'FORMATO:' : 'TALLA:'}{' '}
+              <strong className="text-white">{selectedSize}</strong>
+            </span>
             <span className={isOutOfStock ? 'text-red-400 font-bold' : currentSizeStock <= 3 ? 'text-amber-400 font-bold' : 'text-neutral-500 font-mono'}>
-              {isOutOfStock ? 'AGOTADA' : `${currentSizeStock} u.`}
+              {isOutOfStock ? 'AGOTADO' : `${currentSizeStock} u.`}
             </span>
           </div>
 
@@ -186,7 +189,11 @@ export const ProductCard = ({ product, priority = false }) => {
             : 'bg-[#111111] hover:bg-[#C52222] text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#C52222] cursor-pointer active:scale-95'
         }`}
       >
-        {isOutOfStock ? `TALLA ${selectedSize} AGOTADA` : `AÑADIR TALLA ${selectedSize} +`}
+        {isOutOfStock
+          ? 'AGOTADO'
+          : selectedSize === 'Única'
+            ? 'AÑADIR AL CARRITO +'
+            : `AÑADIR TALLA ${selectedSize} +`}
       </button>
 
     </div>

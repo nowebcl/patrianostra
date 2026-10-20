@@ -20,8 +20,22 @@ import { optimizeImageFile, formatPbError } from '../../utils/imageOptimizer';
 import { COLOR_DEFINITIONS, detectColorFromText } from '../../lib/pocketbase';
 import { useStore } from '../../context/StoreContext';
 
-const DEFAULT_CATEGORIES = ['Poleras', 'Polerones', 'Camisetas', 'Pantalones', 'Accesorios'];
+const DEFAULT_CATEGORIES = [
+  'Poleras',
+  'Polerones',
+  'Camisetas',
+  'Pantalones',
+  'Accesorios',
+  'Música',
+  'Vinilos',
+  'CDs',
+  'Casetes'
+];
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL', 'Única'];
+
+const MUSIC_CATEGORIES_SET = new Set(['música', 'musica', 'vinilos', 'vinilo', 'cds', 'cd', 'casetes', 'casete', 'cassettes', 'cassette']);
+const isMusicCategory = (cat) => MUSIC_CATEGORIES_SET.has((cat || '').toLowerCase().trim());
+const isSingleSizeCategory = (cat) => isMusicCategory(cat) || (cat || '').toLowerCase().trim() === 'accesorios';
 
 const SIZE_ORDER = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'Única'];
 const sortSizes = (list) => {
@@ -80,6 +94,9 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
   const [imageItems, setImageItems] = useState([]);
   const [error, setError] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [isOptimizing, setIsOptimizing] = useState(false);
+
+  const isMusic = isMusicCategory(formData.category);
 
   useEffect(() => {
     if (productToEdit) {
@@ -262,51 +279,112 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     const rawFile = e.target.files?.[0];
     if (!rawFile || !targetUploadColor) return;
 
-    const previewUrl = URL.createObjectURL(rawFile);
-    const optimizedFile = await optimizeImageFile(rawFile);
+    setIsOptimizing(true);
+    try {
+      const optimizedFile = await optimizeImageFile(rawFile);
+      const previewUrl = URL.createObjectURL(optimizedFile);
 
-    const newItem = {
-      id: `pc-color-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-      url: previewUrl,
-      file: optimizedFile,
-      rawName: null,
-      color: targetUploadColor
-    };
+      const newItem = {
+        id: `pc-color-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        url: previewUrl,
+        file: optimizedFile,
+        sizeKb: Math.max(1, Math.round(optimizedFile.size / 1024)),
+        rawName: null,
+        color: targetUploadColor
+      };
 
-    setImageItems(prev => {
-      // Filtrar placeholders existentes (items que sean /producto.webp sin archivo)
-      const filtered = prev.filter(it => 
-        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
-      );
-      // Si ya existía un item asignado a este color, reemplazarlo por la nueva foto
-      const existingIdx = filtered.findIndex(it => it.color === targetUploadColor);
-      if (existingIdx !== -1) {
-        const next = [...filtered];
-        next[existingIdx] = newItem;
+      setImageItems(prev => {
+        // Filtrar placeholders existentes (items que sean /producto.webp sin archivo)
+        const filtered = prev.filter(it => 
+          it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+        );
+        // Si ya existía un item asignado a este color, reemplazarlo por la nueva foto
+        const existingIdx = filtered.findIndex(it => it.color === targetUploadColor);
+        if (existingIdx !== -1) {
+          const next = [...filtered];
+          next[existingIdx] = newItem;
+          return next;
+        }
+        return [...filtered, newItem];
+      });
+
+      setColorImages(prev => {
+        const next = { ...prev, [targetUploadColor]: previewUrl };
+        const primaryColor = colors[0] || 'Negro';
+        // Si el color primario tenía placeholder, asignarle también la nueva foto
+        if (!next[primaryColor] || next[primaryColor].includes('/producto.webp') || next[primaryColor].includes('/producto.png')) {
+          next[primaryColor] = previewUrl;
+        }
         return next;
+      });
+
+      // Si es el primer color o foto principal vacía, ponerla de principal
+      setFormData(prev => ({
+        ...prev,
+        image: prev.image === '/producto.webp' || prev.image === '/producto.png' || targetUploadColor === colors[0] ? previewUrl : prev.image,
+        gallery: [...prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'), previewUrl]
+      }));
+    } finally {
+      setIsOptimizing(false);
+      e.target.value = '';
+      setTargetUploadColor(null);
+    }
+  };
+
+  // Seleccionar categoría (ajustando tallas y textos automáticamente si es Música/Vinilos/CDs/Casetes)
+  const handleSelectCategory = (cat) => {
+    setFormData(prev => {
+      const nextIsSingle = isSingleSizeCategory(cat);
+      const nextIsMusic = isMusicCategory(cat);
+      const currentStock = Math.max(1, parseInt(prev.stock, 10) || 10);
+
+      let nextSizes = prev.sizes;
+      let nextSizeStock = prev.sizeStock;
+
+      if (nextIsSingle) {
+        nextSizes = ['Única'];
+        nextSizeStock = { 'Única': currentStock };
+      } else if (prev.sizes.length === 1 && prev.sizes[0] === 'Única') {
+        nextSizes = ['S', 'M', 'L', 'XL', 'XXL'];
+        const perSize = Math.floor(currentStock / 5);
+        const rem = currentStock % 5;
+        nextSizeStock = {
+          'S': perSize + rem,
+          'M': perSize,
+          'L': perSize,
+          'XL': perSize,
+          'XXL': perSize
+        };
       }
-      return [...filtered, newItem];
-    });
 
-    setColorImages(prev => {
-      const next = { ...prev, [targetUploadColor]: previewUrl };
-      const primaryColor = colors[0] || 'Negro';
-      // Si el color primario tenía placeholder, asignarle también la nueva foto
-      if (!next[primaryColor] || next[primaryColor].includes('/producto.webp') || next[primaryColor].includes('/producto.png')) {
-        next[primaryColor] = previewUrl;
+      let nextDesc = prev.description;
+      const defaultApparelDesc = 'Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.';
+      const isDefaultDesc = !nextDesc || nextDesc === defaultApparelDesc || nextDesc.includes('Distribución oficial Patria Nostra');
+
+      if (!productToEdit && isDefaultDesc) {
+        const lower = cat.toLowerCase().trim();
+        if (lower === 'vinilos' || lower === 'vinilo') {
+          nextDesc = 'Edición en vinilo de colección de alta fidelidad. Distribución oficial Patria Nostra.';
+        } else if (lower === 'cds' || lower === 'cd') {
+          nextDesc = 'Edición en CD formato físico con booklet oficial. Distribución oficial Patria Nostra.';
+        } else if (lower === 'casetes' || lower === 'casete') {
+          nextDesc = 'Edición en casete (tape) analógico de colección. Distribución oficial Patria Nostra.';
+        } else if (nextIsMusic) {
+          nextDesc = 'Lanzamiento musical en formato físico oficial. Distribución oficial Patria Nostra.';
+        } else if (!nextIsSingle) {
+          nextDesc = defaultApparelDesc;
+        }
       }
-      return next;
+
+      return {
+        ...prev,
+        category: cat,
+        sizes: nextSizes,
+        sizeStock: nextSizeStock,
+        stock: currentStock,
+        description: nextDesc
+      };
     });
-
-    // Si es el primer color o foto principal vacía, ponerla de principal
-    setFormData(prev => ({
-      ...prev,
-      image: prev.image === '/producto.webp' || prev.image === '/producto.png' || targetUploadColor === colors[0] ? previewUrl : prev.image,
-      gallery: [...prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'), previewUrl]
-    }));
-
-    e.target.value = '';
-    setTargetUploadColor(null);
   };
 
   // Agregar nueva categoría
@@ -315,7 +393,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     if (!trimmed) return;
     const formatted = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
     setCustomCategories(prev => Array.from(new Set([...prev, formatted])));
-    setFormData(prev => ({ ...prev, category: formatted }));
+    handleSelectCategory(formatted);
     setNewCategoryName('');
     setIsAddingCategory(false);
   };
@@ -325,36 +403,41 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     const rawFile = e.target.files?.[0];
     if (!rawFile) return;
 
-    const previewUrl = URL.createObjectURL(rawFile);
-    const optimizedFile = await optimizeImageFile(rawFile);
-    const primaryColor = colors[0] || 'Negro';
+    setIsOptimizing(true);
+    try {
+      const optimizedFile = await optimizeImageFile(rawFile);
+      const previewUrl = URL.createObjectURL(optimizedFile);
+      const primaryColor = colors[0] || 'Negro';
 
-    const newItem = {
-      id: `pc-main-${Date.now()}`,
-      url: previewUrl,
-      file: optimizedFile,
-      rawName: null,
-      color: primaryColor
-    };
+      const newItem = {
+        id: `pc-main-${Date.now()}`,
+        url: previewUrl,
+        file: optimizedFile,
+        sizeKb: Math.max(1, Math.round(optimizedFile.size / 1024)),
+        rawName: null,
+        color: primaryColor
+      };
 
-    setImageItems(prev => {
-      // Filtrar placeholders existentes
-      const realItems = prev.filter(it => 
-        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
-      );
-      const additionals = realItems.filter((_, idx) => idx > 0);
-      return [newItem, ...additionals];
-    });
+      setImageItems(prev => {
+        // Filtrar placeholders existentes
+        const realItems = prev.filter(it => 
+          it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+        );
+        const additionals = realItems.filter((_, idx) => idx > 0);
+        return [newItem, ...additionals];
+      });
 
-    setMainImageFile(optimizedFile);
-    setColorImages(prev => ({ ...prev, [primaryColor]: previewUrl }));
-    setFormData(prev => ({
-      ...prev,
-      image: previewUrl,
-      gallery: [previewUrl, ...(prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'))]
-    }));
-
-    e.target.value = '';
+      setMainImageFile(optimizedFile);
+      setColorImages(prev => ({ ...prev, [primaryColor]: previewUrl }));
+      setFormData(prev => ({
+        ...prev,
+        image: previewUrl,
+        gallery: [previewUrl, ...(prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'))]
+      }));
+    } finally {
+      setIsOptimizing(false);
+      e.target.value = '';
+    }
   };
 
   // Handler: Subir Fotos Adicionales desde el PC (Múltiples)
@@ -362,43 +445,48 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
     const rawFiles = Array.from(e.target.files || []);
     if (rawFiles.length === 0) return;
 
-    const newItems = await Promise.all(
-      rawFiles.map(async (rawFile, idx) => {
-        const previewUrl = URL.createObjectURL(rawFile);
-        const optimizedFile = await optimizeImageFile(rawFile);
-        const detected = detectColorFromText(rawFile.name);
+    setIsOptimizing(true);
+    try {
+      const newItems = await Promise.all(
+        rawFiles.map(async (rawFile, idx) => {
+          const optimizedFile = await optimizeImageFile(rawFile);
+          const previewUrl = URL.createObjectURL(optimizedFile);
+          const detected = detectColorFromText(rawFile.name);
 
-        return {
-          id: `pc-gal-${Date.now()}-${idx}-${Math.random().toString(36).slice(2, 7)}`,
-          url: previewUrl,
-          file: optimizedFile,
-          rawName: null,
-          color: detected?.name || null
-        };
-      })
-    );
-
-    setImageItems(prev => {
-      const realItems = prev.filter(it => 
-        it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+          return {
+            id: `pc-gal-${Date.now()}-${idx}-${Math.random().toString(36).slice(2, 7)}`,
+            url: previewUrl,
+            file: optimizedFile,
+            sizeKb: Math.max(1, Math.round(optimizedFile.size / 1024)),
+            rawName: null,
+            color: detected?.name || null
+          };
+        })
       );
-      return [...realItems, ...newItems];
-    });
-    setGalleryFiles(prev => [...prev, ...newItems.map(it => it.file)]);
-    setFormData(prev => ({
-      ...prev,
-      image: prev.image === '/producto.webp' || prev.image === '/producto.png' ? newItems[0].url : prev.image,
-      gallery: [...prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'), ...newItems.map(it => it.url)]
-    }));
 
-    // Auto-vincular a colores si coincidieron
-    newItems.forEach(it => {
-      if (it.color && colors.includes(it.color)) {
-        setColorImages(prev => ({ ...prev, [it.color]: it.url }));
-      }
-    });
+      setImageItems(prev => {
+        const realItems = prev.filter(it => 
+          it && (it.file instanceof File || it.rawName || (it.url && !it.url.includes('/producto.webp') && !it.url.includes('/producto.png')))
+        );
+        return [...realItems, ...newItems];
+      });
+      setGalleryFiles(prev => [...prev, ...newItems.map(it => it.file)]);
+      setFormData(prev => ({
+        ...prev,
+        image: prev.image === '/producto.webp' || prev.image === '/producto.png' ? newItems[0].url : prev.image,
+        gallery: [...prev.gallery.filter(u => u !== '/producto.webp' && u !== '/producto.png'), ...newItems.map(it => it.url)]
+      }));
 
-    e.target.value = '';
+      // Auto-vincular a colores si coincidieron
+      newItems.forEach(it => {
+        if (it.color && colors.includes(it.color)) {
+          setColorImages(prev => ({ ...prev, [it.color]: it.url }));
+        }
+      });
+    } finally {
+      setIsOptimizing(false);
+      e.target.value = '';
+    }
   };
 
   // Handler: Promover una foto adicional a Foto Principal
@@ -566,6 +654,15 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         || formData.image 
         || '/producto.webp';
 
+      const catLower = (formData.category || '').toLowerCase().trim();
+      const isMusicProd = isMusicCategory(catLower);
+      const skuPrefix = catLower.startsWith('vinil') ? 'PN-VIN' 
+        : catLower.startsWith('cd') ? 'PN-CD'
+        : catLower.startsWith('caset') ? 'PN-CAS'
+        : isMusicProd ? 'PN-MUS'
+        : catLower.startsWith('acc') ? 'PN-ACC'
+        : 'PN-POL';
+
       const payload = {
         ...(productToEdit || {}),
         name: formData.name.trim().toUpperCase(),
@@ -586,9 +683,9 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         badge: formData.badge || null,
         description: formData.description.trim(),
         isFeatured: formData.isFeatured,
-        sku: productToEdit?.sku || `PN-POL-${Math.floor(100 + Math.random() * 900)}`,
-        gsm: productToEdit?.gsm || '240 GSM Algodón Pesado',
-        fit: productToEdit?.fit || 'Corte Regular'
+        sku: productToEdit?.sku || `${skuPrefix}-${Math.floor(100 + Math.random() * 900)}`,
+        gsm: productToEdit?.gsm || (isMusicProd ? 'Edición Física Oficial' : '240 GSM Algodón Pesado'),
+        fit: productToEdit?.fit || (isMusicProd ? formData.category.toUpperCase() : 'Corte Regular')
       };
 
       await onSave(payload);
@@ -641,11 +738,11 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
             <button
               type="button"
               onClick={handleSubmit}
-              disabled={isSaving}
+              disabled={isSaving || isOptimizing}
               className="flex items-center gap-2 px-6 py-2.5 bg-[#C52222] hover:bg-[#a81c1c] disabled:opacity-50 text-white font-condensed font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-[#C52222]/25 transition-all cursor-pointer active:scale-95"
             >
               <Save className="w-4 h-4" />
-              <span>{isSaving ? 'Guardando en BD...' : 'Guardar Prenda'}</span>
+              <span>{isOptimizing ? 'Optimizando WebP...' : isSaving ? 'Guardando en BD...' : 'Guardar Producto'}</span>
             </button>
           </div>
         </div>
@@ -665,17 +762,17 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         {/* COLUMNA IZQUIERDA: Datos Principales, Categorías y Tallas (7 columnas) */}
         <div className="lg:col-span-7 bg-[#111111] border border-neutral-800/80 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
           
-          {/* Nombre de la Prenda */}
+          {/* Nombre del Producto / Prenda / Música */}
           <div className="space-y-2">
             <label className="block text-xs font-condensed font-bold uppercase tracking-wider text-neutral-300">
-              Nombre de la Prenda *
+              {isMusic ? 'Título del Álbum / Lanzamiento Musical *' : 'Nombre de la Prenda / Producto *'}
             </label>
             <input
               type="text"
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              placeholder="Ej: POLERA 7 MUELLES - NO TE CORTES!"
+              placeholder={isMusic ? "Ej: ORGULLO SUR - XX AÑOS (VINILO / CD / CASETE)" : "Ej: POLERA 7 MUELLES - NO TE CORTES!"}
               className="w-full bg-[#0a0a0a] border border-neutral-700/80 focus:border-[#C52222] rounded-xl px-4 py-3 text-white text-sm font-semibold placeholder:text-neutral-600 focus:outline-none transition-colors"
             />
           </div>
@@ -806,18 +903,21 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
             <div className="flex flex-wrap gap-2">
               {allCategories.map(cat => {
                 const isSelected = (formData.category || '').toLowerCase() === cat.toLowerCase();
+                const isMusicOption = isMusicCategory(cat);
                 return (
                   <button
                     type="button"
                     key={cat}
-                    onClick={() => setFormData({ ...formData, category: cat })}
+                    onClick={() => handleSelectCategory(cat)}
                     className={`py-2 px-3.5 rounded-xl font-condensed font-bold text-xs uppercase tracking-wider transition-all cursor-pointer text-center ${
                       isSelected
                         ? 'bg-[#C52222] text-white shadow-md shadow-[#C52222]/20 border border-[#C52222]'
-                        : 'bg-[#0a0a0a] border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700'
+                        : isMusicOption
+                          ? 'bg-[#120b0b] border border-[#C52222]/40 text-neutral-200 hover:text-white hover:border-[#C52222]'
+                          : 'bg-[#0a0a0a] border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700'
                     }`}
                   >
-                    {cat}
+                    {isMusicOption ? `🎵 ${cat}` : cat}
                   </button>
                 );
               })}
@@ -1175,6 +1275,11 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                 <span className="px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-black/80 text-neutral-200 border border-neutral-700 rounded backdrop-blur-sm">
                   FOTO #1 (PORTADA)
                 </span>
+                {imageItems[0]?.sizeKb && (
+                  <span className="px-2 py-0.5 text-[9px] font-mono font-bold uppercase bg-emerald-950/90 text-emerald-300 border border-emerald-700/70 rounded shadow">
+                    ✓ WebP Optimizado • {imageItems[0].sizeKb} KB
+                  </span>
+                )}
                 {imageItems[0]?.color && (
                   <span className="px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-[#C52222] text-white rounded shadow">
                     COLOR: {imageItems[0].color}

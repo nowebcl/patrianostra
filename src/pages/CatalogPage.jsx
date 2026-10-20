@@ -13,23 +13,34 @@ export const CatalogPage = () => {
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   const categories = useMemo(() => {
-    const base = ['TODOS', 'POLERAS', 'POLERONES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
+    const base = ['TODOS', 'POLERAS', 'POLERONES', 'MÚSICA', 'VINILOS', 'CDS', 'CASETES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
     const fromProducts = products.map(p => (p.category || '').toUpperCase().trim()).filter(Boolean);
     return Array.from(new Set([...base, ...fromProducts]));
   }, [products]);
 
   const filteredProducts = useMemo(() => {
+    const normalizeCat = (str) => (str || '').toUpperCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const musicSubCats = ['MUSICA', 'VINILOS', 'VINILO', 'CDS', 'CD', 'CASETES', 'CASETE', 'CASSETTES', 'CASSETTE'];
+
     return products.filter(product => {
       // Category filter
       if (selectedCategory === 'EDICIÓN LIMITADA') {
         if (!product.badge) return false;
       } else if (selectedCategory !== 'TODOS') {
-        const cat = (product.category || '').toUpperCase().trim();
-        const sel = selectedCategory.toUpperCase().trim();
+        const cat = normalizeCat(product.category);
+        const sel = normalizeCat(selectedCategory);
         if (sel === 'POLERAS' || sel === 'CAMISETAS') {
           if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
         } else if (sel === 'POLERONES') {
           if (cat !== 'POLERONES' && cat !== 'HOODIES') return false;
+        } else if (sel === 'MUSICA') {
+          if (!musicSubCats.includes(cat)) return false;
+        } else if (sel === 'VINILOS' || sel === 'VINILO') {
+          if (cat !== 'VINILOS' && cat !== 'VINILO') return false;
+        } else if (sel === 'CDS' || sel === 'CD') {
+          if (cat !== 'CDS' && cat !== 'CD') return false;
+        } else if (sel === 'CASETES' || sel === 'CASETE') {
+          if (cat !== 'CASETES' && cat !== 'CASETE' && cat !== 'CASSETTES' && cat !== 'CASSETTE') return false;
         } else if (cat !== sel) {
           return false;
         }
@@ -74,11 +85,11 @@ export const CatalogPage = () => {
                 COLECCIÓN OFICIAL
               </span>
               <h1 className="font-condensed text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white">
-                CATÁLOGO INDUMENTARIA
+                CATÁLOGO OFICIAL
               </h1>
             </div>
             <p className="text-xs text-neutral-500 font-sans max-w-sm">
-              Lotes estrictamente limitados. Gramaje superior y serigrafía artesanal curada al horno.
+              Indumentaria, música (vinilos, CDs, casetes) y ediciones estrictamente limitadas.
             </p>
           </div>
         </div>

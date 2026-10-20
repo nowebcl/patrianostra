@@ -1,4 +1,5 @@
 import { createFlowPayment, getFlowPaymentStatus, savePendingOrder, getSavedPendingOrder } from './flowService.js';
+import sharp from 'sharp';
 
 async function parseRequestBody(req) {
   try {
@@ -57,6 +58,33 @@ export function flowApiPlugin() {
         const rawUrl = req.url || '';
         const urlObj = new URL(rawUrl, `http://${req.headers.host || 'localhost:3000'}`);
         const pathname = urlObj.pathname.replace(/\/$/, ''); // Remover trailing slash
+
+        // Endpoint de optimización de imágenes a WebP vía Sharp: POST /api/optimize-image
+        if (pathname === '/api/optimize-image' && req.method === 'POST') {
+          try {
+            const chunks = [];
+            for await (const chunk of req) {
+              chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+            }
+            const inputBuffer = Buffer.concat(chunks);
+            const webpBuffer = await sharp(inputBuffer)
+              .resize({ width: 800, height: 800, fit: 'inside', withoutEnlargement: true })
+              .flatten({ background: { r: 5, g: 5, b: 5 } })
+              .webp({ quality: 78, effort: 4 })
+              .toBuffer();
+
+            res.writeHead(200, {
+              'Content-Type': 'image/webp',
+              'Content-Length': String(webpBuffer.length)
+            });
+            res.end(webpBuffer);
+          } catch (err) {
+            console.error('Error en /api/optimize-image:', err.message);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: err.message }));
+          }
+          return;
+        }
 
         // Solo procesar rutas que inicien con /api/flow
         if (!pathname.startsWith('/api/flow')) {

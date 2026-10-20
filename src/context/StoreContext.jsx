@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { products as initialProducts } from '../data/products';
 import { pb, mapPbProduct, POCKETBASE_URL, detectColorFromText, COLOR_DEFINITIONS, getThumbUrl } from '../lib/pocketbase';
+import { optimizeImageFile } from '../utils/imageOptimizer';
 
 const StoreContext = createContext();
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'patria_products_clp_v3',
+  PRODUCTS: 'patria_products_clp_v5',
   ORDERS: 'patria_orders_clp_v3'
 };
 
@@ -150,9 +151,11 @@ const INITIAL_MOCK_ORDERS = [
 ];
 
 export const StoreProvider = ({ children }) => {
-  // 1. Products State with localStorage persistence
+  // 1. Products State with localStorage persistence (purging old unoptimized cache versions)
   const [products, setProducts] = useState(() => {
     try {
+      localStorage.removeItem('patria_products_clp_v3');
+      localStorage.removeItem('patria_products_clp_v4');
       const saved = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
       if (saved) {
         const parsed = JSON.parse(saved);
@@ -369,28 +372,12 @@ export const StoreProvider = ({ children }) => {
     };
   }, [isAdminAuthenticated]);
 
-  // Auto-reparar registros existentes en PocketBase que tengan campo image o gallery vacío
+  // Auto-actualizar definición de miniaturas en la colección 'products' de PocketBase
   useEffect(() => {
     if (!isAdminAuthenticated || !pb.authStore.isValid) return;
 
-    const repairEmptyImagesInPb = async () => {
+    const ensureThumbsConfigInPb = async () => {
       try {
-        const records = await pb.collection('products').getFullList({ requestKey: null });
-        for (const r of records) {
-          const hasEmptyImage = !r.image || r.image === '';
-          const hasEmptyGallery = !r.gallery || (Array.isArray(r.gallery) && r.gallery.length === 0);
-          if ((hasEmptyImage || hasEmptyGallery) && Array.isArray(r.images) && r.images.length > 0) {
-            const col = r.collectionId || r.collectionName || 'pbc_4092854851';
-            const fullGallery = r.images.map(img => `${POCKETBASE_URL}/api/files/${col}/${r.id}/${img}`);
-            const mainImg = fullGallery[0];
-            await pb.collection('products').update(r.id, {
-              image: mainImg,
-              gallery: fullGallery
-            }, { requestKey: null });
-          }
-        }
-
-        // Auto-actualizar definición de miniaturas en la colección 'products' de PocketBase
         if (pb.authStore.isSuperuser || pb.admins) {
           try {
             const col = await pb.collections.getOne('products');
@@ -398,7 +385,7 @@ export const StoreProvider = ({ children }) => {
             const imagesField = fields.find(f => f.name === 'images');
             if (imagesField) {
               const currentThumbs = imagesField.thumbs || [];
-              const desiredThumbs = ['100x100', '480x480'];
+              const desiredThumbs = ['100x100', '300x300', '480x480', '500x500', '800x800'];
               const missingThumbs = desiredThumbs.filter(t => !currentThumbs.includes(t));
               if (missingThumbs.length > 0) {
                 imagesField.thumbs = Array.from(new Set([...currentThumbs, ...desiredThumbs]));
@@ -416,7 +403,7 @@ export const StoreProvider = ({ children }) => {
       }
     };
 
-    repairEmptyImagesInPb();
+    ensureThumbsConfigInPb();
   }, [isAdminAuthenticated]);
 
   // 7. Store Construction / Maintenance Mode (por defecto activo para el público)
@@ -636,10 +623,11 @@ export const StoreProvider = ({ children }) => {
       fd.append('isFeatured', String(isFeatured));
       fd.append('colors', JSON.stringify(activeColors));
 
-      // Adjuntar archivos reales a FormData con su color en el nombre
-      filesToUpload.forEach(item => {
-        fd.append('images', getFileWithColor(item.file, item.color));
-      });
+      // Optimizar obligatoriamente cada archivo antes de enviarlo a PocketBase
+      for (const item of filesToUpload) {
+        const optimized = await optimizeImageFile(item.file);
+        fd.append('images', getFileWithColor(optimized, item.color));
+      }
 
       pbRecord = await pb.collection('products').create(fd, { requestKey: null });
     } else {
@@ -767,12 +755,13 @@ export const StoreProvider = ({ children }) => {
       const newFilesToUpload = [];
       const existingImagesToKeep = [];
 
-      (updatedData.imageItems || []).forEach(it => {
-        if (!it) return;
+      for (const it of (updatedData.imageItems || [])) {
+        if (!it) continue;
         if (it.file instanceof File) {
           const itemColor = it.color || updatedData.defaultColor || activeColors[0] || 'Negro';
-          newFilesToUpload.push({ file: it.file, color: itemColor });
-          fd.append('images', getFileWithColor(it.file, itemColor));
+          const optimized = await optimizeImageFile(it.file);
+          newFilesToUpload.push({ file: optimized, color: itemColor });
+          fd.append('images', getFileWithColor(optimized, itemColor));
         } else {
           const raw = it.rawName || (typeof it.url === 'string' && it.url.includes('/api/files/') ? it.url.split('/').pop().split('?')[0] : null);
           if (raw && !raw.startsWith('blob:') && raw !== 'producto.webp') {
@@ -780,7 +769,7 @@ export const StoreProvider = ({ children }) => {
             fd.append('images', raw);
           }
         }
-      });
+      }
 
       updatedRecord = await pb.collection('products').update(productId, fd, { requestKey: null });
 

@@ -86,7 +86,7 @@ export const ProductDetailPage = () => {
         <nav className="flex items-center gap-2 text-[11px] font-condensed tracking-widest text-neutral-500 uppercase mb-8">
           <Link to="/" className="hover:text-white transition-colors">INICIO</Link>
           <ChevronRight className="w-3 h-3" />
-          <Link to="/catalogo" className="hover:text-white transition-colors">INDUMENTARIA</Link>
+          <Link to="/catalogo" className="hover:text-white transition-colors">CATÁLOGO</Link>
           <ChevronRight className="w-3 h-3" />
           <span className="text-neutral-300 truncate max-w-xs">{product.name}</span>
         </nav>
@@ -246,14 +246,14 @@ export const ProductDetailPage = () => {
               </div>
             )}
 
-            {/* Size Selector */}
+            {/* Size / Format Selector */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-condensed font-bold tracking-wider text-neutral-300 uppercase">
-                  SELECCIONAR TALLA:
+                  {sizes.length === 1 && sizes[0] === 'Única' ? 'FORMATO / EDICIÓN:' : 'SELECCIONAR TALLA:'}
                 </span>
                 <span className="text-[10px] font-condensed tracking-wider text-neutral-500 uppercase">
-                  CORTE {(product.fit || 'Regular').toUpperCase()}
+                  {sizes.length === 1 && sizes[0] === 'Única' ? (product.category || 'EDICIÓN OFICIAL').toUpperCase() : `CORTE ${(product.fit || 'Regular').toUpperCase()}`}
                 </span>
               </div>
               <div className="flex flex-wrap gap-2.5">

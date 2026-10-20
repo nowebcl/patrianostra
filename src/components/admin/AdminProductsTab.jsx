@@ -31,7 +31,7 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
   }, [searchQuery, selectedCategory, sortBy]);
 
   const categories = useMemo(() => {
-    const base = ['TODOS', 'POLERAS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS'];
+    const base = ['TODOS', 'POLERAS', 'POLERONES', 'CAMISETAS', 'PANTALONES', 'ACCESORIOS', 'MÚSICA', 'VINILOS', 'CDS', 'CASETES'];
     const fromProducts = products.map(p => (p.category || '').toUpperCase().trim()).filter(Boolean);
     return Array.from(new Set([...base, ...fromProducts]));
   }, [products]);
@@ -42,14 +42,25 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
   };
 
   const filteredProducts = useMemo(() => {
+    const normalizeCat = (str) => (str || '').toUpperCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const musicSubCats = ['MUSICA', 'VINILOS', 'VINILO', 'CDS', 'CD', 'CASETES', 'CASETE', 'CASSETTES', 'CASSETTE'];
+
     const list = products.filter(p => {
       if (selectedCategory !== 'TODOS') {
-        const cat = (p.category || '').toUpperCase().trim();
-        const sel = selectedCategory.toUpperCase().trim();
+        const cat = normalizeCat(p.category);
+        const sel = normalizeCat(selectedCategory);
         if (sel === 'POLERAS' || sel === 'CAMISETAS') {
           if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
         } else if (sel === 'POLERONES') {
           if (cat !== 'POLERONES' && cat !== 'HOODIES') return false;
+        } else if (sel === 'MUSICA') {
+          if (!musicSubCats.includes(cat)) return false;
+        } else if (sel === 'VINILOS' || sel === 'VINILO') {
+          if (cat !== 'VINILOS' && cat !== 'VINILO') return false;
+        } else if (sel === 'CDS' || sel === 'CD') {
+          if (cat !== 'CDS' && cat !== 'CD') return false;
+        } else if (sel === 'CASETES' || sel === 'CASETE') {
+          if (cat !== 'CASETES' && cat !== 'CASETE' && cat !== 'CASSETTES' && cat !== 'CASSETTE') return false;
         } else if (cat !== sel) {
           return false;
         }

@@ -98,13 +98,13 @@ async function main() {
       const imgUrl = `${POCKETBASE_URL}/api/files/${colId}/${p.id}/${imgName}`;
       const size = await getRemoteFileSize(imgUrl);
       sizes.push({ imgName, size, url: imgUrl });
-      if (size > 200 * 1024) {
+      if (size > 100 * 1024) {
         needsOptimization = true;
       }
     }
 
     if (!needsOptimization) {
-      console.log(`[${pIdx + 1}/${products.length}] ⚡ "${p.name}" ya está optimizado (todas <200KB).`);
+      console.log(`[${pIdx + 1}/${products.length}] ⚡ "${p.name}" ya está optimizado (todas <100KB).`);
       continue;
     }
 
@@ -129,10 +129,11 @@ async function main() {
         const originalKb = Math.round(rawBuffer.length / 1024);
 
         let webpBuffer;
-        if (rawBuffer.length > 200 * 1024) {
+        if (rawBuffer.length > 100 * 1024) {
           webpBuffer = await sharp(rawBuffer)
-            .resize({ width: 1000, height: 1000, fit: 'inside', withoutEnlargement: true })
-            .webp({ quality: 80, effort: 4 })
+            .resize({ width: 800, height: 800, fit: 'inside', withoutEnlargement: true })
+            .flatten({ background: { r: 5, g: 5, b: 5 } })
+            .webp({ quality: 78, effort: 4 })
             .toBuffer();
           const newKb = Math.round(webpBuffer.length / 1024);
           const saved = rawBuffer.length - webpBuffer.length;
