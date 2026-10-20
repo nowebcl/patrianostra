@@ -73,6 +73,7 @@ export const QuickViewModal = () => {
             <img 
               src={activeImage || quickViewProduct.image || '/producto.webp'} 
               alt={quickViewProduct.name} 
+              decoding="async"
               onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
               className="w-full h-full object-contain filter contrast-105 transition-all duration-300" 
             />

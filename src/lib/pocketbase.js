@@ -35,6 +35,20 @@ export const getThumbUrl = (url, thumb = '100x100') => {
   return `${url}${separator}thumb=${thumb}`;
 };
 
+// Helper de optimización y enrutamiento inteligente de imágenes
+export const getOptimizedImageUrl = (url) => {
+  if (!url || typeof url !== 'string') return '/producto.webp';
+  if (url.startsWith('blob:') || url.startsWith('data:')) return url;
+  
+  // En desarrollo local (Vite en localhost:3000), enrutar archivos de PocketBase
+  // a través del proxy local ultrarrápido con caché en disco (.cache/pocketbase-images).
+  // Esto elimina la latencia de 160ms con New York y el estrangulamiento de 70KB/s del VPS.
+  if (import.meta.env.DEV && url.startsWith('https://patrianostradistropb.noweb.cl/api/files/')) {
+    return url.replace('https://patrianostradistropb.noweb.cl', '');
+  }
+  return url;
+};
+
 // Helper para obtener URL de archivo de PocketBase con fallback seguro y absoluto
 export const getProductImageUrl = (record, filename, queryParams = {}) => {
   if (!record) return '/producto.webp';
@@ -75,10 +89,10 @@ export const mapPbProduct = (record) => {
     if (!file || typeof file !== 'string' || !file.trim()) return null;
     if (file.startsWith('blob:') || file.startsWith('data:')) return null;
     if (file.startsWith('http://') || file.startsWith('https://') || file.startsWith('/')) {
-      return file;
+      return getOptimizedImageUrl(file);
     }
     if (record.id && file) {
-      return `${POCKETBASE_URL}/api/files/${col}/${record.id}/${file}`;
+      return getOptimizedImageUrl(`${POCKETBASE_URL}/api/files/${col}/${record.id}/${file}`);
     }
     return null;
   };

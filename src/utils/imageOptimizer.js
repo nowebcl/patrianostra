@@ -50,10 +50,10 @@ function createScaledCanvas(img, maxW, maxH, bgColor = '#050505') {
 
 export async function optimizeImageFile(file, options = {}) {
   const {
-    maxWidth = 800,
-    maxHeight = 800,
-    quality = 0.78,
-    maxSizeBytes = 100 * 1024 // Meta estricta: <= 100 KB (ideal 40-80 KB)
+    maxWidth = 650,
+    maxHeight = 650,
+    quality = 0.70,
+    maxSizeBytes = 35 * 1024 // Meta estricta: <= 35 KB (carga ultra-rápida instantánea)
   } = options;
 
   if (!file || !(file instanceof File || file instanceof Blob)) {
@@ -71,8 +71,8 @@ export async function optimizeImageFile(file, options = {}) {
     .toLowerCase()
     .replace(/[^a-z0-9_-]/g, '_') || 'producto';
 
-  // Solo omitir si YA es un WebP real verificado y pesa menos de 75 KB
-  if (file.type === 'image/webp' && file.size > 0 && file.size <= 75 * 1024) {
+  // Solo omitir si YA es un WebP real verificado y pesa menos de 35 KB
+  if (file.type === 'image/webp' && file.size > 0 && file.size <= 35 * 1024) {
     return file;
   }
 

@@ -26,10 +26,15 @@ export const ProductDetailPage = () => {
   const initialImg = (product.colorImages && product.colorImages[defaultColor]) || product.gallery?.[0] || product.image || '/producto.webp';
 
   const [activeImage, setActiveImage] = useState(initialImg);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [selectedSize, setSelectedSize] = useState(firstInStockSize);
   const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState('specs');
+
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [activeImage]);
 
   useEffect(() => {
     if (product) {
@@ -99,6 +104,11 @@ export const ProductDetailPage = () => {
             
             {/* Master View Image */}
             <div className="relative aspect-square w-full bg-[#070707] border border-neutral-900 overflow-hidden flex items-center justify-center p-4">
+              {!imageLoaded && (
+                <div className="absolute inset-0 bg-[#0c0c0c] flex items-center justify-center animate-pulse z-0">
+                  <div className="w-8 h-8 rounded-full border-2 border-neutral-800 border-t-[#C52222] animate-spin opacity-40" />
+                </div>
+              )}
               {product.badge && (
                 <div className="absolute top-4 right-4 z-10">
                   <span className="badge-limited">{product.badge}</span>
@@ -106,12 +116,15 @@ export const ProductDetailPage = () => {
               )}
               <img 
                 src={activeImage || product.image || '/producto.webp'} 
-                alt={product.name} 
+                alt={product.name}
+                decoding="async"
+                onLoad={() => setImageLoaded(true)}
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = '/producto.webp';
+                  setImageLoaded(true);
                 }}
-                className="w-full h-full object-contain filter contrast-105 transition-all duration-300"
+                className={`w-full h-full object-contain filter contrast-105 transition-all duration-300 relative z-10 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
               />
             </div>
 

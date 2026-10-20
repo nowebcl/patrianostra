@@ -1,5 +1,7 @@
 import { createFlowPayment, getFlowPaymentStatus, savePendingOrder, getSavedPendingOrder } from './flowService.js';
 import sharp from 'sharp';
+import fs from 'node:fs';
+import path from 'node:path';
 
 async function parseRequestBody(req) {
   try {
@@ -59,6 +61,77 @@ export function flowApiPlugin() {
         const urlObj = new URL(rawUrl, `http://${req.headers.host || 'localhost:3000'}`);
         const pathname = urlObj.pathname.replace(/\/$/, ''); // Remover trailing slash
 
+        // Cache & Proxy ultrarrápido para archivos e imágenes de PocketBase: GET /api/files/...
+        if (pathname.startsWith('/api/files/') && req.method === 'GET') {
+          try {
+            const cacheDir = path.resolve(process.cwd(), '.cache', 'pocketbase-images');
+            if (!fs.existsSync(cacheDir)) {
+              fs.mkdirSync(cacheDir, { recursive: true });
+            }
+
+            const querySuffix = urlObj.search ? '_' + urlObj.search.replace(/[^a-zA-Z0-9]/g, '_') : '';
+            const safeKey = pathname.replace(/^\/api\/files\//, '').replace(/[^a-zA-Z0-9._-]/g, '_') + querySuffix + '.webp';
+            const cacheFilePath = path.join(cacheDir, safeKey);
+
+            // 1. Si ya está en la caché de disco local, servirlo instantáneamente en < 1ms
+            if (fs.existsSync(cacheFilePath)) {
+              const cachedData = fs.readFileSync(cacheFilePath);
+              res.writeHead(200, {
+                'Content-Type': 'image/webp',
+                'Content-Length': String(cachedData.length),
+                'Cache-Control': 'public, max-age=31536000, immutable',
+                'Connection': 'keep-alive',
+                'X-Cache-Status': 'HIT'
+              });
+              res.end(cachedData);
+              return;
+            }
+
+            // 2. Si no está en caché local, descargarlo desde PocketBase remoto
+            const remoteUrl = `https://patrianostradistropb.noweb.cl${rawUrl}`;
+            const fetchRes = await fetch(remoteUrl);
+            if (!fetchRes.ok) {
+              res.writeHead(fetchRes.status);
+              res.end();
+              return;
+            }
+
+            const rawBuffer = Buffer.from(await fetchRes.arrayBuffer());
+            let finalBuffer = rawBuffer;
+
+            // Optimizar sobre la marcha a WebP liviano si supera los 30 KB
+            if (rawBuffer.length > 30 * 1024) {
+              try {
+                finalBuffer = await sharp(rawBuffer)
+                  .resize({ width: 650, height: 650, fit: 'inside', withoutEnlargement: true })
+                  .flatten({ background: { r: 5, g: 5, b: 5 } })
+                  .webp({ quality: 68, effort: 6 })
+                  .toBuffer();
+              } catch {
+                finalBuffer = rawBuffer;
+              }
+            }
+
+            // Guardar en disco para que futuras peticiones (incluso tras borrar caché de navegador) sean instantáneas
+            fs.writeFileSync(cacheFilePath, finalBuffer);
+
+            res.writeHead(200, {
+              'Content-Type': 'image/webp',
+              'Content-Length': String(finalBuffer.length),
+              'Cache-Control': 'public, max-age=31536000, immutable',
+              'Connection': 'keep-alive',
+              'X-Cache-Status': 'MISS'
+            });
+            res.end(finalBuffer);
+            return;
+          } catch (err) {
+            console.error('Error en proxy de imágenes PocketBase:', err.message);
+            res.writeHead(502);
+            res.end();
+            return;
+          }
+        }
+
         // Endpoint de optimización de imágenes a WebP vía Sharp: POST /api/optimize-image
         if (pathname === '/api/optimize-image' && req.method === 'POST') {
           try {
@@ -68,9 +141,9 @@ export function flowApiPlugin() {
             }
             const inputBuffer = Buffer.concat(chunks);
             const webpBuffer = await sharp(inputBuffer)
-              .resize({ width: 800, height: 800, fit: 'inside', withoutEnlargement: true })
+              .resize({ width: 650, height: 650, fit: 'inside', withoutEnlargement: true })
               .flatten({ background: { r: 5, g: 5, b: 5 } })
-              .webp({ quality: 78, effort: 4 })
+              .webp({ quality: 68, effort: 6 })
               .toBuffer();
 
             res.writeHead(200, {

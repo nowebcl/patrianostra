@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { products as initialProducts } from '../data/products';
-import { pb, mapPbProduct, POCKETBASE_URL, detectColorFromText, COLOR_DEFINITIONS, getThumbUrl } from '../lib/pocketbase';
+import { pb, mapPbProduct, POCKETBASE_URL, detectColorFromText, COLOR_DEFINITIONS, getThumbUrl, getOptimizedImageUrl } from '../lib/pocketbase';
 import { optimizeImageFile } from '../utils/imageOptimizer';
 
 const StoreContext = createContext();
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'patria_products_clp_v5',
+  PRODUCTS: 'patria_products_clp_v6',
   ORDERS: 'patria_orders_clp_v3'
 };
 
@@ -156,15 +156,26 @@ export const StoreProvider = ({ children }) => {
     try {
       localStorage.removeItem('patria_products_clp_v3');
       localStorage.removeItem('patria_products_clp_v4');
+      localStorage.removeItem('patria_products_clp_v5');
       const saved = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length >= initialProducts.length) return parsed;
+        if (Array.isArray(parsed) && parsed.length >= initialProducts.length) {
+          return parsed.map(p => ({
+            ...p,
+            image: getOptimizedImageUrl(p.image),
+            images: (p.images || []).map(getOptimizedImageUrl)
+          }));
+        }
       }
     } catch (e) {
       console.error('Error loading products from localStorage:', e);
     }
-    return initialProducts;
+    return initialProducts.map(p => ({
+      ...p,
+      image: getOptimizedImageUrl(p.image),
+      images: (p.images || []).map(getOptimizedImageUrl)
+    }));
   });
 
   // 2. Orders State with localStorage persistence

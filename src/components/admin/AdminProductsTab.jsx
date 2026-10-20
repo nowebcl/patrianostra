@@ -17,6 +17,55 @@ import { ProductEditorView } from './ProductEditorView';
 
 const ITEMS_PER_PAGE = 18;
 
+const AdminProductImage = ({ src, alt, badge, isFeatured, priority = false }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+    setHasError(false);
+  }, [src]);
+
+  return (
+    <div className="relative aspect-square w-full bg-[#050505] rounded-xl border border-neutral-900 p-2 mb-3 flex items-center justify-center overflow-hidden">
+      {/* Skeleton Shimmer mientras descarga */}
+      {!loaded && !hasError && (
+        <div className="absolute inset-0 bg-[#0c0c0c] flex items-center justify-center animate-pulse">
+          <div className="w-5 h-5 rounded-full border-2 border-neutral-800 border-t-[#C52222] animate-spin opacity-40" />
+        </div>
+      )}
+
+      <img
+        src={hasError ? '/producto.webp' : (src || '/producto.webp')}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => {
+          setHasError(true);
+          setLoaded(true);
+        }}
+        className={`max-h-full max-w-full object-contain filter contrast-105 transition-opacity duration-300 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      
+      {badge && (
+        <span className="absolute top-2 left-2 z-10 px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-[#C52222] text-white rounded shadow-sm">
+          {badge}
+        </span>
+      )}
+
+      {isFeatured && (
+        <span className="absolute top-2 right-2 z-10 px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-amber-500 text-black rounded shadow-sm">
+          ★ Portada
+        </span>
+      )}
+    </div>
+  );
+};
+
 export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setProductToEdit }) => {
   const { products, addProduct, updateProduct, deleteProduct, adjustStock } = useStore();
   const [searchQuery, setSearchQuery] = useState('');
@@ -279,29 +328,13 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                 <div>
                   
                   {/* Image & Badges */}
-                  <div className="relative aspect-square w-full bg-[#050505] rounded-xl border border-neutral-900 p-2 mb-3 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={product.image || '/producto.webp'}
-                      alt={product.name}
-                      loading={idx < 6 ? "eager" : "lazy"}
-                      fetchPriority={idx < 3 ? "high" : "auto"}
-                      decoding={idx < 6 ? "sync" : "async"}
-                      className="max-h-full max-w-full object-contain filter contrast-105"
-                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
-                    />
-                    
-                    {product.badge && (
-                      <span className="absolute top-2 left-2 px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-[#C52222] text-white rounded">
-                        {product.badge}
-                      </span>
-                    )}
-
-                    {product.isFeatured && (
-                      <span className="absolute top-2 right-2 px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-amber-500 text-black rounded">
-                        ★ Portada
-                      </span>
-                    )}
-                  </div>
+                  <AdminProductImage
+                    src={product.image}
+                    alt={product.name}
+                    badge={product.badge}
+                    isFeatured={product.isFeatured}
+                    priority={idx < 6}
+                  />
 
                   {/* Available Colors Indicator */}
                   {product.colors && product.colors.length > 0 && (

@@ -15,8 +15,13 @@ export const ProductCard = ({ product, priority = false }) => {
   const defaultColor = product.defaultColor || colors[0] || 'Negro';
   const [selectedColor, setSelectedColor] = React.useState(defaultColor);
   const [currentImage, setCurrentImage] = React.useState(product.colorImages?.[defaultColor] || product.image || '/producto.webp');
+  const [imageLoaded, setImageLoaded] = React.useState(false);
 
   const rawImage = currentImage || product.image || '/producto.webp';
+
+  React.useEffect(() => {
+    setImageLoaded(false);
+  }, [rawImage]);
 
   // Primer talla disponible por defecto
   const defaultAvailableSize = sizes.find(sz => (sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1) > 0) || sizes[0];
@@ -56,18 +61,27 @@ export const ProductCard = ({ product, priority = false }) => {
           </div>
         )}
 
-        {/* Imagen de la prenda (WebP directo ultra nítido y liviano de ~60KB) */}
+        {/* Skeleton Shimmer mientras descarga */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-[#0c0c0c] flex items-center justify-center animate-pulse z-0">
+            <div className="w-5 h-5 rounded-full border-2 border-neutral-800 border-t-[#C52222] animate-spin opacity-40" />
+          </div>
+        )}
+
+        {/* Imagen de la prenda (WebP directo ultra nítido y liviano de ~20KB) */}
         <img 
           src={rawImage} 
           alt={product.name} 
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : "auto"}
-          decoding={priority ? "sync" : "async"}
+          decoding="async"
+          onLoad={() => setImageLoaded(true)}
           onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = '/producto.webp';
+            setImageLoaded(true);
           }}
-          className="product-img relative z-10 w-full h-full object-contain filter contrast-105 transition-transform duration-300 group-hover:scale-105"
+          className={`product-img relative z-10 w-full h-full object-contain filter contrast-105 transition-all duration-300 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
 
         {/* Hover Action to view single product */}
