@@ -15,13 +15,17 @@ export const Navbar = () => {
         {/* 1. Left Column: Desktop 2 items (INICIO | CATÁLOGO) / Mobile Hamburger */}
         <div className="flex items-center justify-start">
           {/* Desktop Left Menu */}
-          <nav className="hidden lg:flex items-center space-x-6 text-xs font-condensed font-semibold tracking-[0.2em] text-neutral-300">
+          <nav className="hidden lg:flex items-center space-x-5 text-xs font-condensed font-semibold tracking-[0.2em] text-neutral-300">
             <Link to="/" className="hover:text-white transition-colors duration-200 uppercase">
               INICIO
             </Link>
             <span className="text-neutral-800 select-none">|</span>
             <Link to="/catalogo" className="hover:text-white transition-colors duration-200 uppercase">
               CATÁLOGO
+            </Link>
+            <span className="text-neutral-800 select-none">|</span>
+            <Link to="/quienes-somos" className="hover:text-[#C52222] transition-colors duration-200 uppercase">
+              QUIÉNES SOMOS
             </Link>
           </nav>
 

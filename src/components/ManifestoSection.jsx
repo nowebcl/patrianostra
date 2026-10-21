@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 export const ManifestoSection = () => {
@@ -14,7 +15,7 @@ export const ManifestoSection = () => {
             
             <div className="mb-3">
               <span className="text-[#C52222] font-condensed font-bold tracking-[0.2em] text-xs uppercase inline-block">
-                NUESTRA CAUSA
+                DESDE 2018 • DISTRO INDEPENDIENTE
               </span>
             </div>
 
@@ -23,18 +24,25 @@ export const ManifestoSection = () => {
               ES NUESTRA FORMA DE LUCHAR.
             </h2>
 
-            <p className="text-neutral-400 font-sans text-xs sm:text-sm leading-relaxed mb-8">
-              Patria Nostra nace desde la música, la historia y la calle. Cada prenda lleva un mensaje. Cada diseño, una postura. No seguimos tendencias. Seguimos convicciones.
+            <p className="text-neutral-400 font-sans text-xs sm:text-sm leading-relaxed mb-6">
+              PATRIA NOSTRA DISTRO nace en 2018 como un proyecto independiente dedicado a la difusión y venta de música, indumentaria y ediciones físicas de la escena nacionalista, patriota e identitaria. No seguimos tendencias, seguimos convicciones.
             </p>
 
-            <div>
+            <div className="flex flex-wrap items-center gap-3">
               <button 
                 onClick={() => setIsManifestoOpen(true)}
-                className="btn-outline-dark font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase px-7 py-3.5 inline-flex items-center gap-2 border border-neutral-800 text-neutral-200 transition-all duration-200 cursor-pointer"
+                className="btn-outline-dark font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase px-6 py-3.5 inline-flex items-center gap-2 border border-neutral-800 text-neutral-200 hover:text-white transition-all duration-200 cursor-pointer"
               >
-                <span>LEER MANIFIESTO</span>
+                <span>LEER DECLARACIÓN</span>
                 <span>→</span>
               </button>
+
+              <Link
+                to="/quienes-somos"
+                className="font-condensed font-bold text-xs sm:text-sm tracking-[0.2em] uppercase px-6 py-3.5 inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 hover:text-white transition-all duration-200 cursor-pointer"
+              >
+                <span>QUIÉNES SOMOS</span>
+              </Link>
             </div>
 
           </div>

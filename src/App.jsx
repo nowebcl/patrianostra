@@ -18,6 +18,7 @@ import { CatalogPage } from './pages/CatalogPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { ContactPage } from './pages/ContactPage';
+import { AboutPage } from './pages/AboutPage';
 import { MaintenancePage } from './pages/MaintenancePage';
 
 // Admin Pages
@@ -140,6 +141,8 @@ export function App() {
               <Route path="/producto/:id" element={<ProductDetailPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/contacto" element={<ContactPage />} />
+              <Route path="/quienes-somos" element={<AboutPage />} />
+              <Route path="/nosotros" element={<AboutPage />} />
               <Route path="*" element={<HomePage />} />
             </Route>
 

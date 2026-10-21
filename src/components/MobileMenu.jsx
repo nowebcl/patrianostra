@@ -45,6 +45,13 @@ export const MobileMenu = () => {
             >
               CATÁLOGO
             </Link>
+            <Link 
+              to="/quienes-somos" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block hover:text-[#C52222] transition-colors uppercase"
+            >
+              QUIÉNES SOMOS
+            </Link>
             <a 
               href="https://www.instagram.com/patria.nostra.distro/" 
               target="_blank"

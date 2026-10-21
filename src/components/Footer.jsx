@@ -22,9 +22,9 @@ export const Footer = () => {
                 className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(0,0,0,0.9)]"
               />
             </div>
-            <span className="font-gothic text-xl text-neutral-300">patria nostra</span>
+            <span className="font-gothic text-xl text-neutral-300">patria nostra distro</span>
             <p className="text-[11px] text-neutral-500 mt-2 font-sans leading-relaxed">
-              Identidad, lealtad y resistencia en cada puntada.
+              Distro independiente nacida en 2018. Difusión y venta de música, indumentaria y material identitario.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export const Footer = () => {
                   Manifiesto
                 </button>
               </li>
-              <li><a href="#" className="hover:text-white transition-colors">Historia</a></li>
+              <li><Link to="/quienes-somos" className="hover:text-white transition-colors">Quiénes Somos</Link></li>
               <li><a href="#colaboraciones" className="hover:text-white transition-colors">Colaboraciones</a></li>
               <li><Link to="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
             </ul>
