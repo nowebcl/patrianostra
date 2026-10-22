@@ -15,12 +15,26 @@ export const ProductCard = ({ product, priority = false }) => {
   const defaultColor = product.defaultColor || colors[0] || 'Negro';
   const [selectedColor, setSelectedColor] = React.useState(defaultColor);
   const [currentImage, setCurrentImage] = React.useState(product.colorImages?.[defaultColor] || product.image || '/producto.webp');
+  const imgRef = React.useRef(null);
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
   const rawImage = currentImage || product.image || '/producto.webp';
 
   React.useEffect(() => {
+    // Si la imagen ya está en caché del navegador y completa
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setImageLoaded(true);
+      return;
+    }
+
     setImageLoaded(false);
+
+    // Timeout de seguridad: Si la red/VPS demora más de 3.5s, destrabar la interfaz
+    const timer = setTimeout(() => {
+      setImageLoaded(true);
+    }, 3500);
+
+    return () => clearTimeout(timer);
   }, [rawImage]);
 
   // Primer talla disponible por defecto
@@ -70,6 +84,7 @@ export const ProductCard = ({ product, priority = false }) => {
 
         {/* Imagen de la prenda (WebP directo ultra nítido y liviano de ~20KB) */}
         <img 
+          ref={imgRef}
           src={rawImage} 
           alt={product.name} 
           loading={priority ? "eager" : "lazy"}

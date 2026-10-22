@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, RotateCcw, ChevronRight, Check, Sparkles, Ruler } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
@@ -27,6 +27,7 @@ export const ProductDetailPage = () => {
   const defaultColor = product.defaultColor || (product.colors && product.colors[0]) || 'Negro';
   const initialImg = (product.colorImages && product.colorImages[defaultColor]) || product.gallery?.[0] || product.image || '/producto.webp';
 
+  const imgRef = useRef(null);
   const [activeImage, setActiveImage] = useState(initialImg);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [selectedSize, setSelectedSize] = useState(firstInStockSize);
@@ -45,7 +46,18 @@ export const ProductDetailPage = () => {
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
   useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setImageLoaded(true);
+      return;
+    }
+
     setImageLoaded(false);
+
+    const timer = setTimeout(() => {
+      setImageLoaded(true);
+    }, 3500);
+
+    return () => clearTimeout(timer);
   }, [activeImage]);
 
   useEffect(() => {
@@ -128,6 +140,7 @@ export const ProductDetailPage = () => {
                 </div>
               )}
               <img 
+                ref={imgRef}
                 src={activeImage || product.image || '/producto.webp'} 
                 alt={product.name}
                 decoding="async"

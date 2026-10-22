@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { 
   Plus, 
   Search, 
@@ -18,12 +18,27 @@ import { ProductEditorView } from './ProductEditorView';
 const ITEMS_PER_PAGE = 18;
 
 const AdminProductImage = ({ src, alt, badge, isFeatured, priority = false }) => {
+  const imgRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    setLoaded(false);
     setHasError(false);
+
+    // Si ya está en caché del navegador y completada
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setLoaded(true);
+      return;
+    }
+
+    setLoaded(false);
+
+    // Timeout de seguridad: Si la red o VPS se estancan más de 3.5s, destrabar la UI
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 3500);
+
+    return () => clearTimeout(timer);
   }, [src]);
 
   return (
@@ -36,6 +51,7 @@ const AdminProductImage = ({ src, alt, badge, isFeatured, priority = false }) =>
       )}
 
       <img
+        ref={imgRef}
         src={hasError ? '/producto.webp' : (src || '/producto.webp')}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
@@ -333,7 +349,7 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
                     alt={product.name}
                     badge={product.badge}
                     isFeatured={product.isFeatured}
-                    priority={idx < 6}
+                    priority={idx < 18}
                   />
 
                   {/* Available Colors Indicator */}
