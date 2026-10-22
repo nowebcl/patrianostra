@@ -125,8 +125,8 @@ export const QuickViewModal = () => {
               </div>
             )}
 
-            {/* Colors */}
-            {colors.length > 0 && (
+            {/* Colors: Solo para prendas de vestir */}
+            {isClothing && colors.length > 0 && (
               <div className="mb-5">
                 <span className="text-[11px] font-condensed font-semibold tracking-wider text-neutral-400 uppercase block mb-2">
                   COLOR: <strong className="text-white ml-1">{selectedColor}</strong>
@@ -218,6 +218,10 @@ export const QuickViewModal = () => {
             >
               {isCurrentOutOfStock ? 'TALLA AGOTADA' : 'AÑADIR AL CARRITO'}
             </button>
+
+            <p className="text-[10px] text-neutral-400 text-center font-sans mt-2.5 leading-tight">
+              Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.
+            </p>
           </div>
         </div>
 

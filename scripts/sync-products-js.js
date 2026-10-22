@@ -39,6 +39,8 @@ async function syncProductsJs() {
     });
 
     const mainImage = p.image || rawImages[0] || '/producto.webp';
+    const isMusic = ['cds', 'vinilos', 'casetes', 'musica', 'música'].includes((p.category || '').toLowerCase().trim());
+    const isClothing = !isMusic && (p.category || '').toLowerCase().trim() !== 'accesorios';
 
     return {
       id: p.id,
@@ -48,19 +50,19 @@ async function syncProductsJs() {
       category: p.category,
       badge: p.badge || null,
       stock: p.stock ?? 10,
-      sizeStock: p.sizeStock && typeof p.sizeStock === 'object' ? p.sizeStock : { 'S': 2, 'M': 3, 'L': 3, 'XL': 2 },
+      sizeStock: p.sizeStock && typeof p.sizeStock === 'object' ? p.sizeStock : (isClothing ? { 'S': 2, 'M': 3, 'L': 3, 'XL': 2 } : { 'Única': p.stock ?? 10 }),
       gender: p.gender || 'Unisex',
-      gsm: p.gsm || '240 GSM Algodón Pesado',
-      fit: p.fit || 'Corte Regular',
+      gsm: p.gsm || (isMusic ? 'Edición Física Oficial' : '240 GSM Algodón Pesado'),
+      fit: p.fit || (isMusic ? (p.category || 'CDs').toUpperCase() : 'Corte Regular'),
       description: p.description || '',
       features: Array.isArray(p.features) ? p.features : [],
       sku: p.sku || `PN-${p.id}`,
       image: mainImage,
       images: rawImages.length > 0 ? rawImages : [mainImage],
-      colorImages: Object.keys(colorImages).length > 0 ? colorImages : { 'Negro': mainImage },
-      colors: colors.length > 0 ? colors : ['Negro'],
-      defaultColor: colors[0] || 'Negro',
-      sizes: p.sizes && Array.isArray(p.sizes) ? p.sizes : ['S', 'M', 'L', 'XL', 'XXL'],
+      colorImages: isClothing ? (Object.keys(colorImages).length > 0 ? colorImages : { 'Negro': mainImage }) : {},
+      colors: isClothing ? (colors.length > 0 ? colors : ['Negro']) : [],
+      defaultColor: isClothing ? (colors[0] || 'Negro') : null,
+      sizes: p.sizes && Array.isArray(p.sizes) ? p.sizes : (isClothing ? ['S', 'M', 'L', 'XL', 'XXL'] : ['Única']),
       isFeatured: p.isFeatured || false,
       isNew: p.isNew || false,
       created: p.created,

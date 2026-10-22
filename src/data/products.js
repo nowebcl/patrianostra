@@ -1,5 +1,5 @@
 // Catálogo Oficial Patria Nostra - Streetwear Nacionalista
-// Sincronizado automáticamente con PocketBase Cloud (2026-10-22T00:17:00.636Z)
+// Sincronizado automáticamente con PocketBase Cloud (2026-10-22T00:51:44.570Z)
 
 export const products = [
   {
@@ -73,20 +73,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/iqz55fdjkwv7qvh/r_10448730_1497648048_5096_negro_y4oozeupap.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/iqz55fdjkwv7qvh/r_10448730_1497648048_5096_negro_y4oozeupap.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 03:00:10.715Z",
-    "updated": "2026-10-21 03:00:11.115Z"
+    "updated": "2026-10-22 00:36:31.345Z"
   },
   {
     "id": "cv77k983hqxldbv",
@@ -109,20 +105,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/cv77k983hqxldbv/r_34509583_1752229448_2817_negro_di6fs88ged.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/cv77k983hqxldbv/r_34509583_1752229448_2817_negro_di6fs88ged.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:54:49.209Z",
-    "updated": "2026-10-21 02:54:49.617Z"
+    "updated": "2026-10-22 00:36:31.167Z"
   },
   {
     "id": "eza8pl0jpxa1fbi",
@@ -145,20 +137,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/eza8pl0jpxa1fbi/r_32626695_1734784666_3454_negro_fkc21ufjvz.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/eza8pl0jpxa1fbi/r_32626695_1734784666_3454_negro_fkc21ufjvz.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:38:17.246Z",
-    "updated": "2026-10-21 02:38:17.655Z"
+    "updated": "2026-10-22 00:36:30.977Z"
   },
   {
     "id": "39ii1o6agszysjm",
@@ -181,20 +169,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/39ii1o6agszysjm/r_9757371_1485888499_8084_negro_g1r0zxpco8.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/39ii1o6agszysjm/r_9757371_1485888499_8084_negro_g1r0zxpco8.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:32:33.127Z",
-    "updated": "2026-10-21 02:32:33.635Z"
+    "updated": "2026-10-22 00:36:30.805Z"
   },
   {
     "id": "dkn62z8ge204wqa",
@@ -217,20 +201,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dkn62z8ge204wqa/r_26145971_1694010863_3468_negro_0b0yyt483a.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dkn62z8ge204wqa/r_26145971_1694010863_3468_negro_0b0yyt483a.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:26:41.693Z",
-    "updated": "2026-10-21 02:26:42.082Z"
+    "updated": "2026-10-22 00:36:30.631Z"
   },
   {
     "id": "2vt1c7ap1ookiry",
@@ -253,20 +233,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vt1c7ap1ookiry/r_13294910_1551654557_3947_negro_1jr7waxljq.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vt1c7ap1ookiry/r_13294910_1551654557_3947_negro_1jr7waxljq.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:19:59.029Z",
-    "updated": "2026-10-21 02:20:21.977Z"
+    "updated": "2026-10-22 00:36:30.456Z"
   },
   {
     "id": "18ob19x3yl37qck",
@@ -289,20 +265,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/18ob19x3yl37qck/r_16156004_1604395352_8850_negro_7ovztywpvc.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/18ob19x3yl37qck/r_16156004_1604395352_8850_negro_7ovztywpvc.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:16:29.448Z",
-    "updated": "2026-10-21 02:20:31.370Z"
+    "updated": "2026-10-22 00:36:30.283Z"
   },
   {
     "id": "6s0b1k0gbh1sxmo",
@@ -325,20 +297,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6s0b1k0gbh1sxmo/r_23062007_1744629266_6208_negro_x1qt707o28.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6s0b1k0gbh1sxmo/r_23062007_1744629266_6208_negro_x1qt707o28.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:15:31.787Z",
-    "updated": "2026-10-21 02:20:38.915Z"
+    "updated": "2026-10-22 00:36:30.099Z"
   },
   {
     "id": "nxd6gyergqettei",
@@ -361,20 +329,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nxd6gyergqettei/r_26234009_1677426090_8094_negro_h6q0h3ujo2.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nxd6gyergqettei/r_26234009_1677426090_8094_negro_h6q0h3ujo2.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:13:04.851Z",
-    "updated": "2026-10-21 02:20:50.555Z"
+    "updated": "2026-10-22 00:36:29.929Z"
   },
   {
     "id": "uu0h66neiactzcj",
@@ -397,20 +361,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/uu0h66neiactzcj/r_31691717_1725878683_5036_negro_fri0gy6s5m.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/uu0h66neiactzcj/r_31691717_1725878683_5036_negro_fri0gy6s5m.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:07:34.746Z",
-    "updated": "2026-10-21 02:07:35.198Z"
+    "updated": "2026-10-22 00:36:29.754Z"
   },
   {
     "id": "fzgeh08cm938ulv",
@@ -433,20 +393,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fzgeh08cm938ulv/63067_negro_lb5lrcjhxg.jpg"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fzgeh08cm938ulv/63067_negro_lb5lrcjhxg.jpg"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 02:02:41.477Z",
-    "updated": "2026-10-21 02:02:41.862Z"
+    "updated": "2026-10-22 00:36:29.581Z"
   },
   {
     "id": "45cma9dyqfihlr0",
@@ -469,20 +425,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/45cma9dyqfihlr0/bdc_kbk_negro_jx8kpy4y6j.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/45cma9dyqfihlr0/bdc_kbk_negro_jx8kpy4y6j.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:58:14.382Z",
-    "updated": "2026-10-21 01:58:14.980Z"
+    "updated": "2026-10-22 00:36:29.399Z"
   },
   {
     "id": "58dbp6lny7urir7",
@@ -505,20 +457,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/58dbp6lny7urir7/63107_negro_28xn14vd6g.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/58dbp6lny7urir7/63107_negro_28xn14vd6g.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:53:21.169Z",
-    "updated": "2026-10-21 01:53:21.646Z"
+    "updated": "2026-10-22 00:36:29.223Z"
   },
   {
     "id": "1viuld75hb47dvq",
@@ -541,20 +489,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1viuld75hb47dvq/63070_negro_knr3wq2ymz.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1viuld75hb47dvq/63070_negro_knr3wq2ymz.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:52:08.255Z",
-    "updated": "2026-10-21 01:52:08.661Z"
+    "updated": "2026-10-22 00:36:29.043Z"
   },
   {
     "id": "em07lg4zhqoqvnc",
@@ -577,20 +521,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/em07lg4zhqoqvnc/united_vol_4_cover_negro_s0p4x0276h.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/em07lg4zhqoqvnc/united_vol_4_cover_negro_s0p4x0276h.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:47:39.312Z",
-    "updated": "2026-10-21 01:48:17.429Z"
+    "updated": "2026-10-22 00:36:28.868Z"
   },
   {
     "id": "rksidnmpp021hpk",
@@ -613,20 +553,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rksidnmpp021hpk/r_12037692_1527026074_6005_negro_3aecgy6rz7.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rksidnmpp021hpk/r_12037692_1527026074_6005_negro_3aecgy6rz7.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:37:46.193Z",
-    "updated": "2026-10-21 01:37:46.581Z"
+    "updated": "2026-10-22 00:36:28.645Z"
   },
   {
     "id": "5ppmwpp02syeg8z",
@@ -649,20 +585,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5ppmwpp02syeg8z/r_24117425_1659784014_3743_negro_fb9w8bf3a1.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5ppmwpp02syeg8z/r_24117425_1659784014_3743_negro_fb9w8bf3a1.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:30:26.935Z",
-    "updated": "2026-10-21 01:31:21.021Z"
+    "updated": "2026-10-22 00:36:28.470Z"
   },
   {
     "id": "trmm95cl6ds2yvz",
@@ -685,20 +617,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/trmm95cl6ds2yvz/r_9765087_1498200382_6601_negro_uut8ertn1a.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/trmm95cl6ds2yvz/r_9765087_1498200382_6601_negro_uut8ertn1a.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:23:15.791Z",
-    "updated": "2026-10-21 01:31:12.026Z"
+    "updated": "2026-10-22 00:36:28.294Z"
   },
   {
     "id": "9m27cox44uaqvzk",
@@ -721,20 +649,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/9m27cox44uaqvzk/r_7885762_1450907197_9786_negro_p2uza026wt.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/9m27cox44uaqvzk/r_7885762_1450907197_9786_negro_p2uza026wt.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:20:44.338Z",
-    "updated": "2026-10-21 01:31:30.784Z"
+    "updated": "2026-10-22 00:36:28.120Z"
   },
   {
     "id": "pr8m1xf4oshzw4v",
@@ -757,20 +681,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/pr8m1xf4oshzw4v/os_vinilo_17_an_os_negro_09n2tleqkd.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/pr8m1xf4oshzw4v/os_vinilo_17_an_os_negro_09n2tleqkd.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-21 01:17:38.376Z",
-    "updated": "2026-10-21 01:17:48.554Z"
+    "updated": "2026-10-22 00:36:27.948Z"
   },
   {
     "id": "laz6icjyk1hm8ms",
@@ -887,20 +807,16 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5574umq66et5mpu/vinilo_test_5mb_negro_9oj2kdkmvv.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5574umq66et5mpu/vinilo_test_5mb_negro_9oj2kdkmvv.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-20 02:31:52.298Z",
-    "updated": "2026-10-20 02:31:52.472Z"
+    "updated": "2026-10-22 00:36:27.680Z"
   },
   {
     "id": "s3uixooa4ml4e6y",
@@ -923,13 +839,9 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s3uixooa4ml4e6y/freeimgen_1792458994259_negro_u612v6l7fn.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s3uixooa4ml4e6y/freeimgen_1792458994259_negro_u612v6l7fn.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
@@ -959,13 +871,9 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/b8tvkg6ymxwfjgw/freeimgen_1792458999557_negro_zq15vuqk37.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/b8tvkg6ymxwfjgw/freeimgen_1792458999557_negro_zq15vuqk37.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
@@ -995,13 +903,9 @@ export const products = [
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j8fs18pb1dgg6rq/freeimgen_1792459006556_negro_j1mbdr3i0a.webp"
     ],
-    "colorImages": {
-      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j8fs18pb1dgg6rq/freeimgen_1792459006556_negro_j1mbdr3i0a.webp"
-    },
-    "colors": [
-      "Negro"
-    ],
-    "defaultColor": "Negro",
+    "colorImages": {},
+    "colors": [],
+    "defaultColor": null,
     "sizes": [
       "Única"
     ],
@@ -3235,20 +3139,21 @@ export const products = [
     "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-151",
-    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp",
     "images": [
       "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_back_knja0hzxgz.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_blue_5mo5yh1w3d.webp",
-      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp"
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_blue_azul_o7huyg0rd2.webp"
     ],
     "colorImages": {
       "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
-      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp"
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_burdeo_qe8hmyfozx.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_blue_azul_o7huyg0rd2.webp"
     },
     "colors": [
       "Negro",
-      "Burdeo"
+      "Burdeo",
+      "Azul"
     ],
     "defaultColor": "Negro",
     "sizes": [
@@ -3261,7 +3166,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "2026-10-08 01:37:54.327Z",
-    "updated": "2026-10-22 00:15:24.025Z"
+    "updated": "2026-10-22 00:24:22.666Z"
   },
   {
     "id": "jns9569rn1saydi",
@@ -4682,6 +4587,7 @@ export const collaborations = [
     "actionText": null
   }
 ];
+
 
 
 

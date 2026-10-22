@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Truck, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
@@ -47,7 +48,7 @@ export const Footer = () => {
               INFORMACIÓN
             </h4>
             <ul className="space-y-2 text-xs font-sans text-neutral-400">
-              <li><a href="#" className="hover:text-white transition-colors">Envíos y Entregas</a></li>
+              <li><button onClick={() => setIsShippingModalOpen(true)} className="hover:text-white transition-colors text-left cursor-pointer">Envíos y Entregas</button></li>
               <li><a href="#" className="hover:text-white transition-colors">Cambios y Devoluciones</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Preguntas Frecuentes</a></li>
@@ -121,6 +122,34 @@ export const Footer = () => {
         </div>
 
       </div>
+    
+      {/* Shipping Policy Modal */}
+      {isShippingModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-[#0A0A0A] border border-neutral-800 w-full max-w-md p-6 rounded relative shadow-2xl">
+            <button
+              onClick={() => setIsShippingModalOpen(false)}
+              className="absolute top-4 right-4 text-neutral-400 hover:text-white p-1 cursor-pointer"
+              aria-label="Cerrar modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="flex items-center gap-2 mb-3 text-[#C52222]">
+              <Truck className="w-5 h-5 shrink-0" />
+              <h3 className="font-condensed font-bold text-base tracking-widest uppercase text-white">
+                ENVÍOS Y ENTREGAS
+              </h3>
+            </div>
+            <p className="text-xs text-neutral-200 leading-relaxed font-sans mb-4">
+              Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.
+            </p>
+            <div className="bg-black border border-neutral-900 p-3 rounded text-[11px] text-neutral-400 space-y-1">
+              <p>📍 Despachos a todo Chile.</p>
+              <p>✉️ Dudas o coordinación: <a href="mailto:contacto@patrianostradistro.cl" className="text-white hover:text-[#C52222] font-mono">contacto@patrianostradistro.cl</a></p>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

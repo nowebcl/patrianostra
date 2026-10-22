@@ -254,12 +254,12 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9.5);
   doc.setTextColor(...crimson);
-  doc.text('📦 COORDINAR ENVÍO A DIRECCIÓN...', margin + 6, y + 7);
+  doc.text('📦 DESPACHO Y COORDINACIÓN DE ENVÍO', margin + 6, y + 7);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
   doc.setTextColor(...dark);
-  doc.text('¡GRACIAS! Para coordinar el envío te enviaremos un correo, o escríbenos a:', margin + 6, y + 14);
+  doc.text('Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.', margin + 6, y + 14);
 
   // Email destacado exclusivamente para seguimiento pos-compra
   doc.setFillColor(255, 255, 255);

@@ -245,6 +245,10 @@ export const CartDrawer = () => {
               <span>FINALIZAR PEDIDO</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+
+            <p className="text-[10px] text-neutral-400 text-center font-sans pt-1 leading-tight">
+              Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.
+            </p>
           </div>
         )}
 

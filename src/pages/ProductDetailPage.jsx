@@ -7,6 +7,7 @@ import { ProductCard } from '../components/ProductCard';
 import { SizeGuideModal } from '../components/SizeGuideModal';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
+import { isClothingCategory, isMusicCategory } from '../lib/pocketbase';
 
 export const ProductDetailPage = () => {
   const { id } = useParams();
@@ -31,19 +32,17 @@ export const ProductDetailPage = () => {
   const [selectedSize, setSelectedSize] = useState(firstInStockSize);
   const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [quantity, setQuantity] = useState(1);
-  const [openAccordion, setOpenAccordion] = useState('specs');
-  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
-
-  // Detección inteligente de prendas de vestir para activar DTF y Guía de Tallas
+  // Detección inteligente de prendas de vestir y música
   const isClothing = useMemo(() => {
-    const cat = (product.category || '').toLowerCase().trim();
-    const musicSet = new Set(['música', 'musica', 'vinilos', 'vinilo', 'cds', 'cd', 'casetes', 'casete', 'cassettes', 'cassette', 'accesorios']);
-    if (musicSet.has(cat)) return false;
-    if (cat.includes('polera') || cat.includes('camiseta') || cat.includes('poleron') || cat.includes('hoodie') || cat.includes('pantalon') || cat.includes('orgullo sur')) {
-      return true;
-    }
-    return sizes.some(s => ['S', 'M', 'L', 'XL', 'XXL', '2XL'].includes(s));
+    return isClothingCategory(product.category, sizes);
   }, [product.category, sizes]);
+
+  const isMusic = useMemo(() => {
+    return isMusicCategory(product.category);
+  }, [product.category]);
+
+  const [openAccordion, setOpenAccordion] = useState(isClothing ? 'specs' : 'shipping');
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
   useEffect(() => {
     setImageLoaded(false);
@@ -58,8 +57,9 @@ export const ProductDetailPage = () => {
       const inStock = sizes.find(s => (product.sizeStock?.[s] ?? 1) > 0) || sizes[0] || 'L';
       setSelectedSize(inStock);
       setQuantity(1);
+      setOpenAccordion(isClothing ? 'specs' : 'shipping');
     }
-  }, [product.id]);
+  }, [product.id, isClothing]);
 
   const handleColorChange = (colorName) => {
     setSelectedColor(colorName);
@@ -211,11 +211,17 @@ export const ProductDetailPage = () => {
                 <Sparkles className="w-3.5 h-3.5 text-[#C52222] shrink-0" />
                 <span className="text-[11px] font-condensed font-bold tracking-wider uppercase">
                   {isCurrentSizeOutOfStock ? (
-                    <span className="text-red-400 font-bold">TALLA {selectedSize} AGOTADA — Elige otra talla disponible</span>
+                    <span className="text-red-400 font-bold">
+                      {isClothing ? `TALLA ${selectedSize} AGOTADA — Elige otra talla disponible` : 'PRODUCTO AGOTADO — Sin stock disponible'}
+                    </span>
                   ) : currentSizeStock <= 3 ? (
-                    <span>¡ÚLTIMAS UNIDADES! QUEDAN SOLO <strong className="text-amber-400">{currentSizeStock} PRENDAS</strong> EN TALLA {selectedSize}</span>
+                    <span>
+                      ¡ÚLTIMAS UNIDADES! QUEDAN SOLO <strong className="text-amber-400">{currentSizeStock} {isClothing ? 'PRENDAS' : 'COPIAS'}</strong> {isClothing ? `EN TALLA ${selectedSize}` : 'DISPONIBLES'}
+                    </span>
                   ) : (
-                    <span>DISPONIBILIDAD TALLA {selectedSize}: <strong className="text-emerald-400 font-bold">{currentSizeStock} UNIDADES</strong> EN STOCK</span>
+                    <span>
+                      DISPONIBILIDAD {isClothing ? `TALLA ${selectedSize}:` : ':'} <strong className="text-emerald-400 font-bold">{currentSizeStock} UNIDADES</strong> EN STOCK
+                    </span>
                   )}
                 </span>
               </div>
@@ -235,8 +241,8 @@ export const ProductDetailPage = () => {
               )}
             </div>
 
-            {/* Color Selector */}
-            {product.colors && product.colors.length > 0 && (
+            {/* Color Selector: Solo para prendas de vestir con variantes de color */}
+            {isClothing && product.colors && product.colors.length > 0 && (
               <div className="mb-6 bg-[#0a0a0a] border border-neutral-850 p-4 rounded-xl">
                 <div className="flex items-center justify-between mb-2.5">
                   <span className="text-xs font-condensed font-bold tracking-wider text-neutral-300 uppercase flex items-center gap-2">
@@ -422,30 +428,28 @@ export const ProductDetailPage = () => {
             {/* Accordion Specs & Policies */}
             <div className="border border-neutral-900 divide-y divide-neutral-900 bg-[#080808]">
               
-              {/* Specs */}
-              <div>
-                <button
-                  onClick={() => setOpenAccordion(openAccordion === 'specs' ? '' : 'specs')}
-                  className="w-full p-3.5 text-left text-xs font-condensed font-bold tracking-wider uppercase text-neutral-200 flex items-center justify-between cursor-pointer"
-                >
-                  <span>ESPECIFICACIONES DE FABRICACIÓN</span>
-                  <span>{openAccordion === 'specs' ? '−' : '+'}</span>
-                </button>
-                {openAccordion === 'specs' && (
-                  <div className="p-3.5 pt-0 text-xs text-neutral-400 font-sans space-y-2 border-t border-neutral-900/50">
-                    {isClothing && (
+              {/* Specs: Solo para prendas de vestir */}
+              {isClothing && (
+                <div>
+                  <button
+                    onClick={() => setOpenAccordion(openAccordion === 'specs' ? '' : 'specs')}
+                    className="w-full p-3.5 text-left text-xs font-condensed font-bold tracking-wider uppercase text-neutral-200 flex items-center justify-between cursor-pointer"
+                  >
+                    <span>ESPECIFICACIONES DE FABRICACIÓN</span>
+                    <span>{openAccordion === 'specs' ? '−' : '+'}</span>
+                  </button>
+                  {openAccordion === 'specs' && (
+                    <div className="p-3.5 pt-0 text-xs text-neutral-400 font-sans space-y-2 border-t border-neutral-900/50">
                       <div className="flex items-start gap-2 text-neutral-200">
                         <span className="text-[#C52222] font-bold">✓</span>
                         <span><strong>Estampado Textil:</strong> Estampados en DTF de alta calidad, resistentes e ilustraciones originales concebidas con máxima fidelidad, elasticidad y durabilidad ante lavados continuos.</span>
                       </div>
-                    )}
-                    {product.specs?.map((spec, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <span className="text-[#C52222] font-bold">✓</span>
-                        <span>{spec}</span>
-                      </div>
-                    ))}
-                    {isClothing && (
+                      {product.specs?.map((spec, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <span className="text-[#C52222] font-bold">✓</span>
+                          <span>{spec}</span>
+                        </div>
+                      ))}
                       <button
                         type="button"
                         onClick={() => setIsSizeGuideOpen(true)}
@@ -457,10 +461,10 @@ export const ProductDetailPage = () => {
                         </span>
                         <span className="text-[#C52222] text-[11px] font-condensed font-bold uppercase underline">Ver Tabla Oficial →</span>
                       </button>
-                    )}
-                  </div>
-                )}
-              </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Shipping */}
               <div>
@@ -472,8 +476,8 @@ export const ProductDetailPage = () => {
                   <span>{openAccordion === 'shipping' ? '−' : '+'}</span>
                 </button>
                 {openAccordion === 'shipping' && (
-                  <div className="p-3.5 pt-0 text-xs text-neutral-400 font-sans leading-relaxed border-t border-neutral-900/50">
-                    Todos los pedidos se despachan en embalaje ecológico sellado con precinto de seguridad. Envíos nacionales en 24/48 horas laborables. Envíos internacionales con seguimiento en tiempo real vía DHL Express.
+                  <div className="p-3.5 pt-0 text-xs text-neutral-300 font-sans leading-relaxed border-t border-neutral-900/50">
+                    Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.
                   </div>
                 )}
               </div>

@@ -26,6 +26,22 @@ export function detectColorFromText(text) {
   return null;
 }
 
+export const MUSIC_CATEGORIES_SET = new Set(['música', 'musica', 'vinilos', 'vinilo', 'cds', 'cd', 'casetes', 'casete', 'cassettes', 'cassette']);
+
+export const isMusicCategory = (cat) => {
+  if (!cat || typeof cat !== 'string') return false;
+  return MUSIC_CATEGORIES_SET.has(cat.toLowerCase().trim());
+};
+
+export const isClothingCategory = (cat, sizes = []) => {
+  if (!cat || typeof cat !== 'string') return false;
+  const lower = cat.toLowerCase().trim();
+  if (MUSIC_CATEGORIES_SET.has(lower) || lower === 'accesorios') return false;
+  if (/polera|camiseta|poleron|hoodie|pantalon|prenda|streetwear/i.test(lower)) return true;
+  if (Array.isArray(sizes) && sizes.some(s => ['S', 'M', 'L', 'XL', 'XXL', '2XL'].includes(s))) return true;
+  return false;
+};
+
 // Helper ultra-rápido para miniaturas PocketBase (13KB vs 2.3MB de la foto original)
 export const getThumbUrl = (url, thumb = '100x100') => {
   if (!url || typeof url !== 'string') return '/producto.webp';
@@ -160,12 +176,15 @@ export const mapPbProduct = (record) => {
     gallery.push('/producto.webp');
   }
 
-  // Procesar campo colors directo si viene en el registro
+  const cat = record.category || '';
+  const isClothing = isClothingCategory(cat, record.sizes);
+
+  // Procesar campo colors directo solo si es prenda de vestir
   let rawColors = record.colors;
   if (typeof rawColors === 'string') {
     try { rawColors = JSON.parse(rawColors); } catch { rawColors = []; }
   }
-  if (Array.isArray(rawColors)) {
+  if (Array.isArray(rawColors) && isClothing) {
     rawColors.forEach(c => {
       if (typeof c === 'string' && c.trim() && !colors.includes(c.trim())) {
         colors.push(c.trim());
@@ -173,38 +192,45 @@ export const mapPbProduct = (record) => {
     });
   }
 
-  // Si no se detectó ningún color, asignar 'Negro' a la foto principal por defecto
-  if (colors.length === 0) {
-    colors.push('Negro');
-    colorImages['Negro'] = mainImage;
-  } else if (!colorImages['Negro'] && colors.length > 0 && !colors.includes('Negro')) {
-    if (!colorImages[colors[0]]) {
-      colorImages[colors[0]] = mainImage;
+  // Si es prenda de vestir y no tiene color, asignar 'Negro' a la foto principal por defecto
+  if (isClothing) {
+    if (colors.length === 0) {
+      colors.push('Negro');
+      colorImages['Negro'] = mainImage;
+    } else if (!colorImages['Negro'] && colors.length > 0 && !colors.includes('Negro')) {
+      if (!colorImages[colors[0]]) {
+        colorImages[colors[0]] = mainImage;
+      }
     }
+    // Garantizar que todos los colores tengan una foto asignada
+    colors.forEach(c => {
+      if (!colorImages[c]) {
+        colorImages[c] = mainImage;
+      }
+    });
+  } else {
+    // Si NO es prenda de vestir (CDs, Vinilos, Casetes, etc.), vaciar colores por completo
+    colors.length = 0;
   }
 
-  // Garantizar que todos los colores tengan una foto asignada
-  colors.forEach(c => {
-    if (!colorImages[c]) {
-      colorImages[c] = mainImage;
-    }
-  });
-
-  const colorItems = colors.map(cName => {
+  const colorItems = isClothing ? colors.map(cName => {
     const def = COLOR_DEFINITIONS.find(d => d.name === cName) || { name: cName, hex: '#444444' };
     return {
       name: cName,
       hex: def.hex,
       image: colorImages[cName] || mainImage
     };
-  });
+  }) : [];
 
-  // Procesar especificaciones y tallas en caso de venir como string JSON
+  // Procesar especificaciones: solo prendas de vestir llevan especificaciones de fabricación
   let specs = record.specs;
   if (typeof specs === 'string') {
     try { specs = JSON.parse(specs); } catch { specs = []; }
   }
   if (!Array.isArray(specs)) specs = [];
+  if (!isClothing) {
+    specs = [];
+  }
 
   let sizes = record.sizes;
   if (typeof sizes === 'string') {
@@ -262,7 +288,7 @@ export const mapPbProduct = (record) => {
     colors,
     colorImages,
     colorItems,
-    defaultColor: colors[0] || 'Negro',
+    defaultColor: isClothing ? (colors[0] || 'Negro') : null,
     created: record.created,
     updated: record.updated
   };

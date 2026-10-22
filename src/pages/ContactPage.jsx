@@ -177,7 +177,7 @@ export const ContactPage = () => {
                   <div>
                     <span className="font-condensed text-[10px] text-neutral-500 uppercase tracking-wider block">BASE & BODEGA:</span>
                     <span className="text-neutral-200">Puerto Montt, X Región, Chile 🇨🇱</span>
-                    <span className="block text-[11px] text-neutral-500 font-sans">Despachos nacionales vía Chilexpress y Starken</span>
+                    <span className="block text-[11px] text-neutral-400 font-sans">Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.</span>
                   </div>
                 </div>
 

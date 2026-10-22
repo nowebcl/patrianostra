@@ -361,12 +361,12 @@ export const CheckoutPage = () => {
               <div className="flex items-center gap-2.5 text-[#C52222] mb-2">
                 <Truck className="w-5 h-5 shrink-0" />
                 <h3 className="font-condensed font-extrabold text-base tracking-wider uppercase text-white">
-                  COORDINAR ENVÍO A DIRECCIÓN...
+                  DESPACHO Y COORDINACIÓN DE ENVÍO
                 </h3>
               </div>
               
               <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed mb-3">
-                ¡GRACIAS! Para coordinar el envío te enviaremos un correo. También puedes escribirnos a:
+                Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador. Para coordinar el envío te enviaremos un correo. También puedes escribirnos a:
               </p>
 
               <div className="bg-black border border-neutral-800 p-3 rounded flex items-center gap-3">
@@ -578,6 +578,10 @@ export const CheckoutPage = () => {
                   </div>
 
                   {/* Shipping Address */}
+                  <div className="bg-neutral-950/90 border border-neutral-800 p-3.5 mb-4 rounded text-xs text-neutral-300 flex items-start gap-2.5">
+                    <Truck className="w-4 h-4 text-[#C52222] shrink-0 mt-0.5" />
+                    <span>Todos los pedidos se despachan después de 24/48 horas laborales. Agencia a convenir por el comprador.</span>
+                  </div>
                   <div className="bg-[#080808] border border-neutral-900 p-6 space-y-4">
                     <h3 className="font-condensed text-sm font-bold tracking-wider uppercase text-neutral-200 mb-4 pb-2 border-b border-neutral-900">
                       2. DIRECCIÓN DE DESPACHO EN CHILE 🇨🇱

@@ -14,7 +14,8 @@ import {
   Palette,
   Tag,
   FolderPlus,
-  Sparkles
+  Sparkles,
+  Disc
 } from 'lucide-react';
 import { formatCLP } from '../../utils/currency';
 import { optimizeImageFile, formatPbError } from '../../utils/imageOptimizer';
@@ -123,13 +124,19 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         : [productToEdit.image || '/producto.webp'];
       const rawImages = Array.isArray(productToEdit.rawImages) ? productToEdit.rawImages : [];
 
-      // Colores existentes o detectados
-      const initialColors = Array.isArray(productToEdit.colors) && productToEdit.colors.length > 0
-        ? productToEdit.colors
-        : ['Negro'];
-      const initialColorImages = productToEdit.colorImages && typeof productToEdit.colorImages === 'object'
-        ? { ...productToEdit.colorImages }
-        : {};
+      const editIsMusic = isMusicCategory(productToEdit.category);
+
+      // Colores existentes o detectados (solo para prendas)
+      const initialColors = editIsMusic
+        ? []
+        : (Array.isArray(productToEdit.colors) && productToEdit.colors.length > 0
+          ? productToEdit.colors
+          : ['Negro']);
+      const initialColorImages = editIsMusic
+        ? {}
+        : (productToEdit.colorImages && typeof productToEdit.colorImages === 'object'
+          ? { ...productToEdit.colorImages }
+          : {});
 
       setColors(initialColors);
       setColorImages(initialColorImages);
@@ -334,6 +341,14 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
 
   // Seleccionar categoría (ajustando tallas y textos automáticamente si es Música/Vinilos/CDs/Casetes)
   const handleSelectCategory = (cat) => {
+    const nextIsMusic = isMusicCategory(cat);
+    if (nextIsMusic) {
+      setColors([]);
+      setColorImages({});
+    } else if (colors.length === 0) {
+      setColors(['Negro']);
+    }
+
     setFormData(prev => {
       const nextIsSingle = isSingleSizeCategory(cat);
       const nextIsMusic = isMusicCategory(cat);
@@ -673,9 +688,10 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         stock: parseInt(formData.stock, 10) || 0,
         sizeStock: formData.sizeStock,
         sizes: formData.sizes,
-        colors: activeColors,
-        colorImages: finalColorImages,
-        defaultColor: activeColors[0],
+        colors: isMusicProd ? [] : activeColors,
+        colorImages: isMusicProd ? {} : finalColorImages,
+        defaultColor: isMusicProd ? null : activeColors[0],
+        specs: isMusicProd ? [] : (productToEdit?.specs || []),
         image: primaryImg,
         gallery: effectiveItems.length > 0 ? effectiveItems.map(it => it.url) : [primaryImg],
         imageItems: effectiveItems,
@@ -1035,59 +1051,63 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
           <div className="space-y-2 pt-1">
             <div className="flex items-center justify-between">
               <label className="block text-xs font-condensed font-bold uppercase tracking-wider text-neutral-300">
-                Descripción de la Prenda
+                {isMusic ? 'Descripción del Disco / Edición Física' : 'Descripción de la Prenda'}
               </label>
 
-              {/* Botón rápido para activar/desactivar texto de estampado DTF */}
-              <button
-                type="button"
-                onClick={() => {
-                  const dtfPhrase = 'Estampados en DTF de alta calidad, resistentes e ilustraciones originales concebidas con máxima definición.';
-                  setFormData(prev => {
-                    const current = prev.description || '';
-                    if (current.includes('estampados en DTF') || current.includes('DTF de alta calidad') || current.toLowerCase().includes('dtf')) {
-                      // Ya lo tiene, removemos la frase o limpiamos
-                      const cleaned = current
-                        .replace(dtfPhrase, '')
-                        .replace(/con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición\.?/gi, '')
-                        .replace(/con serigrafía de máxima fidelidad y resistencia\.?/gi, '')
-                        .replace(/estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición\.?/gi, '')
-                        .trim();
-                      return { ...prev, description: cleaned };
-                    } else {
-                      // Lo agregamos
-                      const separator = current.trim() ? (current.trim().endsWith('.') ? ' ' : '. ') : '';
-                      return { ...prev, description: `${current.trim()}${separator}${dtfPhrase}` };
-                    }
-                  });
-                }}
-                className={`px-2.5 py-1 rounded text-[11px] font-condensed font-bold uppercase tracking-wider transition-all border flex items-center gap-1.5 cursor-pointer ${
-                  (formData.description || '').toLowerCase().includes('dtf')
-                    ? 'bg-[#180a0a] border-[#C52222] text-[#C52222] shadow-[0_0_10px_rgba(197,34,34,0.25)]'
-                    : 'bg-neutral-900 border-neutral-700 text-neutral-300 hover:text-white hover:border-neutral-500'
-                }`}
-                title="Presiona para activar o desactivar la descripción de estampado DTF"
-              >
-                <Sparkles className="w-3 h-3 text-[#C52222]" />
-                <span>
-                  {(formData.description || '').toLowerCase().includes('dtf') 
-                    ? '✓ DTF ACTIVADO EN DESCRIPCIÓN' 
-                    : '+ ACTIVAR ESTAMPADOS DTF'}
-                </span>
-              </button>
+              {/* Botón rápido para activar/desactivar texto de estampado DTF (solo para prendas) */}
+              {!isMusic && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const dtfPhrase = 'Estampados en DTF de alta calidad, resistentes e ilustraciones originales concebidas con máxima definición.';
+                    setFormData(prev => {
+                      const current = prev.description || '';
+                      if (current.includes('estampados en DTF') || current.includes('DTF de alta calidad') || current.toLowerCase().includes('dtf')) {
+                        // Ya lo tiene, removemos la frase o limpiamos
+                        const cleaned = current
+                          .replace(dtfPhrase, '')
+                          .replace(/con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición\.?/gi, '')
+                          .replace(/con serigrafía de máxima fidelidad y resistencia\.?/gi, '')
+                          .replace(/estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición\.?/gi, '')
+                          .trim();
+                        return { ...prev, description: cleaned };
+                      } else {
+                        // Lo agregamos
+                        const separator = current.trim() ? (current.trim().endsWith('.') ? ' ' : '. ') : '';
+                        return { ...prev, description: `${current.trim()}${separator}${dtfPhrase}` };
+                      }
+                    });
+                  }}
+                  className={`px-2.5 py-1 rounded text-[11px] font-condensed font-bold uppercase tracking-wider transition-all border flex items-center gap-1.5 cursor-pointer ${
+                    (formData.description || '').toLowerCase().includes('dtf')
+                      ? 'bg-[#180a0a] border-[#C52222] text-[#C52222] shadow-[0_0_10px_rgba(197,34,34,0.25)]'
+                      : 'bg-neutral-900 border-neutral-700 text-neutral-300 hover:text-white hover:border-neutral-500'
+                  }`}
+                  title="Presiona para activar o desactivar la descripción de estampado DTF"
+                >
+                  <Sparkles className="w-3 h-3 text-[#C52222]" />
+                  <span>
+                    {(formData.description || '').toLowerCase().includes('dtf') 
+                      ? '✓ DTF ACTIVADO EN DESCRIPCIÓN' 
+                      : '+ ACTIVAR ESTAMPADOS DTF'}
+                  </span>
+                </button>
+              )}
             </div>
 
             <textarea
               rows={3}
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Detalles sobre el diseño, tela, calce o confección..."
+              placeholder={isMusic ? "Detalles sobre la edición física, formato, libreto, booklet o sello discográfico..." : "Detalles sobre el diseño, tela, calce o confección..."}
               className="w-full bg-[#0a0a0a] border border-neutral-800 focus:border-[#C52222] rounded-xl p-3 text-white text-xs placeholder:text-neutral-600 focus:outline-none leading-relaxed"
             />
 
-            <p className="text-[11px] text-neutral-500 font-sans">
-              💡 Puedes activar o desactivar la mención de <strong>estampados en DTF de alta calidad y resistentes</strong> con el botón superior o editarlo libremente en el campo de texto.
-            </p>
+            {!isMusic && (
+              <p className="text-[11px] text-neutral-500 font-sans">
+                💡 Puedes activar o desactivar la mención de <strong>estampados en DTF de alta calidad y resistentes</strong> con el botón superior o editarlo libremente en el campo de texto.
+              </p>
+            )}
           </div>
 
         </div>
@@ -1095,195 +1115,210 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         {/* COLUMNA DERECHA: Colores por Prenda y Fotos por Color (5 columnas) */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* SECCIÓN: VARIANTES POR COLOR DE LA PRENDA (MINIMAL) */}
-          <div className="bg-[#111111] border border-neutral-800/80 rounded-2xl p-5 space-y-4 shadow-xl">
-            
-            {/* Header minimal */}
-            <div className="flex items-center justify-between pb-3 border-b border-neutral-800/80">
-              <div className="flex items-center gap-2">
-                <Palette className="w-3.5 h-3.5 text-[#C52222]" />
+          {isMusic ? (
+            /* Banner informativo para Ediciones Musicales: Sin variantes de color de tela */
+            <div className="bg-[#111111] border border-neutral-800/80 rounded-2xl p-5 space-y-3 shadow-xl">
+              <div className="flex items-center gap-2 pb-2.5 border-b border-neutral-800/80">
+                <Disc className="w-4 h-4 text-[#C52222]" />
                 <span className="text-xs font-condensed font-bold uppercase tracking-wider text-white">
-                  Variantes por Color
+                  Edición Musical: {formData.category.toUpperCase()}
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-neutral-400">
-                {colors.length} {colors.length === 1 ? 'color' : 'colores'}
-              </span>
+              <p className="text-xs text-neutral-400 font-sans leading-relaxed">
+                Los discos, vinilos y casetes <strong>no utilizan variantes de color de tela ni especificaciones textiles</strong>. Las fotos que subas a continuación representan la edición física oficial (portada, contraportada, booklet o disco).
+              </p>
             </div>
+          ) : (
+            /* SECCIÓN: VARIANTES POR COLOR DE LA PRENDA (MINIMAL) */
+            <div className="bg-[#111111] border border-neutral-800/80 rounded-2xl p-5 space-y-4 shadow-xl">
+              
+              {/* Header minimal */}
+              <div className="flex items-center justify-between pb-3 border-b border-neutral-800/80">
+                <div className="flex items-center gap-2">
+                  <Palette className="w-3.5 h-3.5 text-[#C52222]" />
+                  <span className="text-xs font-condensed font-bold uppercase tracking-wider text-white">
+                    Variantes por Color
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono text-neutral-400">
+                  {colors.length} {colors.length === 1 ? 'color' : 'colores'}
+                </span>
+              </div>
 
-            {/* Selector de Colores (Chips Minimalistas) */}
-            <div className="space-y-2">
-              <div className="flex flex-wrap gap-1.5">
-                {COLOR_DEFINITIONS.map(def => {
-                  const isChecked = colors.includes(def.name);
-                  return (
+              {/* Selector de Colores (Chips Minimalistas) */}
+              <div className="space-y-2">
+                <div className="flex flex-wrap gap-1.5">
+                  {COLOR_DEFINITIONS.map(def => {
+                    const isChecked = colors.includes(def.name);
+                    return (
+                      <button
+                        key={def.name}
+                        type="button"
+                        onClick={() => handleToggleColor(def.name)}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-condensed font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                          isChecked
+                            ? 'bg-[#1a1a1a] border border-[#C52222] text-white shadow-sm'
+                            : 'bg-[#0a0a0a] border border-neutral-800/80 text-neutral-400 hover:text-white hover:border-neutral-700'
+                        }`}
+                      >
+                        <span 
+                          className="w-2.5 h-2.5 rounded-full shrink-0 border border-neutral-700/80" 
+                          style={{ backgroundColor: def.hex }}
+                        />
+                        <span>{def.name}</span>
+                        {isChecked && <Check className="w-3 h-3 text-[#C52222]" />}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Botón color personalizado */}
+                {!isAddingCustomColor ? (
+                  <button
+                    type="button"
+                    onClick={() => setIsAddingCustomColor(true)}
+                    className="text-[11px] font-condensed font-bold text-neutral-400 hover:text-white flex items-center gap-1.5 uppercase tracking-wider pt-0.5 cursor-pointer transition-colors"
+                  >
+                    <Plus className="w-3 h-3 text-[#C52222]" />
+                    <span>Color personalizado</span>
+                  </button>
+                ) : (
+                  <div className="flex gap-1.5 pt-1">
+                    <input
+                      type="text"
+                      value={customColorName}
+                      onChange={(e) => setCustomColorName(e.target.value)}
+                      placeholder="Nombre del color (ej: Beige, Olivo...)"
+                      className="flex-1 bg-[#0a0a0a] border border-neutral-700 rounded-lg px-2.5 py-1 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-[#C52222]"
+                      autoFocus
+                    />
                     <button
-                      key={def.name}
                       type="button"
-                      onClick={() => handleToggleColor(def.name)}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-condensed font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                        isChecked
-                          ? 'bg-[#1a1a1a] border border-[#C52222] text-white shadow-sm'
-                          : 'bg-[#0a0a0a] border border-neutral-800/80 text-neutral-400 hover:text-white hover:border-neutral-700'
-                      }`}
+                      onClick={handleAddCustomColor}
+                      className="px-3 py-1 bg-[#C52222] hover:bg-[#a81c1c] text-white font-condensed font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
                     >
-                      <span 
-                        className="w-2.5 h-2.5 rounded-full shrink-0 border border-neutral-700/80" 
-                        style={{ backgroundColor: def.hex }}
-                      />
-                      <span>{def.name}</span>
-                      {isChecked && <Check className="w-3 h-3 text-[#C52222]" />}
+                      Añadir
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => { setIsAddingCustomColor(false); setCustomColorName(''); }}
+                      className="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white text-xs rounded-lg cursor-pointer"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Input oculto para subida directa de foto por color */}
+              <input
+                ref={colorImageInputRef}
+                type="file"
+                accept="image/png,image/jpeg,image/webp,image/gif"
+                onChange={handleColorImageUploaded}
+                className="hidden"
+              />
+
+              {/* Tarjetas de Asignación de Fotos por cada Color Activo */}
+              <div className="space-y-2 pt-2">
+                <span className="text-[10px] font-condensed font-bold tracking-wider text-neutral-500 uppercase block">
+                  Foto por cada variante:
+                </span>
+
+                {colors.map((colorName, idx) => {
+                  const assignedUrl = colorImages[colorName];
+                  const def = COLOR_DEFINITIONS.find(d => d.name === colorName) || { hex: '#444' };
+                  const hasAssigned = !!assignedUrl && assignedUrl !== '/producto.webp' && assignedUrl !== '/producto.png';
+
+                  return (
+                    <div 
+                      key={colorName}
+                      className="bg-[#0c0c0c] border border-neutral-800/80 hover:border-neutral-700 rounded-xl p-2.5 flex items-center justify-between gap-3 transition-colors"
+                    >
+                      {/* Indicador de Color y Miniatura */}
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="relative w-11 h-11 bg-black border border-neutral-800 rounded-lg flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                          {assignedUrl ? (
+                            <img 
+                              src={assignedUrl} 
+                              alt={colorName} 
+                              onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
+                              className="w-full h-full object-contain" 
+                            />
+                          ) : (
+                            <ImageIcon className="w-4 h-4 text-neutral-600" />
+                          )}
+                          <span 
+                            className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full border border-neutral-800 shadow"
+                            style={{ backgroundColor: def.hex }}
+                            title={`Color ${colorName}`}
+                          />
+                        </div>
+
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-condensed font-bold text-xs uppercase text-white truncate">
+                              {colorName}
+                            </span>
+                            {idx === 0 && (
+                              <span className="text-[9px] font-mono uppercase text-[#ff4d4d] bg-[#C52222]/15 px-1 py-0.2 rounded border border-[#C52222]/30">
+                                Principal
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-[10px] font-condensed text-neutral-400 block mt-0.5">
+                            {hasAssigned ? '✓ Foto asignada' : 'Sin foto asignada'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Acciones para este color */}
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleTriggerUploadForColor(colorName)}
+                          title={`Subir foto de la prenda en color ${colorName}`}
+                          className="px-2.5 py-1.5 bg-[#181818] hover:bg-[#C52222] text-neutral-300 hover:text-white border border-neutral-700/80 hover:border-[#C52222] rounded-lg text-[10px] font-condensed font-bold uppercase tracking-wider flex items-center gap-1 transition-all cursor-pointer"
+                        >
+                          <Upload className="w-3 h-3" />
+                          <span>{hasAssigned ? 'Cambiar' : 'Subir Foto'}</span>
+                        </button>
+
+                        {/* Selector de foto existente en la galería */}
+                        {imageItems.length > 1 && (
+                          <select
+                            value={assignedUrl || ''}
+                            onChange={(e) => handleAssignImageToColor(colorName, e.target.value)}
+                            className="bg-[#121212] border border-neutral-800 text-[10px] font-condensed text-neutral-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#C52222] cursor-pointer"
+                            title="Vincular a una foto ya subida en la galería"
+                          >
+                            <option value="">De galería...</option>
+                            {imageItems.map((it, itemIdx) => (
+                              <option key={it.id || itemIdx} value={it.url}>
+                                Foto #{itemIdx + 1} {it.color ? `(${it.color})` : ''}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+
+                        {colors.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => handleToggleColor(colorName)}
+                            title="Quitar este color"
+                            className="p-1.5 text-neutral-500 hover:text-red-400 rounded-lg hover:bg-neutral-800/60 transition-colors cursor-pointer"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
 
-              {/* Botón color personalizado */}
-              {!isAddingCustomColor ? (
-                <button
-                  type="button"
-                  onClick={() => setIsAddingCustomColor(true)}
-                  className="text-[11px] font-condensed font-bold text-neutral-400 hover:text-white flex items-center gap-1.5 uppercase tracking-wider pt-0.5 cursor-pointer transition-colors"
-                >
-                  <Plus className="w-3 h-3 text-[#C52222]" />
-                  <span>Color personalizado</span>
-                </button>
-              ) : (
-                <div className="flex gap-1.5 pt-1">
-                  <input
-                    type="text"
-                    value={customColorName}
-                    onChange={(e) => setCustomColorName(e.target.value)}
-                    placeholder="Nombre del color (ej: Beige, Olivo...)"
-                    className="flex-1 bg-[#0a0a0a] border border-neutral-700 rounded-lg px-2.5 py-1 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-[#C52222]"
-                    autoFocus
-                  />
-                  <button
-                    type="button"
-                    onClick={handleAddCustomColor}
-                    className="px-3 py-1 bg-[#C52222] hover:bg-[#a81c1c] text-white font-condensed font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
-                  >
-                    Añadir
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setIsAddingCustomColor(false); setCustomColorName(''); }}
-                    className="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white text-xs rounded-lg cursor-pointer"
-                  >
-                    ✕
-                  </button>
-                </div>
-              )}
             </div>
-
-            {/* Input oculto para subida directa de foto por color */}
-            <input
-              ref={colorImageInputRef}
-              type="file"
-              accept="image/png,image/jpeg,image/webp,image/gif"
-              onChange={handleColorImageUploaded}
-              className="hidden"
-            />
-
-            {/* Tarjetas de Asignación de Fotos por cada Color Activo */}
-            <div className="space-y-2 pt-2">
-              <span className="text-[10px] font-condensed font-bold tracking-wider text-neutral-500 uppercase block">
-                Foto por cada variante:
-              </span>
-
-              {colors.map((colorName, idx) => {
-                const assignedUrl = colorImages[colorName];
-                const def = COLOR_DEFINITIONS.find(d => d.name === colorName) || { hex: '#444' };
-                const hasAssigned = !!assignedUrl && assignedUrl !== '/producto.webp' && assignedUrl !== '/producto.png';
-
-                return (
-                  <div 
-                    key={colorName}
-                    className="bg-[#0c0c0c] border border-neutral-800/80 hover:border-neutral-700 rounded-xl p-2.5 flex items-center justify-between gap-3 transition-colors"
-                  >
-                    {/* Indicador de Color y Miniatura */}
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="relative w-11 h-11 bg-black border border-neutral-800 rounded-lg flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
-                        {assignedUrl ? (
-                          <img 
-                            src={assignedUrl} 
-                            alt={colorName} 
-                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/producto.webp'; }}
-                            className="w-full h-full object-contain" 
-                          />
-                        ) : (
-                          <ImageIcon className="w-4 h-4 text-neutral-600" />
-                        )}
-                        <span 
-                          className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full border border-neutral-800 shadow"
-                          style={{ backgroundColor: def.hex }}
-                          title={`Color ${colorName}`}
-                        />
-                      </div>
-
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-condensed font-bold text-xs uppercase text-white truncate">
-                            {colorName}
-                          </span>
-                          {idx === 0 && (
-                            <span className="text-[9px] font-mono uppercase text-[#ff4d4d] bg-[#C52222]/15 px-1 py-0.2 rounded border border-[#C52222]/30">
-                              Principal
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-[10px] font-condensed text-neutral-400 block mt-0.5">
-                          {hasAssigned ? '✓ Foto asignada' : 'Sin foto asignada'}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Acciones para este color */}
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => handleTriggerUploadForColor(colorName)}
-                        title={`Subir foto de la prenda en color ${colorName}`}
-                        className="px-2.5 py-1.5 bg-[#181818] hover:bg-[#C52222] text-neutral-300 hover:text-white border border-neutral-700/80 hover:border-[#C52222] rounded-lg text-[10px] font-condensed font-bold uppercase tracking-wider flex items-center gap-1 transition-all cursor-pointer"
-                      >
-                        <Upload className="w-3 h-3" />
-                        <span>{hasAssigned ? 'Cambiar' : 'Subir Foto'}</span>
-                      </button>
-
-                      {/* Selector de foto existente en la galería */}
-                      {imageItems.length > 1 && (
-                        <select
-                          value={assignedUrl || ''}
-                          onChange={(e) => handleAssignImageToColor(colorName, e.target.value)}
-                          className="bg-[#121212] border border-neutral-800 text-[10px] font-condensed text-neutral-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#C52222] cursor-pointer"
-                          title="Vincular a una foto ya subida en la galería"
-                        >
-                          <option value="">De galería...</option>
-                          {imageItems.map((it, itemIdx) => (
-                            <option key={it.id || itemIdx} value={it.url}>
-                              Foto #{itemIdx + 1} {it.color ? `(${it.color})` : ''}
-                            </option>
-                          ))}
-                        </select>
-                      )}
-
-                      {colors.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => handleToggleColor(colorName)}
-                          title="Quitar este color"
-                          className="p-1.5 text-neutral-500 hover:text-red-400 rounded-lg hover:bg-neutral-800/60 transition-colors cursor-pointer"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-          </div>
+          )}
 
           {/* SECCIÓN: TODAS LAS FOTOS DEL PRODUCTO */}
           <div className="bg-[#111111] border border-neutral-800/80 rounded-2xl p-6 space-y-5 shadow-xl">
@@ -1326,7 +1361,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                     ✓ WebP Optimizado • {imageItems[0].sizeKb} KB
                   </span>
                 )}
-                {imageItems[0]?.color && (
+                {!isMusic && imageItems[0]?.color && (
                   <span className="px-2 py-0.5 text-[9px] font-condensed font-bold uppercase bg-[#C52222] text-white rounded shadow">
                     COLOR: {imageItems[0].color}
                   </span>
@@ -1423,31 +1458,33 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                         </div>
                       </div>
 
-                      {/* Dropdown de Color para esta foto */}
-                      <div className="pt-1 border-t border-neutral-800/80">
-                        <label className="text-[9px] font-condensed font-bold uppercase text-neutral-500 block mb-0.5">
-                          Color asignado:
-                        </label>
-                        <select
-                          value={item.color || ''}
-                          onChange={(e) => {
-                            const newCol = e.target.value;
-                            setImageItems(prev => prev.map((it, i) => i === idx ? { ...it, color: newCol } : it));
-                            if (newCol) {
-                              setColorImages(ci => ({ ...ci, [newCol]: item.url }));
-                              if (!colors.includes(newCol)) {
-                                setColors(c => [...c, newCol]);
+                      {/* Dropdown de Color para esta foto: Solo si es prenda de vestir */}
+                      {!isMusic && (
+                        <div className="pt-1 border-t border-neutral-800/80">
+                          <label className="text-[9px] font-condensed font-bold uppercase text-neutral-500 block mb-0.5">
+                            Color asignado:
+                          </label>
+                          <select
+                            value={item.color || ''}
+                            onChange={(e) => {
+                              const newCol = e.target.value;
+                              setImageItems(prev => prev.map((it, i) => i === idx ? { ...it, color: newCol } : it));
+                              if (newCol) {
+                                setColorImages(ci => ({ ...ci, [newCol]: item.url }));
+                                if (!colors.includes(newCol)) {
+                                  setColors(c => [...c, newCol]);
+                                }
                               }
-                            }
-                          }}
-                          className="w-full bg-[#121212] border border-neutral-800 text-[10px] font-condensed font-bold uppercase text-white rounded p-1 focus:outline-none focus:border-[#C52222] cursor-pointer"
-                        >
-                          <option value="">Sin color específico</option>
-                          {colors.map(c => (
-                            <option key={c} value={c}>{c}</option>
-                          ))}
-                        </select>
-                      </div>
+                            }}
+                            className="w-full bg-[#121212] border border-neutral-800 text-[10px] font-condensed font-bold uppercase text-white rounded p-1 focus:outline-none focus:border-[#C52222] cursor-pointer"
+                          >
+                            <option value="">Sin color específico</option>
+                            {colors.map(c => (
+                              <option key={c} value={c}>{c}</option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
 
                     </div>
                   ))}
