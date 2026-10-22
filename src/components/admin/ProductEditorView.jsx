@@ -13,7 +13,8 @@ import {
   X,
   Palette,
   Tag,
-  FolderPlus
+  FolderPlus,
+  Sparkles
 } from 'lucide-react';
 import { formatCLP } from '../../utils/currency';
 import { optimizeImageFile, formatPbError } from '../../utils/imageOptimizer';
@@ -212,7 +213,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
         image: '/producto.webp',
         gallery: ['/producto.webp'],
         badge: 'NUEVO',
-        description: 'Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.',
+        description: 'Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.',
         isFeatured: false
       });
       setMainImageFile(null);
@@ -358,8 +359,8 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
       }
 
       let nextDesc = prev.description;
-      const defaultApparelDesc = 'Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.';
-      const isDefaultDesc = !nextDesc || nextDesc === defaultApparelDesc || nextDesc.includes('Distribución oficial Patria Nostra');
+      const defaultApparelDesc = 'Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.';
+      const isDefaultDesc = !nextDesc || nextDesc === defaultApparelDesc || nextDesc.includes('Distribución oficial Patria Nostra') || nextDesc.includes('serigrafía');
 
       if (!productToEdit && isDefaultDesc) {
         const lower = cat.toLowerCase().trim();
@@ -1030,11 +1031,52 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
             </div>
           </div>
 
-          {/* Descripción de la Prenda */}
+          {/* Descripción de la Prenda y Activador DTF */}
           <div className="space-y-2 pt-1">
-            <label className="block text-xs font-condensed font-bold uppercase tracking-wider text-neutral-300">
-              Descripción de la Prenda
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="block text-xs font-condensed font-bold uppercase tracking-wider text-neutral-300">
+                Descripción de la Prenda
+              </label>
+
+              {/* Botón rápido para activar/desactivar texto de estampado DTF */}
+              <button
+                type="button"
+                onClick={() => {
+                  const dtfPhrase = 'Estampados en DTF de alta calidad, resistentes e ilustraciones originales concebidas con máxima definición.';
+                  setFormData(prev => {
+                    const current = prev.description || '';
+                    if (current.includes('estampados en DTF') || current.includes('DTF de alta calidad') || current.toLowerCase().includes('dtf')) {
+                      // Ya lo tiene, removemos la frase o limpiamos
+                      const cleaned = current
+                        .replace(dtfPhrase, '')
+                        .replace(/con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición\.?/gi, '')
+                        .replace(/con serigrafía de máxima fidelidad y resistencia\.?/gi, '')
+                        .replace(/estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición\.?/gi, '')
+                        .trim();
+                      return { ...prev, description: cleaned };
+                    } else {
+                      // Lo agregamos
+                      const separator = current.trim() ? (current.trim().endsWith('.') ? ' ' : '. ') : '';
+                      return { ...prev, description: `${current.trim()}${separator}${dtfPhrase}` };
+                    }
+                  });
+                }}
+                className={`px-2.5 py-1 rounded text-[11px] font-condensed font-bold uppercase tracking-wider transition-all border flex items-center gap-1.5 cursor-pointer ${
+                  (formData.description || '').toLowerCase().includes('dtf')
+                    ? 'bg-[#180a0a] border-[#C52222] text-[#C52222] shadow-[0_0_10px_rgba(197,34,34,0.25)]'
+                    : 'bg-neutral-900 border-neutral-700 text-neutral-300 hover:text-white hover:border-neutral-500'
+                }`}
+                title="Presiona para activar o desactivar la descripción de estampado DTF"
+              >
+                <Sparkles className="w-3 h-3 text-[#C52222]" />
+                <span>
+                  {(formData.description || '').toLowerCase().includes('dtf') 
+                    ? '✓ DTF ACTIVADO EN DESCRIPCIÓN' 
+                    : '+ ACTIVAR ESTAMPADOS DTF'}
+                </span>
+              </button>
+            </div>
+
             <textarea
               rows={3}
               value={formData.description}
@@ -1042,6 +1084,10 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
               placeholder="Detalles sobre el diseño, tela, calce o confección..."
               className="w-full bg-[#0a0a0a] border border-neutral-800 focus:border-[#C52222] rounded-xl p-3 text-white text-xs placeholder:text-neutral-600 focus:outline-none leading-relaxed"
             />
+
+            <p className="text-[11px] text-neutral-500 font-sans">
+              💡 Puedes activar o desactivar la mención de <strong>estampados en DTF de alta calidad y resistentes</strong> con el botón superior o editarlo libremente en el campo de texto.
+            </p>
           </div>
 
         </div>

@@ -229,6 +229,14 @@ export const mapPbProduct = (record) => {
 
   const calculatedStock = Object.values(sizeStock).reduce((sum, n) => sum + (Number(n) || 0), 0);
 
+  let description = record.description || '';
+  if (description.includes('serigrafía') || description.includes('serigrafia')) {
+    description = description
+      .replace(/con serigrafía de máxima fidelidad y resistencia/gi, 'con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición')
+      .replace(/serigrafía/gi, 'estampados en DTF de alta calidad')
+      .replace(/serigrafia/gi, 'estampados en DTF de alta calidad');
+  }
+
   return {
     id: record.id,
     collectionId: col,
@@ -244,7 +252,7 @@ export const mapPbProduct = (record) => {
     gender: record.gender || 'Unisex',
     gsm: record.gsm || '240 GSM Algodón Pesado',
     fit: record.fit || 'Corte Regular',
-    description: record.description || '',
+    description,
     specs,
     sizes: Object.keys(sizeStock).length > 0 ? Object.keys(sizeStock) : sizes,
     isFeatured: !!record.isFeatured,

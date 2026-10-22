@@ -176,7 +176,7 @@ export const ContactPage = () => {
                   <MapPin className="w-4 h-4 text-[#C52222] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-condensed text-[10px] text-neutral-500 uppercase tracking-wider block">BASE & BODEGA:</span>
-                    <span className="text-neutral-200">Santiago, Chile 🇨🇱</span>
+                    <span className="text-neutral-200">Puerto Montt, X Región, Chile 🇨🇱</span>
                     <span className="block text-[11px] text-neutral-500 font-sans">Despachos nacionales vía Chilexpress y Starken</span>
                   </div>
                 </div>

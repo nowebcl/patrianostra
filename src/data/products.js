@@ -1,7 +1,827 @@
 // Catálogo Oficial Patria Nostra - Streetwear Nacionalista
-// Sincronizado automáticamente con PocketBase Cloud (2026-10-20T03:07:35.674Z)
+// Sincronizado automáticamente con PocketBase Cloud (2026-10-22T00:17:00.636Z)
 
 export const products = [
+  {
+    "id": "aeo1lmwef0je1u6",
+    "name": "ANTES MUERTO QUE ROJO!",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "poleras",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "L": 7,
+      "M": 6,
+      "S": 3,
+      "XL": 4,
+      "XXL": 2
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Polera de alta calidad confeccionada en Algodón peinado 200 Gramos, hilado en anillo. Pre-lavada y pre-encogida. \nestampada en DTF de máxima fidelidad y resistencia.",
+    "features": [],
+    "sku": "PN-POL-944",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_negro_hn6pzjs3om.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_negro_hn6pzjs3om.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_azul_h2uqwid8wo.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_burdeo_1cdephyfi5.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_negro_hn6pzjs3om.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_azul_h2uqwid8wo.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/aeo1lmwef0je1u6/amqr_burdeo_1cdephyfi5.webp"
+    },
+    "colors": [
+      "Negro",
+      "Azul",
+      "Burdeo"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 03:05:19.277Z",
+    "updated": "2026-10-21 22:35:02.112Z"
+  },
+  {
+    "id": "iqz55fdjkwv7qvh",
+    "name": "DEAD NATION - HATE CREW 7\"",
+    "price": 12000,
+    "originalPrice": null,
+    "category": "vinilos",
+    "badge": "NUEVO",
+    "stock": 2,
+    "sizeStock": {
+      "Única": 2
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Vinilo de 7\" de la banda Finlandesa de OI! HARDCORE ,DEAD NATION. Liberado por el sello español TOTAL NOISE.",
+    "features": [],
+    "sku": "PN-VIN-597",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/iqz55fdjkwv7qvh/r_10448730_1497648048_5096_negro_y4oozeupap.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/iqz55fdjkwv7qvh/r_10448730_1497648048_5096_negro_y4oozeupap.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/iqz55fdjkwv7qvh/r_10448730_1497648048_5096_negro_y4oozeupap.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 03:00:10.715Z",
+    "updated": "2026-10-21 03:00:11.115Z"
+  },
+  {
+    "id": "cv77k983hqxldbv",
+    "name": "TERCIOS - GOLPES DE IRA",
+    "price": 18000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 2,
+    "sizeStock": {
+      "Única": 2
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Reedición del CD de la banda española TERCIOS - GOLPES DE IRA y liberado por el sello español, BARNA SKINHEADS.",
+    "features": [],
+    "sku": "PN-CD-579",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/cv77k983hqxldbv/r_34509583_1752229448_2817_negro_di6fs88ged.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/cv77k983hqxldbv/r_34509583_1752229448_2817_negro_di6fs88ged.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/cv77k983hqxldbv/r_34509583_1752229448_2817_negro_di6fs88ged.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:54:49.209Z",
+    "updated": "2026-10-21 02:54:49.617Z"
+  },
+  {
+    "id": "eza8pl0jpxa1fbi",
+    "name": "SYMPHONIE DES BLUTES & DEFENDER - VOICE OF UNITY II",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 1,
+    "sizeStock": {
+      "Única": 1
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "La banda alemana SYMPHONIE DES BLUTES y los Grecos de DEFENDER, dan vida a un split en la segunda edición de VOICE OF UNITY, liberado por el sello alemán REBEL RECORDS. 11 canciones de puro RAC & STREETPUNK NOT RED.",
+    "features": [],
+    "sku": "PN-CD-550",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/eza8pl0jpxa1fbi/r_32626695_1734784666_3454_negro_fkc21ufjvz.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/eza8pl0jpxa1fbi/r_32626695_1734784666_3454_negro_fkc21ufjvz.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/eza8pl0jpxa1fbi/r_32626695_1734784666_3454_negro_fkc21ufjvz.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:38:17.246Z",
+    "updated": "2026-10-21 02:38:17.655Z"
+  },
+  {
+    "id": "39ii1o6agszysjm",
+    "name": "V/A - SKINHEAD BRAZIL - CARECA, TATUADO Y BRUTAL",
+    "price": 15000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 15,
+    "sizeStock": {
+      "Única": 15
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Compilación internacional que une a bandas de varias partes del mundo, haciendo homenajes a canciones clásicas del RAC y el Oi! brasileño. (BDC, HISTERIA OI!, VIRUS 27, FIST OF STEEL, CARBONARIO, CENTRAL DO BRASIL)\r\nSEMPER INVICTUS, PATTY ORGULLO SUR, LUCKY BONEHEADS CREW 1912, BETTER DEAD THAN RED, SUNCITY SKINS, INFRATORES. Liberado por Arcabuz Records, Distribuido en Chile por Patria Nostra.",
+    "features": [],
+    "sku": "PN-CD-402",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/39ii1o6agszysjm/r_9757371_1485888499_8084_negro_g1r0zxpco8.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/39ii1o6agszysjm/r_9757371_1485888499_8084_negro_g1r0zxpco8.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/39ii1o6agszysjm/r_9757371_1485888499_8084_negro_g1r0zxpco8.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:32:33.127Z",
+    "updated": "2026-10-21 02:32:33.635Z"
+  },
+  {
+    "id": "dkn62z8ge204wqa",
+    "name": "V/A - A TRIBUTE TO MISTREAT (OFFICIAL)",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "Única": 22
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Tributo oficial a la banda legendaria banda de Finlandia MISTREAT, donde se reúnen 7 bandas de RAC para rendir homenaje merecido a las bestias del RAC MUNDIAL. \r\nLEMOVICE, ORGULLO SUR, BANDEIRA DE COMBATE, FINDES SKINS, BATTLE DOGS, ONDA NERA & PARABELLVM. Liberado por Arcabuz Records y distribuido en chile por PATRIA NOSTRA.",
+    "features": [],
+    "sku": "PN-CD-630",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dkn62z8ge204wqa/r_26145971_1694010863_3468_negro_0b0yyt483a.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dkn62z8ge204wqa/r_26145971_1694010863_3468_negro_0b0yyt483a.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dkn62z8ge204wqa/r_26145971_1694010863_3468_negro_0b0yyt483a.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:26:41.693Z",
+    "updated": "2026-10-21 02:26:42.082Z"
+  },
+  {
+    "id": "2vt1c7ap1ookiry",
+    "name": "COMBATE SP - CREPÚSCULO URBANO",
+    "price": 14000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 3,
+    "sizeStock": {
+      "Única": 3
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en CD del álbum CREPÚSCULO URBANO, de la banda brasileña de RAC COMBATE SP, liberado por el sello BATTLEFRONT RECORDS. Distribución oficial en chile por PATRIA NOSTRA.",
+    "features": [],
+    "sku": "PN-CD-104",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vt1c7ap1ookiry/r_13294910_1551654557_3947_negro_1jr7waxljq.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vt1c7ap1ookiry/r_13294910_1551654557_3947_negro_1jr7waxljq.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vt1c7ap1ookiry/r_13294910_1551654557_3947_negro_1jr7waxljq.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:19:59.029Z",
+    "updated": "2026-10-21 02:20:21.977Z"
+  },
+  {
+    "id": "18ob19x3yl37qck",
+    "name": "COMBATE SP - ROCK DE ESTADO",
+    "price": 14000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 6,
+    "sizeStock": {
+      "Única": 6
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en CD del álbum ROCK DE ESTADO, de la banda brasileña de RAC, COMBATE SP, liberado por los sellos TOTAL WAR RECORDS y ACTA NON VERBA REX, Distribución oficial en chile por PATRIA NOSTRA.",
+    "features": [],
+    "sku": "PN-CD-845",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/18ob19x3yl37qck/r_16156004_1604395352_8850_negro_7ovztywpvc.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/18ob19x3yl37qck/r_16156004_1604395352_8850_negro_7ovztywpvc.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/18ob19x3yl37qck/r_16156004_1604395352_8850_negro_7ovztywpvc.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:16:29.448Z",
+    "updated": "2026-10-21 02:20:31.370Z"
+  },
+  {
+    "id": "6s0b1k0gbh1sxmo",
+    "name": "COMBATE SP - CANTAR, BEBER E LUTAR / LIVE",
+    "price": 14000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 5,
+    "sizeStock": {
+      "Única": 5
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en CD del álbum CANTAR, BEBER E LUTAR / LIVE, de la banda brasileña de RAC COMBATE SP, liberado por los sellos TOTAL WAR RECORDS, ACTA NON VERBA REX y WP & RO PRODUCTIONS, Distribución oficial en chile por PATRIA NOSTRA.",
+    "features": [],
+    "sku": "PN-CD-625",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6s0b1k0gbh1sxmo/r_23062007_1744629266_6208_negro_x1qt707o28.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6s0b1k0gbh1sxmo/r_23062007_1744629266_6208_negro_x1qt707o28.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6s0b1k0gbh1sxmo/r_23062007_1744629266_6208_negro_x1qt707o28.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:15:31.787Z",
+    "updated": "2026-10-21 02:20:38.915Z"
+  },
+  {
+    "id": "nxd6gyergqettei",
+    "name": "COMBATE SP - RIGOR E RESISTENCIA",
+    "price": 14000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 3,
+    "sizeStock": {
+      "Única": 3
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en CD del álbum RIGOR E RESISTENCIA de la banda brasileña de RAC COMBATE SP, liberado por los sellos TOTAL WAR RECORDS y ACTA NON VERBA REX, Distribución oficial en chile por PATRIA NOSTRA.",
+    "features": [],
+    "sku": "PN-CD-957",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nxd6gyergqettei/r_26234009_1677426090_8094_negro_h6q0h3ujo2.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nxd6gyergqettei/r_26234009_1677426090_8094_negro_h6q0h3ujo2.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/nxd6gyergqettei/r_26234009_1677426090_8094_negro_h6q0h3ujo2.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:13:04.851Z",
+    "updated": "2026-10-21 02:20:50.555Z"
+  },
+  {
+    "id": "uu0h66neiactzcj",
+    "name": "KONTINGENT 88 - AU SERVICE DE NOS ANCETRES",
+    "price": 18000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 1,
+    "sizeStock": {
+      "Única": 1
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en DIGIPACK CD reedición de este clásico álbum francés de la banda Kontingent 88, liberado el año 1989 por primera vez por el sello Rebelles Europeéns, y ahora en digital pack por los sellos MARTEL EN TETE (Francia) y RAISE YOUR HAMMER (España).",
+    "features": [],
+    "sku": "PN-CD-452",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/uu0h66neiactzcj/r_31691717_1725878683_5036_negro_fri0gy6s5m.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/uu0h66neiactzcj/r_31691717_1725878683_5036_negro_fri0gy6s5m.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/uu0h66neiactzcj/r_31691717_1725878683_5036_negro_fri0gy6s5m.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:07:34.746Z",
+    "updated": "2026-10-21 02:07:35.198Z"
+  },
+  {
+    "id": "fzgeh08cm938ulv",
+    "name": "DMF & HMF  - LOOKING FOR TROUBLE 4 / FOOTBALL SPECIAL",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "Única": 22
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Liberado por el sello ingles MOTHER FUCKING SOUNDS, de propiedad de MR. Jonesy (TMF, ENGLISH ROSE, DMF, Y MAS) quien participa con su proyecto paralelo DMF en la cuarta entrega de Looking for Trouble! especial fútbol Hooligans.",
+    "features": [],
+    "sku": "PN-CD-700",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fzgeh08cm938ulv/63067_negro_lb5lrcjhxg.jpg",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fzgeh08cm938ulv/63067_negro_lb5lrcjhxg.jpg"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fzgeh08cm938ulv/63067_negro_lb5lrcjhxg.jpg"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 02:02:41.477Z",
+    "updated": "2026-10-21 02:02:41.862Z"
+  },
+  {
+    "id": "45cma9dyqfihlr0",
+    "name": "BDC & KBK - ROCKING IN SAO PAULO... ROLLING IN BRAZIL",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 10,
+    "sizeStock": {
+      "Única": 10
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en CD del álbum Rocking in São Paulo, Rolling in Brazil, Split CD que junta a los brasileños y los belgas en un solo álbum, que con los años ya es parte indispensable de la colección musical, liberado por el sello alemán Oi! Aint Red Records. Distribución oficial en chile por Patria Nostra.",
+    "features": [],
+    "sku": "PN-CD-924",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/45cma9dyqfihlr0/bdc_kbk_negro_jx8kpy4y6j.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/45cma9dyqfihlr0/bdc_kbk_negro_jx8kpy4y6j.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/45cma9dyqfihlr0/bdc_kbk_negro_jx8kpy4y6j.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:58:14.382Z",
+    "updated": "2026-10-21 01:58:14.980Z"
+  },
+  {
+    "id": "58dbp6lny7urir7",
+    "name": "POST MORTEM - CONTROLADO",
+    "price": 15000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "Única": 22
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en DIGIPACK CD del álbum CONTROLADO de los madrileños POST MORTEM. Distribución oficial en chile porPatria Nostra.",
+    "features": [],
+    "sku": "PN-CD-837",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/58dbp6lny7urir7/63107_negro_28xn14vd6g.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/58dbp6lny7urir7/63107_negro_28xn14vd6g.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/58dbp6lny7urir7/63107_negro_28xn14vd6g.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:53:21.169Z",
+    "updated": "2026-10-21 01:53:21.646Z"
+  },
+  {
+    "id": "1viuld75hb47dvq",
+    "name": "POST MORTEM - VUELVE A ARDER",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 7,
+    "sizeStock": {
+      "Única": 7
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Edición en CD del álbum VUELVE A ARDER de los madrileños POST MORTEM. Distribución oficial en chile porPatria Nostra.",
+    "features": [],
+    "sku": "PN-CD-575",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1viuld75hb47dvq/63070_negro_knr3wq2ymz.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1viuld75hb47dvq/63070_negro_knr3wq2ymz.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1viuld75hb47dvq/63070_negro_knr3wq2ymz.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:52:08.255Z",
+    "updated": "2026-10-21 01:52:08.661Z"
+  },
+  {
+    "id": "em07lg4zhqoqvnc",
+    "name": "4 WAY SPLIT - UNITED 4",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "cds",
+    "badge": "NUEVO",
+    "stock": 10,
+    "sizeStock": {
+      "Única": 10
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "CDS",
+    "description": "Publicado por OPOS-Records, de Alemania ¡Vamos a la cuarta ronda! En 2012 comenzó la serie UNITED o también se podría decir \"Aufbruch und Freunde\" y en 2026 ahora gira otra pieza de plata en el reproductor de CD. El comienzo de la cuarta parte lo hacen los propios iniciadores de AUFBRUCH. Los Mannheimer tocan las 3 canciones en su estilo de metal RAC, en el que se procesan temas de gran actualidad. Tradicionalmente, también se hace una versión y se rinde homenaje a una legendaria musical o a su cantante. En segundo lugar, los mexicanos de SUNCITY SKINS se disponen a entrar con todo. Skinhead Rock tranquilo y en parte rápido con partes de guitarra muy melodiosas y solos elegantes. Se canta en el idioma oficial español. En tercer lugar, HEUREKA de Wiesel comienza de la manera habitual y saca 3 combinaciones ricas. En términos de fuerza textual habitual, el zeitgeist moderno se opone sin descuidar lo histórico. ORGULLO SUR se hace cargo del acto final, comienzan con 3 éxitos recién salidos del horno, a veces alegres, a veces enojados, a veces lentos y melancólicos. ¡Las canciones interpretadas en español no dejan nada que desear con la llamativa voz de Willy! ¡Así se cierra una alianza transatlántica, ALEMANIA, MEXICO Y CHILE, Completado con un libro de 12 páginas con prólogo, textos, fotos, etc... solo queda una cosa por decir. ¡COMPRA! (cita del sello discográfico) venta oficial en chile por Patria Nostra.",
+    "features": [],
+    "sku": "PN-CD-267",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/em07lg4zhqoqvnc/united_vol_4_cover_negro_s0p4x0276h.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/em07lg4zhqoqvnc/united_vol_4_cover_negro_s0p4x0276h.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/em07lg4zhqoqvnc/united_vol_4_cover_negro_s0p4x0276h.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:47:39.312Z",
+    "updated": "2026-10-21 01:48:17.429Z"
+  },
+  {
+    "id": "rksidnmpp021hpk",
+    "name": "V/A- TOTAL NOISE  #1  EP",
+    "price": 12000,
+    "originalPrice": null,
+    "category": "vinilos",
+    "badge": "NUEVO",
+    "stock": 7,
+    "sizeStock": {
+      "Única": 7
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Edición en vinilo de el volumen 1 de la compilación TOTAL NOISE, donde participan las bandas THE PRIDEFUL (Finlandia), ORGULLO SUR (Chile), BATTLE CRY (USA) y AGGRO KNUCKLE (Japón), 4 bandas, 4 canciones en un solo vinilo de 7\" edición limitada a 300 copias,  Distribución oficial en chile por Patria Nostra.",
+    "features": [],
+    "sku": "PN-VIN-972",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rksidnmpp021hpk/r_12037692_1527026074_6005_negro_3aecgy6rz7.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rksidnmpp021hpk/r_12037692_1527026074_6005_negro_3aecgy6rz7.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rksidnmpp021hpk/r_12037692_1527026074_6005_negro_3aecgy6rz7.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:37:46.193Z",
+    "updated": "2026-10-21 01:37:46.581Z"
+  },
+  {
+    "id": "5ppmwpp02syeg8z",
+    "name": "SKREWDRIVER - THE BLACKPOOL TAPE 1978 12\"",
+    "price": 30000,
+    "originalPrice": null,
+    "category": "vinilos",
+    "badge": "NUEVO",
+    "stock": 1,
+    "sizeStock": {
+      "Única": 1
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Edición en vinilo de las cintas de ensayo de la banda Skrewdriver, grabadas en Blackpool el año 1978, y que fue liberado de manera oficial en vinilo por el sello DIM RECORDS de Alemania.",
+    "features": [],
+    "sku": "PN-VIN-835",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5ppmwpp02syeg8z/r_24117425_1659784014_3743_negro_fb9w8bf3a1.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5ppmwpp02syeg8z/r_24117425_1659784014_3743_negro_fb9w8bf3a1.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5ppmwpp02syeg8z/r_24117425_1659784014_3743_negro_fb9w8bf3a1.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:30:26.935Z",
+    "updated": "2026-10-21 01:31:21.021Z"
+  },
+  {
+    "id": "trmm95cl6ds2yvz",
+    "name": "CONDEMNED 84 - NO ONE LIKED US... WE DON`T CARE",
+    "price": 28000,
+    "originalPrice": null,
+    "category": "vinilos",
+    "badge": "NUEVO",
+    "stock": 1,
+    "sizeStock": {
+      "Única": 1
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Edición en vinilo de el álbum NO ONE LIKES US... WE DON`T CARE de la leyenda del Oi! inglés CONDEMNED 84.",
+    "features": [],
+    "sku": "PN-VIN-655",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/trmm95cl6ds2yvz/r_9765087_1498200382_6601_negro_uut8ertn1a.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/trmm95cl6ds2yvz/r_9765087_1498200382_6601_negro_uut8ertn1a.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/trmm95cl6ds2yvz/r_9765087_1498200382_6601_negro_uut8ertn1a.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:23:15.791Z",
+    "updated": "2026-10-21 01:31:12.026Z"
+  },
+  {
+    "id": "9m27cox44uaqvzk",
+    "name": "BOOTPRINT - A PART OF US 12\"",
+    "price": 28000,
+    "originalPrice": null,
+    "category": "vinilos",
+    "badge": "NUEVO",
+    "stock": 1,
+    "sizeStock": {
+      "Única": 1
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Edición en vinilo de el álbum A PART OF US de la banda canadiense BOOTPRINT, liberado por el sello alemán DIM RECORDS.",
+    "features": [],
+    "sku": "PN-VIN-459",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/9m27cox44uaqvzk/r_7885762_1450907197_9786_negro_p2uza026wt.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/9m27cox44uaqvzk/r_7885762_1450907197_9786_negro_p2uza026wt.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/9m27cox44uaqvzk/r_7885762_1450907197_9786_negro_p2uza026wt.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:20:44.338Z",
+    "updated": "2026-10-21 01:31:30.784Z"
+  },
+  {
+    "id": "pr8m1xf4oshzw4v",
+    "name": "ORGULLO SUR  - 17 AÑOS DE HONOR Y LEALTAD DOBLE LP",
+    "price": 40000,
+    "originalPrice": null,
+    "category": "vinilos",
+    "badge": "NUEVO",
+    "stock": 3,
+    "sizeStock": {
+      "Única": 3
+    },
+    "gender": "Unisex",
+    "gsm": "Edición Física Oficial",
+    "fit": "VINILOS",
+    "description": "Edición en vinilo de el álbum 17 años de Honor y Lealtad de la banda Chilena de Rock Nacionalista ORGULLO SUR, lanzado por el sello alemán REBEL RECORDS y con Distribución oficial en chile por Patria Nostra Distro.",
+    "features": [],
+    "sku": "PN-VIN-609",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/pr8m1xf4oshzw4v/os_vinilo_17_an_os_negro_09n2tleqkd.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/pr8m1xf4oshzw4v/os_vinilo_17_an_os_negro_09n2tleqkd.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/pr8m1xf4oshzw4v/os_vinilo_17_an_os_negro_09n2tleqkd.webp"
+    },
+    "colors": [
+      "Negro"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "Única"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:17:38.376Z",
+    "updated": "2026-10-21 01:17:48.554Z"
+  },
+  {
+    "id": "laz6icjyk1hm8ms",
+    "name": "ME NE FREGO",
+    "price": 16000,
+    "originalPrice": null,
+    "category": "poleras",
+    "badge": "NUEVO",
+    "stock": 22,
+    "sizeStock": {
+      "S": 3,
+      "M": 6,
+      "L": 7,
+      "XL": 4,
+      "XXL": 2
+    },
+    "gender": "Unisex",
+    "gsm": "240 GSM Algodón Pesado",
+    "fit": "Corte Regular",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con DTF de máxima fidelidad y resistencia.",
+    "features": [],
+    "sku": "PN-POL-624",
+    "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_negra_negro_qzo2169giw.webp",
+    "images": [
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_negra_negro_qzo2169giw.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_azul_vhkczit7sf.webp",
+      "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_burdeo_vgrzywh4hb.webp"
+    ],
+    "colorImages": {
+      "Negro": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_negra_negro_qzo2169giw.webp",
+      "Azul": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_azul_vhkczit7sf.webp",
+      "Burdeo": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/laz6icjyk1hm8ms/me_ne_frego_burdeo_vgrzywh4hb.webp"
+    },
+    "colors": [
+      "Negro",
+      "Azul",
+      "Burdeo"
+    ],
+    "defaultColor": "Negro",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "isFeatured": false,
+    "isNew": false,
+    "created": "2026-10-21 01:11:53.381Z",
+    "updated": "2026-10-21 01:11:53.856Z"
+  },
   {
     "id": "ybzm7vc2mpqjhkz",
     "name": "PRUEBA OSCAR",
@@ -20,7 +840,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-801",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ybzm7vc2mpqjhkz/6ed59dbf_332e_451b_a0fb_7c669a9bcef0_negro_qrbo9k91wd.webp",
@@ -44,7 +864,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-20 02:51:15.621Z",
-    "updated": "2026-10-20 02:51:15.973Z"
+    "updated": "2026-10-22 00:15:31.222Z"
   },
   {
     "id": "5574umq66et5mpu",
@@ -208,7 +1028,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-555",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7dzt1phpjxbo8n0/os_puma_front_850ggt66qg.webp",
@@ -239,7 +1059,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-15 01:26:57.919Z",
-    "updated": "2026-10-20 00:45:06.318Z"
+    "updated": "2026-10-22 00:16:38.328Z"
   },
   {
     "id": "w0v7vlfae8kvxbf",
@@ -259,7 +1079,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-758",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w0v7vlfae8kvxbf/guaren_korps_negra_e0ep8o5mw6.webp",
@@ -289,7 +1109,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 22:34:41.559Z",
-    "updated": "2026-10-20 02:26:44.843Z"
+    "updated": "2026-10-22 00:15:31.052Z"
   },
   {
     "id": "widyfm28vkok03v",
@@ -309,7 +1129,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-594",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/widyfm28vkok03v/mgk_negro_l6fttypodm.webp",
@@ -340,7 +1160,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 22:30:00.108Z",
-    "updated": "2026-10-15 03:16:38.112Z"
+    "updated": "2026-10-22 00:15:30.883Z"
   },
   {
     "id": "tnt4dcxkydotci3",
@@ -360,7 +1180,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-572",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/tnt4dcxkydotci3/os_defiende_front_djg4olfef1.webp",
@@ -391,7 +1211,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 22:22:06.252Z",
-    "updated": "2026-10-20 00:45:30.106Z"
+    "updated": "2026-10-22 00:16:38.153Z"
   },
   {
     "id": "q3zatn38l9b3pl4",
@@ -411,7 +1231,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-310",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q3zatn38l9b3pl4/os_guerra_front_xkbosczuot.webp",
@@ -442,7 +1262,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 02:06:11.172Z",
-    "updated": "2026-10-20 00:45:42.147Z"
+    "updated": "2026-10-22 00:16:37.979Z"
   },
   {
     "id": "2vccikwqyveqkka",
@@ -462,7 +1282,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-526",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2vccikwqyveqkka/orgullo_sur_20_an_os_wy5zszyoxd.webp",
@@ -493,7 +1313,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 02:00:18.234Z",
-    "updated": "2026-10-20 00:45:50.165Z"
+    "updated": "2026-10-22 00:16:37.806Z"
   },
   {
     "id": "ihx18u07guqzhdg",
@@ -513,7 +1333,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-435",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ihx18u07guqzhdg/os_resistir_front_25zsi4k4e9.webp",
@@ -544,7 +1364,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 01:54:05.395Z",
-    "updated": "2026-10-20 02:26:57.939Z"
+    "updated": "2026-10-22 00:16:37.637Z"
   },
   {
     "id": "raeo8oemcaqhyhj",
@@ -564,7 +1384,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-944",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/raeo8oemcaqhyhj/orgullo_sur_rock_n_frente_juvmtg2bl2.webp",
@@ -592,7 +1412,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 01:53:05.553Z",
-    "updated": "2026-10-20 00:46:18.576Z"
+    "updated": "2026-10-22 00:16:37.461Z"
   },
   {
     "id": "ds8l7aajjvd34lc",
@@ -612,7 +1432,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-228",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ds8l7aajjvd34lc/os_deutschland_frente_2o5operstg.webp",
@@ -643,7 +1463,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 01:52:13.530Z",
-    "updated": "2026-10-20 00:46:26.455Z"
+    "updated": "2026-10-22 00:16:37.293Z"
   },
   {
     "id": "g8xo76etqugspea",
@@ -663,7 +1483,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-111",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g8xo76etqugspea/antes_muerto_negro_front_g7bog2vebp.webp",
@@ -691,7 +1511,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 01:10:40.518Z",
-    "updated": "2026-10-15 03:17:31.254Z"
+    "updated": "2026-10-22 00:15:30.712Z"
   },
   {
     "id": "wsasgcqh1q227cp",
@@ -711,7 +1531,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-148",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wsasgcqh1q227cp/fuck_antifa_2_negro_cihpje41t2.webp",
@@ -741,7 +1561,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 01:05:13.854Z",
-    "updated": "2026-10-15 03:17:37.249Z"
+    "updated": "2026-10-22 00:15:30.541Z"
   },
   {
     "id": "znm6nwy145ae8li",
@@ -761,7 +1581,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-604",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/znm6nwy145ae8li/kill_your_local_negro_0z6gjr1o3x.webp",
@@ -791,7 +1611,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 01:04:05.037Z",
-    "updated": "2026-10-15 03:17:43.350Z"
+    "updated": "2026-10-22 00:15:30.370Z"
   },
   {
     "id": "zt38ep304vg274u",
@@ -811,7 +1631,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-923",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zt38ep304vg274u/haz_el_amor_negro_h4y4osmpx6.webp",
@@ -842,7 +1662,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:57:34.930Z",
-    "updated": "2026-10-15 03:17:50.691Z"
+    "updated": "2026-10-22 00:15:30.171Z"
   },
   {
     "id": "5uyyis64dllnjg6",
@@ -862,7 +1682,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-698",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5uyyis64dllnjg6/revuelta_negro_frente_t93xksy0tn.webp",
@@ -893,7 +1713,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:47:24.052Z",
-    "updated": "2026-10-20 03:07:01.512Z"
+    "updated": "2026-10-22 00:15:29.999Z"
   },
   {
     "id": "7hfg6yamuwjyw3q",
@@ -913,7 +1733,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-325",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/7hfg6yamuwjyw3q/dont_worries_negro_9tq9fm183c.webp",
@@ -944,7 +1764,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:41:44.556Z",
-    "updated": "2026-10-20 03:07:03.880Z"
+    "updated": "2026-10-22 00:15:29.832Z"
   },
   {
     "id": "gmiyiqs3ohmjvqg",
@@ -964,7 +1784,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-434",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/gmiyiqs3ohmjvqg/defiende_chile_negro_twwqrv8n3r.webp",
@@ -994,7 +1814,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:30:42.124Z",
-    "updated": "2026-10-20 03:07:06.321Z"
+    "updated": "2026-10-22 00:15:29.665Z"
   },
   {
     "id": "r9b4hsv78gnrejd",
@@ -1014,7 +1834,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-823",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/r9b4hsv78gnrejd/rac_negro_96hbo93cyx.webp",
@@ -1044,7 +1864,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:27:18.100Z",
-    "updated": "2026-10-15 03:18:16.661Z"
+    "updated": "2026-10-22 00:15:29.485Z"
   },
   {
     "id": "t8kftpln5kclns3",
@@ -1064,7 +1884,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-686",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t8kftpln5kclns3/real_oi_negro_nxjo6gbh31.webp",
@@ -1094,7 +1914,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:26:13.075Z",
-    "updated": "2026-10-15 03:18:34.121Z"
+    "updated": "2026-10-22 00:15:29.311Z"
   },
   {
     "id": "olw2lhukndwkhjl",
@@ -1114,7 +1934,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-820",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/olw2lhukndwkhjl/hate_st_pauli_negro_27hyyxemoq.webp",
@@ -1141,7 +1961,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:20:56.081Z",
-    "updated": "2026-10-15 03:18:39.192Z"
+    "updated": "2026-10-22 00:15:29.135Z"
   },
   {
     "id": "hs8vrfqznpjs8rr",
@@ -1161,7 +1981,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-762",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/hs8vrfqznpjs8rr/bart_and_homer_negro_k7o6s5vrts.webp",
@@ -1188,7 +2008,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:19:54.209Z",
-    "updated": "2026-10-15 03:18:44.342Z"
+    "updated": "2026-10-22 00:15:28.957Z"
   },
   {
     "id": "f6ia4amxjkrpj0s",
@@ -1208,7 +2028,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-368",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/f6ia4amxjkrpj0s/revolt_against_negro_6rn69ekkot.webp",
@@ -1238,7 +2058,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:18:37.497Z",
-    "updated": "2026-10-15 03:18:50.444Z"
+    "updated": "2026-10-22 00:15:28.785Z"
   },
   {
     "id": "zye45zi1ybyif5t",
@@ -1258,7 +2078,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-702",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/zye45zi1ybyif5t/ian_stuart_boots_negro_ul6x4vdxlf.webp",
@@ -1288,7 +2108,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:10:53.698Z",
-    "updated": "2026-10-15 03:18:56.455Z"
+    "updated": "2026-10-22 00:15:28.599Z"
   },
   {
     "id": "id829igy7r88ree",
@@ -1308,7 +2128,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-253",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/id829igy7r88ree/les_vilains_negro_q27wmhu5ij.webp",
@@ -1335,7 +2155,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:06:17.068Z",
-    "updated": "2026-10-15 03:19:01.675Z"
+    "updated": "2026-10-22 00:15:28.428Z"
   },
   {
     "id": "ginfpuq02bh8hi2",
@@ -1355,7 +2175,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-803",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ginfpuq02bh8hi2/legion_of_negro_f3sf3s06gg.webp",
@@ -1382,7 +2202,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-14 00:02:05.486Z",
-    "updated": "2026-10-15 03:19:05.430Z"
+    "updated": "2026-10-22 00:15:28.260Z"
   },
   {
     "id": "s6w6e7u0xs3ckk5",
@@ -1402,7 +2222,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-965",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/s6w6e7u0xs3ckk5/bdc_pro_patria_negro_any7gvu17v.webp",
@@ -1432,7 +2252,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:58:24.698Z",
-    "updated": "2026-10-15 03:19:11.377Z"
+    "updated": "2026-10-22 00:15:28.088Z"
   },
   {
     "id": "5shmafzthatzjw3",
@@ -1452,7 +2272,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-465",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/5shmafzthatzjw3/bdc_estaremos_no_front_negro_xfotq14jul.webp",
@@ -1482,7 +2302,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:57:41.972Z",
-    "updated": "2026-10-15 03:19:20.344Z"
+    "updated": "2026-10-22 00:15:27.913Z"
   },
   {
     "id": "6vfqt7tjqsxs21a",
@@ -1502,7 +2322,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-972",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/6vfqt7tjqsxs21a/fortress_negro_imq1a107au.webp",
@@ -1529,7 +2349,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:56:34.794Z",
-    "updated": "2026-10-20 02:27:30.557Z"
+    "updated": "2026-10-22 00:15:27.730Z"
   },
   {
     "id": "2gdxeb8s9dbpjcn",
@@ -1549,7 +2369,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-472",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/2gdxeb8s9dbpjcn/pitbullfar_negro_0237vcsrll.webp",
@@ -1579,7 +2399,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:40:20.859Z",
-    "updated": "2026-10-15 03:19:32.583Z"
+    "updated": "2026-10-22 00:15:27.280Z"
   },
   {
     "id": "ct0zfn4d7y70iiq",
@@ -1599,7 +2419,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-937",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ct0zfn4d7y70iiq/skullhead_white_gris_nlsfmmtkwt.webp",
@@ -1623,7 +2443,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:32:13.262Z",
-    "updated": "2026-10-20 02:27:33.701Z"
+    "updated": "2026-10-22 00:15:27.064Z"
   },
   {
     "id": "96lrgercqt19nep",
@@ -1643,7 +2463,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-379",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/96lrgercqt19nep/brutal_attack_blood_negro_g89opjemo2.webp",
@@ -1670,7 +2490,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:14:57.104Z",
-    "updated": "2026-10-15 03:19:40.851Z"
+    "updated": "2026-10-22 00:15:26.851Z"
   },
   {
     "id": "exm9q8ozi839f4z",
@@ -1690,7 +2510,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-888",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/exm9q8ozi839f4z/english_rose_rising_gris_2d0m783ikn.webp",
@@ -1714,7 +2534,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:08:12.333Z",
-    "updated": "2026-10-20 02:27:36.369Z"
+    "updated": "2026-10-22 00:15:26.666Z"
   },
   {
     "id": "p96n74ouz4ghxh4",
@@ -1734,7 +2554,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-728",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p96n74ouz4ghxh4/bully_boys_texas_gris_80cqyom3yo.webp",
@@ -1758,7 +2578,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:07:33.277Z",
-    "updated": "2026-10-20 02:27:37.993Z"
+    "updated": "2026-10-22 00:15:26.496Z"
   },
   {
     "id": "93t03x6mc4rsebe",
@@ -1778,7 +2598,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-173",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/93t03x6mc4rsebe/skrewdriver_after_gris_n368zjrsji.webp",
@@ -1802,7 +2622,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 23:06:18.318Z",
-    "updated": "2026-10-20 02:27:39.624Z"
+    "updated": "2026-10-22 00:15:26.324Z"
   },
   {
     "id": "ha40mxd0m3d5sgg",
@@ -1822,7 +2642,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-412",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ha40mxd0m3d5sgg/torquemada_1488_negro_4l4lpzv85w.webp",
@@ -1853,7 +2673,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 22:17:31.613Z",
-    "updated": "2026-10-15 03:19:55.168Z"
+    "updated": "2026-10-22 00:15:26.144Z"
   },
   {
     "id": "be6e4kz38n1zfer",
@@ -1873,7 +2693,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-184",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/be6e4kz38n1zfer/skullhead_rnr_negro_qjubucn94f.webp",
@@ -1903,7 +2723,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 22:16:34.327Z",
-    "updated": "2026-10-15 03:20:00.906Z"
+    "updated": "2026-10-22 00:15:25.923Z"
   },
   {
     "id": "1sv0wg9suunrhfn",
@@ -1923,7 +2743,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-452",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/1sv0wg9suunrhfn/skrewdriver_our_pride_negro_v5lbb5n8yf.webp",
@@ -1950,7 +2770,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 22:06:52.673Z",
-    "updated": "2026-10-15 03:20:04.461Z"
+    "updated": "2026-10-22 00:15:25.750Z"
   },
   {
     "id": "wms223809kok3nw",
@@ -1970,7 +2790,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-792",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/wms223809kok3nw/skrewdriver_rising_negro_ky9lziia1h.webp",
@@ -1998,7 +2818,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 22:06:09.701Z",
-    "updated": "2026-10-15 03:20:10.493Z"
+    "updated": "2026-10-22 00:15:25.581Z"
   },
   {
     "id": "80glg7t5mr73fja",
@@ -2018,7 +2838,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-819",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/80glg7t5mr73fja/skrewdriver_honour_negro_y122a52xgl.webp",
@@ -2048,7 +2868,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:58:42.026Z",
-    "updated": "2026-10-15 03:20:16.393Z"
+    "updated": "2026-10-22 00:15:25.407Z"
   },
   {
     "id": "n70pbjaxiggalw3",
@@ -2068,7 +2888,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-932",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n70pbjaxiggalw3/skrewdriver_all_skrewed_negra_clj2y2r4d9.webp",
@@ -2098,7 +2918,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:53:21.934Z",
-    "updated": "2026-10-15 03:20:22.662Z"
+    "updated": "2026-10-22 00:15:25.234Z"
   },
   {
     "id": "q9jzx8ail9rvbor",
@@ -2118,7 +2938,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-361",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/q9jzx8ail9rvbor/skrewdriver_blood_negro_z0y0q5rv68.webp",
@@ -2148,7 +2968,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:52:22.206Z",
-    "updated": "2026-10-15 03:20:28.760Z"
+    "updated": "2026-10-22 00:15:25.059Z"
   },
   {
     "id": "dpnsuxczmqemden",
@@ -2168,7 +2988,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-430",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/dpnsuxczmqemden/skrewdriver_all_skrew_negro_1k6oui1ee8.webp",
@@ -2198,7 +3018,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:36:17.602Z",
-    "updated": "2026-10-15 03:20:34.689Z"
+    "updated": "2026-10-22 00:15:24.890Z"
   },
   {
     "id": "bigavjkw8zvmrxe",
@@ -2218,7 +3038,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-650",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/bigavjkw8zvmrxe/midtown_bootboys_auto_negro_424vl6f07m.webp",
@@ -2248,7 +3068,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:31:19.257Z",
-    "updated": "2026-10-15 03:20:40.596Z"
+    "updated": "2026-10-22 00:15:24.721Z"
   },
   {
     "id": "fy1d5148czwe2xh",
@@ -2268,7 +3088,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-812",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/fy1d5148czwe2xh/modtown_bootboys_88_negro_ukkxuwglzf.webp",
@@ -2298,7 +3118,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:29:48.484Z",
-    "updated": "2026-10-15 03:20:46.420Z"
+    "updated": "2026-10-22 00:15:24.549Z"
   },
   {
     "id": "w1lfn7jvx0wkt1v",
@@ -2318,7 +3138,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-594",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w1lfn7jvx0wkt1v/landser_negra_2oq5a8wz6t.webp",
@@ -2348,7 +3168,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-13 21:20:28.986Z",
-    "updated": "2026-10-15 03:20:53.104Z"
+    "updated": "2026-10-22 00:15:24.371Z"
   },
   {
     "id": "n7wumbkz9n2xzdp",
@@ -2368,7 +3188,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-894",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/n7wumbkz9n2xzdp/test_tiny_5wqko79dm9.webp",
@@ -2392,7 +3212,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "2026-10-09 01:32:54.895Z",
-    "updated": "2026-10-15 23:05:59.448Z"
+    "updated": "2026-10-22 00:15:24.197Z"
   },
   {
     "id": "i4w68u1hsp7dbji",
@@ -2412,7 +3232,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-151",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/i4w68u1hsp7dbji/fuck_antifa_front_098smipn9h.webp",
@@ -2441,7 +3261,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "2026-10-08 01:37:54.327Z",
-    "updated": "2026-10-15 03:21:00.408Z"
+    "updated": "2026-10-22 00:15:24.025Z"
   },
   {
     "id": "jns9569rn1saydi",
@@ -2461,7 +3281,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-536",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/jns9569rn1saydi/ahtr_rojo_0uapwz5atm.webp",
@@ -2497,7 +3317,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "2026-10-08 01:30:16.654Z",
-    "updated": "2026-10-20 02:18:21.872Z"
+    "updated": "2026-10-22 00:15:23.858Z"
   },
   {
     "id": "p8ak8isspvn204u",
@@ -2517,7 +3337,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con serigrafía de máxima fidelidad y resistencia.",
+    "description": "Polera de alta calidad confeccionada en 100% algodón peinado 240 GSM con estampados en DTF de alta calidad, resistentes e ilustraciones de máxima definición.",
     "features": [],
     "sku": "PN-POL-119",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/p8ak8isspvn204u/camiseta_orgullo_sur_chile_i4yjedif1o.webp",
@@ -2552,7 +3372,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-20 02:44:01.939Z"
+    "updated": "2026-10-22 00:16:37.106Z"
   },
   {
     "id": "vd1dfhf0pmyx829",
@@ -2719,7 +3539,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Diseño de máxima potencia visual \"Total Anihilation\". Serigrafía curada artesanalmente sobre algodón 100% peinado de alto gramaje.",
+    "description": "Diseño de máxima potencia visual \"Total Anihilation\". estampados en DTF de alta calidad curada artesanalmente sobre algodón 100% peinado de alto gramaje.",
     "features": [],
     "sku": "PN-POL-030",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/3ukj32pwcxo9quj/total_anihilation_negra_2227glpc5m.webp",
@@ -2749,7 +3569,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-20 00:37:56.377Z"
+    "updated": "2026-10-22 00:15:23.684Z"
   },
   {
     "id": "klko0tp7g4bljv1",
@@ -2863,7 +3683,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de estética oscura y temática underground \"Post Mortem\". Serigrafía de alta densidad que mantiene el color tras múltiples lavados.",
+    "description": "Polera de estética oscura y temática underground \"Post Mortem\". estampados en DTF de alta calidad de alta densidad que mantiene el color tras múltiples lavados.",
     "features": [],
     "sku": "PN-POL-027",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/w3ngg3ij7xuirce/post_mortem_fmjx2g88u4_abos6wrg8a.webp",
@@ -2887,7 +3707,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-14 01:23:01.851Z"
+    "updated": "2026-10-22 00:15:23.509Z"
   },
   {
     "id": "ywkqudrjvgqxz94",
@@ -2907,7 +3727,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera serigrafiada \"Killbaby Kill Giveback\" con diseño de edición limitada. Confección artesanal con algodón 240 GSM pre-encogido.",
+    "description": "polera con estampados en DTF de alta calidad \"Killbaby Kill Giveback\" con diseño de edición limitada. Confección artesanal con algodón 240 GSM pre-encogido.",
     "features": [],
     "sku": "PN-POL-026",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/ywkqudrjvgqxz94/killbaby_kill_giveback_m95utxrf1u_hvhzge8q8b.webp",
@@ -2937,7 +3757,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:21:51.319Z"
+    "updated": "2026-10-22 00:15:23.230Z"
   },
   {
     "id": "88gpphluhrxf6bt",
@@ -2957,7 +3777,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de tributo \"Kategorie C\" con tipografía alemana y gráfica combativa. Serigrafía resistente de alta densidad en algodón peinado de 240 GSM.",
+    "description": "Polera de tributo \"Kategorie C\" con tipografía alemana y gráfica combativa. estampados en DTF de alta calidad y resistencia en algodón peinado de 240 GSM.",
     "features": [],
     "sku": "PN-POL-024",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/88gpphluhrxf6bt/kategorie_c_negro_ux4zq11sim.webp",
@@ -2987,7 +3807,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:21:57.234Z"
+    "updated": "2026-10-22 00:15:23.049Z"
   },
   {
     "id": "aefa1jvryj6bepu",
@@ -3057,7 +3877,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Diseño patriótico \"Estirpe Águila\" con heráldica de gran tamaño en serigrafía de precisión. Confección en algodón pesado de 240 GSM.",
+    "description": "Diseño patriótico \"Estirpe Águila\" con heráldica de gran tamaño con estampados en DTF de alta precisión. Confección en algodón pesado de 240 GSM.",
     "features": [],
     "sku": "PN-POL-022",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/j21oxguwgojedv3/estirpe_aguila_53cndrl98s_p9zjt0ri8x.webp",
@@ -3087,7 +3907,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:22:08.802Z"
+    "updated": "2026-10-22 00:15:22.880Z"
   },
   {
     "id": "we8h04cmymu9bcy",
@@ -3107,7 +3927,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Variante \"English Roses\" con detalles cromáticos en rosas de alto contraste. Serigrafía multicapa curada al horno sobre algodón negro 240 GSM.",
+    "description": "Variante \"English Roses\" con detalles cromáticos en rosas de alto contraste. estampados en DTF de alta calidad y máxima resistencia sobre algodón negro 240 GSM.",
     "features": [],
     "sku": "PN-POL-021",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/we8h04cmymu9bcy/englisg_rose_negro_rosas_0gvnj5qhx6.webp",
@@ -3134,7 +3954,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:22:12.236Z"
+    "updated": "2026-10-22 00:15:22.709Z"
   },
   {
     "id": "miplwt4pxntccpl",
@@ -3351,7 +4171,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera legendaria \"Bunker 84\" con gráfica curada en serigrafía tradicional. Confección en algodón 240 GSM con resistencia superior al lavado.",
+    "description": "Polera legendaria \"Bunker 84\" con gráfica curada con estampados en DTF de alta calidad y resistencia. Confección en algodón 240 GSM con resistencia superior al lavado.",
     "features": [],
     "sku": "PN-POL-016",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/e8h1w91d7f5c94j/bunker_84_negro_wbifmu8pbh.webp",
@@ -3381,7 +4201,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:22:38.064Z"
+    "updated": "2026-10-22 00:15:22.539Z"
   },
   {
     "id": "rque69yh26fkau2",
@@ -3401,7 +4221,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Diseño conmemorativo \"Brutal Attack 1980\" en serigrafía de alta densidad. Prenda de corte regular y tejido antidesgaste de 240 GSM.",
+    "description": "Diseño conmemorativo \"Brutal Attack 1980\" con estampados en DTF de alta calidad y resistencia. Prenda de corte regular y tejido antidesgaste de 240 GSM.",
     "features": [],
     "sku": "PN-POL-015",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/rque69yh26fkau2/brutal_attack_frente_dvrlj2e54a.webp",
@@ -3432,7 +4252,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:22:47.162Z"
+    "updated": "2026-10-22 00:15:22.363Z"
   },
   {
     "id": "g203eo7z49huy9g",
@@ -3452,7 +4272,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Edición especial \"Brassic\" con ilustración en serigrafía mate. Confeccionada con cuello acanalado reforzado de 3 cm y algodón 240 GSM.",
+    "description": "Edición especial \"Brassic\" con ilustración con estampados en DTF de alta definición. Confeccionada con cuello acanalado reforzado de 3 cm y algodón 240 GSM.",
     "features": [],
     "sku": "PN-POL-014",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/g203eo7z49huy9g/brassic_zprhrn5bqs_gzj1jdeyc6.webp",
@@ -3482,7 +4302,7 @@ export const products = [
     "isFeatured": false,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:22:53.308Z"
+    "updated": "2026-10-22 00:15:22.173Z"
   },
   {
     "id": "t5l2wuli39x7eaz",
@@ -3749,7 +4569,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera de estética rebelde con estampado frontal \"ANTISOCIAL\" en serigrafía mate al agua. Estructura tubular en algodón peinado de 240 GSM con costuras dobles reforzadas.",
+    "description": "Polera de estética rebelde con estampado frontal \"ANTISOCIAL\" con estampados en DTF de alta calidad y máxima definición. Estructura tubular en algodón peinado de 240 GSM con costuras dobles reforzadas.",
     "features": [],
     "sku": "PN-POL-008",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/kil0l44pcawj1md/antosocial_negro_amarillo_dxrwry3pel.webp",
@@ -3782,7 +4602,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-20 02:28:49.019Z"
+    "updated": "2026-10-22 00:15:21.982Z"
   },
   {
     "id": "t6az9rk82ill0jx",
@@ -3802,7 +4622,7 @@ export const products = [
     "gender": "Unisex",
     "gsm": "240 GSM Algodón Pesado",
     "fit": "Corte Regular",
-    "description": "Polera underground de alto gramaje con gráfica serigrafiada \"7 Muelles\". Confección de precisión en 100% algodón peinado de 240 GSM y tintas textiles de máxima resistencia al lavado.",
+    "description": "Polera underground de alto gramaje con gráfica en DTF de alta calidad \"7 Muelles\". Confección de precisión en 100% algodón peinado de 240 GSM y tintas textiles de máxima resistencia al lavado.",
     "features": [],
     "sku": "PN-POL-007",
     "image": "https://patrianostradistropb.noweb.cl/api/files/pbc_4092854851/t6az9rk82ill0jx/7_muelles_igbu1eoxlk_e5yb8isv6o.webp",
@@ -3832,7 +4652,7 @@ export const products = [
     "isFeatured": true,
     "isNew": false,
     "created": "",
-    "updated": "2026-10-15 03:23:39.537Z"
+    "updated": "2026-10-22 00:15:21.806Z"
   }
 ];
 
@@ -3862,4 +4682,7 @@ export const collaborations = [
     "actionText": null
   }
 ];
+
+
+
 

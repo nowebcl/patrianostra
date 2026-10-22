@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Truck, RotateCcw, ChevronRight, Check, Sparkles } from 'lucide-react';
+import { ShieldCheck, Truck, RotateCcw, ChevronRight, Check, Sparkles, Ruler } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { useCart } from '../context/CartContext';
 import { ProductCard } from '../components/ProductCard';
+import { SizeGuideModal } from '../components/SizeGuideModal';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
 
@@ -31,6 +32,18 @@ export const ProductDetailPage = () => {
   const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState('specs');
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+
+  // Detección inteligente de prendas de vestir para activar DTF y Guía de Tallas
+  const isClothing = useMemo(() => {
+    const cat = (product.category || '').toLowerCase().trim();
+    const musicSet = new Set(['música', 'musica', 'vinilos', 'vinilo', 'cds', 'cd', 'casetes', 'casete', 'cassettes', 'cassette', 'accesorios']);
+    if (musicSet.has(cat)) return false;
+    if (cat.includes('polera') || cat.includes('camiseta') || cat.includes('poleron') || cat.includes('hoodie') || cat.includes('pantalon') || cat.includes('orgullo sur')) {
+      return true;
+    }
+    return sizes.some(s => ['S', 'M', 'L', 'XL', 'XXL', '2XL'].includes(s));
+  }, [product.category, sizes]);
 
   useEffect(() => {
     setImageLoaded(false);
@@ -209,9 +222,18 @@ export const ProductDetailPage = () => {
             )}
 
             {/* Description */}
-            <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed mb-6">
-              {product.description}
-            </p>
+            <div className="mb-6 space-y-3">
+              <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
+                {product.description}
+              </p>
+              
+              {isClothing && (
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#140b0b] border border-[#C52222]/40 rounded-lg text-xs font-condensed font-bold tracking-wider text-neutral-200">
+                  <Sparkles className="w-3.5 h-3.5 text-[#C52222] shrink-0" />
+                  <span>ESTAMPADOS EN DTF DE ALTA CALIDAD, RESISTENTES E ILUSTRACIONES DE MÁXIMA DEFINICIÓN</span>
+                </div>
+              )}
+            </div>
 
             {/* Color Selector */}
             {product.colors && product.colors.length > 0 && (
@@ -262,9 +284,21 @@ export const ProductDetailPage = () => {
             {/* Size / Format Selector */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-condensed font-bold tracking-wider text-neutral-300 uppercase">
-                  {sizes.length === 1 && sizes[0] === 'Única' ? 'FORMATO / EDICIÓN:' : 'SELECCIONAR TALLA:'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-condensed font-bold tracking-wider text-neutral-300 uppercase">
+                    {sizes.length === 1 && sizes[0] === 'Única' ? 'FORMATO / EDICIÓN:' : 'SELECCIONAR TALLA:'}
+                  </span>
+                  {isClothing && (
+                    <button
+                      type="button"
+                      onClick={() => setIsSizeGuideOpen(true)}
+                      className="inline-flex items-center gap-1.5 text-[11px] font-condensed font-bold tracking-wider text-[#C52222] hover:text-white transition-colors cursor-pointer ml-1.5 group"
+                    >
+                      <Ruler className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                      <span className="underline decoration-[#C52222]/60 underline-offset-4">GUÍA DE TALLAS</span>
+                    </button>
+                  )}
+                </div>
                 <span className="text-[10px] font-condensed tracking-wider text-neutral-500 uppercase">
                   {sizes.length === 1 && sizes[0] === 'Única' ? (product.category || 'EDICIÓN OFICIAL').toUpperCase() : `CORTE ${(product.fit || 'Regular').toUpperCase()}`}
                 </span>
@@ -398,13 +432,32 @@ export const ProductDetailPage = () => {
                   <span>{openAccordion === 'specs' ? '−' : '+'}</span>
                 </button>
                 {openAccordion === 'specs' && (
-                  <div className="p-3.5 pt-0 text-xs text-neutral-400 font-sans space-y-1.5 border-t border-neutral-900/50">
+                  <div className="p-3.5 pt-0 text-xs text-neutral-400 font-sans space-y-2 border-t border-neutral-900/50">
+                    {isClothing && (
+                      <div className="flex items-start gap-2 text-neutral-200">
+                        <span className="text-[#C52222] font-bold">✓</span>
+                        <span><strong>Estampado Textil:</strong> Estampados en DTF de alta calidad, resistentes e ilustraciones originales concebidas con máxima fidelidad, elasticidad y durabilidad ante lavados continuos.</span>
+                      </div>
+                    )}
                     {product.specs?.map((spec, i) => (
                       <div key={i} className="flex items-start gap-2">
                         <span className="text-[#C52222] font-bold">✓</span>
                         <span>{spec}</span>
                       </div>
                     ))}
+                    {isClothing && (
+                      <button
+                        type="button"
+                        onClick={() => setIsSizeGuideOpen(true)}
+                        className="w-full mt-2 pt-2 border-t border-neutral-900/80 flex items-center justify-between text-xs text-neutral-300 hover:text-white transition-colors cursor-pointer group"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Ruler className="w-4 h-4 text-[#C52222]" />
+                          <span>Medidas: Consulta la <strong>Guía de Tallas Oficial</strong> (ancho y largo)</span>
+                        </span>
+                        <span className="text-[#C52222] text-[11px] font-condensed font-bold uppercase underline">Ver Tabla Oficial →</span>
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
@@ -447,6 +500,13 @@ export const ProductDetailPage = () => {
             ))}
           </div>
         </div>
+
+        {/* Size Guide Modal Oficial */}
+        <SizeGuideModal 
+          isOpen={isSizeGuideOpen} 
+          onClose={() => setIsSizeGuideOpen(false)} 
+          currentSelectedSize={selectedSize} 
+        />
 
       </div>
     </div>

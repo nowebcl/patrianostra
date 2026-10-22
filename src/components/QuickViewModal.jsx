@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { X, Ruler, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { SizeGuideModal } from './SizeGuideModal';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
 
@@ -20,6 +21,18 @@ export const QuickViewModal = () => {
   const [selectedSize, setSelectedSize] = useState(firstInStock);
   const [selectedColor, setSelectedColor] = useState(defaultColor);
   const [activeImage, setActiveImage] = useState(quickViewProduct?.colorImages?.[defaultColor] || quickViewProduct?.image || '/producto.webp');
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+
+  const isClothing = useMemo(() => {
+    if (!quickViewProduct) return false;
+    const cat = (quickViewProduct.category || '').toLowerCase().trim();
+    const musicSet = new Set(['música', 'musica', 'vinilos', 'vinilo', 'cds', 'cd', 'casetes', 'casete', 'cassettes', 'cassette', 'accesorios']);
+    if (musicSet.has(cat)) return false;
+    if (cat.includes('polera') || cat.includes('camiseta') || cat.includes('poleron') || cat.includes('hoodie') || cat.includes('pantalon') || cat.includes('orgullo sur')) {
+      return true;
+    }
+    return sizes.some(s => ['S', 'M', 'L', 'XL', 'XXL', '2XL'].includes(s));
+  }, [quickViewProduct, sizes]);
 
   React.useEffect(() => {
     if (quickViewProduct) {
@@ -100,9 +113,17 @@ export const QuickViewModal = () => {
               </span>
             </div>
             
-            <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-5 line-clamp-3">
+            <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-3 line-clamp-3">
               {quickViewProduct.description}
             </p>
+
+            {/* DTF Badge for clothing */}
+            {isClothing && (
+              <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#140b0b] border border-[#C52222]/40 rounded text-[11px] font-condensed font-bold tracking-wider text-neutral-200">
+                <Sparkles className="w-3 h-3 text-[#C52222] shrink-0" />
+                <span>ESTAMPADO DTF DE ALTA CALIDAD &amp; RESISTENTE</span>
+              </div>
+            )}
 
             {/* Colors */}
             {colors.length > 0 && (
@@ -141,9 +162,21 @@ export const QuickViewModal = () => {
 
             {/* Sizes */}
             <div className="mb-6">
-              <span className="text-[11px] font-condensed font-semibold tracking-wider text-neutral-400 uppercase block mb-2">
-                SELECCIONAR TALLA:
-              </span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-condensed font-semibold tracking-wider text-neutral-400 uppercase">
+                  SELECCIONAR TALLA:
+                </span>
+                {isClothing && (
+                  <button
+                    type="button"
+                    onClick={() => setIsSizeGuideOpen(true)}
+                    className="inline-flex items-center gap-1 text-[11px] font-condensed font-bold tracking-wider text-[#C52222] hover:text-white transition-colors cursor-pointer group"
+                  >
+                    <Ruler className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                    <span className="underline decoration-[#C52222]/60 underline-offset-4">GUÍA DE TALLAS</span>
+                  </button>
+                )}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {sizes.map(size => {
                   const stockForSz = sizeStock[size] !== undefined ? Number(sizeStock[size]) : 1;
@@ -189,6 +222,13 @@ export const QuickViewModal = () => {
         </div>
 
       </div>
+
+      {/* Guía de Tallas Oficial */}
+      <SizeGuideModal
+        isOpen={isSizeGuideOpen}
+        onClose={() => setIsSizeGuideOpen(false)}
+        currentSelectedSize={selectedSize}
+      />
     </div>
   );
 };

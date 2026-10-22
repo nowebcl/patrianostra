@@ -44,7 +44,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
         sizes: ['S', 'M', 'L', 'XL'],
         image: '/producto.webp',
         badge: 'EDICIÓN LIMITADA',
-        description: 'Confeccionado en algodón premium peinado con corte estructurado y serigrafía de alta densidad.',
+        description: 'Confeccionado en algodón premium peinado con corte estructurado y estampados en DTF de alta calidad y máxima resistencia.',
         isFeatured: true
       });
     }

@@ -120,7 +120,7 @@ export const AboutPage = () => {
                   PATRIA NOSTRA DISTRO
                 </h3>
                 <p className="text-xs text-neutral-400 font-sans mt-1">
-                  Fundada en 2018 • Santiago de Chile 🇨🇱. Distribución nacional e internacional de material identitario.
+                  Fundada en 2018 • Puerto Montt, X Región, Chile 🇨🇱. Distribución nacional e internacional de material identitario.
                 </p>
               </div>
             </div>
@@ -151,7 +151,7 @@ export const AboutPage = () => {
                 </h4>
               </div>
               <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
-                Prendas de alto gramaje con serigrafías resistentes e ilustraciones originales concebidas desde nuestra visión histórica, principios y convicción.
+                Prendas de alto gramaje con estampados en DTF de alta calidad, resistentes e ilustraciones originales concebidas desde nuestra visión histórica, principios y convicción.
               </p>
             </div>
 
