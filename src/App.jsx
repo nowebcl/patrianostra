@@ -11,6 +11,7 @@ import { ManifestoModal } from './components/ManifestoModal';
 import { MobileMenu } from './components/MobileMenu';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { Toast } from './components/Toast';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Store Public Pages
 import { HomePage } from './pages/HomePage';
@@ -124,32 +125,34 @@ function PublicLayout() {
 
 export function App() {
   return (
-    <StoreProvider>
-      <CartProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            
-            {/* Admin Dedicated Routes (Full-screen tactical dashboard) */}
-            <Route path="/admin" element={<AdminDashboardPage />} />
-            <Route path="/admin/login" element={<AdminLoginPage />} />
+    <ErrorBoundary>
+      <StoreProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              
+              {/* Admin Dedicated Routes (Full-screen tactical dashboard) */}
+              <Route path="/admin" element={<AdminDashboardPage />} />
+              <Route path="/admin/login" element={<AdminLoginPage />} />
 
-            {/* Public Storefront Routes */}
-            <Route element={<PublicLayout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/catalogo" element={<CatalogPage />} />
-              <Route path="/producto/:id" element={<ProductDetailPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/contacto" element={<ContactPage />} />
-              <Route path="/quienes-somos" element={<AboutPage />} />
-              <Route path="/nosotros" element={<AboutPage />} />
-              <Route path="*" element={<HomePage />} />
-            </Route>
+              {/* Public Storefront Routes */}
+              <Route element={<PublicLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/catalogo" element={<CatalogPage />} />
+                <Route path="/producto/:id" element={<ProductDetailPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/contacto" element={<ContactPage />} />
+                <Route path="/quienes-somos" element={<AboutPage />} />
+                <Route path="/nosotros" element={<AboutPage />} />
+                <Route path="*" element={<HomePage />} />
+              </Route>
 
-          </Routes>
-        </BrowserRouter>
-      </CartProvider>
-    </StoreProvider>
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
+      </StoreProvider>
+    </ErrorBoundary>
   );
 }
 

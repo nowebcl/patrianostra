@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext';
 
 export const Footer = () => {
   const { setIsManifestoOpen } = useCart();
+  const [isShippingModalOpen, setIsShippingModalOpen] = useState(false);
 
   return (
     <footer className="bg-black text-neutral-400 pt-16 pb-8 border-t border-neutral-900">
