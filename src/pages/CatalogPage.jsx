@@ -1,13 +1,28 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/ProductCard';
 
 export const CatalogPage = () => {
   const { products } = useStore();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('TODOS');
+  const [searchParams] = useSearchParams();
+  const initialCat = (searchParams.get('cat') || searchParams.get('categoria') || 'TODOS').toUpperCase();
+  const initialQuery = searchParams.get('q') || searchParams.get('search') || '';
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [selectedCategory, setSelectedCategory] = useState(initialCat);
   const [sortBy, setSortBy] = useState('featured');
+
+  useEffect(() => {
+    const cat = searchParams.get('cat') || searchParams.get('categoria');
+    if (cat) {
+      setSelectedCategory(cat.toUpperCase());
+    }
+    const qParam = searchParams.get('q') || searchParams.get('search');
+    if (qParam !== null) {
+      setSearchQuery(qParam);
+    }
+  }, [searchParams]);
 
   const ITEMS_PER_PAGE = 16;
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
