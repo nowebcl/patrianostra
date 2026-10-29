@@ -1017,22 +1017,92 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
             </div>
           </div>
 
-          {/* Badge y Portada */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-            <div className="space-y-2">
-              <label className="block text-xs font-condensed font-bold uppercase tracking-wider text-neutral-300">
-                Badge / Etiqueta Destacada
-              </label>
-              <input
-                type="text"
-                value={formData.badge}
-                onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                placeholder="Ej: EDICIÓN LIMITADA, NUEVO, AGOTADO..."
-                className="w-full bg-[#0a0a0a] border border-neutral-800 focus:border-[#C52222] rounded-xl px-3.5 py-2.5 text-white text-xs placeholder:text-neutral-600 focus:outline-none"
-              />
+          {/* Etiquetas / Colecciones & Portada */}
+          <div className="space-y-4 pt-2 border-t border-neutral-900">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <label className="block text-xs font-condensed font-bold uppercase tracking-wider text-neutral-200">
+                  Etiqueta de Colección / Badge del Producto
+                </label>
+                <p className="text-[11px] text-neutral-500 font-sans mt-0.5">
+                  Asigna una etiqueta para asociar el producto a una colección (Banners, Colaboraciones, Edición Limitada).
+                </p>
+              </div>
+
+              {formData.badge && (
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, badge: '' })}
+                  className="text-[10px] font-condensed font-bold uppercase tracking-wider text-neutral-400 hover:text-red-400 border border-neutral-800 hover:border-red-900 px-2 py-1 rounded transition-colors self-start sm:self-auto cursor-pointer"
+                >
+                  ✕ Quitar Etiqueta
+                </button>
+              )}
             </div>
 
-            <div className="space-y-2 flex flex-col justify-end">
+            {/* Selector Rápido de Colecciones y Badges */}
+            <div className="space-y-2 bg-[#080808] border border-neutral-900 rounded-xl p-3.5">
+              <span className="text-[10px] font-condensed font-bold uppercase tracking-wider text-neutral-400 block">
+                Selecciona una Colección o Etiqueta Rápida:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  'ORGULLO SUR',
+                  'KRONSTADT',
+                  'BATTLE ZONE',
+                  'HOBBIT ITALIA',
+                  'BRASSIC USA',
+                  'TATTOOED MOTHER FUCKER',
+                  'TOTAL ANNIHILATION',
+                  'AHTR',
+                  'BASTIÓN',
+                  'DISIDENCIA',
+                  'EDICIÓN LIMITADA',
+                  'NUEVO',
+                  'DESTACADO',
+                  'OFERTA',
+                  'AGOTADO'
+                ].map((tag) => {
+                  const isSelected = (formData.badge || '').toUpperCase() === tag;
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, badge: isSelected ? '' : tag })}
+                      className={`text-[10px] font-condensed font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#C52222] border-[#C52222] text-white shadow-md shadow-[#C52222]/30 scale-105'
+                          : 'bg-[#121212] border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600'
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Campo de texto libre para etiqueta personalizada */}
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <input
+                  type="text"
+                  value={formData.badge}
+                  onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
+                  placeholder="O escribe aquí una etiqueta personalizada..."
+                  className="flex-1 bg-[#0a0a0a] border border-neutral-800 focus:border-[#C52222] rounded-xl px-3.5 py-2 text-white text-xs placeholder:text-neutral-600 focus:outline-none"
+                />
+                {formData.badge && (
+                  <div className="flex items-center gap-1.5 shrink-0 px-2.5 py-1.5 bg-black border border-neutral-800 rounded-lg">
+                    <span className="text-[9px] font-condensed text-neutral-500 uppercase">Vista previa:</span>
+                    <span className="text-[10px] font-condensed font-bold uppercase px-2 py-0.5 bg-[#C52222] text-white rounded">
+                      {formData.badge}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Destacar en Portada */}
+            <div>
               <label className="flex items-center gap-2.5 p-3 bg-[#0a0a0a] border border-neutral-800 rounded-xl cursor-pointer hover:border-neutral-700 transition-colors">
                 <input
                   type="checkbox"
@@ -1041,7 +1111,7 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
                   className="w-4 h-4 rounded text-[#C52222] focus:ring-0 bg-neutral-900 border-neutral-700 cursor-pointer"
                 />
                 <span className="text-xs font-condensed font-bold uppercase tracking-wider text-white">
-                  Destacar en Portada de Inicio
+                  Destacar en Portada de Inicio (Hero / Showcase)
                 </span>
               </label>
             </div>

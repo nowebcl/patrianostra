@@ -114,7 +114,7 @@ export const KronstadtBanner = () => {
       {/* Interactive Action Button */}
       <div className="absolute left-[3%] bottom-[6%] sm:left-[3.2%] sm:bottom-[8%] md:bottom-[12%] lg:bottom-[15%] z-20">
         <Link 
-          to="/catalogo?cat=ORGULLO%20SUR" 
+          to="/catalogo?tag=ORGULLO%20SUR" 
           className="inline-flex items-center gap-1.5 sm:gap-2 bg-black/90 hover:bg-neutral-900 text-neutral-200 hover:text-white border border-neutral-700 hover:border-neutral-400 font-condensed font-bold text-[9px] sm:text-xs md:text-sm tracking-[0.15em] sm:tracking-[0.2em] px-2.5 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2.5 uppercase transition-all duration-200 shadow-2xl backdrop-blur-md cursor-pointer group-hover:border-neutral-500"
         >
           <span>VER COLECCIÓN</span>

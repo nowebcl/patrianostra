@@ -135,7 +135,8 @@ export const AdminProductsTab = ({ isEditing, setIsEditing, productToEdit, setPr
         const matchName = p.name?.toLowerCase().includes(q);
         const matchCat = p.category?.toLowerCase().includes(q);
         const matchSku = p.sku?.toLowerCase().includes(q);
-        if (!matchName && !matchCat && !matchSku) return false;
+        const matchBadge = p.badge?.toLowerCase().includes(q);
+        if (!matchName && !matchCat && !matchSku && !matchBadge) return false;
       }
       return true;
     });

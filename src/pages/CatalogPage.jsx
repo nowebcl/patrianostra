@@ -9,8 +9,10 @@ export const CatalogPage = () => {
   const [searchParams] = useSearchParams();
   const initialCat = (searchParams.get('cat') || searchParams.get('categoria') || 'TODOS').toUpperCase();
   const initialQuery = searchParams.get('q') || searchParams.get('search') || '';
+  const initialTag = (searchParams.get('tag') || searchParams.get('etiqueta') || '').toUpperCase().trim();
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState(initialCat);
+  const [selectedTag, setSelectedTag] = useState(initialTag);
   const [sortBy, setSortBy] = useState('featured');
 
   useEffect(() => {
@@ -21,6 +23,10 @@ export const CatalogPage = () => {
     const qParam = searchParams.get('q') || searchParams.get('search');
     if (qParam !== null) {
       setSearchQuery(qParam);
+    }
+    const tagParam = searchParams.get('tag') || searchParams.get('etiqueta');
+    if (tagParam !== null) {
+      setSelectedTag(tagParam.toUpperCase().trim());
     }
   }, [searchParams]);
 
@@ -38,6 +44,20 @@ export const CatalogPage = () => {
     const musicSubCats = ['MUSICA', 'VINILOS', 'VINILO', 'CDS', 'CD', 'CASETES', 'CASETE', 'CASSETTES', 'CASSETTE'];
 
     return products.filter(product => {
+      // Tag / Etiqueta filter
+      if (selectedTag) {
+        const prodBadge = (product.badge || '').toUpperCase();
+        const prodName = (product.name || '').toUpperCase();
+        const prodCat = (product.category || '').toUpperCase();
+        const prodDesc = (product.description || '').toUpperCase();
+        const target = selectedTag.toUpperCase();
+        const matchesTag = prodBadge.includes(target) || 
+                           prodName.includes(target) || 
+                           prodCat.includes(target) || 
+                           prodDesc.includes(target);
+        if (!matchesTag) return false;
+      }
+
       // Category filter
       if (selectedCategory === 'EDICIÓN LIMITADA') {
         if (!product.badge) return false;
@@ -65,13 +85,14 @@ export const CatalogPage = () => {
         }
       }
 
-      // Search filter
+      // Search filter (name, category, description, badge/tag)
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        const matchName = product.name.toLowerCase().includes(q);
-        const matchCat = product.category.toLowerCase().includes(q);
-        const matchDesc = product.description.toLowerCase().includes(q);
-        if (!matchName && !matchCat && !matchDesc) return false;
+        const matchName = product.name?.toLowerCase().includes(q);
+        const matchCat = product.category?.toLowerCase().includes(q);
+        const matchDesc = product.description?.toLowerCase().includes(q);
+        const matchBadge = (product.badge || '').toLowerCase().includes(q);
+        if (!matchName && !matchCat && !matchDesc && !matchBadge) return false;
       }
 
       return true;
@@ -81,12 +102,12 @@ export const CatalogPage = () => {
       if (sortBy === 'name-asc') return a.name.localeCompare(b.name);
       return 0;
     });
-  }, [products, searchQuery, selectedCategory, sortBy]);
+  }, [products, searchQuery, selectedCategory, selectedTag, sortBy]);
 
   // Reset pagination when filters change
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
-  }, [searchQuery, selectedCategory, sortBy]);
+  }, [searchQuery, selectedCategory, selectedTag, sortBy]);
 
   const displayedProducts = useMemo(() => {
     return filteredProducts.slice(0, visibleCount);
@@ -154,6 +175,21 @@ export const CatalogPage = () => {
 
         </div>
 
+        {/* Active Tag / Collection Filter Badge */}
+        {selectedTag && (
+          <div className="flex items-center gap-2 mb-4 bg-neutral-950 border border-neutral-800 p-2.5 rounded-lg w-fit">
+            <span className="text-[10px] font-condensed tracking-wider text-neutral-400 uppercase">COLECCIÓN / ETIQUETA:</span>
+            <span className="text-xs font-condensed font-bold text-[#C52222] uppercase tracking-wider">{selectedTag}</span>
+            <button
+              onClick={() => setSelectedTag('')}
+              className="ml-2 text-neutral-400 hover:text-white text-xs cursor-pointer px-1 py-0.5 bg-neutral-900 hover:bg-neutral-800 rounded"
+              title="Quitar filtro de colección"
+            >
+              ✕ Quitar
+            </button>
+          </div>
+        )}
+
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
           {categories.map(cat => (
@@ -184,6 +220,7 @@ export const CatalogPage = () => {
               onClick={() => {
                 setSearchQuery('');
                 setSelectedCategory('TODOS');
+                setSelectedTag('');
               }}
               className="mt-4 px-6 py-2.5 bg-[#141414] hover:bg-neutral-800 text-neutral-300 text-xs font-condensed uppercase tracking-widest border border-neutral-700 cursor-pointer"
             >

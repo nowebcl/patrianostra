@@ -280,18 +280,50 @@ export const ProductModal = ({ isOpen, onClose, onSave, productToEdit }) => {
               </label>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="font-condensed text-neutral-400 uppercase text-xs">Etiqueta:</span>
-              <select
+            <div className="flex flex-col gap-2 pt-2 border-t border-neutral-800">
+              <div className="flex items-center justify-between">
+                <span className="font-condensed font-bold text-neutral-300 uppercase text-xs">
+                  Etiqueta / Colección:
+                </span>
+                {formData.badge && (
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, badge: '' })}
+                    className="text-[10px] text-red-400 hover:text-red-300 uppercase cursor-pointer"
+                  >
+                    ✕ Quitar
+                  </button>
+                )}
+              </div>
+
+              {/* Botones de colecciones rápidas */}
+              <div className="flex flex-wrap gap-1">
+                {['ORGULLO SUR', 'KRONSTADT', 'BATTLE ZONE', 'HOBBIT ITALIA', 'BRASSIC USA', 'EDICIÓN LIMITADA', 'NUEVO', 'OFERTA'].map(tag => {
+                  const isSel = (formData.badge || '').toUpperCase() === tag;
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, badge: isSel ? '' : tag })}
+                      className={`text-[9px] font-condensed font-bold uppercase px-2 py-0.5 rounded border transition-all cursor-pointer ${
+                        isSel
+                          ? 'bg-[#C52222] border-[#C52222] text-white'
+                          : 'bg-[#121212] border-neutral-700 text-neutral-400 hover:text-white'
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <input
+                type="text"
                 value={formData.badge}
                 onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                className="bg-[#0a0a0a] border border-neutral-700 rounded-lg px-2.5 py-1 text-white text-xs font-condensed uppercase cursor-pointer"
-              >
-                <option value="">Normal</option>
-                <option value="LIMITED">LIMITED (Edición Limitada)</option>
-                <option value="NEW">NUEVO</option>
-                <option value="SALE">OFERTA</option>
-              </select>
+                placeholder="Escribe o selecciona una etiqueta..."
+                className="bg-[#0a0a0a] border border-neutral-700 rounded-lg px-2.5 py-1.5 text-white text-xs font-condensed uppercase"
+              />
             </div>
           </div>
 

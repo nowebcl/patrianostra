@@ -152,7 +152,7 @@ export const Collaborations = () => {
           {collabCards.map((collab) => (
             <Link
               key={collab.id}
-              to={`/catalogo?q=${encodeURIComponent(collab.query)}`}
+              to={`/catalogo?tag=${encodeURIComponent(collab.query)}`}
               className="w-[84%] sm:w-[60%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start group block relative bg-black overflow-hidden border border-neutral-900 hover:border-neutral-600 transition-all duration-300 shadow-2xl"
             >
               <div className="relative overflow-hidden aspect-[2/1] bg-neutral-950">
