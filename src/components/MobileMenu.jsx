@@ -71,6 +71,33 @@ export const MobileMenu = () => {
               <span>CONTACTO</span>
             </Link>
           </nav>
+
+          {/* Categorías en menú móvil */}
+          <div className="pt-4 mt-4 border-t border-neutral-900">
+            <span className="text-[10px] font-condensed tracking-[0.25em] text-[#C52222] font-bold uppercase block mb-3">
+              CATEGORÍAS
+            </span>
+            <div className="grid grid-cols-2 gap-2 font-condensed text-xs font-semibold tracking-wider text-neutral-400">
+              <Link to="/catalogo?cat=POLERAS" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white uppercase py-1">
+                POLERAS
+              </Link>
+              <Link to="/catalogo?cat=CDS" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white uppercase py-1">
+                CDS
+              </Link>
+              <Link to="/catalogo?cat=VINILOS" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white uppercase py-1">
+                VINILOS
+              </Link>
+              <Link to="/catalogo?cat=JOCKEYS" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white uppercase py-1">
+                JOCKEYS
+              </Link>
+              <Link to="/catalogo?cat=BALACLAVAS" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white uppercase py-1">
+                BALACLAVAS
+              </Link>
+              <Link to="/catalogo?cat=POLERONES" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white uppercase py-1">
+                POLERONES
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className="pt-6 border-t border-neutral-900 text-xs text-neutral-500">

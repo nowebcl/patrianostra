@@ -28,7 +28,7 @@ export const CatalogPage = () => {
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   const categories = useMemo(() => {
-    const base = ['TODOS', 'POLERAS', 'POLERONES', 'MÚSICA', 'VINILOS', 'CDS', 'CASETES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
+    const base = ['TODOS', 'POLERAS', 'CDS', 'VINILOS', 'JOCKEYS', 'BALACLAVAS', 'POLERONES', 'MÚSICA', 'CASETES', 'EDICIÓN LIMITADA', 'PANTALONES', 'ACCESORIOS'];
     const fromProducts = products.map(p => (p.category || '').toUpperCase().trim()).filter(Boolean);
     return Array.from(new Set([...base, ...fromProducts]));
   }, [products]);
@@ -46,8 +46,8 @@ export const CatalogPage = () => {
         const sel = normalizeCat(selectedCategory);
         if (sel === 'POLERAS' || sel === 'CAMISETAS') {
           if (cat !== 'POLERAS' && cat !== 'CAMISETAS') return false;
-        } else if (sel === 'POLERONES') {
-          if (cat !== 'POLERONES' && cat !== 'HOODIES') return false;
+        } else if (sel === 'POLERONES' || sel === 'POLERON') {
+          if (cat !== 'POLERONES' && cat !== 'POLERON' && cat !== 'HOODIES' && cat !== 'HOODIE') return false;
         } else if (sel === 'MUSICA') {
           if (!musicSubCats.includes(cat)) return false;
         } else if (sel === 'VINILOS' || sel === 'VINILO') {
@@ -56,6 +56,10 @@ export const CatalogPage = () => {
           if (cat !== 'CDS' && cat !== 'CD') return false;
         } else if (sel === 'CASETES' || sel === 'CASETE') {
           if (cat !== 'CASETES' && cat !== 'CASETE' && cat !== 'CASSETTES' && cat !== 'CASSETTE') return false;
+        } else if (sel === 'JOCKEYS' || sel === 'JOCKEY') {
+          if (cat !== 'JOCKEYS' && cat !== 'JOCKEY' && cat !== 'GORROS' && cat !== 'GORRA' && cat !== 'GORRAS') return false;
+        } else if (sel === 'BALACLAVAS' || sel === 'BALACLAVA') {
+          if (cat !== 'BALACLAVAS' && cat !== 'BALACLAVA' && cat !== 'PASAMONTANAS' && !cat.includes('BALACLAVA')) return false;
         } else if (cat !== sel) {
           return false;
         }

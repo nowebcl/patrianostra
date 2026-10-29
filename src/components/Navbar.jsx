@@ -123,6 +123,35 @@ export const Navbar = () => {
         </div>
 
       </div>
+
+      {/* Category Links Sub-Bar (Letras solamente) */}
+      <div className="border-t border-neutral-900/80 bg-black/90 py-2 sm:py-2.5 px-4 overflow-x-auto no-scrollbar">
+        <nav className="max-w-7xl mx-auto flex items-center justify-center gap-2.5 sm:gap-4 md:gap-6 text-[10px] sm:text-xs font-condensed font-bold tracking-[0.2em] text-neutral-400 whitespace-nowrap">
+          <Link to="/catalogo?cat=POLERAS" className="hover:text-white transition-colors duration-200 uppercase">
+            POLERAS
+          </Link>
+          <span className="text-neutral-700 select-none">-</span>
+          <Link to="/catalogo?cat=CDS" className="hover:text-white transition-colors duration-200 uppercase">
+            CDS
+          </Link>
+          <span className="text-neutral-700 select-none">-</span>
+          <Link to="/catalogo?cat=VINILOS" className="hover:text-white transition-colors duration-200 uppercase">
+            VINILOS
+          </Link>
+          <span className="text-neutral-700 select-none">-</span>
+          <Link to="/catalogo?cat=JOCKEYS" className="hover:text-white transition-colors duration-200 uppercase">
+            JOCKEYS
+          </Link>
+          <span className="text-neutral-700 select-none">-</span>
+          <Link to="/catalogo?cat=BALACLAVAS" className="hover:text-white transition-colors duration-200 uppercase">
+            BALACLAVAS
+          </Link>
+          <span className="text-neutral-700 select-none">-</span>
+          <Link to="/catalogo?cat=POLERONES" className="hover:text-white transition-colors duration-200 uppercase">
+            POLERONES
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 };
