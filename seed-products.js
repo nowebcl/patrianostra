@@ -7,9 +7,14 @@ import { products } from './src/data/products.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const POCKETBASE_URL = 'https://patrianostradistropb.noweb.cl';
-const SUPERUSER_EMAIL = 'contacto@patrianostradistro.cl';
-const SUPERUSER_PASS = 'PatriaDistro2026!';
+const POCKETBASE_URL = process.env.VITE_POCKETBASE_URL || 'https://patrianostradistropb.noweb.cl';
+const SUPERUSER_EMAIL = process.env.POCKETBASE_SUPERUSER_EMAIL || '';
+const SUPERUSER_PASS = process.env.POCKETBASE_SUPERUSER_PASS || '';
+
+if (!SUPERUSER_EMAIL || !SUPERUSER_PASS) {
+  console.error('❌ Error: POCKETBASE_SUPERUSER_EMAIL y POCKETBASE_SUPERUSER_PASS deben proporcionarse como variables de entorno.');
+  process.exit(1);
+}
 
 const pb = new PocketBase(POCKETBASE_URL);
 

@@ -31,7 +31,7 @@ function detectColorFromText(text) {
 
 async function run() {
   console.log('1. Autenticando en PocketBase superuser...');
-  await pb.collection('_superusers').authWithPassword('contacto@patrianostradistro.cl', 'PatriaNostra2026!');
+  await pb.collection('_superusers').authWithPassword('contacto@patrianostradistro.cl', process.env.POCKETBASE_SUPERUSER_PASS || "");
   console.log('✓ Autenticación exitosa.');
 
   // Usar buffer de producto.webp como imagen base para las variantes

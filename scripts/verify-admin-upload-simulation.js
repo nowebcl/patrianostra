@@ -121,7 +121,7 @@ async function simulateAddProduct(productData) {
 
 async function run() {
   console.log('--- TEST DE SIMULACIÓN DE FLUJO ADMIN DE PRODUCTOS ---');
-  await pb.collection('_superusers').authWithPassword('contacto@patrianostradistro.cl', 'PatriaNostra2026!');
+  await pb.collection('_superusers').authWithPassword('contacto@patrianostradistro.cl', process.env.POCKETBASE_SUPERUSER_PASS || "");
   console.log('✓ Autenticado en PocketBase como Superuser.');
 
   const baseImagePath = path.resolve(__dirname, '../public/producto.webp');

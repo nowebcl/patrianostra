@@ -8,7 +8,7 @@ async function syncProductsJs() {
   console.log('📡 Conectando a PocketBase...');
   await pb.collection('_superusers').authWithPassword(
     'contacto@patrianostradistro.cl',
-    'PatriaNostra2026!'
+    process.env.POCKETBASE_SUPERUSER_PASS || ""
   );
   const records = await pb.collection('products').getFullList({
     sort: '-created,-@rowid'

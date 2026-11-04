@@ -170,10 +170,39 @@ export function flowApiPlugin() {
             const body = await parseRequestBody(req);
             const clientOrigin = `${req.headers['x-forwarded-proto'] || 'http'}://${req.headers.host || 'localhost:3000'}`;
 
+            const numAmount = Number(body.amount);
+            if (!Number.isFinite(numAmount) || numAmount < 350) {
+              res.writeHead(400, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ success: false, error: 'Monto de orden inválido (mínimo $350 CLP)' }));
+              return;
+            }
+
+            // Validación defensiva anti-Price Tampering si vienen los ítems de la orden
+            if (body.orderDetails && Array.isArray(body.orderDetails.items) && body.orderDetails.items.length > 0) {
+              const calculatedSubtotal = body.orderDetails.items.reduce((sum, item) => {
+                const itemPrice = Number(item.product?.price || item.price || 0);
+                const itemQty = Math.max(1, Math.round(Number(item.quantity) || 1));
+                return sum + (itemPrice * itemQty);
+              }, 0);
+
+              const discount = Number(body.orderDetails.discountAmount || 0);
+              const expectedTotal = Math.max(350, calculatedSubtotal - discount);
+
+              if (numAmount < expectedTotal) {
+                console.warn(`[SECURITY ALERT] Intento de manipulación de precios detectado. Esperado: $${expectedTotal}, Recibido: $${numAmount}`);
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
+                  success: false,
+                  error: 'Inconsistencia de precios detectada en la orden. Por favor vuelve a cargar el carrito.'
+                }));
+                return;
+              }
+            }
+
             const result = await createFlowPayment({
               commerceOrder: body.commerceOrder,
               subject: body.subject,
-              amount: body.amount,
+              amount: numAmount,
               email: body.email,
               clientOrigin,
               orderDetails: body.orderDetails

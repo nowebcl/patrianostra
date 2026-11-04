@@ -7,9 +7,13 @@ const pendingOrders = new Map();
  * Normaliza y obtiene las credenciales de Flow de manera segura
  */
 export function getFlowConfig() {
-  const apiKey = process.env.FLOW_API_KEY || '28F1BB16-B8A8-4A36-95D9-92643BE31L7E';
-  const secretKey = process.env.FLOW_SECRET_KEY || 'f5aca74d33356b5c158c0a893ecd0b2c9f877838';
+  const apiKey = process.env.FLOW_API_KEY;
+  const secretKey = process.env.FLOW_SECRET_KEY;
   const apiUrl = process.env.FLOW_API_URL || 'https://www.flow.cl/api';
+
+  if (!apiKey || !secretKey) {
+    throw new Error('Configuración de pasarela Flow incompleta: FLOW_API_KEY o FLOW_SECRET_KEY no configuradas en las variables de entorno.');
+  }
 
   return { apiKey, secretKey, apiUrl };
 }

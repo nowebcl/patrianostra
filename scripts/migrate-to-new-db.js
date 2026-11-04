@@ -2,11 +2,11 @@ import PocketBase from 'pocketbase';
 
 const OLD_PB_URL = 'https://pn.noweb.tech';
 const OLD_SUPERUSER_EMAIL = 'contacto@patrianostradistro.cl';
-const OLD_SUPERUSER_PASS = 'PatriaNostra2026!';
+const OLD_SUPERUSER_PASS = process.env.POCKETBASE_SUPERUSER_PASS || "";
 
 const NEW_PB_URL = 'https://patrianostradistropb.noweb.cl';
 const NEW_SUPERUSER_EMAIL = 'contacto@patrianostradistro.cl';
-const NEW_SUPERUSER_PASS = 'PatriaDistro2026!';
+const NEW_SUPERUSER_PASS = process.env.POCKETBASE_SUPERUSER_PASS || "";
 
 async function authenticate(pb, url, email, password) {
   try {

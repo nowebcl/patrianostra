@@ -13,7 +13,7 @@ async function main() {
   // 1. Autenticar en PocketBase
   await pb.collection('_superusers').authWithPassword(
     'contacto@patrianostradistro.cl',
-    'PatriaNostra2026!'
+    process.env.POCKETBASE_SUPERUSER_PASS || ""
   );
   console.log('✅ 1. Autenticado en PocketBase.');
 

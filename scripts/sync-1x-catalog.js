@@ -9,7 +9,7 @@ const rootDir = path.resolve(__dirname, '..');
 
 const POCKETBASE_URL = 'https://patrianostradistropb.noweb.cl';
 const SUPERUSER_EMAIL = 'contacto@patrianostradistro.cl';
-const SUPERUSER_PASS = 'PatriaDistro2026!';
+const SUPERUSER_PASS = process.env.POCKETBASE_SUPERUSER_PASS || "";
 
 export const newProductsList = [
   {

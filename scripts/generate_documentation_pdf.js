@@ -463,7 +463,7 @@ const htmlContent = `<!DOCTYPE html>
           </div>
           <div class="cred-row">
             <span class="cred-label">Contraseña:</span>
-            <span class="cred-value">PatriaNostra2026!</span>
+            <span class="cred-value">[CONFIDENCIAL_EN_POCKETBASE]</span>
           </div>
         </div>
 
@@ -504,7 +504,7 @@ const htmlContent = `<!DOCTYPE html>
           <div class="step-idx">2</div>
           <div class="step-text">
             <h4>Autenticación de Seguridad</h4>
-            <p>Escribe tu correo <span class="code-pill">contacto@patrianostradistro.cl</span> y la contraseña oficial del panel <span class="code-pill">PatriaNostra2026!</span>. Luego pulsa el botón rojo <strong>"INGRESAR AL SISTEMA →"</strong>.</p>
+            <p>Escribe tu correo <span class="code-pill">contacto@patrianostradistro.cl</span> y la contraseña oficial del panel <span class="code-pill">[CONFIDENCIAL_EN_POCKETBASE]</span>. Luego pulsa el botón rojo <strong>"INGRESAR AL SISTEMA →"</strong>.</p>
           </div>
         </div>
 
