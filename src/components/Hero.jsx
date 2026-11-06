@@ -1,76 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const heroSlides = [
-  {
-    image: '/hero2.webp',
-    alt: 'Patria Nostra Tactical Model - Back Shield',
-    imgClass: 'w-full h-full object-cover object-[60%_top] sm:object-[55%_top] lg:object-[50%_top]'
-  },
-  {
-    image: '/hero3.webp',
-    alt: 'Patria Nostra Lookbook - Flag and Hoodies',
-    imgClass: 'w-full h-full object-cover sm:object-cover object-[center_15%] sm:object-[center_25%] lg:object-[center_32%]'
-  }
-];
-
 export const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5500);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section className="relative bg-black min-h-[640px] sm:min-h-[740px] lg:min-h-[820px] flex items-center overflow-hidden border-b border-neutral-900">
       
-      {/* Large Master Hero Background Model Slider (Right Side Dominant) with Ken Burns Zoom */}
-      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[68%] xl:w-[65%] h-full pointer-events-none select-none z-0 overflow-hidden flex justify-end items-end">
-        {heroSlides.map((slide, index) => {
-          const isActive = index === currentSlide;
-          return (
-            <div 
-              key={slide.image} 
-              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
-            >
-              <img 
-                src={slide.image} 
-                alt={slide.alt} 
-                loading={index === 0 ? 'eager' : 'lazy'}
-                fetchPriority={index === 0 ? 'high' : 'auto'}
-                decoding="async"
-                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = slide.image.replace('.webp', '.png'); }}
-                className={`${slide.imgClass} filter contrast-105 brightness-95 transition-transform duration-[6500ms] ease-out ${
-                  isActive ? 'scale-105' : 'scale-100'
-                }`}
-              />
-            </div>
-          );
-        })}
+      {/* Master Hero Background Artwork (Right Side Dominant on desktop, Full coverage on mobile) */}
+      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[70%] xl:w-[68%] h-full pointer-events-none select-none z-0 overflow-hidden flex justify-end items-end">
+        <div className="absolute inset-0 w-full h-full">
+          <img 
+            src="/portada.webp" 
+            alt="Patria Nostra Distro Underground - Colección Oficial" 
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            onError={(e) => { 
+              e.currentTarget.onerror = null; 
+              e.currentTarget.src = '/portada.png'; 
+            }}
+            className="w-full h-full object-cover object-center filter contrast-105 brightness-95"
+          />
+        </div>
         
         {/* Multi-stage Black Gradients for seamless feathered blend */}
         <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-black via-black/80 to-transparent z-20"></div>
         <div className="absolute inset-x-0 bottom-0 h-20 sm:h-24 bg-gradient-to-t from-black via-black/75 to-transparent z-20"></div>
         <div className="absolute inset-x-0 top-0 h-16 sm:h-20 bg-gradient-to-b from-black/80 to-transparent z-20"></div>
-
-        {/* Subtle Slide Indicators */}
-        <div className="absolute bottom-6 right-8 z-30 flex items-center gap-2 pointer-events-auto">
-          {heroSlides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-1 transition-all duration-300 cursor-pointer ${
-                idx === currentSlide ? 'w-8 bg-[#C52222]' : 'w-3 bg-neutral-700 hover:bg-neutral-500'
-              }`}
-              aria-label={`Slide ${idx + 1}`}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Foreground Content Layer */}
