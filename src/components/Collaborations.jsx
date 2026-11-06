@@ -4,6 +4,13 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const collabCards = [
   { 
+    id: 'tattoo-motherfuckers', 
+    image: '/collaborations/tattoo-motherfuckers.webp', 
+    alt: 'Tattoo Motherfuckers Merch Oficial x Patria Nostra', 
+    title: 'TATTOO MOTHERFUCKERS',
+    query: 'TATTOO MOTHERFUCKERS' 
+  },
+  { 
     id: 'battle-zone', 
     image: '/collaborations/battle-zone.webp', 
     alt: 'Battle Zone Merch Oficial x Patria Nostra', 
@@ -15,28 +22,7 @@ const collabCards = [
     image: '/collaborations/hobbit-italia.webp', 
     alt: 'Hobbit Italia Merch Oficial x Patria Nostra', 
     title: 'HOBBIT ITALIA',
-    query: 'HOBBIT' 
-  },
-  { 
-    id: 'tmf', 
-    image: '/collaborations/tmf.webp', 
-    alt: 'Tattooed Mother Fucker Merch Oficial x Patria Nostra', 
-    title: 'TATTOOED MOTHER FUCKER',
-    query: 'TATTOOED' 
-  },
-  { 
-    id: 'brassic-usa', 
-    image: '/collaborations/brassic-usa.webp', 
-    alt: 'Brassic USA Merch Oficial x Patria Nostra', 
-    title: 'BRASSIC USA',
-    query: 'BRASSIC' 
-  },
-  { 
-    id: 'total-annihilation', 
-    image: '/collaborations/total-annihilation.webp', 
-    alt: 'Total Annihilation Merch Oficial x Patria Nostra', 
-    title: 'TOTAL ANNIHILATION',
-    query: 'TOTAL ANNIHILATION' 
+    query: 'HOBBIT ITALIA' 
   },
   { 
     id: 'ahtr', 
@@ -44,6 +30,20 @@ const collabCards = [
     alt: 'AHTR Merch Oficial x Patria Nostra', 
     title: 'AHTR',
     query: 'AHTR' 
+  },
+  { 
+    id: 'brassic-usa', 
+    image: '/collaborations/brassic-usa.webp', 
+    alt: 'Brassic USA Merch Oficial x Patria Nostra', 
+    title: 'BRASSIC USA',
+    query: 'BRASSIC USA' 
+  },
+  { 
+    id: 'total-annihilation', 
+    image: '/collaborations/total-annihilation.webp', 
+    alt: 'Total Annihilation Merch Oficial x Patria Nostra', 
+    title: 'TOTAL ANNIHILATION',
+    query: 'TOTAL ANNIHILATION' 
   }
 ];
 
@@ -105,7 +105,7 @@ export const Collaborations = () => {
     <section id="colaboraciones" className="bg-black py-12 sm:py-16 border-b border-neutral-900 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header: Title on Left, Nav Arrows on Right (VER TODAS removed) */}
+        {/* Section Header: Title on Left, Nav Arrows on Right */}
         <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3 border-b border-neutral-900">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 bg-[#C52222] inline-block"></span>
@@ -161,6 +161,9 @@ export const Collaborations = () => {
                   alt={collab.alt} 
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                  }}
                   className="w-full h-full object-cover select-none filter contrast-105 transition-transform duration-500 group-hover:scale-105"
                 />
                 

@@ -50,11 +50,38 @@ export const CatalogPage = () => {
         const prodName = (product.name || '').toUpperCase();
         const prodCat = (product.category || '').toUpperCase();
         const prodDesc = (product.description || '').toUpperCase();
+        const prodCollab = (product.collab || '').toUpperCase();
+        const prodTags = Array.isArray(product.tags)
+          ? product.tags.join(' ').toUpperCase()
+          : (typeof product.tags === 'string' ? product.tags.toUpperCase() : '');
         const target = selectedTag.toUpperCase();
-        const matchesTag = prodBadge.includes(target) || 
-                           prodName.includes(target) || 
-                           prodCat.includes(target) || 
-                           prodDesc.includes(target);
+        let matchesTag = prodBadge.includes(target) || 
+                         prodName.includes(target) || 
+                         prodCat.includes(target) || 
+                         prodDesc.includes(target) ||
+                         prodCollab.includes(target) ||
+                         prodTags.includes(target);
+
+        // Alias inteligentes para las 6 colaboraciones oficiales
+        if (!matchesTag) {
+          const combined = `${prodBadge} ${prodName} ${prodDesc} ${prodTags} ${prodCollab}`;
+          if (target.includes('TATTOO') || target.includes('TMF')) {
+            matchesTag = combined.includes('TATTOO') || combined.includes('TMF');
+          } else if (target.includes('BATTLE ZONE')) {
+            matchesTag = combined.includes('BATTLE ZONE') || combined.includes('BATTLEZONE');
+          } else if (target.includes('HOBBIT')) {
+            matchesTag = combined.includes('HOBBIT');
+          } else if (target.includes('AHTR')) {
+            matchesTag = combined.includes('AHTR');
+          } else if (target.includes('BRASSIC')) {
+            matchesTag = combined.includes('BRASSIC');
+          } else if (target.includes('TOTAL ANNIHILATION')) {
+            matchesTag = combined.includes('TOTAL ANNIHILATION') || combined.includes('ANNIHILATION');
+          } else if (target.includes('ORGULLO SUR')) {
+            matchesTag = combined.includes('ORGULLO SUR') || combined.includes('ORGULLOSUR');
+          }
+        }
+
         if (!matchesTag) return false;
       }
 

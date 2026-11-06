@@ -1047,14 +1047,15 @@ export const ProductEditorView = ({ productToEdit, onSave, onBack }) => {
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {[
-                  'ORGULLO SUR',
-                  'KRONSTADT',
+                  'TATTOO MOTHERFUCKERS',
                   'BATTLE ZONE',
                   'HOBBIT ITALIA',
-                  'BRASSIC USA',
-                  'TATTOOED MOTHER FUCKER',
-                  'TOTAL ANNIHILATION',
                   'AHTR',
+                  'BRASSIC USA',
+                  'TOTAL ANNIHILATION',
+                  'ORGULLO SUR',
+                  'KRONSTADT',
+                  'TATTOOED MOTHER FUCKER',
                   'BASTIÓN',
                   'DISIDENCIA',
                   'EDICIÓN LIMITADA',

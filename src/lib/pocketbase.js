@@ -273,6 +273,8 @@ export const mapPbProduct = (record) => {
     originalPrice: record.originalPrice ? Number(record.originalPrice) : null,
     category: record.category || 'Poleras',
     badge: record.badge || null,
+    tags: record.tags || [],
+    collab: record.collab || null,
     stock: calculatedStock,
     sizeStock,
     gender: record.gender || 'Unisex',
