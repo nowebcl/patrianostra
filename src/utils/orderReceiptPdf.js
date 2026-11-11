@@ -12,6 +12,14 @@ import { formatCLP } from './currency.js';
  * - Correo oficial exclusivo para coordinación y seguimiento:
  *   contacto@patrianostradistro.cl
  */
+const pdfSafeText = (value, fallback = '') => {
+  const cleaned = String(value ?? '')
+    .replace(/[^\x20-\x7E\xA0-\xFF\u2022]/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+  return cleaned || fallback;
+};
+
 export function generateOrderPdf(order, { autoDownload = true } = {}) {
   if (!order) return null;
 
@@ -47,7 +55,7 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(...crimson);
-  doc.text('DISTRO OFICIAL • CHILE 🇨🇱', margin, y + 5);
+  doc.text('DISTRO OFICIAL • CHILE', margin, y + 5);
 
   // Número de orden a la derecha
   doc.setFont('helvetica', 'bold');
@@ -56,13 +64,13 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.text('ORDEN DE COMPRA', pageWidth - margin, y - 2, { align: 'right' });
   doc.setFontSize(14);
   doc.setTextColor(...crimson);
-  doc.text(String(order.orderNumber || 'PN-CL-000000'), pageWidth - margin, y + 4, { align: 'right' });
+  doc.text(pdfSafeText(order.orderNumber, 'PN-CL-000000'), pageWidth - margin, y + 4, { align: 'right' });
 
   // Fecha y estado
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
   doc.setTextColor(...muted);
-  const orderDate = order.date || new Date().toLocaleDateString('es-CL', {
+  const orderDate = pdfSafeText(order.date) || new Date().toLocaleDateString('es-CL', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -113,17 +121,18 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.text('DATOS DEL DESTINATARIO', margin + 4, y + 6);
 
   const cust = order.customer || {};
+  const customerName = pdfSafeText(`${cust.firstName || ''} ${cust.lastName || ''}`, 'Cliente Patria Nostra');
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);
   doc.setTextColor(...dark);
-  doc.text(`${cust.firstName || ''} ${cust.lastName || ''}`.trim() || 'Cliente Patria Nostra', margin + 4, y + 12);
+  doc.text(customerName, margin + 4, y + 12);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(...muted);
-  doc.text(`RUT / Identificación: ${cust.rut || 'No indicado'}`, margin + 4, y + 17);
-  doc.text(`Teléfono: ${cust.phone || 'No indicado'}`, margin + 4, y + 22);
-  doc.text(`Email de compra: ${cust.email || 'No indicado'}`, margin + 4, y + 27);
+  doc.text(`RUT / Identificación: ${pdfSafeText(cust.rut, 'No indicado')}`, margin + 4, y + 17);
+  doc.text(`Teléfono: ${pdfSafeText(cust.phone, 'No indicado')}`, margin + 4, y + 22);
+  doc.text(`Email de compra: ${pdfSafeText(cust.email, 'No indicado')}`, margin + 4, y + 27);
 
   // Box Derecho: Dirección de Envío
   doc.setFillColor(...lightBg);
@@ -134,19 +143,20 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9);
   doc.setTextColor(...crimson);
-  doc.text('DIRECCIÓN DE ENTREGA 🇨🇱', margin + colW + 10, y + 6);
+  doc.text('DIRECCIÓN DE ENTREGA', margin + colW + 10, y + 6);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);
   doc.setTextColor(...dark);
-  doc.text(cust.address || 'Dirección no indicada', margin + colW + 10, y + 12);
+  doc.text(pdfSafeText(cust.address, 'Dirección no indicada'), margin + colW + 10, y + 12);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(...muted);
-  doc.text(`${cust.city || ''}, ${cust.region || ''}`, margin + colW + 10, y + 17);
+  const cityRegion = [pdfSafeText(cust.city), pdfSafeText(cust.region)].filter(Boolean).join(', ');
+  doc.text(cityRegion, margin + colW + 10, y + 17);
   const hasFreeShipping = order.hasFreeShipping ?? (Number(order.subtotal || 0) >= 70000);
-  doc.text(`Código Postal: ${cust.postalCode || '7500000'}`, margin + colW + 10, y + 22);
+  doc.text(`Código Postal: ${pdfSafeText(cust.postalCode, '7500000')}`, margin + colW + 10, y + 22);
   doc.text(`Envío: ${hasFreeShipping ? 'ENVÍO GRATIS' : 'COORDINAR ENVÍO'}`, margin + colW + 10, y + 27);
 
   // 5. Tabla de Productos Comprados
@@ -175,10 +185,10 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   let isEven = false;
 
   items.forEach(item => {
-    const pName = item.product?.name || item.name || 'Prenda Patria Nostra';
-    const pColor = item.color || item.product?.defaultColor || '';
+    const pName = pdfSafeText(item.product?.name || item.name, 'Prenda Patria Nostra');
+    const pColor = pdfSafeText(item.color || item.product?.defaultColor);
     const fullName = pColor ? `${pName} (${pColor})` : pName;
-    const pSize = item.size || 'Única';
+    const pSize = pdfSafeText(item.size, 'Única');
     const pQty = Number(item.quantity) || 1;
     const pPrice = Number(item.product?.price || item.price || 0);
     const pTotal = pPrice * pQty;
@@ -255,7 +265,7 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9.5);
   doc.setTextColor(...crimson);
-  doc.text('📦 DESPACHO Y COORDINACIÓN DE ENVÍO', margin + 6, y + 7);
+  doc.text('DESPACHO Y COORDINACIÓN DE ENVÍO', margin + 6, y + 7);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
