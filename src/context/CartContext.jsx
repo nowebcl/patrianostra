@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useStore } from './StoreContext';
 import { getSizeStock } from '../utils/stock';
 
 export const FREE_SHIPPING_THRESHOLD = 70000;
+const CART_STORAGE_KEY = 'patria_nostra_cart';
 
 const COUPON_DISCOUNTS = {
   PATRIA10: 10,
@@ -17,12 +18,29 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const { products } = useStore();
 
-  // Cart state initialized with 1 item if available
+  // Cargar carrito guardado en localStorage o iniciar vacío (nunca pre-cargar productos de muestra)
   const [cart, setCart] = useState(() => {
-    return products && products.length > 0
-      ? [{ product: products[0], size: 'L', quantity: 1 }]
-      : [];
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed.filter(item => item && item.product && Number(item.quantity) > 0);
+        }
+      }
+    } catch (e) {
+      console.warn('Error cargando carrito desde localStorage:', e);
+    }
+    return [];
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+      console.warn('Error guardando carrito en localStorage:', e);
+    }
+  }, [cart]);
 
   // Drawer and Modals states
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -125,13 +143,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (index) => {
-    setCart(prevCart => {
-      const item = prevCart[index];
-      if (item) {
-        showToast(`Se eliminó "${item.product.name}" del carrito`);
-      }
-      return prevCart.filter((_, i) => i !== index);
-    });
+    const item = cart[index];
+    setCart(prevCart => prevCart.filter((_, i) => i !== index));
+    if (item) {
+      showToast(`Se eliminó "${item.product.name}" del carrito`);
+    }
   };
 
   const clearCart = () => {
