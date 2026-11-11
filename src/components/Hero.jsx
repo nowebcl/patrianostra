@@ -35,7 +35,7 @@ export const Hero = () => {
           {/* Subtitle Tag */}
           <div className="mb-4 sm:mb-6">
             <span className="text-[#C52222] font-condensed font-bold tracking-[0.25em] text-xs sm:text-sm uppercase inline-block">
-              HONOR - LEALTAD - RESISTENCIA
+              DESDE EL 2018
             </span>
           </div>
 
@@ -52,9 +52,8 @@ export const Hero = () => {
 
           {/* Descriptive Manifesto Paragraph */}
           <p className="text-neutral-400 font-sans text-xs sm:text-sm md:text-base leading-relaxed max-w-md mb-8 sm:mb-10 font-normal">
-            Streetwear underground inspirado en la historia.<br />
-            La resistencia y el honor son nuestras formas.<br />
-            <span className="text-neutral-300 font-medium">No es moda. Es identidad.</span>
+            Más que una distro, es una declaración de guerra contra todo lo podrido.<br />
+            <span className="text-neutral-300 font-medium">No es Moda, es IDENTIDAD.</span>
           </p>
 
           {/* Action Button */}
