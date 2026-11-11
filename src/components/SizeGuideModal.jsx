@@ -214,7 +214,7 @@ export const SizeGuideModal = ({ isOpen, onClose, currentSelectedSize = 'L' }) =
         {/* Modal Bottom Actions */}
         <div className="mt-6 pt-4 border-t border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="text-[11px] text-neutral-500 font-sans text-center sm:text-left">
-            ¿Tienes dudas con tu talla? Escríbenos a <strong className="text-neutral-300">contacto@patrianostradistro.cl</strong>
+            ¿Tienes dudas con tu talla? Escríbenos a <strong className="text-neutral-300">info@patrianostradistro.cl</strong>
           </span>
           <button
             onClick={onClose}

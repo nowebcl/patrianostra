@@ -471,10 +471,10 @@ export const CheckoutPage = () => {
               <div className="bg-black border border-neutral-800 p-3 rounded flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#C52222] shrink-0" />
                 <a 
-                  href="mailto:contacto@patrianostradistro.cl" 
+                  href="mailto:info@patrianostradistro.cl" 
                   className="text-sm font-mono font-bold text-white hover:text-[#C52222] transition-colors select-all"
                 >
-                  contacto@patrianostradistro.cl
+                  info@patrianostradistro.cl
                 </a>
               </div>
             </div>

@@ -10,7 +10,7 @@ import { formatCLP } from './currency.js';
  * - Datos del cliente y dirección de entrega
  * - Detalle de prendas, tallas y totales
  * - Correo oficial exclusivo para coordinación y seguimiento:
- *   contacto@patrianostradistro.cl
+ *   info@patrianostradistro.cl
  */
 const pdfSafeText = (value, fallback = '') => {
   const cleaned = String(value ?? '')
@@ -281,7 +281,7 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(10.5);
   doc.setTextColor(...crimson);
-  doc.text('contacto@patrianostradistro.cl', margin + 10, y + 27);
+  doc.text('info@patrianostradistro.cl', margin + 10, y + 27);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);

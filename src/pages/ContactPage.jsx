@@ -166,8 +166,8 @@ export const ContactPage = () => {
                   <Mail className="w-4 h-4 text-[#C52222] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-condensed text-[10px] text-neutral-500 uppercase tracking-wider block">CORREO OFICIAL:</span>
-                    <a href="mailto:info@patrianostra.com" className="text-neutral-200 hover:text-white transition-colors">
-                      info@patrianostra.com
+                    <a href="mailto:info@patrianostradistro.cl" className="text-neutral-200 hover:text-white transition-colors">
+                      info@patrianostradistro.cl
                     </a>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export const ContactPage = () => {
 
                 {/* Direct Support */}
                 <a 
-                  href="mailto:info@patrianostra.com" 
+                  href="mailto:info@patrianostradistro.cl" 
                   className="flex items-center gap-3 bg-black border border-neutral-800 hover:border-[#C52222] p-3 text-neutral-300 hover:text-white transition-all group cursor-pointer"
                 >
                   <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-[#C52222] group-hover:bg-[#C52222] group-hover:text-white transition-colors">

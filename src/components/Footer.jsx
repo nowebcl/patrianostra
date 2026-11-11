@@ -157,7 +157,7 @@ export const Footer = () => {
             </p>
             <div className="bg-black border border-neutral-900 p-3 rounded text-[11px] text-neutral-400 space-y-1">
               <p>📍 Despachos a todo Chile.</p>
-              <p>✉️ Dudas o coordinación: <a href="mailto:contacto@patrianostradistro.cl" className="text-white hover:text-[#C52222] font-mono">contacto@patrianostradistro.cl</a></p>
+              <p>✉️ Dudas o coordinación: <a href="mailto:info@patrianostradistro.cl" className="text-white hover:text-[#C52222] font-mono">info@patrianostradistro.cl</a></p>
             </div>
           </div>
         </div>
