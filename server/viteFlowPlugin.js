@@ -1,43 +1,13 @@
-import { createFlowPayment, getFlowPaymentStatus, savePendingOrder, getSavedPendingOrder } from './flowService.js';
+import {
+  createFlowPayment,
+  extractRequestOrigin,
+  getFlowPaymentStatus,
+  parseFlowRequestBody,
+  validateFlowOrderPayload
+} from './flowService.js';
 import sharp from 'sharp';
 import fs from 'node:fs';
 import path from 'node:path';
-
-async function parseRequestBody(req) {
-  try {
-    let body = '';
-    for await (const chunk of req) {
-      body += chunk;
-    }
-    if (!body) return {};
-
-    const contentType = req.headers['content-type'] || '';
-    if (contentType.includes('application/json')) {
-      return JSON.parse(body);
-    } else if (contentType.includes('application/x-www-form-urlencoded')) {
-      const params = new URLSearchParams(body);
-      const obj = {};
-      for (const [key, val] of params.entries()) {
-        obj[key] = val;
-      }
-      return obj;
-    } else {
-      try {
-        return JSON.parse(body);
-      } catch {
-        const params = new URLSearchParams(body);
-        const obj = {};
-        for (const [key, val] of params.entries()) {
-          obj[key] = val;
-        }
-        return obj;
-      }
-    }
-  } catch (e) {
-    console.error('Error parsing request body:', e);
-    return {};
-  }
-}
 
 export function flowApiPlugin() {
   return {
@@ -167,42 +137,25 @@ export function flowApiPlugin() {
         // 1. Crear Orden de Pago en Flow: POST /api/flow/create
         if (pathname === '/api/flow/create' && req.method === 'POST') {
           try {
-            const body = await parseRequestBody(req);
-            const clientOrigin = `${req.headers['x-forwarded-proto'] || 'http'}://${req.headers.host || 'localhost:3000'}`;
+            const body = await parseFlowRequestBody(req);
+            const clientOrigin = extractRequestOrigin(req);
 
-            const numAmount = Number(body.amount);
-            if (!Number.isFinite(numAmount) || numAmount < 350) {
+            const validation = validateFlowOrderPayload({
+              commerceOrder: body.commerceOrder,
+              amount: body.amount,
+              orderDetails: body.orderDetails
+            });
+
+            if (!validation.valid) {
               res.writeHead(400, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify({ success: false, error: 'Monto de orden inválido (mínimo $350 CLP)' }));
+              res.end(JSON.stringify({ success: false, error: validation.error }));
               return;
-            }
-
-            // Validación defensiva anti-Price Tampering si vienen los ítems de la orden
-            if (body.orderDetails && Array.isArray(body.orderDetails.items) && body.orderDetails.items.length > 0) {
-              const calculatedSubtotal = body.orderDetails.items.reduce((sum, item) => {
-                const itemPrice = Number(item.product?.price || item.price || 0);
-                const itemQty = Math.max(1, Math.round(Number(item.quantity) || 1));
-                return sum + (itemPrice * itemQty);
-              }, 0);
-
-              const discount = Number(body.orderDetails.discountAmount || 0);
-              const expectedTotal = Math.max(350, calculatedSubtotal - discount);
-
-              if (numAmount < expectedTotal) {
-                console.warn(`[SECURITY ALERT] Intento de manipulación de precios detectado. Esperado: $${expectedTotal}, Recibido: $${numAmount}`);
-                res.writeHead(400, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({
-                  success: false,
-                  error: 'Inconsistencia de precios detectada en la orden. Por favor vuelve a cargar el carrito.'
-                }));
-                return;
-              }
             }
 
             const result = await createFlowPayment({
               commerceOrder: body.commerceOrder,
               subject: body.subject,
-              amount: numAmount,
+              amount: validation.numAmount,
               email: body.email,
               clientOrigin,
               orderDetails: body.orderDetails
@@ -220,19 +173,19 @@ export function flowApiPlugin() {
 
         // 2. Retorno de Flow: POST /api/flow/return o GET /api/flow/return
         if (pathname === '/api/flow/return') {
-          let token = urlObj.searchParams.get('token');
+          let token = urlObj.searchParams.get('token') || urlObj.searchParams.get('TOKEN');
           if (!token && req.method === 'POST') {
-            const body = await parseRequestBody(req);
-            token = body.token;
+            const body = await parseFlowRequestBody(req);
+            token = body?.token || body?.TOKEN;
           }
 
           if (token) {
             res.writeHead(303, {
-              Location: `/checkout?status=flow_return&token=${encodeURIComponent(token)}`
+              Location: `/checkout?status=flow_return&token=${encodeURIComponent(String(token))}`
             });
             res.end();
           } else {
-            res.writeHead(302, { Location: '/checkout?status=error' });
+            res.writeHead(303, { Location: '/checkout?status=error' });
             res.end();
           }
           return;
@@ -262,8 +215,8 @@ export function flowApiPlugin() {
         // 4. Webhook: POST /api/flow/confirm
         if (pathname === '/api/flow/confirm' && req.method === 'POST') {
           try {
-            const body = await parseRequestBody(req);
-            const token = body.token || urlObj.searchParams.get('token');
+            const body = await parseFlowRequestBody(req);
+            const token = body?.token || body?.TOKEN || urlObj.searchParams.get('token');
             if (token) {
               await getFlowPaymentStatus(token);
             }

@@ -7,15 +7,97 @@ const pendingOrders = new Map();
  * Normaliza y obtiene las credenciales de Flow de manera segura
  */
 export function getFlowConfig() {
-  const apiKey = process.env.FLOW_API_KEY;
-  const secretKey = process.env.FLOW_SECRET_KEY;
-  const apiUrl = process.env.FLOW_API_URL || 'https://www.flow.cl/api';
+  const apiKey = (process.env.FLOW_API_KEY || '').trim();
+  const secretKey = (process.env.FLOW_SECRET_KEY || '').trim();
+  const apiUrl = (process.env.FLOW_API_URL || 'https://www.flow.cl/api').trim().replace(/\/+$/, '');
 
   if (!apiKey || !secretKey) {
     throw new Error('Configuración de pasarela Flow incompleta: FLOW_API_KEY o FLOW_SECRET_KEY no configuradas en las variables de entorno.');
   }
 
   return { apiKey, secretKey, apiUrl };
+}
+
+/**
+ * Parsea de forma segura cuerpos JSON o x-www-form-urlencoded (objetos, strings o streams)
+ */
+export async function parseFlowRequestBody(req) {
+  const parseRawText = (raw) => {
+    const trimmed = String(raw || '').trim();
+    if (!trimmed) return {};
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (parsed && typeof parsed === 'object') return parsed;
+    } catch {}
+    const params = new URLSearchParams(trimmed);
+    return Object.fromEntries(params.entries());
+  };
+
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+    return req.body;
+  }
+  if (Buffer.isBuffer(req.body)) {
+    return parseRawText(req.body.toString('utf8'));
+  }
+  if (typeof req.body === 'string') {
+    return parseRawText(req.body);
+  }
+
+  try {
+    const chunks = [];
+    for await (const chunk of req) {
+      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    }
+    return parseRawText(Buffer.concat(chunks).toString('utf8'));
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Extrae el origen público (protocolo + host) respetando proxies inversos
+ */
+export function extractRequestOrigin(req) {
+  const rawHost = req.headers['x-forwarded-host'] || req.headers.host || 'localhost:3000';
+  const host = String(rawHost).split(',')[0].trim();
+  const rawProto = String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim().toLowerCase();
+  const proto = rawProto || (/^(localhost|127\.0\.0\.1)(:|$)/i.test(host) ? 'http' : 'https');
+  return `${proto}://${host}`;
+}
+
+/**
+ * Valida la orden y previene manipulación del monto respecto a los ítems enviados
+ */
+export function validateFlowOrderPayload({ commerceOrder, amount, orderDetails }) {
+  if (!commerceOrder || typeof commerceOrder !== 'string') {
+    return { valid: false, error: 'Número de orden de comercio requerido' };
+  }
+
+  const numAmount = Number(amount);
+  if (!Number.isFinite(numAmount) || numAmount < 350) {
+    return { valid: false, error: 'Monto de orden inválido (mínimo $350 CLP)' };
+  }
+
+  if (orderDetails && Array.isArray(orderDetails.items) && orderDetails.items.length > 0) {
+    const calculatedSubtotal = orderDetails.items.reduce((sum, item) => {
+      const itemPrice = Number(item.product?.price || item.price || 0);
+      const itemQty = Math.max(1, Math.round(Number(item.quantity) || 1));
+      return sum + (itemPrice * itemQty);
+    }, 0);
+
+    const discount = Math.max(0, Number(orderDetails.discountAmount || 0));
+    const expectedTotal = Math.max(350, calculatedSubtotal - discount);
+
+    if (numAmount < expectedTotal) {
+      console.warn(`[SECURITY ALERT] Intento de manipulación de precios detectado. Esperado: $${expectedTotal}, Recibido: $${numAmount}`);
+      return {
+        valid: false,
+        error: 'Inconsistencia de precios detectada en la orden. Por favor vuelve a cargar el carrito.'
+      };
+    }
+  }
+
+  return { valid: true, numAmount };
 }
 
 /**
@@ -113,11 +195,13 @@ export async function createFlowPayment({
     });
   }
 
+  const separator = String(data.url).includes('?') ? '&' : '?';
+
   return {
     token: data.token,
     url: data.url,
     flowOrder: data.flowOrder,
-    redirectUrl: `${data.url}?token=${data.token}`
+    redirectUrl: `${data.url}${separator}token=${data.token}`
   };
 }
 

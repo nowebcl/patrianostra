@@ -25,6 +25,18 @@ const CHILE_REGIONS = [
   'Región de Magallanes'
 ];
 
+const FlowErrorBanner = ({ title, message, className = '' }) => (
+  <div className={`bg-[#C52222]/10 border border-[#C52222]/70 p-4 rounded text-left flex items-start gap-3 ${className}`}>
+    <AlertCircle className="w-5 h-5 text-[#C52222] shrink-0 mt-0.5" />
+    <div className="text-xs text-neutral-200 leading-relaxed flex-1">
+      <strong className="font-condensed uppercase tracking-wider text-white block mb-1">
+        {title}
+      </strong>
+      <span>{message}</span>
+    </div>
+  </div>
+);
+
 export const CheckoutPage = () => {
   const navigate = useNavigate();
   const { createOrder } = useStore();
@@ -40,6 +52,7 @@ export const CheckoutPage = () => {
     finalTotal, 
     totalItems,
     clearCart,
+    restoreCart,
     lastOrder,
     setLastOrder,
     showToast
@@ -68,9 +81,51 @@ export const CheckoutPage = () => {
     paymentMethod: 'flow'
   });
 
-  // Efecto para verificar retorno automático desde Flow
+  const loadPendingOrder = () => {
+    try {
+      return JSON.parse(localStorage.getItem('pending_patria_order') || 'null');
+    } catch {
+      return null;
+    }
+  };
+
+  const restoreOrderDraft = (orderDraft) => {
+    if (!orderDraft) return;
+    if (orderDraft.customer) {
+      setFormData(prev => ({
+        ...prev,
+        ...orderDraft.customer,
+        paymentMethod: 'flow'
+      }));
+    }
+    if (Array.isArray(orderDraft.items) && orderDraft.items.length > 0) {
+      restoreCart(orderDraft.items, orderDraft.appliedCoupon || null);
+    }
+  };
+
+  // Efecto para verificar retorno automático o error desde Flow / Webpay
   useEffect(() => {
+    if (flowStatus === 'error') {
+      const pendingOrder = loadPendingOrder();
+      restoreOrderDraft(pendingOrder);
+      const errMsg = 'No se recibió confirmación válida desde Webpay / Flow. Si el pago no se completó, puedes reintentarlo aquí.';
+      setFlowErrorMessage(errMsg);
+      setIsVerifyingFlow(false);
+      setStep(pendingOrder?.customer?.email ? 2 : 1);
+      showToast(errMsg);
+      setSearchParams({}, { replace: true });
+      return;
+    }
+
     if (flowStatus === 'flow_return' && flowToken) {
+      const confirmedKey = `pn_flow_confirmed_${flowToken}`;
+      if (sessionStorage.getItem(confirmedKey) || lastOrder?.paymentDetails?.token === flowToken) {
+        setIsVerifyingFlow(false);
+        setStep(3);
+        setSearchParams({}, { replace: true });
+        return;
+      }
+
       let isMounted = true;
 
       const verifyPayment = async () => {
@@ -82,14 +137,7 @@ export const CheckoutPage = () => {
           if (!isMounted) return;
 
           if (result.isPaid) {
-            // Recuperar orden guardada
-            let recoveredOrder = result.savedOrder;
-            if (!recoveredOrder) {
-              try {
-                recoveredOrder = JSON.parse(localStorage.getItem('pending_patria_order') || 'null');
-              } catch (e) {}
-            }
-
+            const recoveredOrder = result.savedOrder || loadPendingOrder();
             const fallbackSubtotal = subtotal || Number(result.flowData?.amount) || finalTotal;
             const fallbackHasFreeShipping = fallbackSubtotal >= freeShippingThreshold;
 
@@ -123,9 +171,18 @@ export const CheckoutPage = () => {
               })
             };
 
+            confirmedOrder.status = 'En Preparación';
+            confirmedOrder.paymentStatus = 'authorized';
+            confirmedOrder.paymentDetails = {
+              ...(confirmedOrder.paymentDetails || {}),
+              flowOrder: result.flowData?.flowOrder,
+              token: flowToken,
+              status: 'APROBADO'
+            };
             confirmedOrder.flowOrder = result.flowData?.flowOrder;
             confirmedOrder.paymentMethod = 'Flow (Webpay Plus / Tarjetas)';
 
+            sessionStorage.setItem(confirmedKey, confirmedOrder.orderNumber);
             await createOrder(confirmedOrder);
             setLastOrder(confirmedOrder);
             clearCart();
@@ -139,18 +196,28 @@ export const CheckoutPage = () => {
             }
 
             setStep(3);
+            setSearchParams({}, { replace: true });
             showToast('¡Pago exitoso con Flow! Se ha descargado tu orden en PDF.');
           } else {
+            const pendingOrder = result.savedOrder || loadPendingOrder();
+            restoreOrderDraft(pendingOrder);
             const statusNames = { 1: 'Pendiente de pago', 3: 'Rechazado', 4: 'Anulado' };
-            const msg = `El pago en Flow quedó como: ${statusNames[result.status] || 'No completado'}. Puedes reintentar.`;
+            const msg = `El pago en Flow/Webpay quedó como: ${statusNames[result.status] || 'No completado'}. Puedes reintentar.`;
             setFlowErrorMessage(msg);
             showToast(msg);
-            setStep(2);
+            setStep(pendingOrder?.customer?.email ? 2 : 1);
+            setSearchParams({}, { replace: true });
           }
         } catch (err) {
           console.error('Error verificando pago en Flow:', err);
-          setFlowErrorMessage('No se pudo verificar el comprobante de Flow. Por favor contáctanos con tu comprobante.');
-          setStep(2);
+          const pendingOrder = loadPendingOrder();
+          restoreOrderDraft(pendingOrder);
+          const detail = err?.message ? ` (${err.message})` : '';
+          const errMsg = `No se pudo verificar el estado del pago en Flow${detail}. Si realizaste el pago, contáctanos con tu comprobante.`;
+          setFlowErrorMessage(errMsg);
+          showToast(errMsg);
+          setStep(pendingOrder?.customer?.email ? 2 : 1);
+          setSearchParams({}, { replace: true });
         } finally {
           if (isMounted) setIsVerifyingFlow(false);
         }
@@ -214,6 +281,7 @@ export const CheckoutPage = () => {
           status: 'Pendiente',
           paymentStatus: 'pending_flow',
           paymentMethod: 'Flow (Webpay Plus / Tarjetas)',
+          appliedCoupon: appliedCoupon || null,
           items: [...cart],
           subtotal,
           discountAmount,
@@ -294,12 +362,22 @@ export const CheckoutPage = () => {
       showToast('¡Pedido confirmado! Se ha descargado tu orden en PDF.');
     } catch (err) {
       console.error('Error procesando pago:', err);
+      const errMsg = `Error al conectar con la pasarela: ${err.message || 'Intenta nuevamente'}`;
       setIsProcessing(false);
-      showToast(`Error al conectar con la pasarela: ${err.message || 'Intenta nuevamente'}`);
+      setFlowErrorMessage(errMsg);
+      showToast(errMsg);
     }
   };
 
-  if (cart.length === 0 && step !== 3 && !lastOrder) {
+  if (
+    cart.length === 0 &&
+    step !== 3 &&
+    !lastOrder &&
+    !isVerifyingFlow &&
+    !flowErrorMessage &&
+    flowStatus !== 'flow_return' &&
+    flowStatus !== 'error'
+  ) {
     return (
       <div className="min-h-[70vh] bg-black text-neutral-300 flex flex-col items-center justify-center p-6 text-center">
         <ShoppingBag className="w-16 h-16 text-neutral-700 mb-4" />
@@ -497,6 +575,23 @@ export const CheckoutPage = () => {
             </div>
 
           </div>
+        ) : cart.length === 0 ? (
+          <div className="max-w-xl mx-auto text-center py-12 px-6 bg-[#080808] border border-neutral-900 my-8 hard-box shadow-2xl space-y-5">
+            {flowErrorMessage ? (
+              <FlowErrorBanner
+                title="NO SE PUDO COMPLETAR EL PAGO EN WEBPAY / FLOW"
+                message={flowErrorMessage}
+              />
+            ) : (
+              <ShoppingBag className="w-14 h-14 text-neutral-700 mx-auto" />
+            )}
+            <p className="text-xs text-neutral-400">
+              Vuelve al catálogo para seleccionar tus prendas e intentar el pago nuevamente.
+            </p>
+            <Link to="/catalogo" className="btn-crimson inline-flex items-center justify-center font-condensed font-bold text-xs uppercase px-8 py-3.5 tracking-widest">
+              EXPLORAR CATÁLOGO →
+            </Link>
+          </div>
         ) : (
           /* ========================================================================= */
           /* STEP 1 & 2: MULTI-STEP CHECKOUT FORM                                     */
@@ -518,6 +613,14 @@ export const CheckoutPage = () => {
                   PAGO & CONFIRMACIÓN
                 </span>
               </div>
+
+              {flowErrorMessage && (
+                <FlowErrorBanner
+                  title="PROBLEMA CON LA PASARELA DE PAGO (FLOW / WEBPAY)"
+                  message={flowErrorMessage}
+                  className="mb-6"
+                />
+              )}
 
               {/* STEP 1: SHIPPING FORM */}
               {step === 1 && (

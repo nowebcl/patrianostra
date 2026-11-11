@@ -4,6 +4,14 @@ import { getSizeStock } from '../utils/stock';
 
 export const FREE_SHIPPING_THRESHOLD = 70000;
 
+const COUPON_DISCOUNTS = {
+  PATRIA10: 10,
+  CHILE10: 10,
+  DESCUENTO: 10,
+  PATRIA20: 20,
+  VIP: 20
+};
+
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -130,18 +138,29 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
+  const restoreCart = (items = [], couponCode = null) => {
+    if (Array.isArray(items) && items.length > 0) {
+      setCart(items.filter(it => it && it.product));
+    }
+    const cleanCode = couponCode ? String(couponCode).trim().toUpperCase() : '';
+    const percent = COUPON_DISCOUNTS[cleanCode] || 0;
+    if (percent > 0) {
+      setAppliedCoupon(cleanCode);
+      setCouponDiscountPercent(percent);
+    } else {
+      setAppliedCoupon(null);
+      setCouponDiscountPercent(0);
+    }
+  };
+
   const applyCoupon = (code) => {
     const clean = code.trim().toUpperCase();
-    if (clean === 'PATRIA10' || clean === 'CHILE10' || clean === 'DESCUENTO') {
+    const percent = COUPON_DISCOUNTS[clean] || 0;
+    if (percent > 0) {
       setAppliedCoupon(clean);
-      setCouponDiscountPercent(10);
-      showToast('¡Cupón del 10% aplicado con éxito!');
-      return { success: true, message: 'Cupón del 10% aplicado' };
-    } else if (clean === 'PATRIA20' || clean === 'VIP') {
-      setAppliedCoupon(clean);
-      setCouponDiscountPercent(20);
-      showToast('¡Cupón VIP del 20% aplicado!');
-      return { success: true, message: 'Cupón del 20% aplicado' };
+      setCouponDiscountPercent(percent);
+      showToast(percent === 20 ? '¡Cupón VIP del 20% aplicado!' : `¡Cupón del ${percent}% aplicado con éxito!`);
+      return { success: true, message: `Cupón del ${percent}% aplicado` };
     } else {
       showToast('Cupón no válido o expirado');
       return { success: false, message: 'Cupón no válido' };
@@ -170,6 +189,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         clearCart,
+        restoreCart,
         totalItems,
         subtotal,
         discountAmount,

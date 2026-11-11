@@ -1,4 +1,4 @@
-import { getFlowPaymentStatus } from '../../server/flowService.js';
+import { getFlowPaymentStatus, parseFlowRequestBody } from '../../server/flowService.js';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -10,7 +10,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const token = req.body?.token || req.query?.token;
+    const body = req.method === 'POST' ? await parseFlowRequestBody(req) : {};
+    const token = body?.token || body?.TOKEN || req.query?.token;
     if (token) {
       await getFlowPaymentStatus(token);
     }
