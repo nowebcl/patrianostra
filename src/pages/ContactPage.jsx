@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Instagram, Music, Youtube, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Instagram, Music, MessageSquare } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export const ContactPage = () => {
@@ -201,17 +201,17 @@ export const ContactPage = () => {
                 
                 {/* Instagram */}
                 <a 
-                  href="https://www.instagram.com/patria.nostra.distro/" 
+                  href="https://www.instagram.com/patrianostradistro/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-black border border-neutral-800 hover:border-[#C52222] p-3 text-neutral-300 hover:text-white transition-all group cursor-pointer"
+                  className="sm:col-span-2 flex items-center gap-3 bg-black border border-neutral-800 hover:border-[#C52222] p-3 text-neutral-300 hover:text-white transition-all group cursor-pointer"
                 >
                   <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-[#C52222] group-hover:bg-[#C52222] group-hover:text-white transition-colors">
                     <Instagram className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <span className="font-condensed font-bold text-xs uppercase tracking-wider block">INSTAGRAM</span>
-                    <span className="text-[10px] text-neutral-500 truncate block">@patria.nostra.distro</span>
+                    <span className="text-[10px] text-neutral-500 truncate block">@patrianostradistro</span>
                   </div>
                 </a>
 
@@ -226,22 +226,6 @@ export const ContactPage = () => {
                   <div className="min-w-0 flex-1">
                     <span className="font-condensed font-bold text-xs uppercase tracking-wider block">MERCH BANDAS</span>
                     <span className="text-[10px] text-neutral-500 truncate block">Kronstadt • Bastión</span>
-                  </div>
-                </a>
-
-                {/* YouTube */}
-                <a 
-                  href="https://youtube.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-black border border-neutral-800 hover:border-[#C52222] p-3 text-neutral-300 hover:text-white transition-all group cursor-pointer"
-                >
-                  <div className="w-8 h-8 rounded bg-neutral-900 flex items-center justify-center text-[#C52222] group-hover:bg-[#C52222] group-hover:text-white transition-colors">
-                    <Youtube className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="font-condensed font-bold text-xs uppercase tracking-wider block">YOUTUBE</span>
-                    <span className="text-[10px] text-neutral-500 truncate block">Videos & Lookbook</span>
                   </div>
                 </a>
 

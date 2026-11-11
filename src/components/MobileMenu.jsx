@@ -53,7 +53,7 @@ export const MobileMenu = () => {
               QUIÉNES SOMOS
             </Link>
             <a 
-              href="https://www.instagram.com/patria.nostra.distro/" 
+              href="https://www.instagram.com/patrianostradistro/" 
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}

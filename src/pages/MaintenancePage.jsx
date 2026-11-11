@@ -21,13 +21,13 @@ export const MaintenancePage = () => {
 
       {/* Instagram Link */}
       <a
-        href="https://www.instagram.com/patria.nostra.distro/"
+        href="https://www.instagram.com/patrianostradistro/"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2.5 px-6 py-2.5 bg-neutral-950/80 hover:bg-neutral-900 border border-neutral-800 hover:border-[#C52222] text-neutral-300 hover:text-white font-condensed font-bold text-xs uppercase tracking-[0.2em] rounded-xl transition-all duration-300 cursor-pointer shadow-lg active:scale-95"
       >
         <Instagram className="w-4 h-4 text-[#C52222]" />
-        <span>@PATRIA.NOSTRA.DISTRO</span>
+        <span>@PATRIANOSTRADISTRO</span>
       </a>
 
     </div>

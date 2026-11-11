@@ -71,7 +71,7 @@ export const Navbar = () => {
               </>
             )}
             <a 
-              href="https://www.instagram.com/patria.nostra.distro/" 
+              href="https://www.instagram.com/patrianostradistro/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-[#C52222] transition-colors duration-200 uppercase flex items-center gap-1.5"

@@ -87,28 +87,17 @@ export const Footer = () => {
             <h4 className="font-condensed text-xs font-bold tracking-[0.2em] uppercase text-neutral-200 mb-4">
               SÍGUENOS
             </h4>
-            <div className="flex items-center space-x-4">
+            <div>
               {/* Instagram */}
               <a 
-                href="https://www.instagram.com/patria.nostra.distro/" 
+                href="https://www.instagram.com/patrianostradistro/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-neutral-400 hover:text-white transition-colors p-1" 
-                aria-label="Instagram"
+                className="inline-flex items-center gap-2 text-xs font-sans text-neutral-400 hover:text-white transition-colors py-1" 
+                aria-label="Instagram @patrianostradistro"
               >
-                <InstagramIcon className="w-5 h-5" />
-              </a>
-              {/* Facebook */}
-              <a href="#" className="text-neutral-400 hover:text-white transition-colors p-1" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.582 9 4.615V8z"/>
-                </svg>
-              </a>
-              {/* YouTube */}
-              <a href="#" className="text-neutral-400 hover:text-white transition-colors p-1" aria-label="YouTube">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
+                <InstagramIcon className="w-5 h-5 shrink-0" />
+                <span>Instagram</span>
               </a>
             </div>
           </div>
