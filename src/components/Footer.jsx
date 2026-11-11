@@ -129,7 +129,6 @@ export const Footer = () => {
               <span className="font-bold text-neutral-200 group-hover:text-[#C52222] transition-colors">
                 NOWEB.DEV
               </span>
-              <InstagramIcon className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#C52222] transition-colors" />
             </a>
           </div>
         </div>
