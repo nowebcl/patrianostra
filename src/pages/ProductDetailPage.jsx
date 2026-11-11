@@ -7,6 +7,7 @@ import { ProductCard } from '../components/ProductCard';
 import { SizeGuideModal } from '../components/SizeGuideModal';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
+import { getSizeStock, getStockStatus } from '../utils/stock';
 import { isClothingCategory, isMusicCategory } from '../lib/pocketbase';
 
 export const ProductDetailPage = () => {
@@ -22,7 +23,7 @@ export const ProductDetailPage = () => {
     : (Object.keys(sizeStock).length > 0 ? Object.keys(sizeStock) : ['S', 'M', 'L', 'XL', 'XXL']);
   const sizes = sortSizes(rawSizes);
 
-  const firstInStockSize = sizes.find(s => (sizeStock[s] ?? 1) > 0) || sizes[0] || 'L';
+  const firstInStockSize = sizes.find(s => getSizeStock(product, s) > 0) || sizes[0] || 'L';
 
   const defaultColor = product.defaultColor || (product.colors && product.colors[0]) || 'Negro';
   const initialImg = (product.colorImages && product.colorImages[defaultColor]) || product.gallery?.[0] || product.image || '/producto.webp';
@@ -66,7 +67,7 @@ export const ProductDetailPage = () => {
       setSelectedColor(initColor);
       const initImg = (product.colorImages && product.colorImages[initColor]) || product.gallery?.[0] || product.image || '/producto.webp';
       setActiveImage(initImg);
-      const inStock = sizes.find(s => (product.sizeStock?.[s] ?? 1) > 0) || sizes[0] || 'L';
+      const inStock = sizes.find(s => getSizeStock(product, s) > 0) || sizes[0] || 'L';
       setSelectedSize(inStock);
       setQuantity(1);
       setOpenAccordion(isClothing ? 'specs' : 'shipping');
@@ -90,11 +91,8 @@ export const ProductDetailPage = () => {
     }
   };
 
-  const currentSizeStock = sizeStock[selectedSize] !== undefined 
-    ? Number(sizeStock[selectedSize]) 
-    : (product.stock !== undefined ? Number(product.stock) : 10);
-
-  const isCurrentSizeOutOfStock = currentSizeStock <= 0;
+  const currentSizeStock = getSizeStock(product, selectedSize);
+  const { isOutOfStock: isCurrentSizeOutOfStock, isLowStock: isCurrentSizeLowStock } = getStockStatus(currentSizeStock);
 
   // Related products
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4);
@@ -212,28 +210,25 @@ export const ProductDetailPage = () => {
               </span>
             </div>
 
-            {/* Stock Alert */}
-            {product.stock !== undefined && (
+            {/* Stock Alert (solo cuando quedan pocas unidades o no hay stock) */}
+            {(isCurrentSizeOutOfStock || isCurrentSizeLowStock) && (
               <div className={`border p-2.5 mb-6 flex items-center gap-2 ${
                 isCurrentSizeOutOfStock 
                   ? 'bg-[#180808] border-red-900/60 text-red-400' 
-                  : currentSizeStock <= 3 
-                    ? 'bg-[#161005] border-amber-800/60 text-amber-300'
-                    : 'bg-[#110A0A] border-[#C52222]/30 text-neutral-300'
+                  : 'bg-[#161005] border-amber-800/60 text-amber-300'
               }`}>
-                <Sparkles className="w-3.5 h-3.5 text-[#C52222] shrink-0" />
+                <Sparkles className={`w-3.5 h-3.5 shrink-0 ${isCurrentSizeOutOfStock ? 'text-red-400' : 'text-amber-400'}`} />
                 <span className="text-[11px] font-condensed font-bold tracking-wider uppercase">
                   {isCurrentSizeOutOfStock ? (
                     <span className="text-red-400 font-bold">
-                      {isClothing ? `TALLA ${selectedSize} AGOTADA — Elige otra talla disponible` : 'PRODUCTO AGOTADO — Sin stock disponible'}
-                    </span>
-                  ) : currentSizeStock <= 3 ? (
-                    <span>
-                      ¡ÚLTIMAS UNIDADES! QUEDAN SOLO <strong className="text-amber-400">{currentSizeStock} {isClothing ? 'PRENDAS' : 'COPIAS'}</strong> {isClothing ? `EN TALLA ${selectedSize}` : 'DISPONIBLES'}
+                      {isClothing && selectedSize !== 'Única'
+                        ? `NO HAY STOCK EN TALLA ${selectedSize} — Elige otra talla disponible`
+                        : 'NO HAY STOCK DISPONIBLE'}
                     </span>
                   ) : (
                     <span>
-                      DISPONIBILIDAD {isClothing ? `TALLA ${selectedSize}:` : ':'} <strong className="text-emerald-400 font-bold">{currentSizeStock} UNIDADES</strong> EN STOCK
+                      <strong className="text-amber-400">POCAS UNIDADES</strong>
+                      {isClothing && selectedSize !== 'Única' ? ` EN TALLA ${selectedSize}` : ' DISPONIBLES'}
                     </span>
                   )}
                 </span>
@@ -324,9 +319,8 @@ export const ProductDetailPage = () => {
               </div>
               <div className="flex flex-wrap gap-2.5">
                 {sizes.map(sz => {
-                  const stockForSz = sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1;
-                  const isOutOfStock = stockForSz <= 0;
-                  const isLow = stockForSz > 0 && stockForSz <= 3;
+                  const stockForSz = getSizeStock(product, sz);
+                  const { isOutOfStock, isLowStock: isLow } = getStockStatus(stockForSz);
                   const isSelected = selectedSize === sz;
 
                   return (
@@ -338,7 +332,7 @@ export const ProductDetailPage = () => {
                         setSelectedSize(sz);
                         setQuantity(1);
                       }}
-                      className={`relative min-w-[62px] py-2 px-3 text-xs font-condensed font-bold tracking-wider transition-all uppercase flex flex-col items-center justify-center ${
+                      className={`relative min-w-[70px] min-h-[48px] py-2 px-3 text-xs font-condensed font-bold tracking-wider transition-all uppercase flex flex-col items-center justify-center ${
                         isOutOfStock
                           ? 'bg-[#0a0a0a] border border-neutral-900 text-neutral-600 cursor-not-allowed opacity-50 line-through'
                           : isSelected
@@ -347,17 +341,17 @@ export const ProductDetailPage = () => {
                       }`}
                     >
                       <span className="text-sm leading-tight">{sz}</span>
-                      <span className={`text-[9px] font-mono tracking-tighter mt-0.5 ${
-                        isOutOfStock 
-                          ? 'text-neutral-600' 
-                          : isSelected 
-                            ? 'text-white/90 font-bold'
-                            : isLow 
-                              ? 'text-amber-400' 
-                              : 'text-neutral-500'
-                      }`}>
-                        {isOutOfStock ? '0 u.' : `${stockForSz} u.`}
-                      </span>
+                      {(isOutOfStock || isLow) && (
+                        <span className={`text-[9px] font-condensed tracking-wider mt-0.5 whitespace-nowrap ${
+                          isOutOfStock 
+                            ? 'text-neutral-500' 
+                            : isSelected 
+                              ? 'text-white/95 font-bold' 
+                              : 'text-amber-400'
+                        }`}>
+                          {isOutOfStock ? 'NO HAY STOCK' : 'POCAS UNIDADES'}
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -401,7 +395,7 @@ export const ProductDetailPage = () => {
                     : 'bg-[#161616] hover:bg-[#C52222] text-white border-neutral-700 hover:border-[#C52222] cursor-pointer active:scale-98'
                 }`}
               >
-                <span>{isCurrentSizeOutOfStock ? 'TALLA AGOTADA' : 'AÑADIR AL CARRITO'}</span>
+                <span>{isCurrentSizeOutOfStock ? 'NO HAY STOCK' : 'AÑADIR AL CARRITO'}</span>
                 {!isCurrentSizeOutOfStock && <span>+</span>}
               </button>
 
@@ -418,7 +412,11 @@ export const ProductDetailPage = () => {
                   : 'bg-[#9E1B1B] hover:bg-[#C52222] text-white shadow-lg glow-red-sm cursor-pointer active:scale-98'
               }`}
             >
-              <span>{isCurrentSizeOutOfStock ? 'SELECCIONA OTRA TALLA' : 'COMPRAR AHORA'}</span>
+              <span>
+                {isCurrentSizeOutOfStock
+                  ? (sizes.length === 1 && sizes[0] === 'Única' ? 'NO HAY STOCK' : 'SELECCIONA OTRA TALLA')
+                  : 'COMPRAR AHORA'}
+              </span>
               {!isCurrentSizeOutOfStock && <span>→</span>}
             </button>
 

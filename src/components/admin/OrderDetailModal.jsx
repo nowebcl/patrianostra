@@ -182,7 +182,7 @@ export const OrderDetailModal = ({ order, isOpen, onClose }) => {
                 <p className="text-neutral-400">{order.customer?.city}, {order.customer?.region}</p>
                 <p className="text-neutral-400 font-mono text-[11px]">Código Postal: <span className="text-neutral-300">{order.customer?.postalCode || '7500000'}</span></p>
                 <p className="text-neutral-400 font-condensed tracking-wider uppercase text-[11px]">
-                  MÉTODO DE ENVÍO: <span className="text-white font-bold">{order.customer?.shippingMethod === 'starken' ? 'STARKEN POR PAGAR' : 'CHILEXPRESS EXPRESS 24H'}</span>
+                  MÉTODO DE ENVÍO: <span className="text-white font-bold">{(order.hasFreeShipping ?? ((order.subtotal || 0) >= 70000)) ? 'ENVÍO GRATIS' : 'COORDINAR ENVÍO'}</span>
                 </p>
                 {order.trackingNumber && (
                   <p className="bg-[#151515] p-2 border border-neutral-800 rounded text-[11px] font-mono text-emerald-400">
@@ -267,7 +267,9 @@ export const OrderDetailModal = ({ order, isOpen, onClose }) => {
               )}
               <div className="flex justify-between text-neutral-400">
                 <span>ENVÍO:</span>
-                <span className="font-mono text-white">{order.shippingCost === 0 ? 'GRATIS' : `€${order.shippingCost?.toFixed(2)}`}</span>
+                <span className="font-mono text-white">
+                  {(order.hasFreeShipping ?? ((order.subtotal || 0) >= 70000)) ? 'GRATIS' : 'COORDINAR ENVÍO'}
+                </span>
               </div>
               <div className="flex justify-between text-sm font-bold text-white pt-2 border-t border-neutral-800">
                 <span>TOTAL PEDIDO:</span>

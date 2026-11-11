@@ -34,6 +34,8 @@ export const CheckoutPage = () => {
     discountAmount, 
     appliedCoupon, 
     couponDiscountPercent, 
+    freeShippingThreshold,
+    hasFreeShipping,
     shippingCost, 
     finalTotal, 
     totalItems,
@@ -62,7 +64,7 @@ export const CheckoutPage = () => {
     region: 'Región Metropolitana de Santiago',
     city: '',
     postalCode: '7500000',
-    shippingMethod: 'express',
+    shippingMethod: 'coordinar',
     paymentMethod: 'flow'
   });
 
@@ -88,6 +90,9 @@ export const CheckoutPage = () => {
               } catch (e) {}
             }
 
+            const fallbackSubtotal = subtotal || Number(result.flowData?.amount) || finalTotal;
+            const fallbackHasFreeShipping = fallbackSubtotal >= freeShippingThreshold;
+
             const confirmedOrder = recoveredOrder || {
               orderNumber: result.flowData?.commerceOrder || `PN-CL-${Math.floor(100000 + Math.random() * 900000)}`,
               status: 'En Preparación',
@@ -99,11 +104,16 @@ export const CheckoutPage = () => {
                 status: 'APROBADO'
               },
               items: [...cart],
-              subtotal: Number(result.flowData?.amount) || finalTotal,
+              subtotal: fallbackSubtotal,
               discountAmount: 0,
               shippingCost: 0,
+              hasFreeShipping: fallbackHasFreeShipping,
               finalTotal: Number(result.flowData?.amount) || finalTotal,
-              customer: { ...formData, email: result.flowData?.payer || formData.email },
+              customer: {
+                ...formData,
+                shippingMethod: fallbackHasFreeShipping ? 'gratis' : 'coordinar',
+                email: result.flowData?.payer || formData.email
+              },
               date: new Date().toLocaleDateString('es-CL', {
                 year: 'numeric',
                 month: 'long',
@@ -208,8 +218,12 @@ export const CheckoutPage = () => {
           subtotal,
           discountAmount,
           shippingCost,
+          hasFreeShipping,
           finalTotal,
-          customer: { ...formData },
+          customer: {
+            ...formData,
+            shippingMethod: hasFreeShipping ? 'gratis' : 'coordinar'
+          },
           date: new Date().toLocaleDateString('es-CL', {
             year: 'numeric',
             month: 'long',
@@ -248,8 +262,12 @@ export const CheckoutPage = () => {
         subtotal,
         discountAmount,
         shippingCost,
+        hasFreeShipping,
         finalTotal,
-        customer: { ...formData },
+        customer: {
+          ...formData,
+          shippingMethod: hasFreeShipping ? 'gratis' : 'coordinar'
+        },
         date: new Date().toLocaleDateString('es-CL', {
           year: 'numeric',
           month: 'long',
@@ -295,6 +313,9 @@ export const CheckoutPage = () => {
   }
 
   const currentOrder = step === 3 ? lastOrder : null;
+  const orderHasFreeShipping = currentOrder
+    ? (currentOrder.hasFreeShipping ?? ((Number(currentOrder.subtotal) || 0) >= freeShippingThreshold))
+    : false;
 
   return (
     <div className="min-h-screen bg-black text-[#E5E5E5] pt-6 pb-24">
@@ -399,8 +420,10 @@ export const CheckoutPage = () => {
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-500 flex items-center justify-center text-xs font-bold mb-2">3</div>
-                  <span className="text-[11px] font-condensed font-bold text-neutral-500 uppercase">DESPACHO A COORDINAR</span>
-                  <span className="text-[9px] text-neutral-600 mt-0.5">Por coordinar</span>
+                  <span className="text-[11px] font-condensed font-bold text-neutral-500 uppercase">
+                    {orderHasFreeShipping ? 'ENVÍO GRATIS' : 'COORDINAR ENVÍO'}
+                  </span>
+                  <span className="text-[9px] text-neutral-600 mt-0.5">{orderHasFreeShipping ? 'Desbloqueado' : 'Por coordinar'}</span>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <div className="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-500 flex items-center justify-center text-xs font-bold mb-2">4</div>
@@ -437,7 +460,14 @@ export const CheckoutPage = () => {
                 {currentOrder.discountAmount > 0 && (
                   <p className="text-[#C52222]">Descuento: -{formatCLP(currentOrder.discountAmount)}</p>
                 )}
-                <p className="text-neutral-400">Envío: <span className="text-emerald-400">{currentOrder.shippingCost === 0 ? 'GRATIS' : formatCLP(currentOrder.shippingCost)}</span></p>
+                <p className="text-neutral-400">
+                  Envío:{' '}
+                  {orderHasFreeShipping ? (
+                    <strong className="text-emerald-400">GRATIS</strong>
+                  ) : (
+                    <strong className="text-white">COORDINAR ENVÍO</strong>
+                  )}
+                </p>
                 <p className="text-white text-sm font-bold pt-2 border-t border-neutral-800">
                   Total Pagado: <span className="text-[#C52222] text-base">{formatCLP(currentOrder.finalTotal)}</span>
                 </p>
@@ -677,7 +707,9 @@ export const CheckoutPage = () => {
                     {/* Summary of Shipping Data */}
                     <div className="bg-black border border-neutral-900 p-4 text-xs font-sans flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <span className="text-[10px] font-condensed text-neutral-500 uppercase tracking-wider block">COORDINAR ENVÍO A DIRECCIÓN:</span>
+                        <span className="text-[10px] font-condensed text-neutral-500 uppercase tracking-wider block">
+                          {hasFreeShipping ? 'ENVÍO GRATIS A DIRECCIÓN:' : 'COORDINAR ENVÍO A DIRECCIÓN:'}
+                        </span>
                         <p className="text-neutral-200 font-medium">{formData.firstName} {formData.lastName} — {formData.address}, {formData.city}</p>
                         <p className="text-neutral-400 font-mono text-[11px]">
                           Email: <span className="text-white">{formData.email}</span> • Tel/WhatsApp: <span className="text-emerald-400">{formData.phone}</span>
@@ -768,8 +800,12 @@ export const CheckoutPage = () => {
                   </div>
                 )}
                 <div className="flex justify-between text-neutral-400">
-                  <span>DESPACHO</span>
-                  <span className="text-white font-medium">Despacho a coordinar</span>
+                  <span>ENVÍO</span>
+                  {hasFreeShipping ? (
+                    <strong className="text-emerald-400">GRATIS</strong>
+                  ) : (
+                    <span className="text-white font-semibold">COORDINAR ENVÍO</span>
+                  )}
                 </div>
                 <div className="flex justify-between text-base font-bold text-white pt-3 border-t border-neutral-800">
                   <span>TOTAL FINAL</span>

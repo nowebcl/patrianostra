@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useStore } from './StoreContext';
+import { getSizeStock } from '../utils/stock';
+
+export const FREE_SHIPPING_THRESHOLD = 70000;
 
 const CartContext = createContext();
 
@@ -40,11 +43,10 @@ export const CartProvider = ({ children }) => {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    const sizeStock = product.sizeStock || {};
-    const availableStock = sizeStock[size] !== undefined ? Number(sizeStock[size]) : (product.stock || 0);
+    const availableStock = getSizeStock(product, size);
 
     if (availableStock <= 0) {
-      showToast(`⚠️ La talla ${size} de ${product.name} está agotada.`);
+      showToast(`⚠️ No hay stock en talla ${size} de ${product.name}.`);
       return;
     }
 
@@ -81,7 +83,7 @@ export const CartProvider = ({ children }) => {
     });
 
     if (reachedMax) {
-      showToast(`Stock máximo alcanzado (${availableStock} u.) para talla ${size}`);
+      showToast(`Stock máximo disponible alcanzado para talla ${size}`);
     } else {
       setIsCartOpen(true);
       showToast(`Añadido: ${product.name} (${size} • ${chosenColor})`);
@@ -102,13 +104,10 @@ export const CartProvider = ({ children }) => {
 
       // Validar stock disponible para la talla específica
       const currentProduct = products.find(p => p.id === item.product?.id) || item.product;
-      const sizeStock = currentProduct?.sizeStock || {};
-      const maxAvailable = sizeStock[item.size] !== undefined 
-        ? Number(sizeStock[item.size]) 
-        : (currentProduct?.stock !== undefined ? Number(currentProduct.stock) : 99);
+      const maxAvailable = getSizeStock(currentProduct, item.size);
 
       if (delta > 0 && newQty > maxAvailable) {
-        showToast(`⚠️ Stock máximo alcanzado (${maxAvailable} u.) para talla ${item.size}`);
+        showToast(`⚠️ Stock máximo disponible alcanzado para talla ${item.size}`);
         return prevCart;
       }
 
@@ -158,9 +157,10 @@ export const CartProvider = ({ children }) => {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
   const discountAmount = Math.round((subtotal * couponDiscountPercent) / 100);
-  const isOnlyTestProduct = cart.length === 1 && (cart[0]?.product?.isTest || cart[0]?.product?.id === 'test-pago-flow');
-  const shippingCost = (isOnlyTestProduct || subtotal >= 60000 || subtotal === 0) ? 0 : 4990;
-  const finalTotal = Math.max(0, subtotal - discountAmount + (subtotal > 0 ? shippingCost : 0));
+  const freeShippingThreshold = FREE_SHIPPING_THRESHOLD;
+  const hasFreeShipping = subtotal >= freeShippingThreshold;
+  const shippingCost = 0;
+  const finalTotal = Math.max(0, subtotal - discountAmount);
 
   return (
     <CartContext.Provider
@@ -177,6 +177,8 @@ export const CartProvider = ({ children }) => {
         couponDiscountPercent,
         applyCoupon,
         removeCoupon,
+        freeShippingThreshold,
+        hasFreeShipping,
         shippingCost,
         finalTotal,
         lastOrder,

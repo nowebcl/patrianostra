@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { SizeGuideModal } from './SizeGuideModal';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
+import { getSizeStock, getStockStatus } from '../utils/stock';
 
 export const QuickViewModal = () => {
   const { quickViewProduct, setQuickViewProduct, addToCart } = useCart();
@@ -14,7 +15,7 @@ export const QuickViewModal = () => {
     : (Object.keys(sizeStock).length > 0 ? Object.keys(sizeStock) : ['S', 'M', 'L', 'XL', 'XXL']);
   const sizes = sortSizes(rawSizes);
 
-  const firstInStock = sizes.find(s => (sizeStock[s] ?? 1) > 0) || sizes[0] || 'L';
+  const firstInStock = sizes.find(s => getSizeStock(quickViewProduct, s) > 0) || sizes[0] || 'L';
   const colors = quickViewProduct?.colors || [];
   const defaultColor = quickViewProduct?.defaultColor || colors[0] || 'Negro';
 
@@ -39,7 +40,7 @@ export const QuickViewModal = () => {
       const initColor = quickViewProduct.defaultColor || (quickViewProduct.colors && quickViewProduct.colors[0]) || 'Negro';
       setSelectedColor(initColor);
       setActiveImage(quickViewProduct.colorImages?.[initColor] || quickViewProduct.image || '/producto.webp');
-      const inStock = sizes.find(s => (quickViewProduct.sizeStock?.[s] ?? 1) > 0) || sizes[0] || 'L';
+      const inStock = sizes.find(s => getSizeStock(quickViewProduct, s) > 0) || sizes[0] || 'L';
       setSelectedSize(inStock);
     }
   }, [quickViewProduct?.id, quickViewProduct?.image, quickViewProduct?.colorImages]);
@@ -52,11 +53,8 @@ export const QuickViewModal = () => {
     setActiveImage(target);
   };
 
-  const currentSizeStock = sizeStock[selectedSize] !== undefined 
-    ? Number(sizeStock[selectedSize]) 
-    : (quickViewProduct.stock || 0);
-
-  const isCurrentOutOfStock = currentSizeStock <= 0;
+  const currentSizeStock = getSizeStock(quickViewProduct, selectedSize);
+  const { isOutOfStock: isCurrentOutOfStock, isLowStock: isCurrentLowStock } = getStockStatus(currentSizeStock);
 
   const handleAddToCart = () => {
     if (isCurrentOutOfStock) return;
@@ -104,14 +102,18 @@ export const QuickViewModal = () => {
               {formatCLP(quickViewProduct.price)}
             </span>
 
-            {/* Stock indicator */}
-            <div className="mb-4">
-              <span className={`text-[10px] font-condensed font-bold uppercase tracking-wider ${
-                isCurrentOutOfStock ? 'text-red-400' : currentSizeStock <= 3 ? 'text-amber-400' : 'text-emerald-400'
-              }`}>
-                {isCurrentOutOfStock ? `● Talla ${selectedSize} agotada` : currentSizeStock <= 3 ? `▲ ¡Últimas ${currentSizeStock} en talla ${selectedSize}!` : `✓ ${currentSizeStock} disponibles en talla ${selectedSize}`}
-              </span>
-            </div>
+            {/* Stock indicator (solo pocas unidades o sin stock) */}
+            {(isCurrentOutOfStock || isCurrentLowStock) && (
+              <div className="mb-4">
+                <span className={`text-[10px] font-condensed font-bold uppercase tracking-wider ${
+                  isCurrentOutOfStock ? 'text-red-400' : 'text-amber-400'
+                }`}>
+                  {isCurrentOutOfStock
+                    ? (selectedSize === 'Única' ? '● No hay stock' : `● No hay stock en talla ${selectedSize}`)
+                    : (selectedSize === 'Única' ? '▲ Pocas unidades' : `▲ Pocas unidades en talla ${selectedSize}`)}
+                </span>
+              </div>
+            )}
             
             <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-3 line-clamp-3">
               {quickViewProduct.description}
@@ -179,8 +181,8 @@ export const QuickViewModal = () => {
               </div>
               <div className="flex flex-wrap gap-2">
                 {sizes.map(size => {
-                  const stockForSz = sizeStock[size] !== undefined ? Number(sizeStock[size]) : 1;
-                  const isOut = stockForSz <= 0;
+                  const stockForSz = getSizeStock(quickViewProduct, size);
+                  const { isOutOfStock: isOut, isLowStock: isLow } = getStockStatus(stockForSz);
                   const isSelected = selectedSize === size;
 
                   return (
@@ -189,7 +191,7 @@ export const QuickViewModal = () => {
                       type="button"
                       disabled={isOut}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-3 py-1.5 border text-xs font-condensed font-semibold tracking-wider transition-all flex flex-col items-center ${
+                      className={`min-w-[56px] min-h-[40px] px-3 py-1.5 border text-xs font-condensed font-semibold tracking-wider transition-all flex flex-col items-center justify-center ${
                         isOut
                           ? 'border-neutral-900 bg-neutral-950 text-neutral-600 line-through cursor-not-allowed opacity-50'
                           : isSelected
@@ -198,7 +200,11 @@ export const QuickViewModal = () => {
                       }`}
                     >
                       <span>{size}</span>
-                      <span className="text-[8px] font-mono opacity-80">{isOut ? '0' : stockForSz} u.</span>
+                      {(isOut || isLow) && (
+                        <span className={`text-[8px] font-condensed uppercase leading-tight ${isOut ? 'opacity-80' : isSelected ? 'text-white/95' : 'text-amber-400'}`}>
+                          {isOut ? 'No hay stock' : 'Pocas unidades'}
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -216,7 +222,7 @@ export const QuickViewModal = () => {
                   : 'bg-[#9E1B1B] hover:bg-[#C52222] text-white glow-red-sm cursor-pointer'
               }`}
             >
-              {isCurrentOutOfStock ? 'TALLA AGOTADA' : 'AÑADIR AL CARRITO'}
+              {isCurrentOutOfStock ? 'NO HAY STOCK' : 'AÑADIR AL CARRITO'}
             </button>
 
             <p className="text-[10px] text-neutral-400 text-center font-sans mt-2.5 leading-tight">

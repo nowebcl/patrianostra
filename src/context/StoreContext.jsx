@@ -32,7 +32,7 @@ const INITIAL_MOCK_ORDERS = [
       region: 'Región Metropolitana de Santiago',
       city: 'Providencia',
       postalCode: '7500000',
-      shippingMethod: 'express',
+      shippingMethod: 'gratis',
       paymentMethod: 'Webpay Plus'
     },
     items: [
@@ -50,6 +50,7 @@ const INITIAL_MOCK_ORDERS = [
     subtotal: 84980,
     discountAmount: 0,
     shippingCost: 0,
+    hasFreeShipping: true,
     finalTotal: 84980,
     trackingNumber: 'CHX-948210-CL'
   },
@@ -67,7 +68,7 @@ const INITIAL_MOCK_ORDERS = [
       region: 'Región de Valparaíso',
       city: 'Viña del Mar',
       postalCode: '2520000',
-      shippingMethod: 'express',
+      shippingMethod: 'coordinar',
       paymentMethod: 'Tarjeta de Crédito'
     },
     items: [
@@ -79,8 +80,9 @@ const INITIAL_MOCK_ORDERS = [
     ],
     subtotal: 49980,
     discountAmount: 0,
-    shippingCost: 4990,
-    finalTotal: 54970,
+    shippingCost: 0,
+    hasFreeShipping: false,
+    finalTotal: 49980,
     trackingNumber: 'CHX-837192-CL'
   },
   {
@@ -97,7 +99,7 @@ const INITIAL_MOCK_ORDERS = [
       region: 'Región del Biobío',
       city: 'Concepción',
       postalCode: '4030000',
-      shippingMethod: 'starken',
+      shippingMethod: 'coordinar',
       paymentMethod: 'Transferencia Bancaria'
     },
     items: [
@@ -115,6 +117,7 @@ const INITIAL_MOCK_ORDERS = [
     subtotal: 69980,
     discountAmount: 0,
     shippingCost: 0,
+    hasFreeShipping: false,
     finalTotal: 69980,
     trackingNumber: 'STK-720184-CL'
   },
@@ -132,7 +135,7 @@ const INITIAL_MOCK_ORDERS = [
       region: 'Región de Antofagasta',
       city: 'Antofagasta',
       postalCode: '1240000',
-      shippingMethod: 'express',
+      shippingMethod: 'coordinar',
       paymentMethod: 'Transferencia Bancaria'
     },
     items: [
@@ -144,8 +147,9 @@ const INITIAL_MOCK_ORDERS = [
     ],
     subtotal: 59990,
     discountAmount: 0,
-    shippingCost: 4990,
-    finalTotal: 64980,
+    shippingCost: 0,
+    hasFreeShipping: false,
+    finalTotal: 59990,
     trackingNumber: null
   }
 ];

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { formatCLP } from '../utils/currency';
 import { sortSizes } from '../utils/sizes';
+import { getSizeStock, getStockStatus } from '../utils/stock';
 
 export const ProductCard = ({ product, priority = false }) => {
   const { addToCart } = useCart();
@@ -38,7 +39,7 @@ export const ProductCard = ({ product, priority = false }) => {
   }, [rawImage]);
 
   // Primer talla disponible por defecto
-  const defaultAvailableSize = sizes.find(sz => (sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1) > 0) || sizes[0];
+  const defaultAvailableSize = sizes.find(sz => getSizeStock(product, sz) > 0) || sizes[0];
   const [selectedSize, setSelectedSize] = React.useState(defaultAvailableSize);
 
   // Actualizar por defecto si cambia el producto
@@ -57,8 +58,8 @@ export const ProductCard = ({ product, priority = false }) => {
     setCurrentImage(targetImg);
   };
 
-  const currentSizeStock = sizeStock[selectedSize] !== undefined ? Number(sizeStock[selectedSize]) : (product.stock || 0);
-  const isOutOfStock = currentSizeStock <= 0;
+  const currentSizeStock = getSizeStock(product, selectedSize);
+  const { isOutOfStock, isLowStock } = getStockStatus(currentSizeStock);
 
   return (
     <div className="product-card group relative flex flex-col justify-between p-3 sm:p-4 bg-[#080808] border border-neutral-900 transition-all duration-300 hover:border-neutral-700">
@@ -164,15 +165,17 @@ export const ProductCard = ({ product, priority = false }) => {
               {sizes.length === 1 && selectedSize === 'Única' ? 'FORMATO:' : 'TALLA:'}{' '}
               <strong className="text-white">{selectedSize}</strong>
             </span>
-            <span className={isOutOfStock ? 'text-red-400 font-bold' : currentSizeStock <= 3 ? 'text-amber-400 font-bold' : 'text-neutral-500 font-mono'}>
-              {isOutOfStock ? 'AGOTADO' : `${currentSizeStock} u.`}
-            </span>
+            {(isOutOfStock || isLowStock) && (
+              <span className={isOutOfStock ? 'text-red-400 font-bold' : 'text-amber-400 font-bold'}>
+                {isOutOfStock ? 'NO HAY STOCK' : 'POCAS UNIDADES'}
+              </span>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-1">
             {sizes.map(sz => {
-              const szStock = sizeStock[sz] !== undefined ? Number(sizeStock[sz]) : 1;
-              const szOut = szStock <= 0;
+              const szStock = getSizeStock(product, sz);
+              const { isOutOfStock: szOut, isLowStock: szLow } = getStockStatus(szStock);
               const isSelected = selectedSize === sz;
 
               return (
@@ -185,7 +188,7 @@ export const ProductCard = ({ product, priority = false }) => {
                     setSelectedSize(sz);
                   }}
                   disabled={szOut}
-                  title={szOut ? `Talla ${sz} agotada` : `${szStock} disponibles`}
+                  title={szOut ? `Talla ${sz}: No hay stock` : szLow ? `Talla ${sz}: Pocas unidades` : `Talla ${sz}`}
                   className={`min-w-[28px] py-0.5 px-1.5 text-[10px] font-condensed font-bold tracking-wider rounded transition-all text-center ${
                     szOut
                       ? 'bg-neutral-950 text-neutral-600 line-through cursor-not-allowed border border-neutral-900/60'
@@ -219,7 +222,7 @@ export const ProductCard = ({ product, priority = false }) => {
         }`}
       >
         {isOutOfStock
-          ? 'AGOTADO'
+          ? 'NO HAY STOCK'
           : selectedSize === 'Única'
             ? 'AÑADIR AL CARRITO +'
             : `AÑADIR TALLA ${selectedSize} +`}

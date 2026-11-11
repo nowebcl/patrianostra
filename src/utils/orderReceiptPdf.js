@@ -145,8 +145,9 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   doc.setFontSize(8);
   doc.setTextColor(...muted);
   doc.text(`${cust.city || ''}, ${cust.region || ''}`, margin + colW + 10, y + 17);
+  const hasFreeShipping = order.hasFreeShipping ?? (Number(order.subtotal || 0) >= 70000);
   doc.text(`Código Postal: ${cust.postalCode || '7500000'}`, margin + colW + 10, y + 22);
-  doc.text(`Despacho: Despacho a coordinar`, margin + colW + 10, y + 27);
+  doc.text(`Envío: ${hasFreeShipping ? 'ENVÍO GRATIS' : 'COORDINAR ENVÍO'}`, margin + colW + 10, y + 27);
 
   // 5. Tabla de Productos Comprados
   y = 104;
@@ -230,8 +231,8 @@ export function generateOrderPdf(order, { autoDownload = true } = {}) {
   }
 
   y += 5;
-  doc.text('Despacho:', sumX, y + 4);
-  doc.text('A coordinar', pageWidth - margin - 2, y + 4, { align: 'right' });
+  doc.text('Envío:', sumX, y + 4);
+  doc.text(hasFreeShipping ? 'GRATIS' : 'COORDINAR ENVÍO', pageWidth - margin - 2, y + 4, { align: 'right' });
 
   y += 6;
   doc.setFillColor(...crimson);

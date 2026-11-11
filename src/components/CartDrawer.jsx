@@ -19,7 +19,8 @@ export const CartDrawer = () => {
     couponDiscountPercent,
     applyCoupon, 
     removeCoupon,
-    shippingCost,
+    freeShippingThreshold,
+    hasFreeShipping,
     finalTotal,
     totalItems 
   } = useCart();
@@ -29,7 +30,6 @@ export const CartDrawer = () => {
 
   if (!isCartOpen) return null;
 
-  const freeShippingThreshold = 60000;
   const progressToFreeShipping = Math.min(100, (subtotal / freeShippingThreshold) * 100);
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
@@ -75,7 +75,7 @@ export const CartDrawer = () => {
             <div className="flex items-center justify-between mb-1.5 text-neutral-300">
               <span className="flex items-center gap-1.5">
                 <Truck className="w-3.5 h-3.5 text-[#C52222]" />
-                {remainingForFreeShipping === 0 ? (
+                {hasFreeShipping ? (
                   <strong className="text-emerald-400">¡ENVÍO GRATIS DESBLOQUEADO! 🇨🇱</strong>
                 ) : (
                   <span>AÑADE <strong>{formatCLP(remainingForFreeShipping)}</strong> PARA ENVÍO GRATIS</span>
@@ -230,7 +230,11 @@ export const CartDrawer = () => {
               )}
               <div className="flex justify-between text-neutral-400">
                 <span>ENVÍO</span>
-                <span>{shippingCost === 0 ? <strong className="text-emerald-400">GRATIS</strong> : formatCLP(shippingCost)}</span>
+                {hasFreeShipping ? (
+                  <strong className="text-emerald-400">GRATIS</strong>
+                ) : (
+                  <span className="text-white font-semibold">COORDINAR ENVÍO</span>
+                )}
               </div>
               <div className="flex items-center justify-between pt-2 border-t border-neutral-900 text-sm font-bold text-neutral-100">
                 <span>TOTAL</span>
