@@ -52,7 +52,7 @@ export const ManifestoSection = () => {
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl">
               
               <video
-                src="/video.mp4"
+                src="/video.mp4?v=2"
                 autoPlay
                 loop
                 muted
